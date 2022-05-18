@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.utils
+package com.heymaster.heymaster.utils.extensions
 
 import android.view.View
 import androidx.fragment.app.Fragment

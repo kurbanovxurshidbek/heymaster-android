@@ -3,6 +3,7 @@ package com.heymaster.heymaster.adapters.home.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.heymaster.heymaster.adapters.home.search.SearchAdapter.SearchViewHolder
@@ -14,11 +15,23 @@ class SearchAdapter : ListAdapter<SearchItem, SearchViewHolder>(SearchItemDiffCa
 
     inner class SearchViewHolder(private val binding: ItemSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(position: Int) {
-            val shopItem = getItem(position)
-            binding.tvTitle.text = shopItem.title
-            binding.tvBody.text = shopItem.body
+        fun bind(item: SearchItem) {
+            with(binding) {
+                tvTitle.text = item.title
+                tvBody.text = item.body
+            }
         }
+    }
+
+    private class SearchItemDiffCallback : DiffUtil.ItemCallback<SearchItem>() {
+        override fun areItemsTheSame(oldItem: SearchItem, newItem: SearchItem): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: SearchItem, newItem: SearchItem): Boolean {
+            return oldItem == newItem
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
@@ -26,7 +39,8 @@ class SearchAdapter : ListAdapter<SearchItem, SearchViewHolder>(SearchItemDiffCa
         return SearchViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) = holder.bind(position)
+    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) =
+        holder.bind(getItem(position))
 
 
 }

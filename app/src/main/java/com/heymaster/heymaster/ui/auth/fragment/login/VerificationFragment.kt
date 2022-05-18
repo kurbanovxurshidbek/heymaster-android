@@ -7,11 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.FragmentVerificationBinding
-import com.heymaster.heymaster.utils.viewBinding
+import com.heymaster.heymaster.utils.extensions.viewBinding
 
 
 class VerificationFragment : Fragment(R.layout.fragment_verification) {
-
 
     private val binding by viewBinding { FragmentVerificationBinding.bind(it) }
 

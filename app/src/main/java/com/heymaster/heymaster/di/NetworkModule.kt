@@ -18,7 +18,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class ServerModule {
+class NetworkModule {
 
     @Provides
     @Singleton
@@ -34,7 +34,7 @@ class ServerModule {
 
     @Provides
     @Singleton
-    fun getClient(sharedPref: SharedPref): OkHttpClient = OkHttpClient.Builder()
+    fun  getClient(sharedPref: SharedPref): OkHttpClient = OkHttpClient.Builder()
         .connectTimeout(60, TimeUnit.SECONDS)
         .readTimeout(60, TimeUnit.SECONDS)
         .addInterceptor(HttpLoggingInterceptor().apply {
