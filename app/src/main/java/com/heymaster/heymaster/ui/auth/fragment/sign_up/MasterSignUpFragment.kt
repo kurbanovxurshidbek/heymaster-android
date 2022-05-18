@@ -6,16 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.heymaster.heymaster.R
+import com.heymaster.heymaster.databinding.FragmentSignUpBinding
+import com.heymaster.heymaster.utils.viewBinding
 
-class MasterSignUpFragment : Fragment() {
+class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
 
+    private val binding by viewBinding { FragmentSignUpBinding.bind(it) }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_master_sign_up, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
 }

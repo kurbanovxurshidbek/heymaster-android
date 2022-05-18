@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.ui.auth.fragment.login
+package com.heymaster.heymaster.ui.master.fragment.booking
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,18 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.heymaster.heymaster.R
-import com.heymaster.heymaster.databinding.FragmentVerificationBinding
+import com.heymaster.heymaster.databinding.FragmentMasterActiveBookingBinding
 import com.heymaster.heymaster.utils.viewBinding
 
 
-class VerificationFragment : Fragment(R.layout.fragment_verification) {
+class MasterActiveBookingFragment : Fragment(R.layout.fragment_master_active_booking) {
 
-
-    private val binding by viewBinding { FragmentVerificationBinding.bind(it) }
+    private val binding by viewBinding { FragmentMasterActiveBookingBinding.bind(it) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
+
 
 
 }
