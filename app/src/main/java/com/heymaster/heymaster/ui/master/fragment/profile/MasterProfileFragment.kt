@@ -2,20 +2,51 @@ package com.heymaster.heymaster.ui.master.fragment.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
 import com.heymaster.heymaster.R
+import com.heymaster.heymaster.adapters.profile.ProfileTabAdapter
+import com.heymaster.heymaster.databinding.FragmentMasterActiveBookingBinding
+import com.heymaster.heymaster.databinding.FragmentMasterProfileBinding
+import com.heymaster.heymaster.utils.extensions.viewBinding
 
-class MasterProfileFragment : Fragment() {
+class MasterProfileFragment : Fragment(R.layout.fragment_master_profile) {
 
+    private lateinit var portfolioAdapter: ProfileTabAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_master_profile, container, false)
+    private val binding by viewBinding { FragmentMasterProfileBinding.bind(it) }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViews()
+    }
+
+    private fun initViews() {
+        
+        portfolioAdapter = ProfileTabAdapter(childFragmentManager, lifecycle)
+
+        binding.viewPagerProfile.adapter = portfolioAdapter
+
+        binding.tabLayoutMain.addTab(binding.tabLayoutMain.newTab().setText("Portfolio"))
+        binding.tabLayoutMain.addTab(binding.tabLayoutMain.newTab().setText("Profile"))
+
+        binding.tabLayoutMain.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                binding.viewPagerProfile.currentItem = tab!!.position
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+
+        })
+
+        binding.viewPagerProfile.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                binding.tabLayoutMain.selectTab(binding.tabLayoutMain.getTabAt(position))
+            }
+        })
     }
 
 

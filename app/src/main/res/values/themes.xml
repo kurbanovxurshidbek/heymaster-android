@@ -27,4 +27,11 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="circular">
+        <item name="cornerSize">50%</item>
+    </style>
+    <style name="radius">
+        <item name="cornerSize">8%</item>
+    </style>
 </resources>
