@@ -5,6 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.intro.fragment.FirstIntroFragment">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/intro_image_2"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"/>
+
 
 
 </FrameLayout>
