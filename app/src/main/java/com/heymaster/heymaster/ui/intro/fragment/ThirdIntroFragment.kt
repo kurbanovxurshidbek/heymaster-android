@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.FragmentSecondIntroBinding
 import com.heymaster.heymaster.databinding.FragmentThirdIntroBinding
-import com.heymaster.heymaster.utils.viewBinding
+import com.heymaster.heymaster.utils.extensions.viewBinding
 
 
 class ThirdIntroFragment : Fragment(R.layout.fragment_third_intro) {

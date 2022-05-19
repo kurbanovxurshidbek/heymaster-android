@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.FragmentSignUpBinding
-import com.heymaster.heymaster.utils.viewBinding
+import com.heymaster.heymaster.utils.extensions.viewBinding
 
 class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
 
