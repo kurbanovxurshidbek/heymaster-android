@@ -9,7 +9,6 @@ import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.FragmentSignUpBinding
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
-
 class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
 
     private val binding by viewBinding { FragmentSignUpBinding.bind(it) }
