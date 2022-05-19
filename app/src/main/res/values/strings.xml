@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">heymaster</string>
+
+    <string name="str_firstIntro1">Give your home a makeover</string>
+    <string name="str_firstIntro2">The best services that you could find for your</string>
+    <string name="str_firstIntro3">home as we have everything that you</string>
+    <string name="str_firstIntro4">are in need</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

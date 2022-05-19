@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.FragmentMasterActiveBookingBinding
-import com.heymaster.heymaster.utils.viewBinding
+import com.heymaster.heymaster.utils.extensions.viewBinding
 
 
 class MasterActiveBookingFragment : Fragment(R.layout.fragment_master_active_booking) {
