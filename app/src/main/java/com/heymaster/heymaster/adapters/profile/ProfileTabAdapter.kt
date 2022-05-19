@@ -7,6 +7,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.heymaster.heymaster.ui.master.fragment.profile.MasterChildProfileFragment
 import com.heymaster.heymaster.ui.master.fragment.profile.MasterPortfolioFragment
 
+
+//This Adapter do control Fragments in Master Profile
 class ProfileTabAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
 
