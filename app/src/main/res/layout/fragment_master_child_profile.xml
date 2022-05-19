@@ -3,13 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.intro.fragment.ThirdIntroFragment">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/intro_image_3"
-        android:scaleType="centerCrop"/>
+    tools:context=".ui.master.fragment.profile.MasterChildProfileFragment">
 
 
 
