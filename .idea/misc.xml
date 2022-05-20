@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/bg_bottom_navigation.xml" value="0.2185" />
+        <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/button_half_round.xml" value="0.2085" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/ic_baseline_arrow_right_alt_24.xml" value="0.1705" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/ic_booking_not_selected.xml" value="0.2085" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/ic_booking_selected.xml" value="0.2085" />
@@ -12,6 +13,7 @@
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/ic_img_intro1.xml" value="0.18" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/ic_profile_not_selected.xml" value="0.2085" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/ic_profile_selected.xml" value="0.2085" />
+        <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/ic_right_line.xml" value="0.2085" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/image_circle.xml" value="0.147" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/img_intro1.xml" value="0.18" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/intro_linear_rounded.xml" value="0.1705" />
