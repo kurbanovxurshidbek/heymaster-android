@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.FragmentSecondIntroBinding
 import com.heymaster.heymaster.databinding.FragmentSignUpBinding
+import com.heymaster.heymaster.ui.global.BaseFragment
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 
-class SecondIntroFragment : Fragment(R.layout.fragment_second_intro) {
+class SecondIntroFragment : BaseFragment(R.layout.fragment_second_intro) {
 
 
     private val binding by viewBinding { FragmentSecondIntroBinding.bind(it) }

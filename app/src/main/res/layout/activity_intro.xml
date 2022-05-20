@@ -46,9 +46,8 @@
                     app:dotsColor="@color/grey"
                     app:dotsCornerRadius="8dp"
                     app:dotsSize="16dp"
-                    app:dotsSpacing="4dp"
-                    app:dotsWidthFactor="2"
-                    app:selectedDotColor="@color/black"
+                    app:dotsSpacing="3.5dp"
+                    app:dotsWidthFactor="1.5"                    app:selectedDotColor="@color/black"
                     app:progressMode="false"
                     />
 
@@ -141,12 +140,7 @@
                                 android:src="@drawable/ic_baseline_arrow_right_alt_24"/>
 
                         </FrameLayout>
-
-
-
                     </LinearLayout>
-
-
                 </LinearLayout>
 
             </LinearLayout>

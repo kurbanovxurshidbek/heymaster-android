@@ -8,12 +8,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.heymaster.heymaster.databinding.ActivityIntroBinding
+import com.heymaster.heymaster.ui.global.BaseActivity
 import com.heymaster.heymaster.ui.intro.fragment.FirstIntroFragment
 import com.heymaster.heymaster.ui.intro.fragment.SecondIntroFragment
 import com.heymaster.heymaster.ui.intro.fragment.ThirdIntroFragment
 
 
-class IntroActivity : AppCompatActivity() {
+class IntroActivity : BaseActivity() {
 
     private val binding by lazy { ActivityIntroBinding.inflate(layoutInflater) }
 

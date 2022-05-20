@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/intro_image_3"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        />
 
 
 

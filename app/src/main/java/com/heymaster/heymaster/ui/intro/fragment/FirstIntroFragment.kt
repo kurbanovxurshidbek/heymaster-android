@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.FragmentFirstIntroBinding
+import com.heymaster.heymaster.ui.global.BaseFragment
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 
-class FirstIntroFragment : Fragment(R.layout.fragment_first_intro) {
+class FirstIntroFragment : BaseFragment(R.layout.fragment_first_intro) {
 
     private val binding by viewBinding { FragmentFirstIntroBinding.bind(it) }
 

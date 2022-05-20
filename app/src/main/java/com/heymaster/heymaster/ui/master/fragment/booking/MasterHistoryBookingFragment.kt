@@ -6,17 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.heymaster.heymaster.R
+import com.heymaster.heymaster.databinding.FragmentMasterHistoryBookingBinding
+import com.heymaster.heymaster.ui.global.BaseFragment
+import com.heymaster.heymaster.utils.extensions.viewBinding
 
 
-class MasterHistoryBookingFragment : Fragment() {
+class MasterHistoryBookingFragment : BaseFragment(R.layout.fragment_master_history_booking) {
 
+    private val binding by viewBinding { FragmentMasterHistoryBookingBinding.bind(it) }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_master_history_booking, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
 }
