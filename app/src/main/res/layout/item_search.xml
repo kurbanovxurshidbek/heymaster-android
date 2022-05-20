@@ -5,29 +5,83 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
     app:cardCornerRadius="10dp"
-    app:cardElevation="5dp">
+    app:cardElevation="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="title"
-            android:layout_marginVertical="4dp"
-            android:layout_marginHorizontal="10dp"
-            android:textSize="22sp"/>
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/im_search_round"
+            android:src="@drawable/im_search1"
+            android:layout_gravity="center_vertical"
+            />
 
-        <TextView
-            android:id="@+id/tv_body"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="body"
-            android:layout_marginHorizontal="10dp"
-            android:textSize="22sp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_nameInSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="David Beckham"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginVertical="4dp"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/tv_experience"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Experience: 2 years"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:textStyle="normal"/>
+
+            <LinearLayout
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:rating="4"
+                    android:numStars="5"
+                    android:progressTint="#Ffc107"
+                    />
+
+                <ImageView
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_location"/>
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yunusobod Toshkent"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
 
