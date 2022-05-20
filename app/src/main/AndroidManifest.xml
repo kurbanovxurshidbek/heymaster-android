@@ -15,7 +15,7 @@
             android:name=".ui.master.MasterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.SplashActivity"
+            android:name=".ui.user.UserActivity"
             android:exported="false" />
         <activity
             android:name=".ui.intro.IntroActivity"
@@ -26,7 +26,7 @@
             android:name=".ui.auth.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.user.UserActivity"
+            android:name=".ui.SplashActivity"
             android:exported="true"
             >
             <intent-filter>
