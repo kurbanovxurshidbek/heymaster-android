@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/userHomeFragment">
 
+    <fragment
+        android:id="@+id/userHomeFragment"
+        android:name="com.heymaster.heymaster.ui.user.fragment.home.UserHomeFragment"
+        android:label="fragment_user_home"
+        tools:layout="@layout/fragment_user_home" />
+    <fragment
+        android:id="@+id/userBookingFragment"
+        android:name="com.heymaster.heymaster.ui.user.fragment.booking.UserBookingFragment"
+        android:label="fragment_user_booking"
+        tools:layout="@layout/fragment_user_booking" />
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.heymaster.heymaster.ui.user.fragment.profile.UserProfileFragment"
+        android:label="fragment_user_profile"
+        tools:layout="@layout/fragment_user_profile" />
 </navigation>

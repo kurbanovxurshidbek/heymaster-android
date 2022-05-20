@@ -5,6 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.user.fragment.booking.UserBookingFragment">
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Booking"
+        android:textSize="30dp"/>
 
 </FrameLayout>

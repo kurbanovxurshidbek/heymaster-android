@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.viewpager2.widget.ViewPager2
 import com.heymaster.heymaster.databinding.ActivityIntroBinding
 import com.heymaster.heymaster.ui.global.BaseActivity
 import com.heymaster.heymaster.ui.intro.fragment.FirstIntroFragment
@@ -23,7 +24,7 @@ class IntroActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        hideSystemBars()
+        //hideSystemBars()
         //hideStatusBarAndBottomBar()
         adapter = IntroAdapter(supportFragmentManager, lifecycle)
         setupViewPager()
@@ -38,6 +39,23 @@ class IntroActivity : BaseActivity() {
         binding.viewPager.adapter = adapter
         binding.viewPager.setCurrentItem(0, true)
         binding.dotsIndicator.setViewPager2(binding.viewPager)
+
+        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                when(position) {
+                    0 -> {
+
+                    }
+                    1 -> {
+
+                    }
+                    2 -> {
+
+                    }
+                }
+            }
+        })
 
     }
 

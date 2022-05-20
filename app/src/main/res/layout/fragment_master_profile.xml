@@ -50,8 +50,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/intro_image_2"
             app:shapeAppearanceOverlay="@style/circular" />
 
         <LinearLayout
