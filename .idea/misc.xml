@@ -43,6 +43,10 @@
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/item_portfolio.xml" value="0.20153985507246377" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/item_search.xml" value="0.20652173913043478" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/item_services.xml" value="0.20153985507246377" />
+        <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_master_child_profile.xml" value="0.33" />
+        <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_master_portfolio.xml" value="0.19384057971014493" />
+        <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_master_profile.xml" value="0.2" />
+        <entry key="..\:/heymaster-android/app/src/main/res/layout/item_portfolio.xml" value="0.19384057971014493" />
       </map>
     </option>
   </component>

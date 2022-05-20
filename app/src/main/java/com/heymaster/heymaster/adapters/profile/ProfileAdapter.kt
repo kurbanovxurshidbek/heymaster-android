@@ -1,4 +1,4 @@
 package com.heymaster.heymaster.adapters.profile
 
-class PortfolioAdapter {
+class ProfileAdapter {
 }
