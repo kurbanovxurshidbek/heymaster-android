@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/userHomeFragment"
-        android:title=""
+        android:id="@+id/masterHomeFragment"
+        android:title="Home"
         android:icon="@drawable/selector_ic_home"/>
 
     <item
-        android:id="@+id/userBookingFragment"
-        android:title=""
+        android:id="@+id/masterBookingFragment"
+        android:title="Bookings"
         android:icon="@drawable/selector_ic_booking"/>
     <item
-        android:id="@+id/userProfileFragment"
-        android:title=""
+        android:id="@+id/masterProfileFragment"
+        android:title="Profile"
         android:icon="@drawable/selector_ic_profile"/>
 </menu>

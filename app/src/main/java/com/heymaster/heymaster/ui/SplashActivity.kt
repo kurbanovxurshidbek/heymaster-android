@@ -2,6 +2,7 @@ package com.heymaster.heymaster.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -20,6 +21,9 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            setupStatusBar()
+        }
 
         countTimer()
 

@@ -73,4 +73,7 @@ dependencies {
 
     //swiperefreshlayout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    //pinView
+    implementation 'com.chaos.view:pinview:1.4.4'
 }

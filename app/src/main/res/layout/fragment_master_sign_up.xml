@@ -1,10 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".ui.auth.fragment.sign_up.MasterSignUpFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_edit_text_login"
+            android:drawablePadding="12dp"
+            android:hint="@string/fullName"
+            android:inputType="number"
+            android:maxLines="1"
+            android:paddingHorizontal="24sp"
+            android:paddingVertical="0dp"
+            android:textColor="@color/black1"
+            android:textCursorDrawable="@drawable/edittext_cursor_drawable"
+            android:textSize="20sp"
+            tools:ignore="TextFields" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="24dp"
+            android:background="@drawable/bg_edit_text_login"
+            android:layout_marginTop="12dp"
+            android:paddingStart="24dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_edit_text_login"
+                android:text="@string/location"
+                android:gravity="start|center"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_marginHorizontal="16dp"/>
 
 
-</FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="24dp"
+            android:background="@drawable/bg_edit_text_login"
+            android:layout_marginTop="12dp"
+            android:paddingStart="24dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_edit_text_login"
+                android:text="@string/profession"
+                android:gravity="start|center"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_marginHorizontal="16dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="24dp"
+            android:background="@drawable/bg_edit_text_login"
+            android:layout_marginTop="12dp"
+            android:paddingStart="24dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_edit_text_login"
+                android:text="@string/salary"
+                android:gravity="start|center"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_marginHorizontal="16dp"/>
+
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

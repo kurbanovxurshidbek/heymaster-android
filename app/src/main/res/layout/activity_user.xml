@@ -52,17 +52,15 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/user_bottom_navigation"
             android:layout_width="match_parent"
-            android:layout_height="68dp"
+            android:layout_height="64dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:labelVisibilityMode="unlabeled"
-            app:elevation="28dp"
             app:itemIconSize="28dp"
             android:background="@drawable/bg_bottom_navigation"
             android:layout_marginHorizontal="4dp"
-            android:elevation="28dp"
-            app:menu="@menu/menu_home"/>
+            app:menu="@menu/menu_main_user"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

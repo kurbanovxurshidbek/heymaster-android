@@ -14,6 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
+<!--    custom theme-->
     <style name="main_theme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
@@ -35,5 +36,11 @@
     </style>
     <style name="radius">
         <item name="cornerSize">8%</item>
+    </style>
+
+<!--    sign_up_tab-->
+    <style name="tab_text_style">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

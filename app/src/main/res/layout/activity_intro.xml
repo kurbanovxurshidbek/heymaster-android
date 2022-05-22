@@ -59,34 +59,26 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_firstIntro1"
+                        android:id="@+id/tv_intro_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="@string/str_firstIntro1"
+                        android:text=""
                         android:textColor="@color/black"
-                        android:textSize="24sp"
+                        android:textSize="30sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tv_firstIntro2"
+                        android:id="@+id/tv_intro_body"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/str_firstIntro2"
+                        android:layout_marginHorizontal="12dp"
+                        android:text=""
                         android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tv_firstIntro3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/str_firstIntro3"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        android:textSize="22sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -96,22 +88,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             tools:ignore="UselessParent">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:id="@+id/tv_firstIntro4"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="@string/str_firstIntro4"
-                                    android:textColor="@color/black"
-                                    android:textSize="18sp"
-                                    android:visibility="gone" />
-
-                            </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -131,12 +107,12 @@
                             </LinearLayout>
 
                             <ImageView
-                                android:id="@+id/btn_skip"
+                                android:id="@+id/btn_next"
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_gravity="bottom|right"
                                 android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="36dp"
+                                android:layout_marginBottom="56dp"
                                 android:background="@drawable/image_circle"
                                 android:padding="1dp"
                                 android:src="@drawable/ic_right_line"

@@ -9,15 +9,23 @@
         android:id="@+id/loginFragment"
         android:name="com.heymaster.heymaster.ui.auth.fragment.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_verificationFragment"
+            app:destination="@id/verificationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/verificationFragment"
         android:name="com.heymaster.heymaster.ui.auth.fragment.login.VerificationFragment"
         android:label="fragment_verification"
-        tools:layout="@layout/fragment_verification" />
+        tools:layout="@layout/fragment_verification" >
+        <action
+            android:id="@+id/action_verificationFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/masterSignUpFragment"
-        android:name="com.heymaster.heymaster.ui.auth.fragment.sign_up.MasterSignUpFragment"
-        android:label="fragment_master_sign_up"
-        tools:layout="@layout/fragment_master_sign_up" />
+        android:id="@+id/signUpFragment"
+        android:name="com.heymaster.heymaster.ui.auth.fragment.sign_up.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
 </navigation>
