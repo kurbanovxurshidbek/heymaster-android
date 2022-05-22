@@ -45,6 +45,9 @@
                 app:tabSelectedTextColor="@color/white1"
                 app:tabIndicatorHeight="0dp"
                 app:tabTextColor="@color/black1"
+                app:tabMode="fixed"
+                app:tabIndicatorAnimationMode="linear"
+                android:descendantFocusability="afterDescendants"
                 app:tabRippleColor="@null"
                 app:tabTextAppearance="@style/tab_text_style"
                 />

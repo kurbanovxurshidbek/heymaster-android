@@ -66,8 +66,9 @@
                         android:gravity="center"
                         android:padding="10dp"
                         android:text=""
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:textColor="@color/black"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -75,10 +76,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:layout_marginHorizontal="12dp"
+                        android:fontFamily="@font/poppins_extra_light"
+                        android:layout_marginHorizontal="18dp"
                         android:text=""
                         android:textColor="@color/black"
-                        android:textSize="22sp" />
+                        android:textSize="18sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -100,6 +102,7 @@
                                     android:layout_marginHorizontal="30dp"
                                     android:layout_marginTop="20dp"
                                     android:text="Get Started"
+                                    android:fontFamily="@font/poppins_semi_bold"
                                     android:textColor="@color/white"
                                     android:visibility="gone"
                                     app:backgroundTint="@null"
