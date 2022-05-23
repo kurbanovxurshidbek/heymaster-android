@@ -76,4 +76,10 @@ dependencies {
 
     //pinView
     implementation 'com.chaos.view:pinview:1.4.4'
+
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //Zoom imageView
+    implementation 'com.jsibbold:zoomage:1.3.1'
 }

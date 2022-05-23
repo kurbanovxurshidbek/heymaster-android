@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="80dp"
@@ -10,24 +9,52 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="title"
-            android:layout_marginVertical="4dp"
-            android:layout_marginHorizontal="10dp"
-            android:textSize="22sp"/>
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/intro_image_3"
+            android:layout_gravity="center_vertical"
+            />
 
-        <TextView
-            android:id="@+id/tv_body"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="body"
-            android:layout_marginHorizontal="10dp"
-            android:textSize="22sp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_nameInSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="David Beckham"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginVertical="4dp"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/tv_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Experience: 2 years"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:textStyle="normal"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
 

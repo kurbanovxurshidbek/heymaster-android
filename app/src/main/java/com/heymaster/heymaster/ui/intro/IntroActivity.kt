@@ -4,13 +4,13 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.heymaster.heymaster.R
+import com.heymaster.heymaster.SharedPref
+import com.heymaster.heymaster.adapters.viewpagers.IntroPagerAdapter
 import com.heymaster.heymaster.databinding.ActivityIntroBinding
 import com.heymaster.heymaster.ui.global.BaseActivity
 import com.heymaster.heymaster.ui.intro.fragment.FirstIntroFragment
@@ -22,23 +22,25 @@ class IntroActivity : BaseActivity() {
 
     private val binding by lazy { ActivityIntroBinding.inflate(layoutInflater) }
 
-    private lateinit var adapter: IntroAdapter
+    private lateinit var adapter: IntroPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         //hideSystemBars()
         //hideStatusBarAndBottomBar()
-        adapter = IntroAdapter(supportFragmentManager, lifecycle)
-        setupViewPager()
-
-        binding.btnGetStarted.setOnClickListener {
+        if (SharedPref(this).getSaved()){
             callLoginActivity()
         }
-        binding.btnNext.setOnClickListener {
+        adapter = IntroPagerAdapter(supportFragmentManager, lifecycle)
+        setupViewPager()
 
+
+
+        binding.btnGetStarted.setOnClickListener {
+            SharedPref(this).isSaved(true)
+            callLoginActivity()
         }
-
     }
 
     private fun setupViewPager() {
@@ -58,19 +60,16 @@ class IntroActivity : BaseActivity() {
                         binding.tvIntroTitle.text = getString(R.string.first_intro_title)
                         binding.tvIntroBody.text = getString(R.string.first_intro_body)
                         binding.btnGetStarted.visibility = View.GONE
-                        binding.btnNext.visibility = View.VISIBLE
                     }
                     1 -> {
                         binding.tvIntroTitle.text = getString(R.string.second_intro_title)
                         binding.tvIntroBody.text = getString(R.string.second_intro_body)
                         binding.btnGetStarted.visibility = View.GONE
-                        binding.btnNext.visibility = View.VISIBLE
                     }
                     2 -> {
                         binding.tvIntroTitle.text = getString(R.string.third_intro_title)
                         binding.tvIntroBody.text = getString(R.string.third_intro_body)
                         binding.btnGetStarted.visibility = View.VISIBLE
-                        binding.btnNext.visibility = View.GONE
                     }
                 }
             }

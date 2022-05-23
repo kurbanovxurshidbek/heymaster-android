@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.master.fragment.profile.MasterProfileFragment">
+    tools:context=".ui.master.profile.MasterProfileFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -15,28 +15,20 @@
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="facebook"
-            app:titleTextColor="#000000">
+            android:layout_height="?attr/actionBarSize">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical|center_horizontal"
-                android:orientation="horizontal"
-                android:paddingRight="16dp">
+                android:gravity="center"
+                android:text="@string/profile"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:paddingEnd="12dp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/profile"
-                        android:textColor="#000000"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
-            </LinearLayout>
 
         </androidx.appcompat.widget.Toolbar>
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
@@ -50,6 +42,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
             android:src="@drawable/intro_image_2"
             app:shapeAppearanceOverlay="@style/circular" />
 
@@ -106,21 +100,21 @@
                 android:gravity="center_vertical">
 
                 <androidx.cardview.widget.CardView
+                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#FF7C02"
-                    app:cardCornerRadius="10dp"
-                    android:elevation="8dp"
+                    android:backgroundTint="@color/orange1"
+                    app:cardCornerRadius="16sp"
+                    android:elevation="24dp"
                     >
                     <TextView
                         android:id="@+id/tvLogInAnotherProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="5dp"
+                        android:paddingVertical="8dp"
                         android:layout_gravity="center"
-                        android:text="Log in as client"
-                        android:textSize="12sp"
+                        android:text="@string/loginAsMaster"
+                        android:textSize="16sp"
                         android:textColor="@color/white"/>
                 </androidx.cardview.widget.CardView>
 
@@ -129,38 +123,58 @@
                     android:id="@+id/ivEditProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="16dp"
                     android:src="@drawable/ic_edit_profile"
                     />
             </LinearLayout>
-
-
-
         </LinearLayout>
-
-
-
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginVertical="25dp"
-        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginHorizontal="16dp"
         android:background="#21000000" />
 
-
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout_main"
+        android:id="@+id/tab_master_profile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="42dp"
+        android:descendantFocusability="afterDescendants"
+        app:tabBackground="@color/white"
+        app:tabGravity="fill"
+        android:layout_marginHorizontal="12dp"
+        app:tabTextAppearance="@style/tab_text_style"
+        app:tabIndicator="@drawable/selector_sign_up_tab"
+        app:tabIndicatorAnimationMode="linear"
+        app:tabIndicatorColor="@color/black"
+        app:tabIndicatorGravity="stretch"
+        app:tabMode="fixed"
+        app:tabRippleColor="@null"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="#21000000" />
 
     <androidx.viewpager2.widget.ViewPager2
-    android:id="@+id/viewPagerProfile"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-   />
+        android:id="@+id/vp_master_profile"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+
+
+
+
 
 
 

@@ -22,14 +22,15 @@ class VerificationFragment : Fragment(R.layout.fragment_verification) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnSubmit.setOnClickListener {
-            val code = binding.etVerificationCode.text.toString()
-            if (code.length >= 4){
-//                startActivity(Intent(requireActivity(), UserActivity::class.java))
-//                activity?.finish()
-                findNavController().navigate(R.id.action_verificationFragment_to_signUpFragment)
-            } else {
-                Toast.makeText(requireContext(), " Kod Kiriting", Toast.LENGTH_SHORT).show()
-            }
+            findNavController().navigate(R.id.action_verificationFragment_to_signUpFragment)
+//            val code = binding.etVerificationCode.text.toString()
+//            if (code.length >= 4){
+////                startActivity(Intent(requireActivity(), UserActivity::class.java))
+////                activity?.finish()
+//
+//            } else {
+//                Toast.makeText(requireContext(), " Kod Kiriting", Toast.LENGTH_SHORT).show()
+//            }
 
         }
     }

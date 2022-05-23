@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/userHomeFragment"
-        android:name="com.heymaster.heymaster.ui.user.fragment.home.UserHomeFragment"
+        android:name="com.heymaster.heymaster.ui.user.home.UserHomeFragment"
         android:label="fragment_user_home"
         tools:layout="@layout/fragment_user_home" />
     <fragment
         android:id="@+id/userBookingFragment"
-        android:name="com.heymaster.heymaster.ui.user.fragment.booking.UserBookingFragment"
+        android:name="com.heymaster.heymaster.ui.user.booking.UserBookingFragment"
         android:label="fragment_user_booking"
         tools:layout="@layout/fragment_user_booking" />
     <fragment
         android:id="@+id/userProfileFragment"
-        android:name="com.heymaster.heymaster.ui.user.fragment.profile.UserProfileFragment"
+        android:name="com.heymaster.heymaster.ui.user.profile.UserProfileFragment"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" />
 </navigation>

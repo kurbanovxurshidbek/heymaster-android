@@ -39,18 +39,36 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_sign_up"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="8dp"
-                app:tabBackground="@drawable/selector_sign_up_tab"
-                app:tabSelectedTextColor="@color/white1"
-                app:tabIndicatorHeight="0dp"
-                app:tabTextColor="@color/black1"
-                app:tabMode="fixed"
-                app:tabIndicatorAnimationMode="linear"
+                android:layout_height="42dp"
                 android:descendantFocusability="afterDescendants"
-                app:tabRippleColor="@null"
+                app:tabBackground="@color/white"
+                app:tabGravity="fill"
+                android:layout_marginHorizontal="12dp"
                 app:tabTextAppearance="@style/tab_text_style"
-                />
+                app:tabIndicator="@drawable/selector_sign_up_tab"
+                app:tabIndicatorAnimationMode="linear"
+                app:tabIndicatorColor="@color/black"
+                app:tabIndicatorGravity="stretch"
+                app:tabMode="fixed"
+                app:tabRippleColor="@null"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextColor="@color/black" />
+
+<!--            <com.google.android.material.tabs.TabLayout-->
+<!--                android:id="@+id/tab_sign_up"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginHorizontal="8dp"-->
+<!--                app:tabBackground="@drawable/selector_sign_up_tab"-->
+<!--                app:tabSelectedTextColor="@color/white1"-->
+<!--                app:tabIndicatorHeight="0dp"-->
+<!--                app:tabTextColor="@color/black1"-->
+<!--                app:tabMode="fixed"-->
+<!--                app:tabIndicatorAnimationMode="linear"-->
+<!--                android:descendantFocusability="afterDescendants"-->
+<!--                app:tabRippleColor="@null"-->
+<!--                app:tabTextAppearance="@style/tab_text_style"-->
+<!--                />-->
         </LinearLayout>
 
         <androidx.viewpager2.widget.ViewPager2

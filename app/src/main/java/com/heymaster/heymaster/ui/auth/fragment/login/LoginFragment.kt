@@ -25,12 +25,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding.etPhoneNumber.enterPhoneNumber()
 
         binding.btnContinue.setOnClickListener {
-            val number = binding.etPhoneNumber.text.toString()
-            if (number.length >= 9) {
-                findNavController().navigate(R.id.action_loginFragment_to_verificationFragment)
-            } else {
-                Toast.makeText(requireContext(), "No'mer xato", Toast.LENGTH_SHORT).show()
-            }
+            findNavController().navigate(R.id.action_loginFragment_to_verificationFragment)
+//            val number = binding.etPhoneNumber.text.toString()
+//            if (number.length >= 9) {
+//
+//            } else {
+//                Toast.makeText(requireContext(), "No'mer xato", Toast.LENGTH_SHORT).show()
+//            }
         }
      }
 }
