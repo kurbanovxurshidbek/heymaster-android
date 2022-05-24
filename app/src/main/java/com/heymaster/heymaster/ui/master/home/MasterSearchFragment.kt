@@ -5,7 +5,7 @@ import android.view.View
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.ui.global.BaseFragment
 
-class MasterSearchFragment: BaseFragment(R.layout.fragment_search) {
+class MasterSearchFragment: BaseFragment(R.layout.fragment_master_search) {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -9,7 +9,19 @@
         android:id="@+id/userHomeFragment"
         android:name="com.heymaster.heymaster.ui.user.home.UserHomeFragment"
         android:label="fragment_user_home"
-        tools:layout="@layout/fragment_user_home" />
+        tools:layout="@layout/fragment_user_home" >
+        <action
+            android:id="@+id/action_userHomeFragment_to_userNotificationFragment"
+            app:destination="@id/userNotificationFragment"
+            app:popUpTo="@id/userNotificationFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_userHomeFragment_to_userSearchFragment"
+            app:destination="@id/userSearchFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/userSearchFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
     <fragment
         android:id="@+id/userBookingFragment"
         android:name="com.heymaster.heymaster.ui.user.booking.UserBookingFragment"
@@ -20,4 +32,13 @@
         android:name="com.heymaster.heymaster.ui.user.profile.UserProfileFragment"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" />
+    <fragment
+        android:id="@+id/userNotificationFragment"
+        android:name="com.heymaster.heymaster.ui.user.notification.UserNotificationFragment"
+        android:label="fragment_user_notification"
+        tools:layout="@layout/fragment_user_notification" />
+    <fragment
+        android:id="@+id/userSearchFragment"
+        android:name="com.heymaster.heymaster.ui.user.home.UserSearchFragment"
+        android:label="UserSearchFragment" />
 </navigation>

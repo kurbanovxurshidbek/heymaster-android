@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.user.home.UserHomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -15,14 +15,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/et_phone_number"
+                    android:id="@+id/etHomeSearch"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_marginVertical="12dp"
@@ -30,12 +31,12 @@
                     android:background="@drawable/bg_edit_text_login"
                     android:drawableStart="@drawable/ic_search"
                     android:drawablePadding="12dp"
+                    android:editable="false"
+                    android:focusable="false"
                     android:hint="@string/search_for_services"
                     android:inputType="number"
                     android:maxLength="12"
                     android:maxLines="1"
-                    android:focusable="false"
-                    android:editable="false"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="0dp"
                     android:textColor="@color/black1"
@@ -44,123 +45,206 @@
                     tools:ignore="TextFields" />
 
                 <ImageView
+                    android:id="@+id/ivBtnNotification"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_marginHorizontal="16dp"
-                    android:src="@drawable/ic_notification"/>
+                    android:src="@drawable/ic_notification" />
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/vpUserHomeAds"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-
-                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-                    android:id="@+id/user_home_ads_dots_indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:padding="10dp"
-                    app:dotsColor="@color/grey"
-                    app:dotsCornerRadius="8dp"
-                    app:dotsSize="16dp"
-                    app:dotsSpacing="3.5dp"
-                    app:dotsWidthFactor="1.5"
-                    app:progressMode="false"
-                    app:selectedDotColor="@color/black"
-                    tools:ignore="RtlHardcoded" />
-
-            </LinearLayout>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="156dp"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="168dp"
+                    android:orientation="vertical">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/vpUserHomeAds"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" />
+
+
+                    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                        android:id="@+id/user_home_ads_dots_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="10dp"
+                        app:dotsColor="@color/grey"
+                        app:dotsCornerRadius="8dp"
+                        app:dotsSize="12dp"
+                        app:dotsSpacing="3dp"
+                        app:dotsWidthFactor="1.5"
+                        app:progressMode="false"
+                        app:selectedDotColor="@color/black"
+                        tools:ignore="RtlHardcoded" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/services"
-                    android:textSize="24dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black1"
-                    android:layout_marginHorizontal="16sp"/>
+                    android:layout_marginVertical="6dp"
+                    android:orientation="vertical">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_user_home_service"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:orientation="vertical">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16sp"
+                            android:layout_weight="1"
+                            android:text="@string/services"
+                            android:textColor="@color/black1"
+                            android:textSize="28sp"
+                            android:textStyle="bold" />
 
-                <TextView
+                        <TextView
+                            android:id="@+id/btnAllServices"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="@drawable/bg_all_btn"
+                            android:paddingHorizontal="28sp"
+                            android:paddingVertical="2dp"
+                            android:text="@string/all"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_user_home_service"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginVertical="6dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/servicePopular"
-                    android:textSize="24dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black1"
-                    android:layout_marginHorizontal="16sp"/>
+                    android:layout_marginVertical="6dp"
+                    android:orientation="vertical">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_user_home_popular_services"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:orientation="vertical">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16sp"
+                            android:layout_weight="1"
+                            android:text="@string/servicePopular"
+                            android:textColor="@color/black1"
+                            android:textSize="28sp"
+                            android:textStyle="bold" />
 
-                <TextView
+                        <TextView
+                            android:id="@+id/btnAllPopularServices"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="@drawable/bg_all_btn"
+                            android:paddingHorizontal="28sp"
+                            android:paddingVertical="2dp"
+                            android:text="@string/all"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_user_home_popular_services"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="6dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/popular_masters"
-                    android:textSize="24dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black1"
-                    android:layout_marginHorizontal="16sp"/>
+                    android:layout_marginVertical="6dp"
+                    android:orientation="vertical">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_user_home_popular_masters"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16sp"
+                            android:layout_weight="1"
+                            android:text="@string/popular_masters"
+                            android:textColor="@color/black1"
+                            android:textSize="28sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/btnAllPopularMasters"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="@drawable/bg_all_btn"
+                            android:paddingHorizontal="28sp"
+                            android:paddingVertical="2dp"
+                            android:text="@string/all"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_user_home_popular_masters"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginVertical="6dp"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                </LinearLayout>
+
+
             </LinearLayout>
 
+        </androidx.core.widget.NestedScrollView>
+
+        <include
+            android:id="@+id/progress_home"
+            layout="@layout/custom_progress"
+            android:visibility="gone"/>
+
+    </FrameLayout>
 
 
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
