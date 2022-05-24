@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
+import com.google.android.material.tabs.TabLayoutMediator
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.adapters.home.HomePopularMastersAdapter
 import com.heymaster.heymaster.adapters.home.HomePopularServicesAdapter
@@ -15,6 +15,7 @@ import com.heymaster.heymaster.adapters.viewpagers.AdsPagerAdapter
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentUserHomeBinding
+import com.heymaster.heymaster.model.Ads
 import com.heymaster.heymaster.ui.global.BaseFragment
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.extensions.viewBinding
@@ -35,6 +36,10 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
     private val popularServicesAdapter by lazy { HomePopularServicesAdapter() }
     private val popularMastersAdapter by lazy { HomePopularMastersAdapter() }
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -112,6 +117,15 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
         addAutoScrollToViewPager()
     }
 
+
+    private fun fakeAds(): List<Ads> {
+        val list = ArrayList<Ads>()
+        list.add(Ads(1, "Hello", "", ""))
+        list.add(Ads(1, "Hello", "", ""))
+        list.add(Ads(1, "Hello", "", ""))
+        return list
+
+    }
 
     private fun setupViewModel() {
         viewModel = ViewModelProvider(

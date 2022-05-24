@@ -21,7 +21,7 @@
             android:background="@drawable/bg_edit_text_login"
             android:drawablePadding="12dp"
             android:hint="@string/fullName"
-            android:inputType="number"
+            android:inputType="text"
             android:maxLines="1"
             android:paddingHorizontal="24sp"
             android:paddingVertical="0dp"
