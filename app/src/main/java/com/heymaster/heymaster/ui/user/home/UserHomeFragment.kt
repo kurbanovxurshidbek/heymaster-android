@@ -75,7 +75,6 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
                             adsAdapter.submitAds(it.data)
 
 
-
                         }
                         is UiStateList.ERROR -> {
                             Log.d("@@@error", it.message)
@@ -84,9 +83,6 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
                     }
                 }
             }
-
-
-
         }
     }
 
@@ -96,8 +92,6 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
 
         binding.vpUserHomeAds.setCurrentItem(0, true)
         binding.userHomeAdsDotsIndicator.setViewPager2(binding.vpUserHomeAds)
-
-
 
     }
 

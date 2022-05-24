@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-
 import androidx.recyclerview.widget.RecyclerView
 import com.heymaster.heymaster.adapters.home.HomeServicesAdapter.*
 import com.heymaster.heymaster.databinding.ItemServiceBinding
@@ -18,7 +17,6 @@ class HomeServicesAdapter: ListAdapter<Service, ServiceViewHolder>(ServiceItemDi
             binding.tvServiceName.text = service.name
             Picasso.get().load(service.image).into(binding.icServices)
         }
-
     }
 
     private class ServiceItemDiffCallback: DiffUtil.ItemCallback<Service>() {
@@ -29,7 +27,6 @@ class HomeServicesAdapter: ListAdapter<Service, ServiceViewHolder>(ServiceItemDi
         override fun areContentsTheSame(oldItem: Service, newItem: Service): Boolean {
             return oldItem == newItem
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceViewHolder {
