@@ -23,6 +23,7 @@ import kotlinx.coroutines.flow.collect
 class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
 
     private val binding by viewBinding { FragmentUserHomeBinding.bind(it) }
+
     private lateinit var viewModel: UserHomeViewModel
     private val serviceAdapter by lazy { HomeServicesAdapter() }
     private val adsAdapter by lazy { AdsPagerAdapter() }
@@ -41,41 +42,30 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
         viewModel.getAds()
         observeViewModel()
 
-
-
     }
 
     private fun observeViewModel() {
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.services.collect {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.services.collect { it ->
                 when(it) {
                     is UiStateList.LOADING -> {
-
                     }
                     is UiStateList.SUCCESS -> {
                         serviceAdapter.submitList(it.data)
-
-
                     }
                     is UiStateList.ERROR -> {
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit
                 }
-            }
 
-            viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-                viewModel.services.collect {
+                viewModel.ads.collect {
                     when(it) {
                         is UiStateList.LOADING -> {
-
                         }
                         is UiStateList.SUCCESS -> {
                             Log.d("@@@Ads", it.data.toString())
                             adsAdapter.submitAds(it.data)
-
-
-
                         }
                         is UiStateList.ERROR -> {
                             Log.d("@@@error", it.message)
@@ -84,20 +74,23 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
                     }
                 }
             }
-
-
-
         }
     }
 
     private fun setupRv() {
         binding.rvUserHomeService.adapter = serviceAdapter
-        binding.vpUserHomeAds.adapter = adsAdapter
+        //binding.vpUserHomeAds.adapter = adsAdapter
 
-        binding.vpUserHomeAds.setCurrentItem(0, true)
-        binding.userHomeAdsDotsIndicator.setViewPager2(binding.vpUserHomeAds)
+    }
 
 
+
+    private fun fakeAds(): List<Ads> {
+        val list = ArrayList<Ads>()
+        list.add(Ads(1, "Hello", "", ""))
+        list.add(Ads(1, "Hello", "", ""))
+        list.add(Ads(1, "Hello", "", ""))
+        return list
 
     }
 

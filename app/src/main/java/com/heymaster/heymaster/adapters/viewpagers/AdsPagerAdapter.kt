@@ -10,14 +10,14 @@ import com.squareup.picasso.Picasso
 
 class AdsPagerAdapter: RecyclerView.Adapter<AdsPagerAdapter.AdsViewHolder>(){
 
-    private val ads: ArrayList<Service> = ArrayList()
+    private val ads: ArrayList<Ads> = ArrayList()
 
 inner class AdsViewHolder(private val binding: ItemAdsBinding): RecyclerView.ViewHolder(binding.root) {
-    fun bind(ads: Service) {
-        binding.tvAdsTitle.text = ads.name
+    fun bind(ads: Ads) {
+        binding.tvAdsTitle.text = ads.title
+
 
     }
-
 }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdsViewHolder {
@@ -34,7 +34,7 @@ inner class AdsViewHolder(private val binding: ItemAdsBinding): RecyclerView.Vie
         return ads.size
     }
 
-    fun submitAds(list: List<Service>) {
+    fun submitAds(list: List<Ads>) {
         ads.addAll(list)
         notifyDataSetChanged()
     }
