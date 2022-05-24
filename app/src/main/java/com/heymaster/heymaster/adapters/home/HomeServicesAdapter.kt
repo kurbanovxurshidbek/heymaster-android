@@ -29,7 +29,6 @@ class HomeServicesAdapter: ListAdapter<Service, ServiceViewHolder>(ServiceItemDi
         override fun areContentsTheSame(oldItem: Service, newItem: Service): Boolean {
             return oldItem == newItem
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceViewHolder {
