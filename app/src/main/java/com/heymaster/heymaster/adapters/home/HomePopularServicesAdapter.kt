@@ -5,17 +5,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.heymaster.heymaster.adapters.home.HomePopularServiceAdapter.PopularServiceViewHolder
+import com.heymaster.heymaster.adapters.home.HomePopularServicesAdapter.PopularServiceViewHolder
 import com.heymaster.heymaster.databinding.ItemPopularServicesBinding
 import com.heymaster.heymaster.model.Service
 
-class HomePopularServiceAdapter :
+class HomePopularServicesAdapter :
     ListAdapter<Service, PopularServiceViewHolder>(ServiceItemDiffCallback()) {
 
     inner class PopularServiceViewHolder(private val binding: ItemPopularServicesBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(service: Service) {
+            if (service.rate >= 3) {
 
+            }
 
         }
 

@@ -8,25 +8,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.heymaster.heymaster.adapters.home.HomePopularMastersAdapter.*
 import com.heymaster.heymaster.databinding.ItemAdsBinding
 import com.heymaster.heymaster.databinding.ItemPopularMastersBinding
+import com.heymaster.heymaster.model.Service
 import com.heymaster.heymaster.model.User
 
 class HomePopularMastersAdapter:
-    ListAdapter<User, PopularMastersViewHolder>(PopularMasterItemDiffCallback()) {
+    ListAdapter<Service, PopularMastersViewHolder>(PopularMasterItemDiffCallback()) {
 
     inner class PopularMastersViewHolder(private val binding: ItemPopularMastersBinding):
             RecyclerView.ViewHolder(binding.root) {
-        fun bind(master: User) {
+        fun bind(master: Service) {
+
 
         }
 
     }
 
-    private class PopularMasterItemDiffCallback: DiffUtil.ItemCallback<User>() {
-        override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+    private class PopularMasterItemDiffCallback: DiffUtil.ItemCallback<Service>() {
+        override fun areItemsTheSame(oldItem: Service, newItem: Service): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
+        override fun areContentsTheSame(oldItem: Service, newItem: Service): Boolean {
             return oldItem == newItem
         }
 

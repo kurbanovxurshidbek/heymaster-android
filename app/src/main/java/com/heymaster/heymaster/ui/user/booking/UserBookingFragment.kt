@@ -16,6 +16,7 @@ class UserBookingFragment : BaseFragment(R.layout.fragment_user_booking) {
     private val binding by viewBinding { FragmentUserBookingBinding.bind(it) }
 
     private lateinit var adapter: BookingsPagerAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = BookingsPagerAdapter(childFragmentManager, lifecycle)
