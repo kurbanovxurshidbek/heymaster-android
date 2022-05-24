@@ -1,5 +1,9 @@
 package com.heymaster.heymaster.ui.user.home
 
+import android.util.Log
+import android.view.View
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
@@ -19,7 +23,7 @@ class UserHomeViewModel(
     private val _services = MutableStateFlow<UiStateList<Service>>(UiStateList.EMPTY)
     val services = _services
 
-    fun getProducts() = viewModelScope.launch {
+    fun getServices() = viewModelScope.launch {
         _services.value = UiStateList.LOADING
         try {
             val response = repository.getServices()
@@ -64,7 +68,8 @@ class UserHomeViewModel(
         try {
             val response = repository.getAds()
             if (response.code() >= 400) {
-                val error = Gson().fromJson(response.errorBody()!!.charStream(), ErrorResponse::class.java)
+                val error =
+                    Gson().fromJson(response.errorBody()!!.charStream(), ErrorResponse::class.java)
                 _ads.value = UiStateList.ERROR(error.errorMessage)
             } else {
                 _ads.value = UiStateList.SUCCESS(response.body()!!)
@@ -73,5 +78,7 @@ class UserHomeViewModel(
             _ads.value = UiStateList.ERROR(e.userMessage())
         }
     }
+
+
 }
 

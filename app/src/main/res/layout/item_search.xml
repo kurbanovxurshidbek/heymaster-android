@@ -1,60 +1,97 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="5dp">
+    android:layout_margin="12sp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="12dp"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/intro_image_3"
-            android:layout_gravity="center_vertical"
-            />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivProfileSearchItem"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:layout_margin="16dp"
+            app:shapeAppearanceOverlay="@style/radius"
+            android:src="@drawable/intro_image_1"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_nameInSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="David Beckham"
+                android:textSize="26sp"
+                android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_marginVertical="4dp"
-                android:layout_marginHorizontal="10dp"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:id="@+id/tv_body"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Experience: 2 years"
-                android:layout_marginHorizontal="10dp"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:textStyle="normal"/>
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Plumber"
+                    android:layout_marginHorizontal="5dp"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_location"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:text="Ynusobod, Toshkent"/>
+            </LinearLayout>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:numStars="5"
+                    android:rating="5"
+                    android:max="5"
+                    android:theme="@style/RatingBar"
+                    android:isIndicator="true"
+                    style="?android:attr/ratingBarStyleSmall"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5 (76 reviews)"
+                    android:layout_marginHorizontal="16dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
         </LinearLayout>
-
-
     </LinearLayout>
 
 

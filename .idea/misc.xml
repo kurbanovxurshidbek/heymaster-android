@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/back_radius.xml" value="0.1755" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/bg_bottom_navigation.xml" value="0.2185" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/bg_edit_text_login.xml" value="0.1875" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/bg_edit_text_verification.xml" value="0.1875" />
@@ -23,6 +24,7 @@
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/ic_profile_not_selected.xml" value="0.2085" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/ic_profile_selected.xml" value="0.2085" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/ic_right_line.xml" value="0.2085" />
+        <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/ic_tap.xml" value="0.1755" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/image_circle.xml" value="0.147" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/img_intro1.xml" value="0.18" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/intro_linear_rounded.xml" value="0.1705" />
@@ -44,10 +46,10 @@
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/fragment_login.xml" value="0.264" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/fragment_master_active_booking.xml" value="0.11041666666666666" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/fragment_master_booking.xml" value="0.12208713272543059" />
-        <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/fragment_master_child_profile.xml" value="0.1933876811594203" />
+        <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/fragment_master_child_profile.xml" value="0.2" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/fragment_master_history_booking.xml" value="0.20153985507246377" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/fragment_master_home.xml" value="0.20153985507246377" />
-        <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/fragment_master_portfolio.xml" value="0.20153985507246377" />
+        <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/fragment_master_portfolio.xml" value="0.264" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/fragment_master_profile.xml" value="0.264" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/fragment_master_sign_up.xml" value="0.264" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/fragment_search.xml" value="0.1933876811594203" />
@@ -68,7 +70,8 @@
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/item_popular_masters.xml" value="0.20153985507246377" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/item_popular_services.xml" value="0.20153985507246377" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/item_portfolio.xml" value="0.20153985507246377" />
-        <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/item_search.xml" value="0.20652173913043478" />
+        <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/item_search.xml" value="0.4" />
+        <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/item_service.xml" value="0.264" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/item_services.xml" value="0.20153985507246377" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/menu/menu_home.xml" value="0.25" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/menu/menu_main_master.xml" value="0.25104166666666666" />
