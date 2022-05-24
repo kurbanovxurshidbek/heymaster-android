@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.tabs.TabLayoutMediator
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.adapters.home.HomeServicesAdapter
 import com.heymaster.heymaster.adapters.viewpagers.AdsPagerAdapter
