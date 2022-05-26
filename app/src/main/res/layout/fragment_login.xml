@@ -41,12 +41,13 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <EditText
+        <com.vicmikhailau.maskededittext.MaskedEditText
             android:id="@+id/et_phone_number"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginHorizontal="24dp"
             android:layout_marginVertical="12dp"
+            app:mask="## ### ## ##"
             android:background="@drawable/bg_edit_text_login"
             android:drawableStart="@drawable/ic_998"
             android:drawablePadding="12dp"

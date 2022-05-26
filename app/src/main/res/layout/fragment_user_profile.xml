@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -33,122 +33,160 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="15dp">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivProfile"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="10dp"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"
-            android:src="@drawable/intro_image_2"
-            app:shapeAppearanceOverlay="@style/circular" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:layout_marginLeft="15dp">
-
-            <TextView
-                android:id="@+id/tvProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Firdavs Davlatov"
-                android:textSize="24sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_location"/>
-
-                <TextView
-                    android:id="@+id/tvProfileProvince"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sirdarya,"
-                    android:textColor="@color/black"/>
-
-                <TextView
-                    android:id="@+id/tvProfileRegion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Gulistan"
-                    android:layout_marginLeft="7dp"
-                    android:textColor="@color/black"
-                    />
-
-            </LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="5dp"
-                android:gravity="center_vertical">
+                android:paddingHorizontal="15dp">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivProfile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/intro_image_2"
+                    app:shapeAppearanceOverlay="@style/circular" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/orange1"
-                    app:cardCornerRadius="16sp"
-                    android:elevation="24dp"
-                    >
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="15dp">
+
                     <TextView
-                        android:id="@+id/tvLogInAnotherProfile"
+                        android:id="@+id/tvProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingVertical="8dp"
-                        android:layout_gravity="center"
-                        android:text="@string/loginAsMaster"
-                        android:textSize="16sp"
-                        android:textColor="@color/white"/>
-                </androidx.cardview.widget.CardView>
+                        android:text="Firdavs Davlatov"
+                        android:textSize="24sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_location"/>
+
+                        <TextView
+                            android:id="@+id/tvProfileProvince"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sirdarya,"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:id="@+id/tvProfileRegion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gulistan"
+                            android:layout_marginLeft="7dp"
+                            android:textColor="@color/black"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/orange1"
+                            app:cardCornerRadius="16sp"
+                            android:elevation="24dp"
+                            >
+                            <TextView
+                                android:id="@+id/tvLogInAnotherProfile"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingVertical="8dp"
+                                android:layout_gravity="center"
+                                android:text="@string/loginAsMaster"
+                                android:textSize="16sp"
+                                android:textColor="@color/white"/>
+                        </androidx.cardview.widget.CardView>
 
 
-                <ImageView
-                    android:id="@+id/ivEditProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginHorizontal="16dp"
-                    android:src="@drawable/ic_edit_profile"
-                    />
+                        <ImageView
+                            android:id="@+id/ivEditProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="16dp"
+                            android:src="@drawable/ic_edit_profile"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16sp"
+                android:layout_marginHorizontal="16dp"
+                android:background="#21000000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="#f9f9f9"
+                android:layout_weight="1">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <include
+                        layout="@layout/fragment_master_child_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="12dp"
+
+                        />
+                </ScrollView>
+
+
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
+
+
+
+
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="16sp"
-        android:layout_marginHorizontal="16dp"
-        android:background="#21000000" />
-
-    <include
-        layout="@layout/fragment_master_child_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-
-        />
 
 
 
 
 
 
-</LinearLayout>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

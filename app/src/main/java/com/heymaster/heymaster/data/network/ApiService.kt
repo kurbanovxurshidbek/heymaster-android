@@ -7,6 +7,7 @@ import com.heymaster.heymaster.model.User
 import com.heymaster.heymaster.model.masterprofile.Portfolio
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
@@ -31,6 +32,18 @@ interface ApiService {
 
     @GET("ads")
     suspend fun getAds(): Response<List<Ads>>
+
+
+    //Auth
+    @POST("")
+    suspend fun login(): Response<Any>
+
+    @POST("")
+    suspend fun confirm(): Response<Boolean>
+
+    @POST("")
+    suspend fun signUp(): Response<User>
+
 
 
 

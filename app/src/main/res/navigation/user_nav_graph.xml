@@ -21,6 +21,15 @@
             app:launchSingleTop="false"
             app:popUpTo="@id/userSearchFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_userHomeFragment_to_userAllServicesFragment"
+            app:destination="@id/userAllServicesFragment" />
+        <action
+            android:id="@+id/action_userHomeFragment_to_userAllPopularServiceFragment"
+            app:destination="@id/userAllPopularServiceFragment" />
+        <action
+            android:id="@+id/action_userHomeFragment_to_userAllPopularMastersFragment"
+            app:destination="@id/userAllPopularMastersFragment" />
     </fragment>
     <fragment
         android:id="@+id/userBookingFragment"
@@ -41,4 +50,18 @@
         android:id="@+id/userSearchFragment"
         android:name="com.heymaster.heymaster.ui.user.home.UserSearchFragment"
         android:label="UserSearchFragment" />
+    <fragment
+        android:id="@+id/userAllServicesFragment"
+        android:name="com.heymaster.heymaster.ui.user.home.UserAllServicesFragment"
+        android:label="fragment_all_services"
+        tools:layout="@layout/fragment_user_all_services" />
+    <fragment
+        android:id="@+id/userAllPopularServiceFragment"
+        android:name="com.heymaster.heymaster.ui.user.home.UserAllPopularServiceFragment"
+        android:label="UserAllPopularServiceFragment" />
+    <fragment
+        android:id="@+id/userAllPopularMastersFragment"
+        android:name="com.heymaster.heymaster.ui.user.home.UserAllPopularMastersFragment"
+        android:label="fragment_user_all_popular_masters"
+        tools:layout="@layout/fragment_user_all_popular_masters" />
 </navigation>

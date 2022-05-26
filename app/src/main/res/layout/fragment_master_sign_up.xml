@@ -23,11 +23,12 @@
             android:hint="@string/fullName"
             android:inputType="text"
             android:maxLines="1"
+            android:imeActionLabel=""
             android:paddingHorizontal="24sp"
             android:paddingVertical="0dp"
             android:textColor="@color/black1"
             android:textCursorDrawable="@drawable/edittext_cursor_drawable"
-            android:textSize="20sp"
+            android:textSize="18sp"
             tools:ignore="TextFields" />
 
         <LinearLayout
@@ -36,77 +37,93 @@
             android:layout_marginHorizontal="24dp"
             android:background="@drawable/bg_edit_text_login"
             android:layout_marginTop="12dp"
-            android:paddingStart="24dp"
+            android:paddingHorizontal="16dp"
             android:gravity="center_vertical">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_edit_text_login"
-                android:text="@string/location"
-                android:gravity="start|center"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@drawable/ic_arrow_right"
-                android:layout_marginHorizontal="16dp"/>
+            <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
+                android:id="@+id/spLocation"
+                app:smsp_hintSize="16sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smsp_hint="Location"
+                app:smsp_isSearchable="true"
+                app:smsp_underlineSize="0dp"
+                app:smsp_hintColor="@color/grey"
+                app:smsp_searchHeaderBackgroundColor="@color/black1"
+                app:smsp_searchHeaderTextColor="@color/white"
+                app:smsp_searchHeaderText="Location"
+                app:smsp_searchHint="Location"
+                app:smsp_itemColor="@color/black"
+                app:smsp_itemListColor="@color/black"
+                app:smsp_itemListHintBackgroundColor="@color/grey1"
+                app:smsp_itemListHintColor="#FFFFFF"
+                app:smsp_multilineError="false"
+                app:smsp_selectedItemListColor="@color/green1" />
 
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:background="@drawable/bg_edit_text_login"
             android:layout_marginTop="12dp"
-            android:paddingStart="24dp"
+            android:paddingHorizontal="16dp"
             android:gravity="center_vertical">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_edit_text_login"
-                android:text="@string/profession"
-                android:gravity="start|center"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@drawable/ic_arrow_right"
-                android:layout_marginHorizontal="16dp"/>
+            <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
+                android:id="@+id/spProfession"
+                app:smsp_hintSize="16sp"
+                app:smsp_enableFloatingLabel="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smsp_hint="Profession"
+                app:smsp_isSearchable="true"
+                app:smsp_underlineSize="0dp"
+                app:smsp_hintColor="@color/grey"
+                app:smsp_searchHeaderBackgroundColor="@color/black1"
+                app:smsp_searchHeaderTextColor="@color/white"
+                app:smsp_searchHeaderText="Profession"
+                app:smsp_searchHint="Profession"
+                app:smsp_itemColor="@color/black"
+                app:smsp_itemListColor="@color/black"
+                app:smsp_itemListHintBackgroundColor="@color/grey1"
+                app:smsp_itemListHintColor="#FFFFFF"
+                app:smsp_multilineError="false"
+                app:smsp_selectedItemListColor="@color/green1" />
 
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:background="@drawable/bg_edit_text_login"
             android:layout_marginTop="12dp"
-            android:paddingStart="24dp"
+            android:paddingHorizontal="16dp"
             android:gravity="center_vertical">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_edit_text_login"
-                android:text="@string/salary"
-                android:gravity="start|center"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@drawable/ic_arrow_right"
-                android:layout_marginHorizontal="16dp"/>
+            <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
+                android:id="@+id/spSalary"
+                app:smsp_hintSize="16sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smsp_hint="Salary (Optional)"
+                app:smsp_isSearchable="true"
+                app:smsp_underlineSize="0dp"
+                app:smsp_hintColor="@color/grey"
+                app:smsp_searchHeaderBackgroundColor="@color/black1"
+                app:smsp_searchHeaderTextColor="@color/white"
+                app:smsp_searchHeaderText="Salary"
+                app:smsp_searchHint="Salary"
+                app:smsp_itemColor="@color/black"
+                app:smsp_itemListColor="@color/black"
+                app:smsp_itemListHintBackgroundColor="@color/grey1"
+                app:smsp_itemListHintColor="#FFFFFF"
+                app:smsp_multilineError="false"
+                app:smsp_selectedItemListColor="@color/green1" />
 
 
         </LinearLayout>
