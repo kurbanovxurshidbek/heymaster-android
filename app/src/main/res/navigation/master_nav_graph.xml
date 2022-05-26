@@ -14,10 +14,34 @@
         android:id="@+id/masterHomeFragment"
         android:name="com.heymaster.heymaster.ui.master.home.MasterHomeFragment"
         android:label="fragment_master_home"
-        tools:layout="@layout/fragment_master_home" />
+        tools:layout="@layout/fragment_master_home" >
+        <action
+            android:id="@+id/action_masterHomeFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_masterHomeFragment_to_masterSearchFragment"
+            app:destination="@id/masterSearchFragment" />
+        <action
+            android:id="@+id/action_masterHomeFragment_to_detailPageFragment"
+            app:destination="@id/detailPageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/masterProfileFragment"
         android:name="com.heymaster.heymaster.ui.master.profile.MasterProfileFragment"
         android:label="fragment_master_profile"
         tools:layout="@layout/fragment_master_profile" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.heymaster.heymaster.ui.master.notification.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/masterSearchFragment"
+        android:name="com.heymaster.heymaster.ui.master.home.MasterSearchFragment"
+        android:label="MasterSearchFragment" />
+    <fragment
+        android:id="@+id/detailPageFragment"
+        android:name="com.heymaster.heymaster.ui.master.deatailspage.DetailPageFragment"
+        android:label="fragment_detail_page"
+        tools:layout="@layout/fragment_detail_page" />
 </navigation>

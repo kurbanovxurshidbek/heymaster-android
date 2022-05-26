@@ -1,19 +1,15 @@
 package com.heymaster.heymaster.ui.master.notification
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TableLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.adapters.viewpagers.NotificationPagerAdapter
 import com.heymaster.heymaster.databinding.FragmentNotificationBinding
 import com.heymaster.heymaster.ui.global.BaseFragment
-import com.heymaster.heymaster.ui.user.booking.UserActiveBookingFragment
-import com.heymaster.heymaster.ui.user.booking.UserHistoryBookingFragment
+import com.heymaster.heymaster.ui.master.notification.messages.NotificationMessagesFragment
+import com.heymaster.heymaster.ui.master.notification.suggestion.NotificationSuggestionsFragment
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 class NotificationFragment() : BaseFragment(R.layout.fragment_notification) {
@@ -24,7 +20,7 @@ class NotificationFragment() : BaseFragment(R.layout.fragment_notification) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        adapter = NotificationPagerAdapter(childFragmentManager, lifecycle)
         setupViewPager()
     }
 

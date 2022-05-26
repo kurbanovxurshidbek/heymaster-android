@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:layout_margin="4dp"
     android:id="@+id/rv_notif_suggestion"
-    tools:context=".ui.master.notification.NotificationSuggestionsFragment">
+    tools:listitem="@layout/item_portfolio"
+    tools:context=".ui.master.notification.suggestion.NotificationSuggestionsFragment">
 
 </androidx.recyclerview.widget.RecyclerView>

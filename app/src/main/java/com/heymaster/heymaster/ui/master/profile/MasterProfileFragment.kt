@@ -6,11 +6,8 @@ import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.heymaster.heymaster.R
-import com.heymaster.heymaster.adapters.profile.ProfileTabAdapter
 import com.heymaster.heymaster.adapters.viewpagers.MasterProfilePagerAdapter
 import com.heymaster.heymaster.databinding.FragmentMasterProfileBinding
-import com.heymaster.heymaster.ui.user.booking.UserActiveBookingFragment
-import com.heymaster.heymaster.ui.user.booking.UserHistoryBookingFragment
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 class MasterProfileFragment : Fragment(R.layout.fragment_master_profile) {
@@ -45,12 +42,13 @@ class MasterProfileFragment : Fragment(R.layout.fragment_master_profile) {
 
         })
 
-        binding.vpMasterProfile.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+        binding.vpMasterProfile.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 binding.tabMasterProfile.selectTab(binding.tabMasterProfile.getTabAt(position))
 
             }
         })
     }
-    }
+}
 

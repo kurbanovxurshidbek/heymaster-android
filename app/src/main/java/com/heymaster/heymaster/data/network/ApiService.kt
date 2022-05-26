@@ -2,6 +2,7 @@ package com.heymaster.heymaster.data.network
 
 import android.provider.ContactsContract
 import com.heymaster.heymaster.model.Ads
+import com.heymaster.heymaster.model.Notification
 import com.heymaster.heymaster.model.Service
 import com.heymaster.heymaster.model.User
 import com.heymaster.heymaster.model.masterprofile.Portfolio
@@ -11,6 +12,9 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
+
+    @GET("notification")
+    suspend fun getNotification(): Response<List<Notification>>
 
     @GET("images")
     suspend fun getImages(): Response<List<Portfolio>>

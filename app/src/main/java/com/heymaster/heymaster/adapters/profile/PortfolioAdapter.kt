@@ -32,7 +32,6 @@ class PortfolioAdapter : ListAdapter<Portfolio, PortfolioAdapter.ProfileViewHold
             return oldItem == newItem
         }
 
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileViewHolder {

@@ -120,7 +120,7 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
                     is UiStateList.LOADING -> {
                     }
                     is UiStateList.SUCCESS -> {
-                        adsAdapter.submitAds(it.data)
+                        adsAdapter.submitAds(it.data!!)
 
                     }
                     is UiStateList.ERROR -> {
