@@ -39,20 +39,19 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_sign_up"
                 android:layout_width="match_parent"
-                android:layout_height="42dp"
+                android:layout_height="wrap_content"
                 android:descendantFocusability="afterDescendants"
                 app:tabBackground="@color/white"
-                app:tabGravity="fill"
                 android:layout_marginHorizontal="12dp"
                 app:tabTextAppearance="@style/tab_text_style"
-                app:tabIndicator="@drawable/selector_sign_up_tab"
-                app:tabIndicatorAnimationMode="linear"
+                app:tabIndicatorHeight="6dp"
                 app:tabIndicatorColor="@color/black"
-                app:tabIndicatorGravity="stretch"
+                app:tabIndicatorGravity="bottom"
                 app:tabMode="fixed"
                 app:tabRippleColor="@null"
-                app:tabSelectedTextColor="@color/white"
-                app:tabTextColor="@color/black" />
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabSelectedTextColor="@color/black"
+                app:tabTextColor="@color/grey1" />
 
 <!--            <com.google.android.material.tabs.TabLayout-->
 <!--                android:id="@+id/tab_sign_up"-->
@@ -72,6 +71,7 @@
         </LinearLayout>
 
         <androidx.viewpager2.widget.ViewPager2
+            android:layout_marginTop="8dp"
             android:id="@+id/view_pager_sign_up"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

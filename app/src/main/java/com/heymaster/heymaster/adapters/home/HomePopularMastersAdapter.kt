@@ -11,19 +11,21 @@ import com.heymaster.heymaster.databinding.ItemPopularMastersBinding
 import com.heymaster.heymaster.model.Service
 import com.heymaster.heymaster.model.User
 
-class HomePopularMastersAdapter:
+class HomePopularMastersAdapter :
     ListAdapter<Service, PopularMastersViewHolder>(PopularMasterItemDiffCallback()) {
+    lateinit var itemCLick: (() -> Unit)
 
-    inner class PopularMastersViewHolder(private val binding: ItemPopularMastersBinding):
-            RecyclerView.ViewHolder(binding.root) {
+    inner class PopularMastersViewHolder(private val binding: ItemPopularMastersBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(master: Service) {
-
-
+            binding.itemCard.setOnClickListener {
+                itemCLick.invoke()
+            }
         }
 
     }
 
-    private class PopularMasterItemDiffCallback: DiffUtil.ItemCallback<Service>() {
+    private class PopularMasterItemDiffCallback : DiffUtil.ItemCallback<Service>() {
         override fun areItemsTheSame(oldItem: Service, newItem: Service): Boolean {
             return oldItem.id == newItem.id
         }

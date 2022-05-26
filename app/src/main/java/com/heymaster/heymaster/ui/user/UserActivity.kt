@@ -33,6 +33,9 @@ class UserActivity : BaseActivity() {
             when (destination.id) {
                 R.id.userNotificationFragment -> hideBottomNav()
                 R.id.userSearchFragment -> hideBottomNav()
+                R.id.userAllServicesFragment -> hideBottomNav()
+                R.id.userAllPopularServiceFragment -> hideBottomNav()
+                R.id.userAllPopularMastersFragment -> hideBottomNav()
                 else -> showBottomNav()
             }
         }

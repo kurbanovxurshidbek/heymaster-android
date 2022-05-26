@@ -3,6 +3,7 @@ package com.heymaster.heymaster.ui.master
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.heymaster.heymaster.R
@@ -21,5 +22,21 @@ class MasterActivity : BaseActivity() {
 
         binding.userBottomNavigation.setupWithNavController(findNavController(R.id.master_container))
 
+        findNavController(R.id.master_container).addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.notificationFragment -> hideBottomNav()
+                R.id.masterSearchFragment -> hideBottomNav()
+                R.id.detailPageFragment -> hideBottomNav()
+                else -> showBottomNav()
+            }
+        }
+    }
+
+    private fun hideBottomNav() {
+        binding.userBottomNavigation.visibility = View.GONE
+    }
+
+    private fun showBottomNav() {
+        binding.userBottomNavigation.visibility = View.VISIBLE
     }
 }

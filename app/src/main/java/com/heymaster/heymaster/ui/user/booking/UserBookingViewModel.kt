@@ -1,4 +1,8 @@
 package com.heymaster.heymaster.ui.user.booking
 
-class UserBookingViewModel {
+import com.heymaster.heymaster.ui.auth.AuthRepository
+
+class UserBookingViewModel(
+    private val repository: UserBookingRepository
+    ) {
 }

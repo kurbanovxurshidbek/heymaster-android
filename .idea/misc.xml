@@ -76,23 +76,6 @@
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/menu/menu_home.xml" value="0.25" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/menu/menu_main_master.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/menu/menu_main_user.xml" value="0.25104166666666666" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/activity_intro.xml" value="0.2" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/fragment_first_intro.xml" value="0.20885416666666667" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/fragment_master_active_booking.xml" value="0.20885416666666667" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/fragment_master_booking.xml" value="0.20885416666666667" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/fragment_master_history_booking.xml" value="0.20885416666666667" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/fragment_master_home.xml" value="0.20885416666666667" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/fragment_user_active_booking.xml" value="0.20885416666666667" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/fragment_user_booking.xml" value="0.20885416666666667" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/fragment_user_history_booking.xml" value="0.20885416666666667" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/fragment_user_home.xml" value="0.20885416666666667" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/fragment_user_notification.xml" value="0.20885416666666667" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/item_active_booking.xml" value="0.25" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/item_active_booking_master.xml" value="0.2078125" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/item_history_booking.xml" value="0.20885416666666667" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/item_history_booking_master.xml" value="0.33" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/item_search.xml" value="0.20885416666666667" />
-        <entry key="..\:/heymaster-androidd/app/src/main/res/layout/item_service.xml" value="0.20885416666666667" />
       </map>
     </option>
   </component>

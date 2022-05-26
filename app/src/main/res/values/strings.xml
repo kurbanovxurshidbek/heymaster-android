@@ -13,7 +13,7 @@
     <string name="enter_mobile_number">Enter mobile phone</string>
     <string name="verificationOTP">OTP Verification</string>
     <string name="verificationSendOTP">We have sent OTP to your mobile number</string>
-    <string name="verificationReceiveOTP">Didn\'t receive OTP?</string>
+    <string name="verificationReceiveOTP">Didn\'t receive Code?</string>
     <string name="verificationResend">Resend</string>
     <string name="sign_up">Sign up</string>
     <string name="USupClient">Client</string>
@@ -66,4 +66,5 @@
     <string name="popular_masters">Popular Masters</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

@@ -24,6 +24,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.isActive
+import okhttp3.internal.wait
 
 
 class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
@@ -51,14 +52,38 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
         viewModel.getAds()
         observeViewModel()
 
-        binding.ivBtnNotification.setOnClickListener {
-            findNavController().navigate(R.id.action_userHomeFragment_to_userNotificationFragment)
+        clickListeners()
+
+
+
+    }
+
+    private fun clickListeners() {
+        with(binding) {
+            ivBtnNotification.setOnClickListener {
+                findNavController().navigate(R.id.action_userHomeFragment_to_userNotificationFragment)
+            }
+
+            etHomeSearch.setOnClickListener {
+                findNavController().navigate(R.id.action_userHomeFragment_to_userSearchFragment)
+            }
+
+            btnAllServices.setOnClickListener {
+                findNavController().navigate(R.id.action_userHomeFragment_to_userAllServicesFragment)
+            }
+
+            btnAllPopularServices.setOnClickListener {
+                findNavController().navigate(R.id.action_userHomeFragment_to_userAllPopularServiceFragment)
+            }
+
+            btnAllPopularMasters.setOnClickListener {
+                findNavController().navigate(R.id.action_userHomeFragment_to_userAllPopularMastersFragment)
+            }
         }
 
-        binding.etHomeSearch.setOnClickListener {
-            findNavController().navigate(R.id.action_userHomeFragment_to_userSearchFragment)
 
-        }
+
+
 
     }
 
@@ -68,10 +93,12 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
             viewModel.services.collect { it ->
                 when (it) {
                     is UiStateList.LOADING -> {
+                        binding.nestedHome.visibility = View.GONE
                         binding.progressHome.customProgress.visibility = View.VISIBLE
                     }
                     is UiStateList.SUCCESS -> {
                         binding.progressHome.customProgress.visibility = View.GONE
+                        binding.nestedHome.visibility = View.VISIBLE
                         serviceAdapter.submitList(it.data)
                         popularServicesAdapter.submitList(it.data)
                         popularMastersAdapter.submitList(it.data)
@@ -93,7 +120,7 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
                     is UiStateList.LOADING -> {
                     }
                     is UiStateList.SUCCESS -> {
-                        adsAdapter.submitAds(it.data)
+                        adsAdapter.submitAds(it.data!!)
 
                     }
                     is UiStateList.ERROR -> {
@@ -123,15 +150,6 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
     }
 
 
-    private fun fakeAds(): List<Ads> {
-        val list = ArrayList<Ads>()
-        list.add(Ads(1, "Hello", "", ""))
-        list.add(Ads(1, "Hello", "", ""))
-        list.add(Ads(1, "Hello", "", ""))
-        return list
-
-    }
-
     private fun setupViewModel() {
         viewModel = ViewModelProvider(
             this,
@@ -141,7 +159,6 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
 
 
     private fun addAutoScrollToViewPager() {
-
         job = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             while (isActive) {
                 delay(3000)
