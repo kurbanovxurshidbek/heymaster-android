@@ -23,7 +23,6 @@ class UserActiveBookingFragment : BaseFragment(R.layout.fragment_user_active_boo
     private val binding by viewBinding {FragmentUserActiveBookingBinding.bind(it) }
     private lateinit var viewModel: UserBookingViewModel
     private val activeBookingAdapter by lazy { ActiveBookingAdapter() }
-    lateinit var activeBookingM: UActiveBookingM
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

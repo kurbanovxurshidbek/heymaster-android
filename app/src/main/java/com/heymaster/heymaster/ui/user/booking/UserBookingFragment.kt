@@ -22,7 +22,6 @@ class UserBookingFragment : BaseFragment(R.layout.fragment_user_booking) {
         adapter = BookingsPagerAdapter(childFragmentManager, lifecycle)
         setupViewPager()
 
-
     }
 
     private fun setupViewPager() {
