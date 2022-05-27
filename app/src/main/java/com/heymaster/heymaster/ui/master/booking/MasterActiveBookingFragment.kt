@@ -27,8 +27,14 @@ class MasterActiveBookingFragment : BaseFragment(R.layout.fragment_master_active
         val uActiveBookingM = UActiveBookingM(1,"Electric",R.drawable.intro_image_3,"Donald Trump","01.01.2021","+998 99 046 6901")
         val list = ArrayList<UActiveBookingM>()
         list.add(uActiveBookingM)
+        list.add(uActiveBookingM)
+        list.add(uActiveBookingM)
+        list.add(uActiveBookingM)
+        list.add(uActiveBookingM)
+
 
         masterActiveBookingAdapter = MasterActiveBookingAdapter(list)
+        binding.rvMasterActiveBooking.setLayoutManager(GridLayoutManager(context,1))
         binding.rvMasterActiveBooking.adapter = masterActiveBookingAdapter
     }
 
