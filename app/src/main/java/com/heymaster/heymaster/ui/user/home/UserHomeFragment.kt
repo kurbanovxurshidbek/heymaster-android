@@ -51,11 +51,17 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
         viewModel.getServices()
         viewModel.getAds()
         observeViewModel()
-
+        adapterItemClick()
         clickListeners()
 
 
 
+    }
+
+    private fun adapterItemClick() {
+        popularMastersAdapter.itemCLick = {
+            findNavController().navigate(R.id.detailPageFragment)
+        }
     }
 
     private fun clickListeners() {

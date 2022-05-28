@@ -85,6 +85,9 @@
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/menu/menu_main_master.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/menu/menu_main_user.xml" value="0.25104166666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/drawable-v24/shape_border_circle.xml" value="0.1" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/bg_add_image_portfolio.xml" value="0.126" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/bg_bottom_navigation.xml" value="0.126" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/bottomsheet_back.xml" value="0.126" />
         <entry key="..\:/heymaster-android/app/src/main/res/drawable/card_ripple_touch_effect.xml" value="0.1" />
         <entry key="..\:/heymaster-android/app/src/main/res/drawable/detail_bottom_shape.xml" value="0.1" />
         <entry key="..\:/heymaster-android/app/src/main/res/drawable/detail_bottom_tab_background.xml" value="0.1" />
@@ -92,9 +95,13 @@
         <entry key="..\:/heymaster-android/app/src/main/res/drawable/ic_direction_icon.xml" value="0.1" />
         <entry key="..\:/heymaster-android/app/src/main/res/drawable/ic_location_blue.xml" value="0.1" />
         <entry key="..\:/heymaster-android/app/src/main/res/drawable/ic_share_icon.xml" value="0.1" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/selector_ic_booking.xml" value="0.126" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/selector_ic_profile.xml" value="0.2115" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/user_booking_bottomsheet.xml" value="0.126" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/activity_master.xml" value="0.1" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
+        <entry key="..\:/heymaster-android/app/src/main/res/layout/activity_user.xml" value="0.1" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/custom_progress.xml" value="0.20416666666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/detail_image_gallery_item.xml" value="0.20416666666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/detail_image_item.xml" value="0.20416666666666666" />
@@ -108,7 +115,7 @@
         <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_home_search.xml" value="0.20416666666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_master_child_profile.xml" value="0.1" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_master_home.xml" value="0.1" />
-        <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_master_portfolio.xml" value="0.1" />
+        <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_master_portfolio.xml" value="0.18" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_master_profile.xml" value="0.1" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_master_search.xml" value="0.20416666666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_notification.xml" value="0.20416666666666666" />
@@ -120,17 +127,20 @@
         <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_user_home.xml" value="0.20416666666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_user_profile.xml" value="0.18854166666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_user_search.xml" value="0.18" />
+        <entry key="..\:/heymaster-android/app/src/main/res/layout/item_active_booking.xml" value="0.20416666666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/item_history_booking.xml" value="0.20416666666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/item_master_portfolio_plus_image.xml" value="0.203125" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/item_notification.xml" value="0.20416666666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/item_notification_messages.xml" value="0.18" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/item_notification_suggestions.xml" value="0.16" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/item_popular_masters.xml" value="0.20416666666666666" />
-        <entry key="..\:/heymaster-android/app/src/main/res/layout/item_portfolio.xml" value="0.1" />
+        <entry key="..\:/heymaster-android/app/src/main/res/layout/item_portfolio.xml" value="0.22" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/item_portfolio_master.xml" value="0.203125" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/item_profile_add_image.xml" value="0.25" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/item_service.xml" value="0.1" />
+        <entry key="..\:/heymaster-android/app/src/main/res/layout/user_booking_bottom_sheet.xml" value="0.22" />
         <entry key="..\:/heymaster-android/app/src/main/res/menu/menu_main_master.xml" value="0.20416666666666666" />
+        <entry key="..\:/heymaster-android/app/src/main/res/menu/menu_main_user.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
