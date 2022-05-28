@@ -135,6 +135,9 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
                     else -> Unit
                 }
             }
+
+
+
         }
     }
 
@@ -146,6 +149,7 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
 
     private fun setupAdsAdapter() {
         binding.vpUserHomeAds.adapter = adsAdapter
+
         binding.vpUserHomeAds.setCurrentItem(0, true)
         binding.userHomeAdsDotsIndicator.setViewPager2(binding.vpUserHomeAds)
         addAutoScrollToViewPager()

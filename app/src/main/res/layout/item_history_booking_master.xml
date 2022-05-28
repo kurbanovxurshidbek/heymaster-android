@@ -17,24 +17,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tv_job"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Electricans"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="normal"/>
+            android:layout_height="wrap_content"
+            android:gravity="end">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/completed"
                 android:textColor="@color/green1"
-                android:textSize="12sp"/>
+                android:textSize="14sp"/>
 
         </LinearLayout>
         <View
@@ -87,7 +78,7 @@
                         android:layout_height="wrap_content"
                         android:text="23.05.2022"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:textStyle="normal"/>
 
                 </LinearLayout>
@@ -98,8 +89,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="+998 99 046 6901"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black"
+                    />
+
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/rb_master_history_booking"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:rating="5"
+                    android:progressTint="@color/orange1"
+                    android:numStars="5"
+                    android:theme="@style/RatingBar"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:isIndicator="true"
                     />
 
             </LinearLayout>
@@ -109,18 +113,19 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="4dp"
+            android:layout_height="1dp"
             android:background="@color/grey"
             />
 
         <TextView
+            android:id="@+id/tv_comment_master_history_booking"
             android:layout_margin="10dp"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/bookingAgain"
-            android:textColor="@color/orange1"
-            android:textSize="12sp"/>
+            android:text="@string/comment"
+            android:textColor="@color/black"
+            android:textSize="14sp"/>
 
     </LinearLayout>
 
