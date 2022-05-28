@@ -1,18 +1,12 @@
 package com.heymaster.heymaster.ui.user.booking
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.adapters.booking.ActiveBookingAdapter
+import com.heymaster.heymaster.adapters.booking.bottomsheet.RateBottomSheetFragment
 import com.heymaster.heymaster.databinding.FragmentUserActiveBookingBinding
-import com.heymaster.heymaster.databinding.ItemActiveBookingBinding
 import com.heymaster.heymaster.model.user_booking.UActiveBookingM
 import com.heymaster.heymaster.ui.global.BaseFragment
 import com.heymaster.heymaster.utils.extensions.viewBinding
@@ -20,25 +14,50 @@ import com.heymaster.heymaster.utils.extensions.viewBinding
 
 class UserActiveBookingFragment : BaseFragment(R.layout.fragment_user_active_booking) {
 
-    private val binding by viewBinding {FragmentUserActiveBookingBinding.bind(it) }
+    private val binding by viewBinding { FragmentUserActiveBookingBinding.bind(it) }
     private lateinit var viewModel: UserBookingViewModel
-    private val activeBookingAdapter by lazy { ActiveBookingAdapter() }
+    private lateinit var rateBottomSheetFragment: RateBottomSheetFragment
+//    private val activeBookingAdapter by lazy { ActiveBookingAdapter(requireContext()) }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_active_booking, container, false)
-    }
+    private lateinit var activeBookingAdapter: ActiveBookingAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpRv()
+        setupRv()
+
+
     }
 
-    private fun setUpRv() {
+    private fun setupRv() {
+        val uActiveBookingM = UActiveBookingM(
+            1,
+            "Electric",
+            R.drawable.intro_image_3,
+            "Donald Trump",
+            "01.01.2021",
+            "+998 99 046 6901"
+        )
+        val list = ArrayList<UActiveBookingM>()
+        list.add(uActiveBookingM)
+        list.add(uActiveBookingM)
+        list.add(uActiveBookingM)
+        list.add(uActiveBookingM)
+        list.add(uActiveBookingM)
+
+
+        activeBookingAdapter = ActiveBookingAdapter(list, requireContext())
+        binding.rvUserActiveBookings.setLayoutManager(GridLayoutManager(context, 1))
         binding.rvUserActiveBookings.adapter = activeBookingAdapter
+        activeBookingAdapter.setItemClickListener(ActiveBookingAdapter.ItemClickListener {
+            showBottomSheet("rate_bottom_sheet_fragment",it)
+        })
+
     }
+
+    private fun showBottomSheet(tag: String, item: UActiveBookingM) {
+        rateBottomSheetFragment = RateBottomSheetFragment.newInstance(item = item)
+        rateBottomSheetFragment.show(childFragmentManager, tag)
+    }
+
 
 }

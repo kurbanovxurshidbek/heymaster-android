@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.heymaster.heymaster.R
-import com.heymaster.heymaster.adapters.booking.HistoryBookingAdapter
 import com.heymaster.heymaster.adapters.booking.MasterHistoryBookingAdapter
 import com.heymaster.heymaster.databinding.FragmentMasterHistoryBookingBinding
 import com.heymaster.heymaster.model.user_booking.UActiveBookingM

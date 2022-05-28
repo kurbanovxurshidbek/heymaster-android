@@ -1,17 +1,25 @@
 package com.heymaster.heymaster.adapters.booking
 
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.heymaster.heymaster.R
 import com.heymaster.heymaster.adapters.booking.ActiveBookingAdapter.ActiveBookingVH
 import com.heymaster.heymaster.databinding.ItemActiveBookingBinding
 import com.heymaster.heymaster.model.user_booking.UActiveBookingM
 
-class ActiveBookingAdapter: ListAdapter<UActiveBookingM,ActiveBookingVH>(ItemActiveBookingDiffCallBack()) {
+class ActiveBookingAdapter(private val list: ArrayList<UActiveBookingM>, var context: Context) :
+    ListAdapter<UActiveBookingM, ActiveBookingVH>(ItemActiveBookingDiffCallBack()) {
 
-    inner class ActiveBookingVH(private val binding: ItemActiveBookingBinding):
+    private lateinit var itemClickListener: ItemClickListener
+
+    inner class ActiveBookingVH(private val binding: ItemActiveBookingBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(userActiveBooking: UActiveBookingM) {
             binding.tvJob.text = userActiveBooking.jobType
@@ -19,26 +27,48 @@ class ActiveBookingAdapter: ListAdapter<UActiveBookingM,ActiveBookingVH>(ItemAct
             binding.tvNameWorker.text = userActiveBooking.nameEmp
             binding.tvDateBooking.text = userActiveBooking.orderDate
             binding.tvPhoneNumber.text = userActiveBooking.phoneNumber
+            binding.tvFinishedActiveBooking.setOnClickListener {
+                itemClickListener.onClick(userActiveBooking)
+            }
+
         }
     }
 
-    private class ItemActiveBookingDiffCallBack: DiffUtil.ItemCallback<UActiveBookingM>() {
+    private class ItemActiveBookingDiffCallBack : DiffUtil.ItemCallback<UActiveBookingM>() {
         override fun areItemsTheSame(oldItem: UActiveBookingM, newItem: UActiveBookingM): Boolean {
             return oldItem.idEmp == newItem.idEmp
         }
 
-        override fun areContentsTheSame( oldItem: UActiveBookingM,newItem: UActiveBookingM): Boolean {
+        override fun areContentsTheSame(
+            oldItem: UActiveBookingM,
+            newItem: UActiveBookingM
+        ): Boolean {
             return oldItem == newItem
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActiveBookingVH {
-        return ActiveBookingVH(ItemActiveBookingBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return ActiveBookingVH(
+            ItemActiveBookingBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ActiveBookingVH, position: Int) {
-        val uActiveBookingM = getItem(position)
-        holder.bind(uActiveBookingM)
+        holder.bind(list[position])
     }
+
+    override fun getItemCount(): Int {
+        return list.size
+    }
+
+    fun setItemClickListener(itemClickListener: ItemClickListener){
+        this.itemClickListener = itemClickListener
+    }
+
+    class ItemClickListener(val onClick: (item: UActiveBookingM) -> Unit)
 
 }
