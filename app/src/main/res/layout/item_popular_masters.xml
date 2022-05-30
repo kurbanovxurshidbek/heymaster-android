@@ -2,14 +2,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="4dp"
-    android:layout_margin="12sp"
-    app:cardCornerRadius="16dp"
+    app:cardCornerRadius="12dp"
     app:cardElevation="2dp"
     >
-    app:cardElevation="8dp">
 
     <LinearLayout
         android:id="@+id/itemCard"

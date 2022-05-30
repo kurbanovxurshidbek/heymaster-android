@@ -39,19 +39,20 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_sign_up"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="42dp"
                 android:descendantFocusability="afterDescendants"
                 app:tabBackground="@color/white"
+                app:tabGravity="fill"
                 android:layout_marginHorizontal="12dp"
                 app:tabTextAppearance="@style/tab_text_style"
-                app:tabIndicatorHeight="6dp"
+                app:tabIndicator="@drawable/selector_sign_up_tab"
+                app:tabIndicatorAnimationMode="linear"
                 app:tabIndicatorColor="@color/black"
-                app:tabIndicatorGravity="bottom"
+                app:tabIndicatorGravity="stretch"
                 app:tabMode="fixed"
                 app:tabRippleColor="@null"
-                app:tabIndicatorAnimationMode="elastic"
-                app:tabSelectedTextColor="@color/black"
-                app:tabTextColor="@color/grey1" />
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextColor="@color/black" />
 
 <!--            <com.google.android.material.tabs.TabLayout-->
 <!--                android:id="@+id/tab_sign_up"-->

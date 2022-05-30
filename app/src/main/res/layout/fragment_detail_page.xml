@@ -120,7 +120,8 @@
                         app:srb_starHeight="20dp"
                         app:srb_starPadding="3dp"
                         app:srb_starWidth="20dp"
-                        app:srb_stepSize="1" />
+                        app:srb_stepSize="1"
+                        />
 
                     <TextView
                         android:layout_width="0dp"

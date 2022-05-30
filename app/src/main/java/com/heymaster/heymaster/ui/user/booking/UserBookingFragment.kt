@@ -38,7 +38,6 @@ class UserBookingFragment : BaseFragment(R.layout.fragment_user_booking) {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 binding.vpUserBookings.currentItem = tab.position
             }
-
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
 
             override fun onTabReselected(tab: TabLayout.Tab?) {}
@@ -48,8 +47,6 @@ class UserBookingFragment : BaseFragment(R.layout.fragment_user_booking) {
         binding.vpUserBookings.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 binding.tabUserBookings.selectTab(binding.tabUserBookings.getTabAt(position))
-
-
             }
         })
     }

@@ -21,7 +21,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/etHomeSearch"
+                    android:id="@+id/etSearch"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_marginVertical="12dp"
@@ -52,12 +52,32 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvUserSearch"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvUserSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_search"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="lottie_search.json"
+                android:layout_gravity="center"
+                android:visibility="visible"/>
+
+
+        </FrameLayout>
+
+
 
         <include
             android:id="@+id/progress_search"

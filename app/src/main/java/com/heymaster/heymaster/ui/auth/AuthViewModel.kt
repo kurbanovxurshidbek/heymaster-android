@@ -4,16 +4,25 @@ import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.heymaster.heymaster.model.User
 
 class AuthViewModel(
-    private val repository: AuthRepository
-): ViewModel() {
+    private val repository: AuthRepository,
+) : ViewModel() {
+
+    private val _user = MutableLiveData<Int>()
+    val user: LiveData<Int>
+        get() = _user
 
     private var timer: CountDownTimer? = null
 
     private val _formattedTime = MutableLiveData<String>()
     val formattedGame: LiveData<String>
         get() = _formattedTime
+
+    fun listenSignUpClick(click: Int) {
+        _user.value = click
+    }
 
     fun startTimer() {
         timer = object : CountDownTimer(
@@ -43,7 +52,6 @@ class AuthViewModel(
     }
 
 
-
     companion object {
 
         private const val MILLIS_IN_SECONDS = 1000L
@@ -54,8 +62,6 @@ class AuthViewModel(
         super.onCleared()
         timer?.cancel()
     }
-
-
 
 
 }

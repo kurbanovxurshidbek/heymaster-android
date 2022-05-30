@@ -18,7 +18,7 @@
         android:id="@+id/verificationFragment"
         android:name="com.heymaster.heymaster.ui.auth.fragment.login.ConfirmFragment"
         android:label="fragment_verification"
-        tools:layout="@layout/fragment_verification" >
+        tools:layout="@layout/fragment_confirm" >
         <action
             android:id="@+id/action_verificationFragment_to_signUpFragment"
             app:destination="@id/signUpFragment"

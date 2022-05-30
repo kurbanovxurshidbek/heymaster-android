@@ -37,6 +37,10 @@ interface ApiService {
     @GET("ads")
     suspend fun getAds(): Response<List<Ads>>
 
+    //Booking
+    @GET("services")
+    suspend fun getBookings(): Response<List<Service>>
+
 
     //Auth
     @POST("")

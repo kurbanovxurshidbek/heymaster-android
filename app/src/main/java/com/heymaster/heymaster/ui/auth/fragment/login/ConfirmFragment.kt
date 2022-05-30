@@ -1,33 +1,25 @@
 package com.heymaster.heymaster.ui.auth.fragment.login
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
-import com.heymaster.heymaster.databinding.FragmentVerificationBinding
+import com.heymaster.heymaster.databinding.FragmentConfirmBinding
 import com.heymaster.heymaster.ui.auth.AuthRepository
 import com.heymaster.heymaster.ui.auth.AuthViewModel
 import com.heymaster.heymaster.ui.auth.AuthViewModelFactory
-import com.heymaster.heymaster.ui.user.UserActivity
-import com.heymaster.heymaster.ui.user.home.UserHomeRepository
-import com.heymaster.heymaster.ui.user.home.UserHomeViewModel
-import com.heymaster.heymaster.ui.user.home.UserHomeViewModelFactory
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 
-class ConfirmFragment : Fragment(R.layout.fragment_verification) {
+class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
 
-    private val binding by viewBinding { FragmentVerificationBinding.bind(it) }
+    private val binding by viewBinding { FragmentConfirmBinding.bind(it) }
     private lateinit var viewModel: AuthViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

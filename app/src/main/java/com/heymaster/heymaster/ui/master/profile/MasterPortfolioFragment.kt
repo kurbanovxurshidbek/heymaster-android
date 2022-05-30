@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.heymaster.heymaster.R
-import com.heymaster.heymaster.adapters.profile.PortfolioAdapter
+import com.heymaster.heymaster.adapters.profile.MasterPortfolioAdapter
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentMasterPortfolioBinding
@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.collect
 class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio) {
     private val binding by viewBinding { FragmentMasterPortfolioBinding.bind(it) }
     private lateinit var viewModel: MasterPortfolioViewModel
-    private val portfolioAdapter by lazy { PortfolioAdapter() }
+    private val masterPortfolioAdapter by lazy { MasterPortfolioAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +42,7 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
 
                     }
                     is UiStateList.SUCCESS -> {
-                        portfolioAdapter.submitList(it.data)
+                        masterPortfolioAdapter.submitList(it.data)
 
 
                     }
@@ -56,7 +56,7 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
     }
 
     private fun setupRv() {
-        binding.recyclerViewPortfolio.adapter = portfolioAdapter
+        binding.recyclerViewPortfolio.adapter = masterPortfolioAdapter
     }
 
     private fun setupViewModel() {

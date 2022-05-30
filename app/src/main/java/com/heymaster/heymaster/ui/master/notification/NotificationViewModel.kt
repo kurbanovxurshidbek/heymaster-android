@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.ui.master.notification.messages
+package com.heymaster.heymaster.ui.master.notification
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,8 +10,8 @@ import com.heymaster.heymaster.utils.extensions.userMessage
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-class NotificationMessagesViewModel(
-    val repository: NotificationMessagesRepository
+class NotificationViewModel(
+    val repository: NotificationRepository
 ) : ViewModel() {
 
     private val _notification = MutableStateFlow<UiStateList<Notification>>(UiStateList.EMPTY)

@@ -17,6 +17,7 @@ class UserNotificationFragment : BaseFragment(R.layout.fragment_user_notificatio
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
     }
 
 

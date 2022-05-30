@@ -8,11 +8,9 @@ import com.heymaster.heymaster.R
 import com.heymaster.heymaster.adapters.viewpagers.NotificationPagerAdapter
 import com.heymaster.heymaster.databinding.FragmentNotificationBinding
 import com.heymaster.heymaster.ui.global.BaseFragment
-import com.heymaster.heymaster.ui.master.notification.messages.NotificationMessagesFragment
-import com.heymaster.heymaster.ui.master.notification.suggestion.NotificationSuggestionsFragment
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
-class NotificationFragment() : BaseFragment(R.layout.fragment_notification) {
+class NotificationFragment : BaseFragment(R.layout.fragment_notification) {
 
     val binding by viewBinding { FragmentNotificationBinding.bind(it) }
 

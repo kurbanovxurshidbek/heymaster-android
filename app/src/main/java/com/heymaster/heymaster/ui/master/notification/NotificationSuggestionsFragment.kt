@@ -1,10 +1,7 @@
-package com.heymaster.heymaster.ui.master.notification.suggestion
+package com.heymaster.heymaster.ui.master.notification
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -17,14 +14,13 @@ import com.heymaster.heymaster.ui.global.BaseFragment
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
-import okhttp3.internal.notify
 
 
 class NotificationSuggestionsFragment : BaseFragment(R.layout.fragment_notification_suggensions) {
 
     val binding by viewBinding { FragmentNotificationSuggensionsBinding.bind(it) }
     private val notificationAdapter by lazy {NotificationSuggestionAdapter()  }
-    private lateinit var viewModel: NotificationSuggestionViewModel
+    private lateinit var viewModel: NotificationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,9 +54,9 @@ class NotificationSuggestionsFragment : BaseFragment(R.layout.fragment_notificat
     }
 
     private fun setupViewModel() {
-       viewModel = ViewModelProvider(this, NotificationSuggestionViewModelFactory(NotificationSuggestionRepository(
+       viewModel = ViewModelProvider(this, NotificationViewModelFactory(NotificationRepository(
            ApiClient.createService(ApiService::class.java)
-       )))[NotificationSuggestionViewModel::class.java]
+       )))[NotificationViewModel::class.java]
     }
 
     private fun setupRv() {

@@ -3,7 +3,6 @@ package com.heymaster.heymaster.ui.master.booking
 import android.os.Bundle
 import android.view.View
 import com.heymaster.heymaster.R
-import com.heymaster.heymaster.adapters.booking.HistoryBookingAdapter
 import com.heymaster.heymaster.adapters.booking.MasterHistoryBookingAdapter
 import com.heymaster.heymaster.databinding.FragmentMasterHistoryBookingBinding
 import com.heymaster.heymaster.ui.global.BaseFragment

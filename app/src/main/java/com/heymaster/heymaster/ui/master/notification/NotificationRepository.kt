@@ -1,8 +1,8 @@
-package com.heymaster.heymaster.ui.master.notification.suggestion
+package com.heymaster.heymaster.ui.master.notification
 
 import com.heymaster.heymaster.data.network.ApiService
 
-class NotificationSuggestionRepository(
+class NotificationRepository(
     private val apiService: ApiService
 ) {
 

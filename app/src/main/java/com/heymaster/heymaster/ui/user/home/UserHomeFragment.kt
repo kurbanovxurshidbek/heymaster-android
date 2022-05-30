@@ -139,6 +139,10 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
         binding.rvUserHomeService.adapter = serviceAdapter
         binding.rvUserHomePopularServices.adapter = popularServicesAdapter
         binding.rvUserHomePopularMasters.adapter = popularMastersAdapter
+
+        popularMastersAdapter.itemCLick = {
+            findNavController().navigate(R.id.action_userHomeFragment_to_detailPageFragment2)
+        }
     }
 
     private fun setupAdsAdapter() {

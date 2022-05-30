@@ -36,6 +36,7 @@ class UserActivity : BaseActivity() {
                 R.id.userAllServicesFragment -> hideBottomNav()
                 R.id.userAllPopularServiceFragment -> hideBottomNav()
                 R.id.userAllPopularMastersFragment -> hideBottomNav()
+                R.id.detailPageFragment2 -> hideBottomNav()
                 else -> showBottomNav()
             }
         }

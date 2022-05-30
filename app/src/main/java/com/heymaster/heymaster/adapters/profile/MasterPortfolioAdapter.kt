@@ -6,11 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.heymaster.heymaster.databinding.ItemPortfolioBinding
-import com.heymaster.heymaster.databinding.ItemServiceBinding
 import com.heymaster.heymaster.model.masterprofile.Portfolio
 import com.squareup.picasso.Picasso
 
-class PortfolioAdapter : ListAdapter<Portfolio, PortfolioAdapter.ProfileViewHolder>(PortfolioItemDiffCallback()) {
+class MasterPortfolioAdapter : ListAdapter<Portfolio, MasterPortfolioAdapter.ProfileViewHolder>(PortfolioItemDiffCallback()) {
 
 
 

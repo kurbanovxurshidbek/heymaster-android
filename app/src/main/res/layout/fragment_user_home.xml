@@ -62,7 +62,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nested_home"
-            android:background="#F4F4F4"
+            android:background="#f9f9f9"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">

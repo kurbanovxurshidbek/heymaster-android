@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_userHomeFragment_to_userAllPopularMastersFragment"
             app:destination="@id/userAllPopularMastersFragment" />
+        <action
+            android:id="@+id/action_userHomeFragment_to_detailPageFragment2"
+            app:destination="@id/detailPageFragment2" />
     </fragment>
     <fragment
         android:id="@+id/userBookingFragment"
@@ -40,7 +43,11 @@
         android:id="@+id/userProfileFragment"
         android:name="com.heymaster.heymaster.ui.user.profile.UserProfileFragment"
         android:label="fragment_user_profile"
-        tools:layout="@layout/fragment_user_profile" />
+        tools:layout="@layout/fragment_user_profile" >
+        <action
+            android:id="@+id/action_userProfileFragment_to_userNotificationFragment"
+            app:destination="@id/userNotificationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userNotificationFragment"
         android:name="com.heymaster.heymaster.ui.user.notification.UserNotificationFragment"
@@ -64,4 +71,9 @@
         android:name="com.heymaster.heymaster.ui.user.home.UserAllPopularMastersFragment"
         android:label="fragment_user_all_popular_masters"
         tools:layout="@layout/fragment_user_all_popular_masters" />
+    <fragment
+        android:id="@+id/detailPageFragment2"
+        android:name="com.heymaster.heymaster.ui.master.deatailspage.DetailPageFragment"
+        android:label="fragment_detail_page"
+        tools:layout="@layout/fragment_detail_page" />
 </navigation>

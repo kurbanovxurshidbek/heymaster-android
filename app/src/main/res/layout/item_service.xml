@@ -14,7 +14,6 @@
         <LinearLayout
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@drawable/bg_home_service_item"
             android:backgroundTint="@null"
             android:gravity="center">
 
@@ -23,6 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
                 app:shapeAppearanceOverlay="@style/circular"
                 android:src="@drawable/ic_tap"
                 />
