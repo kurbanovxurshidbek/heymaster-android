@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.heymaster.heymaster.R
-import com.heymaster.heymaster.adapters.profile.MasterPortfolioAdapter
+import com.heymaster.heymaster.adapters.profile.PortfolioAdapter
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentMasterPortfolioBinding
@@ -42,7 +42,7 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
 
                     }
                     is UiStateList.SUCCESS -> {
-                        masterPortfolioAdapter.submitList(it.data)
+                        portfolioAdapter.submitList(it.data)
 
 
                     }
@@ -56,7 +56,15 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
     }
 
     private fun setupRv() {
-        binding.recyclerViewPortfolio.adapter = masterPortfolioAdapter
+        val list = ArrayList<Portfolio>()
+        list.add(Portfolio.Image("https://images.unsplash.com/photo-1638913660695-b490171d17c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"))
+        list.add(Portfolio.Image("https://images.unsplash.com/photo-1638913660695-b490171d17c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"))
+        list.add(Portfolio.Image("https://images.unsplash.com/photo-1638913660695-b490171d17c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"))
+        list.add(Portfolio.Image("https://images.unsplash.com/photo-1638913660695-b490171d17c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"))
+        list.add(Portfolio.Image("https://images.unsplash.com/photo-1638913660695-b490171d17c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"))
+        list.add(Portfolio.Image("https://images.unsplash.com/photo-1638913660695-b490171d17c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"))
+        portfolioAdapter.submitList(list)
+        binding.recyclerViewPortfolio.adapter = portfolioAdapter
     }
 
     private fun setupViewModel() {

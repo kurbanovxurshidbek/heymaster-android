@@ -38,9 +38,10 @@ class MasterActiveBookingAdapter(private val list: ArrayList<UActiveBookingM>): 
     }
 
     override fun onBindViewHolder(holder: MasterActiveBookingVH, position: Int) {
-        val uActiveBookingM = getItem(position)
-        holder.onBind(uActiveBookingM)
+        holder.onBind(list[position])
     }
 
-    override fun getItemCount(): Int = list.size
+    override fun getItemCount(): Int {
+        return list.size
+    }
 }

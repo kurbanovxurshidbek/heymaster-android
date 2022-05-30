@@ -13,8 +13,8 @@ class DetailsPortfolioAdapter :ListAdapter<Portfolio, DetailsPortfolioAdapter.De
 
     inner class DetailsPortfolioViewHolder(private val binding: ItemPortfolioBinding):
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(profile: Portfolio) {
-            Picasso.get().load(profile.image).into(binding.itemImages)
+        fun bind(profile: Portfolio.Image) {
+            Picasso.get().load(profile.name).into(binding.itemImages)
         }
 
     }
@@ -36,7 +36,7 @@ class DetailsPortfolioAdapter :ListAdapter<Portfolio, DetailsPortfolioAdapter.De
 
     override fun onBindViewHolder(holder: DetailsPortfolioViewHolder, position: Int) {
         val portfolio = getItem(position)
-        holder.bind(portfolio)
+        holder.bind(portfolio as Portfolio.Image)
     }
 
 

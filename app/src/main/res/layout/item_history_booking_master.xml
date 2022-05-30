@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/completed"
                 android:textColor="@color/green1"
-                android:textSize="12sp"/>
+                android:textSize="14sp"/>
 
         </LinearLayout>
         <View
@@ -79,7 +79,7 @@
                         android:layout_height="wrap_content"
                         android:text="23.05.2022"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:textStyle="normal"/>
 
                 </LinearLayout>
@@ -90,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="+998 99 046 6901"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black"
                     />
 
@@ -126,7 +126,7 @@
             android:layout_height="wrap_content"
             android:text="@string/comment"
             android:textColor="@color/black"
-            android:textSize="12sp"/>
+            android:textSize="14sp"/>
 
     </LinearLayout>
 

@@ -2,7 +2,9 @@ package com.heymaster.heymaster.ui.user.booking
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.tabs.TabLayout
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.FragmentUserBookingBinding
@@ -21,6 +23,13 @@ class UserBookingFragment : BaseFragment(R.layout.fragment_user_booking) {
         super.onViewCreated(view, savedInstanceState)
         adapter = BookingsPagerAdapter(childFragmentManager, lifecycle)
         setupViewPager()
+
+        setupUI()
+
+
+    }
+
+    private fun setupUI() {
 
     }
 

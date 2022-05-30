@@ -1,15 +1,6 @@
 package com.heymaster.heymaster.ui.user.booking
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
-import com.heymaster.heymaster.model.ErrorResponse
-import com.heymaster.heymaster.model.Service
 import com.heymaster.heymaster.ui.auth.AuthRepository
-import com.heymaster.heymaster.utils.UiStateList
-import com.heymaster.heymaster.utils.extensions.userMessage
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.launch
 
 class UserBookingViewModel(
     private val repository: UserBookingRepository,
