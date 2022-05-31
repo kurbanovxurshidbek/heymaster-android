@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.ui.global
+package com.heymaster.heymaster.global
 
 import android.content.Intent
 import android.os.Build
@@ -10,7 +10,7 @@ import com.heymaster.heymaster.R
 import com.heymaster.heymaster.ui.auth.LoginActivity
 import com.heymaster.heymaster.ui.intro.IntroActivity
 import com.heymaster.heymaster.role.master.MasterActivity
-import com.heymaster.heymaster.role.client.UserActivity
+import com.heymaster.heymaster.role.client.ClientActivity
 
 open class BaseActivity: AppCompatActivity() {
 
@@ -39,7 +39,7 @@ open class BaseActivity: AppCompatActivity() {
     }
 
     fun callUserActivity() {
-        val intent = Intent(this, UserActivity::class.java)
+        val intent = Intent(this, ClientActivity::class.java)
         startActivity(intent)
         finish()
     }

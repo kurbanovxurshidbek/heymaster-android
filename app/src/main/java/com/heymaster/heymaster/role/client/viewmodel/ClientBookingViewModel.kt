@@ -10,8 +10,8 @@ import com.heymaster.heymaster.utils.extensions.userMessage
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-class UserBookingViewModel(
-    private val repository: UserBookingRepository,
+class ClientBookingViewModel(
+    private val repository: ClientBookingRepository,
 ) : ViewModel() {
 
     private val _bookings = MutableStateFlow<UiStateList<Service>>(UiStateList.EMPTY)

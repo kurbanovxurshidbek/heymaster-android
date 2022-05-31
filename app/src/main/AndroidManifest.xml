@@ -18,7 +18,7 @@
             android:name="com.heymaster.heymaster.role.master.MasterActivity"
             android:exported="false" />
         <activity
-            android:name="com.heymaster.heymaster.role.client.UserActivity"
+            android:name="com.heymaster.heymaster.role.client.ClientActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan"/>
         <activity

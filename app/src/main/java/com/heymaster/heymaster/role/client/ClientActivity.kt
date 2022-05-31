@@ -7,9 +7,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.ActivityUserBinding
-import com.heymaster.heymaster.ui.global.BaseActivity
+import com.heymaster.heymaster.global.BaseActivity
 
-class UserActivity : BaseActivity() {
+class ClientActivity : BaseActivity() {
 
     private val binding by lazy { ActivityUserBinding.inflate(layoutInflater) }
 

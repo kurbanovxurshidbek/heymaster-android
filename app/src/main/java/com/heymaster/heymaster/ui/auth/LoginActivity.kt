@@ -3,7 +3,7 @@ package com.heymaster.heymaster.ui.auth
 import android.os.Build
 import android.os.Bundle
 import com.heymaster.heymaster.databinding.ActivityLoginBinding
-import com.heymaster.heymaster.ui.global.BaseActivity
+import com.heymaster.heymaster.global.BaseActivity
 
 class LoginActivity : BaseActivity() {
 

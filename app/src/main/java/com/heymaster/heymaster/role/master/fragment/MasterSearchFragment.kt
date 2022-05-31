@@ -6,7 +6,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.FragmentMasterSearchBinding
-import com.heymaster.heymaster.ui.global.BaseFragment
+import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 class MasterSearchFragment: BaseFragment(R.layout.fragment_master_search) {

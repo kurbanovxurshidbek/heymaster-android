@@ -7,7 +7,7 @@ import com.google.android.material.tabs.TabLayout
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.role.client.adapter.ClientBookingsPagerAdapter
 import com.heymaster.heymaster.databinding.FragmentMasterBookingBinding
-import com.heymaster.heymaster.ui.global.BaseFragment
+import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 class MasterBookingFragment : BaseFragment(R.layout.fragment_master_booking) {

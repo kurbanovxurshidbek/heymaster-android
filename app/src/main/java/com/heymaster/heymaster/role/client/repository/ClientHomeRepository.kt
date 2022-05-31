@@ -2,7 +2,7 @@ package com.heymaster.heymaster.role.client.repository
 
 import com.heymaster.heymaster.data.network.ApiService
 
-class UserHomeRepository(
+class ClientHomeRepository(
     private val apiService: ApiService
 ) {
     suspend fun getServices() = apiService.getServices()

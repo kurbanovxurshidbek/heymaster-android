@@ -14,8 +14,8 @@ import com.heymaster.heymaster.databinding.DialogChooseGenderBinding
 import com.heymaster.heymaster.databinding.FragmentUserSignUpBinding
 import com.heymaster.heymaster.model.User
 import com.heymaster.heymaster.ui.auth.AuthSharedViewModel
-import com.heymaster.heymaster.ui.global.BaseFragment
-import com.heymaster.heymaster.role.client.UserActivity
+import com.heymaster.heymaster.global.BaseFragment
+import com.heymaster.heymaster.role.client.ClientActivity
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 
@@ -40,7 +40,7 @@ class UserSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
             }
             val user = User(fullName = fullName, gender = gender)
             Toast.makeText(requireContext(), "$user", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(requireActivity(), UserActivity::class.java))
+            startActivity(Intent(requireActivity(), ClientActivity::class.java))
             activity?.finish()
         }
     }

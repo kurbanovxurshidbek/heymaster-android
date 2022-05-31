@@ -6,12 +6,12 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.FragmentUserBookingBinding
-import com.heymaster.heymaster.ui.global.BaseFragment
+import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.role.client.adapter.ClientBookingsPagerAdapter
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 
-class UserBookingFragment : BaseFragment(R.layout.fragment_user_booking) {
+class ClientBookingFragment : BaseFragment(R.layout.fragment_user_booking) {
 
     private val binding by viewBinding { FragmentUserBookingBinding.bind(it) }
 
@@ -32,8 +32,8 @@ class UserBookingFragment : BaseFragment(R.layout.fragment_user_booking) {
     }
 
     private fun setupViewPager() {
-        adapter.addFragment(UserActiveBookingFragment())
-        adapter.addFragment(UserHistoryBookingFragment())
+        adapter.addFragment(ClientActiveBookingFragment())
+        adapter.addFragment(ClientHistoryBookingFragment())
 
         binding.vpUserBookings.adapter = adapter
         binding.vpUserBookings.setCurrentItem(0, true)

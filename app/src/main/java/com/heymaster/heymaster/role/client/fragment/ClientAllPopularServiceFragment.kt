@@ -7,22 +7,22 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.role.client.adapter.ClientHomeAllServicesAdapter
-import com.heymaster.heymaster.role.client.repository.UserHomeRepository
-import com.heymaster.heymaster.role.client.viewmodel.UserHomeViewModel
-import com.heymaster.heymaster.role.client.viewmodel.factory.UserHomeViewModelFactory
+import com.heymaster.heymaster.role.client.repository.ClientHomeRepository
+import com.heymaster.heymaster.role.client.viewmodel.ClientHomeViewModel
+import com.heymaster.heymaster.role.client.viewmodel.factory.ClientHomeViewModelFactory
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentUserAllPopularServiceBinding
-import com.heymaster.heymaster.ui.global.BaseFragment
+import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
 
 
-class UserAllPopularServiceFragment : BaseFragment(R.layout.fragment_user_all_popular_service) {
+class ClientAllPopularServiceFragment : BaseFragment(R.layout.fragment_user_all_popular_service) {
 
     private val binding by viewBinding { FragmentUserAllPopularServiceBinding.bind(it) }
-    private lateinit var viewModel: UserHomeViewModel
+    private lateinit var viewModel: ClientHomeViewModel
     private val serviceAdapter by lazy { ClientHomeAllServicesAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -63,8 +63,8 @@ class UserAllPopularServiceFragment : BaseFragment(R.layout.fragment_user_all_po
     private fun setupViewModel() {
         viewModel = ViewModelProvider(
             this,
-            UserHomeViewModelFactory(UserHomeRepository(ApiClient.createService(ApiService::class.java)))
-        )[UserHomeViewModel::class.java]
+            ClientHomeViewModelFactory(ClientHomeRepository(ApiClient.createService(ApiService::class.java)))
+        )[ClientHomeViewModel::class.java]
     }
 
 

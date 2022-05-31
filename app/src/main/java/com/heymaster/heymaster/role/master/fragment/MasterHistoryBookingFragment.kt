@@ -8,7 +8,7 @@ import com.heymaster.heymaster.role.master.adapter.MasterHistoryBookingAdapter
 import com.heymaster.heymaster.databinding.FragmentMasterHistoryBookingBinding
 import com.heymaster.heymaster.role.master.viewmodel.MasterBookingViewModel
 import com.heymaster.heymaster.model.user_booking.UActiveBookingM
-import com.heymaster.heymaster.ui.global.BaseFragment
+import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 

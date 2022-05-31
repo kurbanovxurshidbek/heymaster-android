@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/userHomeFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.UserHomeFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.ClientHomeFragment"
         android:label="fragment_user_home"
         tools:layout="@layout/fragment_user_home" >
         <action
@@ -39,39 +39,48 @@
     </fragment>
     <fragment
         android:id="@+id/userBookingFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.UserBookingFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.ClientBookingFragment"
         android:label="fragment_user_booking"
         tools:layout="@layout/fragment_user_booking" />
     <fragment
         android:id="@+id/userProfileFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.UserProfileFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.ClientProfileFragment"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" >
         <action
             android:id="@+id/action_userProfileFragment_to_userNotificationFragment"
             app:destination="@id/userNotificationFragment" />
+        <action
+            android:id="@+id/action_userProfileFragment_to_clientAboutFragment"
+            app:destination="@id/clientAboutFragment" />
+        <action
+            android:id="@+id/action_userProfileFragment_to_clientProfileHelpFragment"
+            app:destination="@id/clientProfileHelpFragment" />
+        <action
+            android:id="@+id/action_userProfileFragment_to_clientEditProfileFragment"
+            app:destination="@id/clientEditProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/userNotificationFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.UserNotificationFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.ClientNotificationFragment"
         android:label="fragment_user_notification"
         tools:layout="@layout/fragment_user_notification" />
     <fragment
         android:id="@+id/userSearchFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.UserSearchFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.ClientSearchFragment"
         android:label="UserSearchFragment" />
     <fragment
         android:id="@+id/userAllServicesFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.UserAllServicesFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.ClientAllServicesFragment"
         android:label="fragment_all_services"
         tools:layout="@layout/fragment_user_all_services" />
     <fragment
         android:id="@+id/userAllPopularServiceFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.UserAllPopularServiceFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.ClientAllPopularServiceFragment"
         android:label="UserAllPopularServiceFragment" />
     <fragment
         android:id="@+id/userAllPopularMastersFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.UserAllPopularMastersFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.ClientAllPopularMastersFragment"
         android:label="fragment_user_all_popular_masters"
         tools:layout="@layout/fragment_user_all_popular_masters" />
     <fragment
@@ -81,7 +90,22 @@
         tools:layout="@layout/fragment_detail_page" />
     <fragment
         android:id="@+id/serviceDetailFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.ServiceDetailFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.ClientServiceDetailFragment"
         android:label="fragment_service_detail"
         tools:layout="@layout/fragment_service_detail" />
+    <fragment
+        android:id="@+id/clientAboutFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.ClientAboutFragment"
+        android:label="fragment_client_about"
+        tools:layout="@layout/fragment_client_about" />
+    <fragment
+        android:id="@+id/clientProfileHelpFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.ClientProfileHelpFragment"
+        android:label="fragment_client_profile_help"
+        tools:layout="@layout/fragment_client_profile_help" />
+    <fragment
+        android:id="@+id/clientEditProfileFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.ClientEditProfileFragment"
+        android:label="fragment_client_edit_profile"
+        tools:layout="@layout/fragment_client_edit_profile" />
 </navigation>

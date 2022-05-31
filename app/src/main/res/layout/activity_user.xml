@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".role.client.UserActivity">
+    tools:context=".role.client.ClientActivity">
 
 
 
@@ -20,13 +20,13 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:name="androidx.navigation.fragment.NavHostFragment"
-            app:navGraph="@navigation/user_nav_graph"
+            app:navGraph="@navigation/client_nav_graph"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@id/user_bottom_navigation"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:context=".role.client.UserActivity"/>
+            tools:context=".role.client.ClientActivity"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/user_bottom_navigation"

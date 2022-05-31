@@ -13,7 +13,7 @@ import com.heymaster.heymaster.databinding.FragmentDetailsPortfolioBinding
 import com.heymaster.heymaster.role.master.repository.DetailsRepository
 import com.heymaster.heymaster.role.master.viewmodel.DetailsViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.DetailsViewModelFactory
-import com.heymaster.heymaster.ui.global.BaseFragment
+import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect

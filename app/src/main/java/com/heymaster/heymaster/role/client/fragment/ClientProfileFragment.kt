@@ -17,13 +17,14 @@ import androidx.navigation.fragment.findNavController
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.DialogChooseLanguageBinding
+import com.heymaster.heymaster.databinding.DialogLogOutBinding
 import com.heymaster.heymaster.databinding.FragmentUserProfileBinding
-import com.heymaster.heymaster.ui.global.BaseFragment
+import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 
 
-class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
+class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
     private val binding by viewBinding { FragmentUserProfileBinding.bind(it) }
 
@@ -37,19 +38,48 @@ class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
 
     private fun clickListeners() {
-        binding.buttons.btnUserNotification.setOnClickListener {
-            findNavController().navigate(R.id.action_userProfileFragment_to_userNotificationFragment)
+
+        with(binding.buttons) {
+            btnUserNotification.setOnClickListener {
+                findNavController().navigate(R.id.action_userProfileFragment_to_userNotificationFragment)
+            }
+            btnUserChangeLanguage.setOnClickListener {
+                showChooseLanguageDialog()
+            }
+            btnUserAboutUs.setOnClickListener {
+                findNavController().navigate(R.id.action_userProfileFragment_to_clientAboutFragment)
+            }
+
+            btnUserHelp.setOnClickListener {
+                findNavController().navigate(R.id.action_userProfileFragment_to_clientProfileHelpFragment)
+            }
+            btnUserLogOut.setOnClickListener {
+                showLogOutDialog()
+            }
         }
-        binding.buttons.btnUserChangeLanguage.setOnClickListener {
-            showDialog()
+
+        with(binding) {
+            ivProfile.setOnClickListener {
+                pickImageProfile()
+            }
+            ivEditProfile.setOnClickListener {
+                findNavController().navigate(R.id.action_userProfileFragment_to_clientEditProfileFragment)
+            }
+
         }
-        binding.ivProfile.setOnClickListener {
-            pickImageProfile()
-        }
+
+
     }
 
-
-
+    private fun showLogOutDialog() {
+        val dialog = Dialog(requireContext())
+        val binding: DialogLogOutBinding =
+            DialogLogOutBinding.inflate(layoutInflater)
+        dialog.setContentView(binding.root)
+        dialog.setCancelable(true)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.show()
+    }
 
 
     private fun pickImageProfile() {
@@ -88,7 +118,7 @@ class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
         }
 
 
-    private fun showDialog() {
+    private fun showChooseLanguageDialog() {
         val dialog = Dialog(requireContext())
         val binding: DialogChooseLanguageBinding =
             DialogChooseLanguageBinding.inflate(layoutInflater)

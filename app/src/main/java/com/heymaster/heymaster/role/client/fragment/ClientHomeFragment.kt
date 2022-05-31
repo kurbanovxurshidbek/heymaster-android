@@ -12,13 +12,13 @@ import com.heymaster.heymaster.role.client.adapter.ClientHomePopularMastersAdapt
 import com.heymaster.heymaster.role.client.adapter.ClientHomePopularServicesAdapter
 import com.heymaster.heymaster.role.client.adapter.ClientHomeServicesAdapter
 import com.heymaster.heymaster.role.client.adapter.ClientHomeAdsPagerAdapter
-import com.heymaster.heymaster.role.client.repository.UserHomeRepository
-import com.heymaster.heymaster.role.client.viewmodel.UserHomeViewModel
-import com.heymaster.heymaster.role.client.viewmodel.factory.UserHomeViewModelFactory
+import com.heymaster.heymaster.role.client.repository.ClientHomeRepository
+import com.heymaster.heymaster.role.client.viewmodel.ClientHomeViewModel
+import com.heymaster.heymaster.role.client.viewmodel.factory.ClientHomeViewModelFactory
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentUserHomeBinding
-import com.heymaster.heymaster.ui.global.BaseFragment
+import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.Job
@@ -27,12 +27,12 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.isActive
 
 
-class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
+class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
 
     private val binding by viewBinding { FragmentUserHomeBinding.bind(it) }
     private var job: Job? = null
 
-    private lateinit var viewModel: UserHomeViewModel
+    private lateinit var viewModel: ClientHomeViewModel
     private val serviceAdapter by lazy { ClientHomeServicesAdapter() }
     private val adsAdapter by lazy { ClientHomeAdsPagerAdapter() }
     private val popularServicesAdapter by lazy { ClientHomePopularServicesAdapter() }
@@ -171,8 +171,8 @@ class UserHomeFragment : BaseFragment(R.layout.fragment_user_home) {
     private fun setupViewModel() {
         viewModel = ViewModelProvider(
             this,
-            UserHomeViewModelFactory(UserHomeRepository(ApiClient.createService(ApiService::class.java)))
-        )[UserHomeViewModel::class.java]
+            ClientHomeViewModelFactory(ClientHomeRepository(ApiClient.createService(ApiService::class.java)))
+        )[ClientHomeViewModel::class.java]
     }
 
 

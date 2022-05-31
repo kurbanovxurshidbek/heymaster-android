@@ -12,7 +12,7 @@ import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.ui.adapter.IntroPagerAdapter
 import com.heymaster.heymaster.databinding.ActivityIntroBinding
-import com.heymaster.heymaster.ui.global.BaseActivity
+import com.heymaster.heymaster.global.BaseActivity
 import com.heymaster.heymaster.ui.intro.fragment.FirstIntroFragment
 import com.heymaster.heymaster.ui.intro.fragment.SecondIntroFragment
 import com.heymaster.heymaster.ui.intro.fragment.ThirdIntroFragment

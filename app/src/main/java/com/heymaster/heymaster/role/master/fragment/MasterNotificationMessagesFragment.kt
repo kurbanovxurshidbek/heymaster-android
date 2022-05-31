@@ -5,7 +5,7 @@ import android.view.View
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.role.client.adapter.ClientNotificationMessagesAdapter
 import com.heymaster.heymaster.databinding.FragmentNotificationMessagesBinding
-import com.heymaster.heymaster.ui.global.BaseFragment
+import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 

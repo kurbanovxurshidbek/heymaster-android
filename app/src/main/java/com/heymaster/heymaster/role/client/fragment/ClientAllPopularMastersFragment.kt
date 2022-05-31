@@ -6,44 +6,45 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.heymaster.heymaster.R
-import com.heymaster.heymaster.role.client.adapter.ClientHomeAllServicesAdapter
-import com.heymaster.heymaster.role.client.repository.UserHomeRepository
-import com.heymaster.heymaster.role.client.viewmodel.UserHomeViewModel
-import com.heymaster.heymaster.role.client.viewmodel.factory.UserHomeViewModelFactory
+import com.heymaster.heymaster.role.client.adapter.ClientHomePopularMastersAdapter
+import com.heymaster.heymaster.role.client.repository.ClientHomeRepository
+import com.heymaster.heymaster.role.client.viewmodel.ClientHomeViewModel
+import com.heymaster.heymaster.role.client.viewmodel.factory.ClientHomeViewModelFactory
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
-import com.heymaster.heymaster.databinding.FragmentUserAllServicesBinding
-import com.heymaster.heymaster.ui.global.BaseFragment
+import com.heymaster.heymaster.databinding.FragmentUserAllPopularMastersBinding
+import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
 
 
-class UserAllServicesFragment : BaseFragment(R.layout.fragment_user_all_services) {
+class ClientAllPopularMastersFragment : BaseFragment(R.layout.fragment_user_all_popular_masters) {
 
-    private val binding by viewBinding { FragmentUserAllServicesBinding.bind(it) }
-    private lateinit var viewModel: UserHomeViewModel
-    private val serviceAdapter by lazy { ClientHomeAllServicesAdapter() }
+    private val binding by viewBinding { FragmentUserAllPopularMastersBinding.bind(it) }
+    private lateinit var viewModel: ClientHomeViewModel
+    private val popularMastersAdapter by lazy { ClientHomePopularMastersAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
         setupRv()
         viewModel.getServices()
-        obServeViewModel()
+        observeViewModel()
+
 
     }
 
-    private fun obServeViewModel() {
+    private fun observeViewModel() {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.services.collect { it ->
                 when (it) {
                     is UiStateList.LOADING -> {
-                        binding.progressUserHomeAllService.customProgress.visibility = View.VISIBLE
+                        binding.progressUserHomeAllMasters.customProgress.visibility = View.VISIBLE
                     }
                     is UiStateList.SUCCESS -> {
-                        binding.progressUserHomeAllService.customProgress.visibility = View.GONE
-                        serviceAdapter.submitList(it.data)
+                        binding.progressUserHomeAllMasters.customProgress.visibility = View.GONE
+                        popularMastersAdapter.submitList(it.data)
 
 
                     }
@@ -57,16 +58,15 @@ class UserAllServicesFragment : BaseFragment(R.layout.fragment_user_all_services
     }
 
     private fun setupRv() {
-        binding.rvUserAllService.adapter = serviceAdapter
+        binding.rvUserAllMaster.adapter = popularMastersAdapter
     }
 
     private fun setupViewModel() {
         viewModel = ViewModelProvider(
             this,
-            UserHomeViewModelFactory(UserHomeRepository(ApiClient.createService(ApiService::class.java)))
-        )[UserHomeViewModel::class.java]
+            ClientHomeViewModelFactory(ClientHomeRepository(ApiClient.createService(ApiService::class.java)))
+        )[ClientHomeViewModel::class.java]
     }
-
 
 
 }

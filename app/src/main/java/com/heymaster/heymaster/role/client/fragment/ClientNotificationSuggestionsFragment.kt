@@ -3,10 +3,10 @@ package com.heymaster.heymaster.role.client.fragment
 import android.os.Bundle
 import android.view.View
 import com.heymaster.heymaster.R
-import com.heymaster.heymaster.ui.global.BaseFragment
+import com.heymaster.heymaster.global.BaseFragment
 
 
-class UserNotificationSuggestionsFragment : BaseFragment(R.layout.fragment_user_notification_suggestions) {
+class ClientNotificationSuggestionsFragment : BaseFragment(R.layout.fragment_user_notification_suggestions) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

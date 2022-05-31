@@ -3,7 +3,7 @@ package com.heymaster.heymaster.role.client.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
-import com.heymaster.heymaster.role.client.repository.UserHomeRepository
+import com.heymaster.heymaster.role.client.repository.ClientHomeRepository
 import com.heymaster.heymaster.model.Ads
 import com.heymaster.heymaster.model.ErrorResponse
 import com.heymaster.heymaster.model.Service
@@ -13,8 +13,8 @@ import com.heymaster.heymaster.utils.extensions.userMessage
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-class UserHomeViewModel(
-    private val repository: UserHomeRepository,
+class ClientHomeViewModel(
+    private val repository: ClientHomeRepository,
 ) : ViewModel() {
 
     private val _services = MutableStateFlow<UiStateList<Service>>(UiStateList.EMPTY)

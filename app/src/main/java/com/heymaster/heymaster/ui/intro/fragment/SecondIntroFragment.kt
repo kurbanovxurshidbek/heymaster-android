@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.FragmentSecondIntroBinding
-import com.heymaster.heymaster.ui.global.BaseFragment
+import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 

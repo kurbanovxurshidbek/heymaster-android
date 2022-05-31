@@ -1,4 +1,4 @@
 package com.heymaster.heymaster.role.client.viewmodel.factory
 
-class UserNotificationViewModelFactory {
+class ClientNotificationViewModelFactory {
 }

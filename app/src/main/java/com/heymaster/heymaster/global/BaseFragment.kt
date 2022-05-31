@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.ui.global
+package com.heymaster.heymaster.global
 
 import androidx.fragment.app.Fragment
 

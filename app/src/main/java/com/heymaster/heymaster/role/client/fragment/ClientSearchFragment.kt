@@ -8,11 +8,11 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.FragmentUserSearchBinding
-import com.heymaster.heymaster.ui.global.BaseFragment
+import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 
-class UserSearchFragment: BaseFragment(R.layout.fragment_user_search) {
+class ClientSearchFragment: BaseFragment(R.layout.fragment_user_search) {
 
     private val binding by viewBinding { FragmentUserSearchBinding.bind(it) }
 

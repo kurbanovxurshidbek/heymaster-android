@@ -7,7 +7,7 @@ import com.google.android.material.tabs.TabLayout
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.role.master.adapter.DetailBottomViewPagerAdapter
 import com.heymaster.heymaster.databinding.FragmentDetailPageBinding
-import com.heymaster.heymaster.ui.global.BaseFragment
+import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 

@@ -7,7 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.ActivityMasterBinding
-import com.heymaster.heymaster.ui.global.BaseActivity
+import com.heymaster.heymaster.global.BaseActivity
 
 class MasterActivity : BaseActivity() {
 
