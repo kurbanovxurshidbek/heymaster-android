@@ -4,7 +4,6 @@ import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.heymaster.heymaster.model.User
 
 class AuthViewModel(
     private val repository: AuthRepository,

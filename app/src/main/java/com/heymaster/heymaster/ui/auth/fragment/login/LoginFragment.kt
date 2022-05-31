@@ -9,7 +9,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.FragmentLoginBinding
 import com.heymaster.heymaster.utils.extensions.viewBinding

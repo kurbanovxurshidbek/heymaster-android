@@ -15,19 +15,19 @@
         android:theme="@style/Theme.Heymaster"
         tools:replace="android:theme">
         <activity
-            android:name=".ui.master.MasterActivity"
+            android:name="com.heymaster.heymaster.role.master.MasterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.user.UserActivity"
+            android:name="com.heymaster.heymaster.role.client.UserActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".ui.intro.IntroActivity"
+            android:name="com.heymaster.heymaster.ui.intro.IntroActivity"
             android:exported="false"
             android:theme="@style/main_theme"/>
 
         <activity
-            android:name=".ui.auth.LoginActivity"
+            android:name="com.heymaster.heymaster.ui.auth.LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan"/>
         <activity

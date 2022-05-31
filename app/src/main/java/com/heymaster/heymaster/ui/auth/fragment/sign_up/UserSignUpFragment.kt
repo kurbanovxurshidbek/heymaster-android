@@ -15,7 +15,7 @@ import com.heymaster.heymaster.databinding.FragmentUserSignUpBinding
 import com.heymaster.heymaster.model.User
 import com.heymaster.heymaster.ui.auth.AuthSharedViewModel
 import com.heymaster.heymaster.ui.global.BaseFragment
-import com.heymaster.heymaster.ui.user.UserActivity
+import com.heymaster.heymaster.role.client.UserActivity
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 

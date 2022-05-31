@@ -8,6 +8,6 @@
     android:layout_margin="4dp"
     android:id="@+id/rv_notif_suggestion"
     tools:listitem="@layout/item_portfolio"
-    tools:context=".ui.master.notification.NotificationSuggestionsFragment">
+    tools:context=".role.master.fragment.MasterNotificationSuggestionsFragment">
 
 </androidx.recyclerview.widget.RecyclerView>

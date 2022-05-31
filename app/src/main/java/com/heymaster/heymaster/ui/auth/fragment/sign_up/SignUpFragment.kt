@@ -1,5 +1,6 @@
 package com.heymaster.heymaster.ui.auth.fragment.sign_up
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -7,9 +8,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout.*
 import com.heymaster.heymaster.R
-import com.heymaster.heymaster.adapters.viewpagers.SignUpPagerAdapter
+import com.heymaster.heymaster.ui.adapter.SignUpPagerAdapter
 import com.heymaster.heymaster.databinding.FragmentSignUpBinding
 import com.heymaster.heymaster.ui.auth.AuthSharedViewModel
+import com.heymaster.heymaster.role.master.MasterActivity
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
@@ -58,8 +60,8 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 //                        activity?.finish()
                         viewModel.clickListener(position)
                     } else {
-//                        startActivity(Intent(requireActivity(), MasterActivity::class.java))
-//                        activity?.finish()
+                        startActivity(Intent(requireActivity(), MasterActivity::class.java))
+                        activity?.finish()
                     }
                 }
             }

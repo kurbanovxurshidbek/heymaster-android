@@ -9,8 +9,8 @@ import androidx.core.content.ContextCompat
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.ui.auth.LoginActivity
 import com.heymaster.heymaster.ui.intro.IntroActivity
-import com.heymaster.heymaster.ui.master.MasterActivity
-import com.heymaster.heymaster.ui.user.UserActivity
+import com.heymaster.heymaster.role.master.MasterActivity
+import com.heymaster.heymaster.role.client.UserActivity
 
 open class BaseActivity: AppCompatActivity() {
 

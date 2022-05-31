@@ -9,7 +9,6 @@ import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
-import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.ActivitySplashBinding
 import com.heymaster.heymaster.ui.global.BaseActivity
 import com.heymaster.heymaster.utils.ConnectivityReceiver

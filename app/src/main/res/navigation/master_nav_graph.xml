@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/masterBookingFragment"
-        android:name="com.heymaster.heymaster.ui.master.booking.MasterBookingFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.MasterBookingFragment"
         android:label="fragment_master_booking"
         tools:layout="@layout/fragment_master_booking" />
     <fragment
         android:id="@+id/masterHomeFragment"
-        android:name="com.heymaster.heymaster.ui.master.home.MasterHomeFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.MasterHomeFragment"
         android:label="fragment_master_home"
         tools:layout="@layout/fragment_master_home" >
         <action
@@ -27,21 +27,21 @@
     </fragment>
     <fragment
         android:id="@+id/masterProfileFragment"
-        android:name="com.heymaster.heymaster.ui.master.profile.MasterProfileFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.MasterProfileFragment"
         android:label="fragment_master_profile"
         tools:layout="@layout/fragment_master_profile" />
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="com.heymaster.heymaster.ui.master.notification.NotificationFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.MasterNotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/masterSearchFragment"
-        android:name="com.heymaster.heymaster.ui.master.home.MasterSearchFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.MasterSearchFragment"
         android:label="MasterSearchFragment" />
     <fragment
         android:id="@+id/detailPageFragment"
-        android:name="com.heymaster.heymaster.ui.master.deatailspage.DetailPageFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.DetailPageFragment"
         android:label="fragment_detail_page"
         tools:layout="@layout/fragment_detail_page" />
 </navigation>

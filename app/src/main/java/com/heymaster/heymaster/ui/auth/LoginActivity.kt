@@ -1,10 +1,7 @@
 package com.heymaster.heymaster.ui.auth
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.findNavController
-import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.ActivityLoginBinding
 import com.heymaster.heymaster.ui.global.BaseActivity
 

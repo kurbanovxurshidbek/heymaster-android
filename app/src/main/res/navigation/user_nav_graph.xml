@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/userHomeFragment"
-        android:name="com.heymaster.heymaster.ui.user.home.UserHomeFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.UserHomeFragment"
         android:label="fragment_user_home"
         tools:layout="@layout/fragment_user_home" >
         <action
@@ -33,15 +33,18 @@
         <action
             android:id="@+id/action_userHomeFragment_to_detailPageFragment2"
             app:destination="@id/detailPageFragment2" />
+        <action
+            android:id="@+id/action_userHomeFragment_to_serviceDetailFragment"
+            app:destination="@id/serviceDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/userBookingFragment"
-        android:name="com.heymaster.heymaster.ui.user.booking.UserBookingFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.UserBookingFragment"
         android:label="fragment_user_booking"
         tools:layout="@layout/fragment_user_booking" />
     <fragment
         android:id="@+id/userProfileFragment"
-        android:name="com.heymaster.heymaster.ui.user.profile.UserProfileFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.UserProfileFragment"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" >
         <action
@@ -50,30 +53,35 @@
     </fragment>
     <fragment
         android:id="@+id/userNotificationFragment"
-        android:name="com.heymaster.heymaster.ui.user.notification.UserNotificationFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.UserNotificationFragment"
         android:label="fragment_user_notification"
         tools:layout="@layout/fragment_user_notification" />
     <fragment
         android:id="@+id/userSearchFragment"
-        android:name="com.heymaster.heymaster.ui.user.home.UserSearchFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.UserSearchFragment"
         android:label="UserSearchFragment" />
     <fragment
         android:id="@+id/userAllServicesFragment"
-        android:name="com.heymaster.heymaster.ui.user.home.UserAllServicesFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.UserAllServicesFragment"
         android:label="fragment_all_services"
         tools:layout="@layout/fragment_user_all_services" />
     <fragment
         android:id="@+id/userAllPopularServiceFragment"
-        android:name="com.heymaster.heymaster.ui.user.home.UserAllPopularServiceFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.UserAllPopularServiceFragment"
         android:label="UserAllPopularServiceFragment" />
     <fragment
         android:id="@+id/userAllPopularMastersFragment"
-        android:name="com.heymaster.heymaster.ui.user.home.UserAllPopularMastersFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.UserAllPopularMastersFragment"
         android:label="fragment_user_all_popular_masters"
         tools:layout="@layout/fragment_user_all_popular_masters" />
     <fragment
         android:id="@+id/detailPageFragment2"
-        android:name="com.heymaster.heymaster.ui.master.deatailspage.DetailPageFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.DetailPageFragment"
         android:label="fragment_detail_page"
         tools:layout="@layout/fragment_detail_page" />
+    <fragment
+        android:id="@+id/serviceDetailFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.ServiceDetailFragment"
+        android:label="fragment_service_detail"
+        tools:layout="@layout/fragment_service_detail" />
 </navigation>

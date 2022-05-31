@@ -8,7 +8,7 @@
     android:layout_gravity="center"
     android:orientation="vertical"
     android:background="#fbfbfb"
-    tools:context=".ui.master.profile.MasterChildProfileFragment">
+    tools:context=".role.master.fragment.MasterChildProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

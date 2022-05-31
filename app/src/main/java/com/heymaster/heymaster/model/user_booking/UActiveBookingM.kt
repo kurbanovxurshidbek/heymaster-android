@@ -3,6 +3,7 @@ package com.heymaster.heymaster.model.user_booking
 import android.os.Parcel
 import android.os.Parcelable
 
+
 data class UActiveBookingM(
     var idEmp: Int, var jobType: String?, var profileImg: Int, var nameEmp: String?,
     var orderDate: String?, var phoneNumber: String?
