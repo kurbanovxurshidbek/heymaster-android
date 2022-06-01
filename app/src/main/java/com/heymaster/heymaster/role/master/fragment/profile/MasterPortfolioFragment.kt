@@ -1,8 +1,9 @@
-package com.heymaster.heymaster.role.master.fragment
+package com.heymaster.heymaster.role.master.fragment.profile
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.heymaster.heymaster.R
@@ -11,9 +12,10 @@ import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentMasterPortfolioBinding
 import com.heymaster.heymaster.role.master.repository.MasterPortfolioRepository
-import com.heymaster.heymaster.role.master.viewmodel.MasterPortfolioViewModel
+import com.heymaster.heymaster.role.master.viewmodel.MasterProfileViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterPortfolioViewModelFactory
 import com.heymaster.heymaster.global.BaseFragment
+import com.heymaster.heymaster.model.masterprofile.Portfolio
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
@@ -21,7 +23,7 @@ import kotlinx.coroutines.flow.collect
 
 class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio) {
     private val binding by viewBinding { FragmentMasterPortfolioBinding.bind(it) }
-    private lateinit var viewModel: MasterPortfolioViewModel
+    private lateinit var viewModel: MasterProfileViewModel
     private val masterPortfolioAdapter by lazy { MasterPortfolioAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,9 +44,10 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
             viewModel.portfolios.collect {
                 when(it) {
                     is UiStateList.LOADING -> {
-
+                        binding.progressBarPortfolio.isVisible = true
                     }
                     is UiStateList.SUCCESS -> {
+                        binding.progressBarPortfolio.isVisible = false
                         masterPortfolioAdapter.submitList(it.data)
 
 
@@ -59,6 +62,14 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
     }
 
     private fun setupRv() {
+        val list = ArrayList<Portfolio>()
+        list.add(Portfolio.Image("https://images.unsplash.com/photo-1638913660695-b490171d17c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"))
+        list.add(Portfolio.Image("https://images.unsplash.com/photo-1638913660695-b490171d17c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"))
+        list.add(Portfolio.Image("https://images.unsplash.com/photo-1638913660695-b490171d17c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"))
+        list.add(Portfolio.Image("https://images.unsplash.com/photo-1638913660695-b490171d17c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"))
+        list.add(Portfolio.Image("https://images.unsplash.com/photo-1638913660695-b490171d17c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"))
+        list.add(Portfolio.Image("https://images.unsplash.com/photo-1638913660695-b490171d17c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80"))
+        masterPortfolioAdapter.submitList(list)
         binding.recyclerViewPortfolio.adapter = masterPortfolioAdapter
     }
 
@@ -66,7 +77,7 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
         viewModel = ViewModelProvider(
             this,
             MasterPortfolioViewModelFactory(MasterPortfolioRepository(ApiClient.createService(ApiService::class.java)))
-        )[MasterPortfolioViewModel::class.java]
+        )[MasterProfileViewModel::class.java]
     }
 
 }

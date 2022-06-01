@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:id="@+id/rv_notif_messages"
     android:layout_margin="4dp"
-    tools:context=".role.master.fragment.MasterNotificationMessagesFragment">
+    tools:context=".role.master.fragment.notification.MasterNotificationMessagesFragment">
 
 
 </androidx.recyclerview.widget.RecyclerView>

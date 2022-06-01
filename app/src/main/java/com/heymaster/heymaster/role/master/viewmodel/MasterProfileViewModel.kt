@@ -13,7 +13,7 @@ import com.heymaster.heymaster.utils.extensions.userMessage
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-class MasterPortfolioViewModel(private val repository: MasterPortfolioRepository): ViewModel() {
+class MasterProfileViewModel(private val repository: MasterPortfolioRepository): ViewModel() {
 
     private val _portfolios = MutableStateFlow<UiStateList<Portfolio>>(UiStateList.EMPTY)
     val portfolios = _portfolios

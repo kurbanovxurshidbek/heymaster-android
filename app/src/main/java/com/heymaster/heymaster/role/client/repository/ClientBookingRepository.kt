@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.role.client.viewmodel
+package com.heymaster.heymaster.role.client.repository
 
 import com.heymaster.heymaster.data.network.ApiService
 

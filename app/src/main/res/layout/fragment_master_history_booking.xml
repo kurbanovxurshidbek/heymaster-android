@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".role.master.fragment.MasterHistoryBookingFragment">
+    tools:context=".role.master.fragment.booking.MasterHistoryBookingFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_master_history_booking"

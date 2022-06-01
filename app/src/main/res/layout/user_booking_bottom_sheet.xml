@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:behavior_peekHeight="250dp"
+    android:background="@drawable/bg_bottom_navigation"
     app:behavior_hideable = "true"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
@@ -18,7 +19,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -26,7 +28,7 @@
                 android:gravity="center"
                 android:text="Rate this service"
                 android:textColor="@color/black"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
 
@@ -42,7 +44,6 @@
 
             <com.willy.ratingbar.ScaleRatingBar
                 android:id="@+id/ratingBar"
-                android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srb_drawableEmpty="@drawable/ic_star_unselected"
@@ -73,7 +74,7 @@
                 android:padding="12sp"
                 android:text="Description"
                 android:gravity="center"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
@@ -90,13 +91,13 @@
             android:padding="8dp">
 
 
-            <TextView
+            <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
                 android:layout_weight="1"
                 android:padding="12sp"
-                android:text="The people working here are just so nice and helpful and make you feel so comfortable!"
+                android:background="@null"
+                android:hint="The people working here are just so nice and helpful and make you feel so comfortable!"
                 android:gravity="center"
                 android:textSize="13sp"
                 />
@@ -119,4 +120,4 @@
 
 
 
-</androidx.cardview.widget.CardView>
+</LinearLayout>

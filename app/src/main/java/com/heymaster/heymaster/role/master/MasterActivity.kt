@@ -26,6 +26,13 @@ class MasterActivity : BaseActivity() {
                 R.id.notificationFragment -> hideBottomNav()
                 R.id.masterSearchFragment -> hideBottomNav()
                 R.id.detailPageFragment -> hideBottomNav()
+                R.id.masterAllServicesFragment -> hideBottomNav()
+                R.id.masterPopularMasterFragment -> hideBottomNav()
+                R.id.masterPopularServicesFragment -> hideBottomNav()
+                R.id.masterEditProfileFragment -> hideBottomNav()
+                R.id.masterProfileHelpFragment -> hideBottomNav()
+                R.id.masterProfileAboutFragment -> hideBottomNav()
+
                 else -> showBottomNav()
             }
         }

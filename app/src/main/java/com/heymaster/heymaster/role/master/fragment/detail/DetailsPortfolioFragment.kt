@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.role.master.fragment
+package com.heymaster.heymaster.role.master.fragment.detail
 
 import android.os.Bundle
 import android.view.View
