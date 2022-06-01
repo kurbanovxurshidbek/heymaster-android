@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".role.master.fragment.MasterProfileFragment">
+    tools:context=".role.master.fragment.profile.MasterProfileFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -38,15 +38,34 @@
         android:orientation="horizontal"
         android:paddingHorizontal="15dp">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivProfile"
+        <FrameLayout
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="10dp"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"
-            android:src="@drawable/intro_image_2"
-            app:shapeAppearanceOverlay="@style/circular" />
+            android:layout_height="100dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivProfile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:src="@drawable/intro_image_2"
+                app:shapeAppearanceOverlay="@style/circular" />
+
+            <ImageView
+                android:id="@+id/btn_set_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="2dp"
+                android:background="@drawable/bg_add_btn"
+                android:padding="2dp"
+                android:src="@drawable/ic_add" />
+
+
+
+        </FrameLayout>
+
+
 
         <LinearLayout
             android:layout_width="0dp"
@@ -61,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Firdavs Davlatov"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
 
@@ -103,6 +122,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/orange1"
                     app:cardCornerRadius="16sp"
@@ -168,6 +188,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_master_profile"
         android:layout_marginTop="12dp"
+        android:saveEnabled="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

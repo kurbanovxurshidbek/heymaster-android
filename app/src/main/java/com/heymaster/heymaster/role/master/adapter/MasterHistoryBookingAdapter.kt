@@ -9,16 +9,10 @@ import com.heymaster.heymaster.role.master.adapter.MasterHistoryBookingAdapter.*
 import com.heymaster.heymaster.databinding.ItemHistoryBookingMasterBinding
 import com.heymaster.heymaster.model.user_booking.UActiveBookingM
 
-class MasterHistoryBookingAdapter: ListAdapter<UActiveBookingM, MasterHistoryBookingVH>(ItemMasterHistoryBookingDiffCallBack()) {
+class MasterHistoryBookingAdapter(private val list: ArrayList<UActiveBookingM>): ListAdapter<UActiveBookingM, MasterHistoryBookingVH>(ItemMasterHistoryBookingDiffCallBack()) {
 
     inner class MasterHistoryBookingVH(private val binding: ItemHistoryBookingMasterBinding):
             RecyclerView.ViewHolder(binding.root) {
-        fun onBind(uActiveBookingM: UActiveBookingM) {
-            binding.imProfilePhoto.setImageResource(uActiveBookingM.profileImg)
-            binding.tvNameWorker.text = uActiveBookingM.nameEmp
-            binding.tvDateBooking.text = uActiveBookingM.orderDate
-            binding.tvPhoneNumber.text = uActiveBookingM.phoneNumber
-        }
     }
 
     class ItemMasterHistoryBookingDiffCallBack: DiffUtil.ItemCallback<UActiveBookingM>() {
@@ -40,7 +34,7 @@ class MasterHistoryBookingAdapter: ListAdapter<UActiveBookingM, MasterHistoryBoo
     }
 
     override fun onBindViewHolder(holder: MasterHistoryBookingVH, position: Int) {
-        val uActiveBookingM = getItem(position)
-        holder.onBind(uActiveBookingM)
+
     }
+    override fun getItemCount(): Int = list.size
 }

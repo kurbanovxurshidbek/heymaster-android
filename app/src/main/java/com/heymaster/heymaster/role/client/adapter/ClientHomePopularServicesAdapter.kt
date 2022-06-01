@@ -12,13 +12,14 @@ import com.heymaster.heymaster.model.Service
 class ClientHomePopularServicesAdapter :
     ListAdapter<Service, PopularServiceViewHolder>(ServiceItemDiffCallback()) {
 
-    lateinit var itemClickListener: (() -> Unit)
+    var itemClickListener: (() -> Unit)? = null
+
 
     inner class PopularServiceViewHolder(private val binding: ItemPopularServicesBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(service: Service) {
             binding.itemPopularService.setOnClickListener {
-                itemClickListener.invoke()
+                itemClickListener!!.invoke()
             }
 
         }

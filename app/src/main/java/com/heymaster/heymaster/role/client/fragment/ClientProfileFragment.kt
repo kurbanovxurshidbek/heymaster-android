@@ -23,11 +23,9 @@ import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 
-
 class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
     private val binding by viewBinding { FragmentUserProfileBinding.bind(it) }
-
 
     @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,7 +35,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
     private fun clickListeners() {
 
-        with(binding.buttons) {
+        binding.apply{
             btnUserNotification.setOnClickListener {
                 findNavController().navigate(R.id.action_userProfileFragment_to_userNotificationFragment)
             }

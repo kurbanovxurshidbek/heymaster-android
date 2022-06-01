@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.role.client.adapter.ClientHistoryBookingAdapter
-import com.heymaster.heymaster.role.client.viewmodel.ClientBookingRepository
+import com.heymaster.heymaster.role.client.repository.ClientBookingRepository
 import com.heymaster.heymaster.role.client.viewmodel.ClientBookingViewModel
 import com.heymaster.heymaster.role.client.viewmodel.factory.ClientBookingViewModelFactory
 import com.heymaster.heymaster.data.network.ApiClient

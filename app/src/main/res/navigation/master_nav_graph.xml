@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/masterBookingFragment"
-        android:name="com.heymaster.heymaster.role.master.fragment.MasterBookingFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.booking.MasterBookingFragment"
         android:label="fragment_master_booking"
         tools:layout="@layout/fragment_master_booking" />
     <fragment
         android:id="@+id/masterHomeFragment"
-        android:name="com.heymaster.heymaster.role.master.fragment.MasterHomeFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.home.MasterHomeFragment"
         android:label="fragment_master_home"
         tools:layout="@layout/fragment_master_home" >
         <action
@@ -24,24 +24,77 @@
         <action
             android:id="@+id/action_masterHomeFragment_to_detailPageFragment"
             app:destination="@id/detailPageFragment" />
+        <action
+            android:id="@+id/action_masterHomeFragment_to_masterPopularMasterFragment"
+            app:destination="@id/masterPopularMasterFragment" />
+        <action
+            android:id="@+id/action_masterHomeFragment_to_masterPopularServicesFragment"
+            app:destination="@id/masterPopularServicesFragment" />
+        <action
+            android:id="@+id/action_masterHomeFragment_to_masterAllServicesFragment"
+            app:destination="@id/masterAllServicesFragment" />
     </fragment>
     <fragment
         android:id="@+id/masterProfileFragment"
-        android:name="com.heymaster.heymaster.role.master.fragment.MasterProfileFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.profile.MasterProfileFragment"
         android:label="fragment_master_profile"
-        tools:layout="@layout/fragment_master_profile" />
+        tools:layout="@layout/fragment_master_profile" >
+        <action
+            android:id="@+id/action_masterProfileFragment_to_masterEditProfileFragment"
+            app:destination="@id/masterEditProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="com.heymaster.heymaster.role.master.fragment.MasterNotificationFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.notification.MasterNotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/masterSearchFragment"
-        android:name="com.heymaster.heymaster.role.master.fragment.MasterSearchFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.home.MasterSearchFragment"
         android:label="MasterSearchFragment" />
     <fragment
         android:id="@+id/detailPageFragment"
-        android:name="com.heymaster.heymaster.role.master.fragment.DetailPageFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.detail.DetailPageFragment"
         android:label="fragment_detail_page"
         tools:layout="@layout/fragment_detail_page" />
+    <fragment
+        android:id="@+id/masterPopularMasterFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.home.MasterPopularMasterFragment"
+        android:label="fragment_master_all_popular"
+        tools:layout="@layout/fragment_master_all_popular" />
+    <fragment
+        android:id="@+id/masterPopularServicesFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.home.MasterPopularServicesFragment"
+        android:label="fragment_master_all_popular_services"
+        tools:layout="@layout/fragment_master_all_popular_services" />
+    <fragment
+        android:id="@+id/masterAllServicesFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.home.MasterAllServicesFragment"
+        android:label="fragment_master_all_services"
+        tools:layout="@layout/fragment_master_all_services" />
+    <fragment
+        android:id="@+id/masterEditProfileFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.profile.MasterEditProfileFragment"
+        android:label="fragment_master_edit_profil"
+        tools:layout="@layout/fragment_master_edit_profil" />
+    <fragment
+        android:id="@+id/masterProfileAboutFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.profile.MasterProfileAboutFragment"
+        android:label="fragment_master_profile_about"
+        tools:layout="@layout/fragment_master_profile_about" />
+    <fragment
+        android:id="@+id/masterProfileHelpFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.profile.MasterProfileHelpFragment"
+        android:label="fragment_master_profile_help"
+        tools:layout="@layout/fragment_master_profile_help" />
+    <fragment
+        android:id="@+id/masterChildProfileFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.profile.MasterChildProfileFragment"
+        android:label="fragment_master_child_profile"
+        tools:layout="@layout/fragment_master_child_profile" />
+    <fragment
+        android:id="@+id/masterPortfolioFragment2"
+        android:name="com.heymaster.heymaster.role.master.fragment.profile.MasterPortfolioFragment"
+        android:label="fragment_master_portfolio"
+        tools:layout="@layout/fragment_master_portfolio" />
 </navigation>

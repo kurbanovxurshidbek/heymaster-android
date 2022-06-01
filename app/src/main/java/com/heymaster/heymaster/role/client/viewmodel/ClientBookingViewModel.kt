@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.heymaster.heymaster.model.ErrorResponse
 import com.heymaster.heymaster.model.Service
+import com.heymaster.heymaster.role.client.repository.ClientBookingRepository
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.extensions.userMessage
 import kotlinx.coroutines.flow.MutableStateFlow

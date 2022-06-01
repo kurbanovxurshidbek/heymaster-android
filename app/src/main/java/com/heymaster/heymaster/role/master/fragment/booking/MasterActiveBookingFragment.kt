@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.role.master.fragment
+package com.heymaster.heymaster.role.master.fragment.booking
 
 import android.os.Bundle
 import android.view.View
@@ -25,13 +25,10 @@ class MasterActiveBookingFragment : BaseFragment(R.layout.fragment_master_active
     }
 
     private fun setUpRv() {
-        val uActiveBookingM = UActiveBookingM(1,"Electric",R.drawable.intro_image_3,"Donald Trump","01.01.2021","+998 99 046 6901")
+        val uActiveBookingM = UActiveBookingM(1,jobType = "Electric", profileImg = R.drawable.intro_image_3, nameEmp = "Donald Trump", orderDate = "01.01.2021", phoneNumber = "+998 99 046 6901")
         val list = ArrayList<UActiveBookingM>()
         list.add(uActiveBookingM)
-        list.add(uActiveBookingM)
-        list.add(uActiveBookingM)
-        list.add(uActiveBookingM)
-        list.add(uActiveBookingM)
+
 
 
         masterActiveBookingAdapter = MasterActiveBookingAdapter(list)

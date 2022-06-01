@@ -2,7 +2,7 @@ package com.heymaster.heymaster.role.client.viewmodel.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.heymaster.heymaster.role.client.viewmodel.ClientBookingRepository
+import com.heymaster.heymaster.role.client.repository.ClientBookingRepository
 import com.heymaster.heymaster.role.client.viewmodel.ClientBookingViewModel
 
 class ClientBookingViewModelFactory(private val repository: ClientBookingRepository): ViewModelProvider.Factory {

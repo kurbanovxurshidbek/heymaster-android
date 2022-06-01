@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:orientation="vertical"
     android:background="#fbfbfb"
-    tools:context=".role.master.fragment.MasterChildProfileFragment">
+    android:orientation="vertical"
+    tools:context=".role.master.fragment.profile.MasterChildProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,29 +19,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            app:cardCornerRadius="12dp"
             android:layout_marginVertical="4dp"
             android:elevation="2dp"
-            >
+            app:cardCornerRadius="12dp">
+
             <LinearLayout
+                android:id="@+id/master_profile_notification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingHorizontal="16dp"
-                android:paddingVertical="16dp"
-                android:gravity="center_vertical">
+                android:paddingVertical="16dp">
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/notifications"
-                    android:textSize="22sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_to_right"/>
+                    android:src="@drawable/ic_arrow_to_right" />
             </LinearLayout>
 
 
@@ -53,29 +54,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            app:cardCornerRadius="12dp"
             android:layout_marginVertical="4dp"
             android:elevation="8dp"
-            >
+            app:cardCornerRadius="12dp">
+
             <LinearLayout
+                android:id="@+id/master_profile_change_language"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingHorizontal="16dp"
-                android:paddingVertical="16dp"
-                android:gravity="center_vertical">
+                android:paddingVertical="16dp">
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/languageChange"
-                    android:textSize="22sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_to_right"/>
+                    android:src="@drawable/ic_arrow_to_right" />
             </LinearLayout>
 
 
@@ -86,62 +89,65 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            app:cardCornerRadius="12dp"
             android:layout_marginVertical="4dp"
             android:elevation="8dp"
-            >
+            app:cardCornerRadius="12dp">
+
             <LinearLayout
+                android:id="@+id/master_profile_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingHorizontal="16dp"
-                android:paddingVertical="16dp"
-                android:gravity="center_vertical">
+                android:paddingVertical="16dp">
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/aboutUs"
-                    android:textSize="22sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_to_right"/>
+                    android:src="@drawable/ic_arrow_to_right" />
             </LinearLayout>
 
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/btn_user_help"
+            android:id="@+id/btn_master_help"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            app:cardCornerRadius="12dp"
             android:layout_marginVertical="4dp"
             android:elevation="8dp"
-            >
+            app:cardCornerRadius="12dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingHorizontal="16dp"
-                android:paddingVertical="16dp"
-                android:gravity="center_vertical">
+                android:paddingVertical="16dp">
+
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/help"
-                    android:textSize="22sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_to_right"/>
+                    android:src="@drawable/ic_arrow_to_right" />
             </LinearLayout>
 
 
@@ -152,26 +158,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            app:cardCornerRadius="12dp"
-            android:layout_marginTop="16dp"
             android:layout_marginVertical="4dp"
+            android:layout_marginTop="16dp"
             android:elevation="8dp"
-            >
+            app:cardCornerRadius="12dp">
+
             <LinearLayout
+                android:id="@+id/master_log_out"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingVertical="16dp"
-                android:gravity="center">
+                android:paddingVertical="16dp">
 
                 <TextView
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_height="wrap_content"
                     android:text="@string/logOut"
-                    android:textSize="22sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
 
             </LinearLayout>
 

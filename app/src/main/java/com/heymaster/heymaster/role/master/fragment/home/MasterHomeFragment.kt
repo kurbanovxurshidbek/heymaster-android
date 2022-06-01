@@ -1,9 +1,10 @@
-package com.heymaster.heymaster.role.master.fragment
+package com.heymaster.heymaster.role.master.fragment.home
 
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -18,7 +19,6 @@ import com.heymaster.heymaster.databinding.FragmentMasterHomeBinding
 import com.heymaster.heymaster.role.master.repository.MasterHomeRepository
 import com.heymaster.heymaster.role.master.viewmodel.MasterHomeViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterHomeViewModelFactory
-import com.heymaster.heymaster.model.Ads
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.extensions.viewBinding
@@ -58,7 +58,17 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
 
         binding.etHomeSearch.setOnClickListener {
             findNavController().navigate(R.id.action_masterHomeFragment_to_masterSearchFragment)
+        }
 
+        binding.btnAllServices.setOnClickListener {
+            findNavController().navigate(R.id.action_masterHomeFragment_to_masterPopularServicesFragment) }
+
+        binding.btnAllPopularMasters.setOnClickListener {
+            findNavController().navigate(R.id.action_masterHomeFragment_to_masterPopularMasterFragment)
+        }
+
+        binding.btnAllPopularServices.setOnClickListener {
+            findNavController().navigate(R.id.action_masterHomeFragment_to_masterPopularServicesFragment)
         }
     }
 
@@ -97,8 +107,10 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
             viewModel.ads.collect {
                 when (it) {
                     is UiStateList.LOADING -> {
+                        binding.progressHome.customProgress.isVisible = true
                     }
                     is UiStateList.SUCCESS -> {
+                        binding.progressHome.customProgress.isVisible = false
                         adsAdapter.submitAds(it.data!!)
 
                     }
@@ -122,16 +134,6 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
         binding.vpUserHomeAds.setCurrentItem(0, true)
         binding.userHomeAdsDotsIndicator.setViewPager2(binding.vpUserHomeAds)
         addAutoScrollToViewPager()
-    }
-
-
-    private fun fakeAds(): List<Ads> {
-        val list = ArrayList<Ads>()
-        list.add(Ads(1, "Hello", "", ""))
-        list.add(Ads(1, "Hello", "", ""))
-        list.add(Ads(1, "Hello", "", ""))
-        return list
-
     }
 
     private fun setupViewModel() {

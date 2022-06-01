@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".role.master.fragment.profile.MasterEditProfileFragment">
+
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/back_editprofil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_arrow"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingEnd="12dp"
+            android:text="Edit Profil"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/edit_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear">
+
+        <EditText
+            android:id="@+id/etSurname"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="0dp"
+            android:backgroundTint="@color/main_color"
+            android:drawableEnd="@drawable/ic_person"
+            android:hint="Full name"
+            android:maxLines="1"
+            android:padding="14dp"
+            android:singleLine="true"
+            android:textColorHint="@color/black"
+            tools:ignore="Autofill,TextFields" />
+
+        <EditText
+            android:id="@+id/etPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="0dp"
+            android:backgroundTint="@color/main_color"
+            android:drawableEnd="@drawable/ic_outline_phone_24"
+            android:hint="Phone number"
+            android:inputType="phone"
+            android:maxLength="13"
+            android:maxLines="1"
+            android:padding="14dp"
+            android:singleLine="true"
+            android:textColorHint="@color/black"
+            tools:ignore="Autofill,TextFields"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_edit_text_login"
+            android:layout_marginTop="8dp"
+            android:paddingHorizontal="8dp">
+
+            <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
+                android:id="@+id/spLocation"
+                app:smsp_hintSize="16sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smsp_hint="Location"
+                app:smsp_isSearchable="true"
+                app:smsp_underlineSize="0dp"
+                app:smsp_hintColor="#7C7C7C"
+                app:smsp_searchHeaderBackgroundColor="@color/black1"
+                app:smsp_searchHeaderTextColor="@color/white"
+                app:smsp_searchHeaderText="Location"
+                app:smsp_searchHint="Location"
+                app:smsp_itemColor="@color/black"
+                app:smsp_itemListColor="@color/black"
+                app:smsp_itemListHintBackgroundColor="@color/grey1"
+                app:smsp_itemListHintColor="#FFFFFF"
+                app:smsp_multilineError="false"
+                app:smsp_selectedItemListColor="@color/green1" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_edit_text_login"
+            android:layout_marginTop="8dp"
+            android:paddingHorizontal="8dp">
+
+            <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
+                android:id="@+id/spProfession"
+                app:smsp_hintSize="16sp"
+                app:smsp_enableFloatingLabel="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:smsp_hint="Profession"
+                app:smsp_isSearchable="true"
+                app:smsp_underlineSize="0dp"
+                app:smsp_hintColor="#7C7C7C"
+                app:smsp_searchHeaderBackgroundColor="@color/black1"
+                app:smsp_searchHeaderTextColor="@color/white"
+                app:smsp_searchHeaderText="Profession"
+                app:smsp_searchHint="Profession"
+                app:smsp_itemColor="@color/black"
+                app:smsp_itemListColor="@color/black"
+                app:smsp_itemListHintBackgroundColor="@color/grey1"
+                app:smsp_itemListHintColor="#FFFFFF"
+                app:smsp_multilineError="false"
+                app:smsp_selectedItemListColor="@color/green1" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Select_gender"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:text="male"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/checkboxMale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/main_color" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="0dp"
+                        android:text="female"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/checkboxFemale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/main_color" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.2dp"
+            android:background="#0D121212" />
+
+        <LinearLayout
+            android:id="@+id/llCalendar"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvBirthday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Select_birthday"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_outline_calendar_month_24" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.2dp"
+            android:background="#0D121212" />
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_edit_btn"
+        android:text="save"
+        android:textAllCaps="false"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

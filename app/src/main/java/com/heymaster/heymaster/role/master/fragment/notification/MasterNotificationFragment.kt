@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.role.master.fragment
+package com.heymaster.heymaster.role.master.fragment.notification
 
 import android.os.Bundle
 import android.view.View
@@ -11,11 +11,8 @@ import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 class MasterNotificationFragment : BaseFragment(R.layout.fragment_notification) {
-
     val binding by viewBinding { FragmentNotificationBinding.bind(it) }
-
     private lateinit var adapter: ClientNotificationPagerAdapter
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = ClientNotificationPagerAdapter(childFragmentManager, lifecycle)
