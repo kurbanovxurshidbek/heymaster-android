@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:text="Home cleaning"
                 android:layout_margin="12dp"
-                android:textSize="28sp"
+                android:textSize="18sp"
                 android:textColor="#ffffff"/>
         </LinearLayout>
 

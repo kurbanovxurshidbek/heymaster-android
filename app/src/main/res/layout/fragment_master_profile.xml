@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/profile"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:paddingEnd="12dp"/>
@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Firdavs Davlatov"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
 
@@ -90,22 +90,22 @@
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:src="@drawable/ic_location"/>
 
                 <TextView
                     android:id="@+id/tvProfileProvince"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sirdarya,"
+                    android:text="Tashkent,"
                     android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/tvProfileRegion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gulistan"
+                    android:text="Tashkent"
                     android:layout_marginLeft="7dp"
                     android:textColor="@color/black"
                     />
@@ -142,8 +142,8 @@
 
                 <ImageView
                     android:id="@+id/ivEditProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_weight="1"
                     android:layout_marginHorizontal="16dp"
                     android:src="@drawable/ic_edit_profile"

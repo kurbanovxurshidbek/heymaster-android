@@ -26,11 +26,10 @@
             <LinearLayout
                 android:id="@+id/master_profile_notification"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="16dp">
+                android:paddingHorizontal="16dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -38,11 +37,11 @@
                     android:layout_weight="1"
                     android:text="@string/notifications"
                     android:textColor="@color/black"
-                    android:textSize="22sp" />
+                    android:textSize="18sp" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_to_right" />
             </LinearLayout>
 
@@ -61,11 +60,10 @@
             <LinearLayout
                 android:id="@+id/master_profile_change_language"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="16dp">
+                android:paddingHorizontal="16dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -73,11 +71,11 @@
                     android:layout_weight="1"
                     android:text="@string/languageChange"
                     android:textColor="@color/black"
-                    android:textSize="22sp" />
+                    android:textSize="18sp" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_to_right" />
             </LinearLayout>
 
@@ -96,11 +94,10 @@
             <LinearLayout
                 android:id="@+id/master_profile_info"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="16dp">
+                android:paddingHorizontal="16dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -108,11 +105,11 @@
                     android:layout_weight="1"
                     android:text="@string/aboutUs"
                     android:textColor="@color/black"
-                    android:textSize="22sp" />
+                    android:textSize="18sp" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_to_right" />
             </LinearLayout>
 
@@ -130,11 +127,10 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="16dp">
+                android:paddingHorizontal="16dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -142,11 +138,11 @@
                     android:layout_weight="1"
                     android:text="@string/help"
                     android:textColor="@color/black"
-                    android:textSize="22sp" />
+                    android:textSize="18sp" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_to_right" />
             </LinearLayout>
 
@@ -166,10 +162,9 @@
             <LinearLayout
                 android:id="@+id/master_log_out"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="48dp"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingVertical="16dp">
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="0dp"
@@ -178,7 +173,7 @@
                     android:gravity="center"
                     android:text="@string/logOut"
                     android:textColor="@color/black"
-                    android:textSize="22sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 

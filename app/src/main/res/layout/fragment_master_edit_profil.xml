@@ -16,8 +16,8 @@
         app:layout_constraintTop_toTopOf="parent">
         <ImageView
             android:id="@+id/back_editprofil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginStart="10dp"
             android:src="@drawable/ic_arrow"/>
 
@@ -29,7 +29,7 @@
             android:paddingEnd="12dp"
             android:text="Edit Profil"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -77,14 +77,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="52dp"
             android:background="@drawable/bg_edit_text_login"
             android:layout_marginTop="8dp"
             android:paddingHorizontal="8dp">
 
             <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
                 android:id="@+id/spLocation"
-                app:smsp_hintSize="16sp"
+                app:smsp_hintSize="14sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:smsp_hint="Location"
@@ -107,7 +107,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="52dp"
             android:background="@drawable/bg_edit_text_login"
             android:layout_marginTop="8dp"
             android:paddingHorizontal="8dp">
@@ -167,7 +167,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="10dp"
                         android:text="male"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
 
                     <CheckBox
                         android:id="@+id/checkboxMale"
@@ -190,7 +190,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="0dp"
                         android:text="female"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
 
                     <CheckBox
                         android:id="@+id/checkboxFemale"
@@ -226,8 +226,8 @@
                 android:textSize="16sp" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginEnd="12dp"
                 android:src="@drawable/ic_outline_calendar_month_24" />
 

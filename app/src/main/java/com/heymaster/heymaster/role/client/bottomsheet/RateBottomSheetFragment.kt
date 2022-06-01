@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.adapters.booking.bottomsheet
+package com.heymaster.heymaster.role.client.bottomsheet
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -25,7 +25,7 @@
                 <EditText
                     android:id="@+id/etHomeSearch"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="42dp"
                     android:layout_marginVertical="12dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_edit_text_login"
@@ -41,13 +41,13 @@
                     android:paddingVertical="0dp"
                     android:textColor="@color/black1"
                     android:textCursorDrawable="@drawable/edittext_cursor_drawable"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     tools:ignore="TextFields" />
 
                 <ImageView
                     android:id="@+id/ivBtnNotification"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginHorizontal="16dp"
                     android:src="@drawable/ic_notification" />
             </LinearLayout>
@@ -118,7 +118,7 @@
                             android:layout_weight="1"
                             android:text="@string/services"
                             android:textColor="@color/black1"
-                            android:textSize="28sp"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -131,7 +131,7 @@
                             android:paddingVertical="2dp"
                             android:text="@string/all"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -163,7 +163,7 @@
                             android:layout_weight="1"
                             android:text="@string/servicePopular"
                             android:textColor="@color/black1"
-                            android:textSize="28sp"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -176,7 +176,7 @@
                             android:paddingVertical="2dp"
                             android:text="@string/all"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -207,7 +207,7 @@
                             android:layout_weight="1"
                             android:text="@string/popular_masters"
                             android:textColor="@color/black1"
-                            android:textSize="28sp"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -220,7 +220,7 @@
                             android:paddingVertical="2dp"
                             android:text="@string/all"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 

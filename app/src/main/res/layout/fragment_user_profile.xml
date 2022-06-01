@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/profile"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:paddingEnd="12dp"/>
@@ -91,7 +91,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Firdavs Davlatov"
-                        android:textSize="24sp"
+                        android:textSize="18sp"
                         android:textColor="@color/black"
                         android:textStyle="bold"/>
 
@@ -101,22 +101,22 @@
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal">
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:src="@drawable/ic_location"/>
 
                         <TextView
                             android:id="@+id/tvProfileProvince"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Sirdarya,"
+                            android:text="Tashkent,"
                             android:textColor="@color/black"/>
 
                         <TextView
                             android:id="@+id/tvProfileRegion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Gulistan"
+                            android:text="Tashkent"
                             android:layout_marginLeft="7dp"
                             android:textColor="@color/black"
                             />
@@ -153,8 +153,8 @@
 
                         <ImageView
                             android:id="@+id/ivEditProfile"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:layout_weight="1"
                             android:layout_marginHorizontal="16dp"
                             android:src="@drawable/ic_edit_profile"
@@ -196,11 +196,11 @@
                             <LinearLayout
                                 android:id="@+id/user_profile_notification"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="48dp"
                                 android:gravity="center_vertical"
                                 android:orientation="horizontal"
                                 android:paddingHorizontal="16dp"
-                                android:paddingVertical="16dp">
+                              >
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -208,11 +208,11 @@
                                     android:layout_weight="1"
                                     android:text="@string/notifications"
                                     android:textColor="@color/black"
-                                    android:textSize="22sp" />
+                                    android:textSize="18sp" />
 
                                 <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
                                     android:src="@drawable/ic_arrow_to_right" />
                             </LinearLayout>
 
@@ -231,11 +231,10 @@
                             <LinearLayout
                                 android:id="@+id/user_profile_change_language"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="48dp"
                                 android:gravity="center_vertical"
                                 android:orientation="horizontal"
-                                android:paddingHorizontal="16dp"
-                                android:paddingVertical="16dp">
+                                android:paddingHorizontal="16dp">
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -243,11 +242,11 @@
                                     android:layout_weight="1"
                                     android:text="@string/languageChange"
                                     android:textColor="@color/black"
-                                    android:textSize="22sp" />
+                                    android:textSize="18sp" />
 
                                 <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
                                     android:src="@drawable/ic_arrow_to_right" />
                             </LinearLayout>
 
@@ -266,11 +265,10 @@
                             <LinearLayout
                                 android:id="@+id/master_profile_info"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="48dp"
                                 android:gravity="center_vertical"
                                 android:orientation="horizontal"
-                                android:paddingHorizontal="16dp"
-                                android:paddingVertical="16dp">
+                                android:paddingHorizontal="16dp">
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -278,11 +276,11 @@
                                     android:layout_weight="1"
                                     android:text="@string/aboutUs"
                                     android:textColor="@color/black"
-                                    android:textSize="22sp" />
+                                    android:textSize="18sp" />
 
                                 <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
                                     android:src="@drawable/ic_arrow_to_right" />
                             </LinearLayout>
 
@@ -300,11 +298,10 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="48dp"
                                 android:gravity="center_vertical"
                                 android:orientation="horizontal"
-                                android:paddingHorizontal="16dp"
-                                android:paddingVertical="16dp">
+                                android:paddingHorizontal="16dp">
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -312,11 +309,11 @@
                                     android:layout_weight="1"
                                     android:text="@string/help"
                                     android:textColor="@color/black"
-                                    android:textSize="22sp" />
+                                    android:textSize="18sp" />
 
                                 <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
                                     android:src="@drawable/ic_arrow_to_right" />
                             </LinearLayout>
 
@@ -336,10 +333,9 @@
                             <LinearLayout
                                 android:id="@+id/master_log_out"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="48dp"
                                 android:gravity="center"
-                                android:orientation="horizontal"
-                                android:paddingVertical="16dp">
+                                android:orientation="horizontal">
 
                                 <TextView
                                     android:layout_width="0dp"
@@ -348,7 +344,7 @@
                                     android:gravity="center"
                                     android:text="@string/logOut"
                                     android:textColor="@color/black"
-                                    android:textSize="22sp" />
+                                    android:textSize="18sp" />
 
                             </LinearLayout>
 
