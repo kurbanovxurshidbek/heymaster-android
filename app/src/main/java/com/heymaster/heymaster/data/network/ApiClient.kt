@@ -2,6 +2,7 @@ package com.heymaster.heymaster.data.network
 
 import com.heymaster.heymaster.BuildConfig
 import com.heymaster.heymaster.utils.Constants.BASE_URL
+import com.heymaster.heymaster.utils.Constants.server
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

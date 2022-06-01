@@ -4,14 +4,45 @@ import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
+import com.heymaster.heymaster.model.ErrorResponse
+import com.heymaster.heymaster.model.LoginResponse
+import com.heymaster.heymaster.utils.UiStateList
+import com.heymaster.heymaster.utils.UiStateObject
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 
 class AuthViewModel(
     private val repository: AuthRepository,
 ) : ViewModel() {
 
-    private val _user = MutableLiveData<Int>()
-    val user: LiveData<Int>
-        get() = _user
+
+    private val _login = MutableStateFlow<UiStateObject<LoginResponse>>(UiStateObject.EMPTY)
+    val login = _login
+
+
+    fun login(phoneNumber: String) = viewModelScope.launch {
+        _login.value = UiStateObject.LOADING
+
+        try {
+
+            val response = repository.login(phoneNumber)
+            if (response.code() >= 400) {
+                val error =
+                    Gson().fromJson(response.errorBody()!!.charStream(), ErrorResponse::class.java)
+                _login.value = UiStateObject.ERROR(error.errorMessage)
+
+            } else {
+
+
+            }
+
+        } catch (e: Exception) {
+
+        }
+    }
+
 
     private var timer: CountDownTimer? = null
 
@@ -19,9 +50,7 @@ class AuthViewModel(
     val formattedGame: LiveData<String>
         get() = _formattedTime
 
-    fun listenSignUpClick(click: Int) {
-        _user.value = click
-    }
+
 
     fun startTimer() {
         timer = object : CountDownTimer(

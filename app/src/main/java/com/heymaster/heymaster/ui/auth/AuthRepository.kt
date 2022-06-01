@@ -6,7 +6,7 @@ class AuthRepository(
     private val apiService: ApiService
 ) {
 
-    suspend fun login() = apiService.login()
+    suspend fun login(phoneNumber: String) = apiService.login()
 
     suspend fun confirm() = apiService.confirm()
 

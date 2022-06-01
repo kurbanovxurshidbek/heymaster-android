@@ -35,8 +35,6 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
         clickListeners()
     }
 
-
-
     private fun clickListeners() {
 
         with(binding.buttons) {
