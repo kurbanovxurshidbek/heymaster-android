@@ -83,7 +83,21 @@
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/menu/menu_home.xml" value="0.25" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/menu/menu_main_master.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/menu/menu_main_user.xml" value="0.25104166666666666" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/bg_add_image_portfolio.xml" value="0.1285" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/bg_all_btn.xml" value="0.1285" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/bg_bottom_navigation.xml" value="0.1285" />
         <entry key="..\:/heymaster-android/app/src/main/res/drawable/bg_edit_btn.xml" value="0.1185" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/bg_edit_text_login.xml" value="0.1285" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/bg_edit_text_verification.xml" value="0.1285" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/bg_home_service_item.xml" value="0.1285" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/bg_popular_service_gradient.xml" value="0.1285" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/bg_popular_service_name.xml" value="0.1285" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/bg_tab_sign_up.xml" value="0.1285" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/bottomsheet_back.xml" value="0.1285" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/button_half_round.xml" value="0.1285" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/card_ripple_touch_effect.xml" value="0.1285" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/ic_home_selected.xml" value="0.1965" />
+        <entry key="..\:/heymaster-android/app/src/main/res/drawable/selector_ic_home.xml" value="0.1285" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/activity_master.xml" value="0.20416666666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/activity_user.xml" value="0.20416666666666666" />
@@ -146,6 +160,8 @@
         <entry key="..\:/heymaster-android/app/src/main/res/layout/item_services.xml" value="0.20416666666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/item_user_history_booking.xml" value="0.20416666666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/user_booking_bottom_sheet.xml" value="0.2" />
+        <entry key="..\:/heymaster-android/app/src/main/res/menu/menu_main_master.xml" value="0.19537037037037036" />
+        <entry key="..\:/heymaster-android/app/src/main/res/menu/menu_main_user.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
