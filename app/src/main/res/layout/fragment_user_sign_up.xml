@@ -16,7 +16,7 @@
         <EditText
             android:id="@+id/et_user_full_name"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="48dp"
             android:layout_marginHorizontal="24dp"
             android:layout_marginVertical="12dp"
             android:background="@drawable/bg_edit_text_login"
@@ -28,13 +28,13 @@
             android:paddingVertical="0dp"
             android:textColor="@color/black1"
             android:textCursorDrawable="@drawable/edittext_cursor_drawable"
-            android:textSize="20sp"
+            android:textSize="14sp"
             tools:ignore="TextFields" />
 
         <EditText
             android:id="@+id/et_user_gender"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="48dp"
             android:layout_marginHorizontal="24dp"
             android:layout_marginVertical="12dp"
             android:background="@drawable/bg_edit_text_login"
@@ -48,13 +48,13 @@
             android:paddingVertical="0dp"
             android:textColor="@color/black1"
             android:textCursorDrawable="@drawable/edittext_cursor_drawable"
-            android:textSize="20sp"
+            android:textSize="14sp"
             tools:ignore="TextFields" />
 
         <com.vicmikhailau.maskededittext.MaskedEditText
             android:id="@+id/et_user_birthday"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="48dp"
             android:layout_marginVertical="12dp"
             android:hint="Birthday"
             android:layout_marginHorizontal="24dp"
@@ -68,7 +68,7 @@
             android:paddingVertical="0dp"
             android:textColor="@color/black1"
             android:textCursorDrawable="@drawable/edittext_cursor_drawable"
-            android:textSize="20sp"
+            android:textSize="14sp"
             tools:ignore="TextFields" />
     </LinearLayout>
 

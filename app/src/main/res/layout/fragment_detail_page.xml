@@ -62,7 +62,7 @@
                         android:maxLines="1"
                         android:text="John Alex"
                         android:textColor="@color/black"
-                        android:textSize="24sp"
+                        android:textSize="20sp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,7 +88,7 @@
                             android:includeFontPadding="false"
                             android:text="Open"
                             android:textColor="@color/white"
-                            android:textSize="20sp" />
+                            android:textSize="18sp" />
 
                     </androidx.cardview.widget.CardView>
 
