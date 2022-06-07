@@ -84,10 +84,12 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
             viewModel.services.collect { it ->
                 when (it) {
                     is UiStateList.LOADING -> {
+                        binding.nestedHome.visibility = View.GONE
                         binding.progressHome.customProgress.visibility = View.VISIBLE
                     }
                     is UiStateList.SUCCESS -> {
                         binding.progressHome.customProgress.visibility = View.GONE
+                        binding.nestedHome.visibility = View.VISIBLE
                         serviceAdapter.submitList(it.data)
                         popularServicesAdapter.submitList(it.data)
                         popularMastersAdapter.submitList(it.data)

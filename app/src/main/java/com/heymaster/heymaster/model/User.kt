@@ -1,11 +1,31 @@
 package com.heymaster.heymaster.model
 
-import java.io.Serializable
-
 data class User(
-    val id: Int? = null,
-    val fullName: String? = null,
-    val gender: String? = null,
-    val isMaster: Boolean? = null,
-    val rate: Double? = null
+    val accountNonExpired: Boolean,
+    val accountNonLocked: Boolean,
+    val active: Boolean,
+    val approximateEndTime: Any,
+    val attachments: List<Any>,
+    val authorities: List<Authority>,
+    val busy: Boolean,
+    val createAt: String,
+    val createdBy: Any,
+    val credentialsNonExpired: Boolean,
+    val enabled: Boolean,
+    val experienceYear: Int,
+    val fullName: String,
+    val generatePassword: String,
+    val id: Int,
+    val location: Any,
+    val password: String,
+    val peopleReitedCount: Int,
+    val phoneNumber: String,
+    val professionList: List<Any>,
+    val profilePhoto: Any,
+    val roles: List<Role>,
+    val salary: Any,
+    val totalMark: Int,
+    val updateAt: String,
+    val updatedBy: Int,
+    val username: String
 )

@@ -2,9 +2,17 @@ package com.heymaster.heymaster.utils
 
 object Constants {
 
-    private var IS_TESTER = false
-    private val SERVER_DEVELOPMENT = "https://628a284ce5e5a9ad322183ca.mockapi.io"
-    private val SERVER_PRODUCTION = "http://localhost:8080/"
+
+    const val KEY_INTRO_SAVED = "intro_done"
+    const val KEY_LOGIN_SAVED = "login_done"
+    const val KEY_ACCESS_TOKEN = "access_token"
+
+    val TEST = "https://628a284ce5e5a9ad322183ca.mockapi.io"
+
+
+    private var IS_TESTER = true
+    private val SERVER_DEVELOPMENT = "http://10.10.2.159:8080/api/"
+    private val SERVER_PRODUCTION = "http://10.10.2.159:8080/api/"
 
     fun server(): String {
         if (IS_TESTER) return SERVER_DEVELOPMENT
@@ -12,6 +20,4 @@ object Constants {
     }
 
 
-    val BASE_URL = "https://628a284ce5e5a9ad322183ca.mockapi.io"
- //   val BASE_URL = "https://628b684f667aea3a3e2eae0d.mockapi.io/api/"
 }

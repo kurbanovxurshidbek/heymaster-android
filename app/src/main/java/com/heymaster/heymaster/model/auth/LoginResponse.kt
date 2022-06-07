@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.model
+package com.heymaster.heymaster.model.auth
 
 data class LoginResponse(
     val message: String,

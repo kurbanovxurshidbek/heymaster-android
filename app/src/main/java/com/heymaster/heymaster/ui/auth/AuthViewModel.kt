@@ -7,9 +7,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.heymaster.heymaster.model.ErrorResponse
-import com.heymaster.heymaster.model.LoginResponse
-import com.heymaster.heymaster.utils.UiStateList
+import com.heymaster.heymaster.model.User
+import com.heymaster.heymaster.model.auth.ConfirmRequest
+import com.heymaster.heymaster.model.auth.ConfirmResponse
+import com.heymaster.heymaster.model.auth.LoginRequest
+import com.heymaster.heymaster.model.auth.LoginResponse
 import com.heymaster.heymaster.utils.UiStateObject
+import com.heymaster.heymaster.utils.extensions.userMessage
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
@@ -21,25 +25,51 @@ class AuthViewModel(
     private val _login = MutableStateFlow<UiStateObject<LoginResponse>>(UiStateObject.EMPTY)
     val login = _login
 
+    private val _confirm = MutableStateFlow<UiStateObject<ConfirmResponse>>(UiStateObject.EMPTY)
+    val confirm = _confirm
 
-    fun login(phoneNumber: String) = viewModelScope.launch {
+    private val _currentUser = MutableStateFlow<UiStateObject<User>>(UiStateObject.EMPTY)
+    val currentUser = _currentUser
+
+
+    fun login(phoneNumber: LoginRequest) = viewModelScope.launch {
         _login.value = UiStateObject.LOADING
-
         try {
-
             val response = repository.login(phoneNumber)
             if (response.code() >= 400) {
                 val error =
                     Gson().fromJson(response.errorBody()!!.charStream(), ErrorResponse::class.java)
                 _login.value = UiStateObject.ERROR(error.errorMessage)
-
             } else {
-
-
+                _login.value = UiStateObject.SUCCESS(response.body()!!)
             }
 
-        } catch (e: Exception) {
 
+        } catch (e: Exception) {
+            _login.value = UiStateObject.ERROR(e.userMessage())
+
+        }
+    }
+
+    fun confirm(confirmRequest: ConfirmRequest) = viewModelScope.launch {
+        _confirm.value = UiStateObject.LOADING
+        try {
+            val response = repository.confirm(confirmRequest)
+            _confirm.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _login.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+    fun currentUser() = viewModelScope.launch {
+        _currentUser.value = UiStateObject.LOADING
+        try {
+            val response = repository.currentUser()
+            _currentUser.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _currentUser.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 

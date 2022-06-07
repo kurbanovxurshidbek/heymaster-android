@@ -1,7 +1,7 @@
 package com.heymaster.heymaster.data.network
 
 import com.heymaster.heymaster.BuildConfig
-import com.heymaster.heymaster.utils.Constants.BASE_URL
+import com.heymaster.heymaster.utils.Constants.TEST
 import com.heymaster.heymaster.utils.Constants.server
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -13,24 +13,40 @@ import java.util.concurrent.TimeUnit
 
 object ApiClient {
 
-    private val client = buildClient()
+    private val client = getClient()
 
     private val retrofit = buildRetrofit(client)
 
     private fun buildRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(TEST)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
     }
+
+    fun getClient(): OkHttpClient = OkHttpClient.Builder()
+        .connectTimeout( 60, TimeUnit.SECONDS)
+        .readTimeout(60, TimeUnit.SECONDS)
+        //   .addInterceptor(ChuckInterceptor(context))
+        .addInterceptor(HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        })
+        .addInterceptor(Interceptor { chain ->
+            val builder = chain.request().newBuilder()
+            builder.header("Content-Type", "application/json")
+            builder.header("Accept", "application/json")
+            chain.proceed(builder.build())
+        })
+        .build()
 
     private fun buildClient(): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         val builder = OkHttpClient.Builder()
         try {
-            builder.callTimeout(1, TimeUnit.MINUTES)
+            builder.connectTimeout(60,TimeUnit.SECONDS)
+            .readTimeout(60,TimeUnit.SECONDS)
                 .addNetworkInterceptor(Interceptor { chain ->
                     var request = chain.request()
                     val builder = request.newBuilder()
@@ -55,12 +71,12 @@ object ApiClient {
         return builder.build()
     }
 
-    fun <T> createServiceWithAuth(service: Class<T>?): T {
+    fun <T> createServiceWithAuth(service: Class<T>?, token: String): T {
         val newClient =
             client.newBuilder().addInterceptor(Interceptor { chain ->
                 val builder = chain.request().newBuilder()
-//                builder.addHeader("Authorization", "APP_TOKEN")
-//                builder.header("Content-Type", "application/json")
+                builder.addHeader("Authorization", "Bearer $token")
+                builder.header("Content-Type", "application/json")
                 chain.proceed(builder.build())
             })
                 .addNetworkInterceptor(HttpLoggingInterceptor().apply {
@@ -70,8 +86,6 @@ object ApiClient {
         /*.authenticator(CustomAuthenticator.getInstance(tokenManager)).build()*/
         val newRetrofit = retrofit.newBuilder().client(newClient).build()
         return newRetrofit.create(service!!)
-
-
     }
 
     fun <T> createService(service: Class<T>): T {

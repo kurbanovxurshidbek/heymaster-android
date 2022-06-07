@@ -12,6 +12,7 @@ import android.os.CountDownTimer
 import com.heymaster.heymaster.databinding.ActivitySplashBinding
 import com.heymaster.heymaster.global.BaseActivity
 import com.heymaster.heymaster.utils.ConnectivityReceiver
+import com.heymaster.heymaster.utils.Constants.KEY_INTRO_SAVED
 
 
 @SuppressLint("CustomSplashScreen")
@@ -36,7 +37,12 @@ class SplashActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
             override fun onTick(p0: Long) {}
 
             override fun onFinish() {
-                callIntroActivity()
+                //callIntroActivity()
+                if (SharedPref(this@SplashActivity).getBoolean(KEY_INTRO_SAVED)) {
+                    callLoginActivity()
+                } else {
+                    callIntroActivity()
+                }
             }
 
         }.start()

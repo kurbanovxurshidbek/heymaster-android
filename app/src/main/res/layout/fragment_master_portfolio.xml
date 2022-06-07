@@ -7,11 +7,12 @@
     android:orientation="vertical"
     tools:context=".role.master.fragment.profile.MasterPortfolioFragment">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh_nature"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center">
+<!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+<!--        android:id="@+id/swipe_refresh_nature"-->
+<!--        android:layout_width="match_parent"-->
+<!--        -->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="center">-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewPortfolio"
@@ -23,7 +24,7 @@
             app:spanCount="2"
             tools:listitem="@layout/item_portfolio" />
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+<!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
 
     <ProgressBar
         android:id="@+id/progressBarPortfolio"

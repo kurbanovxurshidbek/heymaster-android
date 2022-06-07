@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.DialogChooseGenderBinding
 import com.heymaster.heymaster.databinding.FragmentUserSignUpBinding
-import com.heymaster.heymaster.model.User
 import com.heymaster.heymaster.ui.auth.AuthSharedViewModel
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.role.client.ClientActivity
@@ -38,8 +37,8 @@ class UserSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
             if (binding.etUserGender.text.toString() == FEMALE) {
                 gender = FEMALE
             }
-            val user = User(fullName = fullName, gender = gender)
-            Toast.makeText(requireContext(), "$user", Toast.LENGTH_SHORT).show()
+            //val user = User(fullName = fullName, gender = gender)
+            //Toast.makeText(requireContext(), "$user", Toast.LENGTH_SHORT).show()
             startActivity(Intent(requireActivity(), ClientActivity::class.java))
             activity?.finish()
         }

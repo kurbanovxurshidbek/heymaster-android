@@ -33,16 +33,18 @@ class IntroActivity : BaseActivity() {
 //        )
         //hideSystemBars()
         //hideStatusBarAndBottomBar()
-        if (SharedPref(this).getSaved()){
-            callLoginActivity()
-        }
+
+//        if (SharedPref(this).getSaved()){
+//            callLoginActivity()
+//        }
+
         adapter = IntroPagerAdapter(supportFragmentManager, lifecycle)
         setupViewPager()
 
 
 
         binding.btnGetStarted.setOnClickListener {
-            SharedPref(this).isSaved(true)
+            SharedPref(this).saveBoolean("intro_done", true)
             callLoginActivity()
         }
     }

@@ -1,15 +1,13 @@
 package com.heymaster.heymaster.data.network
 
-import android.provider.ContactsContract
-import com.heymaster.heymaster.model.Ads
-import com.heymaster.heymaster.model.Notification
-import com.heymaster.heymaster.model.Service
-import com.heymaster.heymaster.model.User
+import com.heymaster.heymaster.model.*
+import com.heymaster.heymaster.model.auth.ConfirmRequest
+import com.heymaster.heymaster.model.auth.ConfirmResponse
+import com.heymaster.heymaster.model.auth.LoginRequest
+import com.heymaster.heymaster.model.auth.LoginResponse
 import com.heymaster.heymaster.model.masterprofile.Portfolio
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -43,12 +41,15 @@ interface ApiService {
 
 
     //Auth
-    @POST("")
-    suspend fun login(): Response<Any>
 
-    @POST("")
-    suspend fun confirm(): Response<Boolean>
+    @POST("password")
+    suspend fun login(@Body phoneNumber: LoginRequest): Response<LoginResponse>
 
+    @POST("auth/login")
+    suspend fun confirm(@Body confirmRequest: ConfirmRequest): Response<ConfirmResponse>
+
+    @GET("auth/me")
+    suspend fun currentUser(): Response<User>
     @POST("")
     suspend fun signUp(): Response<User>
 
