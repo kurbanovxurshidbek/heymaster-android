@@ -43,13 +43,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         editPhoneNumberListener()
 
         binding.btnContinue.setOnClickListener {
-            // viewModel.login(LoginRequest(validPhoneNumber))
+             viewModel.login(LoginRequest(validPhoneNumber))
 
-            findNavController().navigate(R.id.action_loginFragment_to_verificationFragment)
         }
 
-
-     }
+    }
 
     private fun editPhoneNumberListener() {
         binding.etPhoneNumber.addTextChangedListener(object : TextWatcher {
@@ -80,15 +78,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             viewModel.login.collect { it ->
                 when (it) {
                     is UiStateObject.LOADING -> {
+                        binding.progressHome.customProgress.visibility = View.VISIBLE
 
                     }
                     is UiStateObject.SUCCESS -> {
-                        Log.d("TAG", "observeViewModel: ${it.data.success}")
+                        binding.progressHome.customProgress.visibility = View.GONE
                         launchConfirmFragment(it.data)
 
                     }
                     is UiStateObject.ERROR -> {
-                        Log.d("TAG", "observeViewModel: ${it.message}")
                     }
                     else -> Unit
                 }
@@ -99,12 +97,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun launchConfirmFragment(data: LoginResponse) {
-        if (data.success) {
-            findNavController().navigate(
+
+        findNavController().navigate(
                 R.id.action_loginFragment_to_verificationFragment,
                 bundleOf("phoneNumber" to validPhoneNumber)
             )
-        }
+
     }
 
 

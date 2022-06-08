@@ -19,7 +19,7 @@ object ApiClient {
 
     private fun buildRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(TEST)
+            .baseUrl(server())
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

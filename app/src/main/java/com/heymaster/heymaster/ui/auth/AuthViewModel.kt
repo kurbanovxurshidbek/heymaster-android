@@ -1,6 +1,7 @@
 package com.heymaster.heymaster.ui.auth
 
 import android.os.CountDownTimer
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,8 +29,7 @@ class AuthViewModel(
     private val _confirm = MutableStateFlow<UiStateObject<ConfirmResponse>>(UiStateObject.EMPTY)
     val confirm = _confirm
 
-    private val _currentUser = MutableStateFlow<UiStateObject<User>>(UiStateObject.EMPTY)
-    val currentUser = _currentUser
+
 
 
     fun login(phoneNumber: LoginRequest) = viewModelScope.launch {
@@ -55,23 +55,22 @@ class AuthViewModel(
         _confirm.value = UiStateObject.LOADING
         try {
             val response = repository.confirm(confirmRequest)
-            _confirm.value = UiStateObject.SUCCESS(response.body()!!)
+            if (response.code() >= 400) {
+
+                val error =
+                    Gson().fromJson(response.errorBody()!!.charStream(), ConfirmResponse::class.java)
+                _confirm.value = UiStateObject.SUCCESS(error)
+
+            } else {
+                _confirm.value = UiStateObject.SUCCESS(response.body()!!)
+            }
+
 
         } catch (e: Exception) {
             _login.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 
-    fun currentUser() = viewModelScope.launch {
-        _currentUser.value = UiStateObject.LOADING
-        try {
-            val response = repository.currentUser()
-            _currentUser.value = UiStateObject.SUCCESS(response.body()!!)
-
-        } catch (e: Exception) {
-            _currentUser.value = UiStateObject.ERROR(e.userMessage())
-        }
-    }
 
 
     private var timer: CountDownTimer? = null
