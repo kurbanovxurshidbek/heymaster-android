@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">heymaster</string>
+
+    <string name="first_intro_title">Преобразите свой дом</string>
+
+    <string name="first_intro_body">Лучшие услуги, которые вы можете найти для своего дома, так как у нас есть все, что вам нужно</string>
+
+    <string name="second_intro_title">Квалифицированные специалисты</string>
+
+    <string name="second_intro_body">Ищите из списка квалифицированных специалистов вокруг вас, поскольку мы предлагаем вам лучших</string>
+
+    <string name="third_intro_title">Легкие быстрые услуги</string>
+
+    <string name="third_intro_body">Закажите услуги в удобное время и наслаждайтесь беспроблемным процессом</string>
+
+    <string name="verification_code_submit">Представлять на рассмотрение</string>
+
+    <string name="login_welcome">Добро пожаловать!</string>
+
+    <string name="login_account">Пожалуйста, войдите в свою учетную запись!</string>
+
+    <string name="enter_mobile_number">Введите мобильный телефон</string>
+
+    <string name="verificationOTP">Проверка одноразового пароля</string>
+
+    <string name="verificationSendOTP">Мы отправили OTP на ваш номер мобильного телефона</string>
+
+    <string name="verificationReceiveOTP">Не получили код?</string>
+
+    <string name="verificationResend">Отправить</string>
+
+    <string name="sign_up">Подписаться</string>
+
+    <string name="USupClient">Клиент</string>
+
+    <string name="USupMaster">Мастер</string>
+
+    <string name="fullName">Ф.И.О</string>
+
+    <string name="location">Расположение</string>
+
+    <string name="profession">Профессия</string>
+
+    <string name="professions">Профессии</string>
+
+    <string name="salary">Зарплата</string>
+
+    <string name="search">Поиск</string>
+
+    <string name="plumber">Cантехники</string>
+
+    <string name="search_for_services">Поиск услуги</string>
+
+    <string name="services">Услуги</string>
+
+    <string name="all">Все</string>
+
+    <string name="servicePopular">Популярные услуги</string>
+
+    <string name="bookings">Бронирование</string>
+
+    <string name="active">Активный</string>
+
+    <string name="history">История</string>
+
+    <string name="inProgress">В ходе выполнения</string>
+
+    <string name="finished">Законченный</string>
+
+    <string name="profile">Профиль</string>
+
+    <string name="loginAsMaster">Войти как мастер</string>
+
+    <string name="loginAsUser">Войти как клиент</string>
+
+    <string name="notifications">Уведомления</string>
+
+    <string name="languageChange">Изменение языка</string>
+
+    <string name="aboutUs">О нас</string>
+
+    <string name="help">Помощь</string>
+
+    <string name="logOut">Выйти</string>
+
+    <string name="portfolio">Портфолио</string>
+
+    <string name="suggestion">Предложения</string>
+
+    <string name="messages">Сообщения</string>
+
+    <string name="heyMaster">Hey Master</string>
+
+    <string name="skills">Навыки и умения</string>
+
+    <string name="call">Вызов</string>
+
+    <string name="share">Делиться</string>
+
+    <string name="busy">Занятый</string>
+
+    <string name="free">Свободно</string>
+
+    <string name="bookingNow">Забронировать сейчас</string>
+
+    <string name="serviceHome">Домашние услуги</string>
+
+    <string name="completed">Завершенный</string>
+
+    <string name="bookingAgain">Бронирование снова</string>
+
+    <string name="settings">Настройки</string>
+
+    <string name="rate">Оцените эту услугу</string>
+
+    <string name="description">Описание</string>
+
+    <string name="comment">Люди, работающие здесь, такие приятные и услужливые, и вы чувствуете себя так комфортно!</string>
+
+    <string name="accept">Принимать</string>
+
+    <string name="ignore">Игнорировать</string>
+
+    <string name="name">Will Smith</string>
+
+    <string name="login_continue_button">Продолжать</string>
+
+    <string name="popular_masters">Популярные Мастера</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="str_gender_male">0</string>
+
+    <string name="str_gender_female">1</string>
+</resources>

@@ -39,7 +39,7 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_master_bookings"
             android:layout_width="match_parent"
-            android:layout_height="42dp"
+            android:layout_height="38dp"
             android:descendantFocusability="afterDescendants"
             app:tabBackground="@color/white"
             app:tabGravity="fill"

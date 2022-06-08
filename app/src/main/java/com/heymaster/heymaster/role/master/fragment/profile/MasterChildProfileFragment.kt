@@ -8,10 +8,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.heymaster.heymaster.App
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.DialogChooseLanguageBinding
 import com.heymaster.heymaster.databinding.DialogLogOutBinding
 import com.heymaster.heymaster.databinding.FragmentMasterChildProfileBinding
+import com.heymaster.heymaster.manager.LocaleManager
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 class MasterChildProfileFragment : Fragment(R.layout.fragment_master_child_profile) {
@@ -61,6 +63,18 @@ class MasterChildProfileFragment : Fragment(R.layout.fragment_master_child_profi
         dialog.setContentView(binding.root)
         dialog.setCancelable(true)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        binding.btnUzbek.setOnClickListener {
+            App.localeManager!!.setNewLocale(requireContext(), LocaleManager.LANGUAGE_UZBEK)
+
+        }
+        binding.btnRussian.setOnClickListener {
+            App.localeManager!!.setNewLocale(requireContext(), LocaleManager.LANGUAGE_RUSSIAN)
+
+        }
+        binding.btnEnglish.setOnClickListener {
+            App.localeManager!!.setNewLocale(requireContext(), LocaleManager.LANGUAGE_ENGLISH)
+        }
 
         binding.tvSave.setOnClickListener {
             Toast.makeText(requireContext(), "Saved", Toast.LENGTH_SHORT).show()
