@@ -43,13 +43,9 @@
     <string name="profession">Профессия</string>
 
     <string name="professions">Профессии</string>
-
     <string name="salary">Зарплата</string>
-
     <string name="search">Поиск</string>
-
     <string name="plumber">Cантехники</string>
-
     <string name="search_for_services">Поиск услуги</string>
 
     <string name="services">Услуги</string>
@@ -111,25 +107,16 @@
     <string name="bookingAgain">Бронирование снова</string>
 
     <string name="settings">Настройки</string>
-
     <string name="rate">Оцените эту услугу</string>
-
     <string name="description">Описание</string>
-
     <string name="comment">Люди, работающие здесь, такие приятные и услужливые, и вы чувствуете себя так комфортно!</string>
-
     <string name="accept">Принимать</string>
-
     <string name="ignore">Игнорировать</string>
-
     <string name="name">Will Smith</string>
-
     <string name="login_continue_button">Продолжать</string>
-
     <string name="popular_masters">Популярные Мастера</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="str_gender_male">0</string>
 
     <string name="str_gender_female">1</string>
