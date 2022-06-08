@@ -79,6 +79,7 @@ class MasterChildProfileFragment : Fragment(R.layout.fragment_master_child_profi
         binding.tvSave.setOnClickListener {
             Toast.makeText(requireContext(), "Saved", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
+
         }
         binding.tvCancel.setOnClickListener {
             dialog.dismiss()
