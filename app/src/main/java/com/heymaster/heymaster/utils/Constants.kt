@@ -11,8 +11,8 @@ object Constants {
 
 
     private var IS_TESTER = true
-    private val SERVER_DEVELOPMENT = "http://10.10.2.159:8080/api/"
-    private val SERVER_PRODUCTION = "http://10.10.2.159:8080/api/"
+    private val SERVER_DEVELOPMENT = "https://hey-masterrr.herokuapp.com/api/"
+    private val SERVER_PRODUCTION = "https://hey-masterrr.herokuapp.com/api/"
 
     fun server(): String {
         if (IS_TESTER) return SERVER_DEVELOPMENT

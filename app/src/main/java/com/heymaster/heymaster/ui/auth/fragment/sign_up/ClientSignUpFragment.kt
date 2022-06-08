@@ -18,7 +18,7 @@ import com.heymaster.heymaster.role.client.ClientActivity
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 
-class UserSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
+class ClientSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
 
     private val binding by viewBinding { FragmentUserSignUpBinding.bind(it) }
     private lateinit var viewModel: AuthSharedViewModel
@@ -32,15 +32,7 @@ class UserSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
         }
 
         viewModel.click.observe(viewLifecycleOwner){
-            val fullName = binding.etUserFullName.text.toString()
-            var gender = MALE
-            if (binding.etUserGender.text.toString() == FEMALE) {
-                gender = FEMALE
-            }
-            //val user = User(fullName = fullName, gender = gender)
-            //Toast.makeText(requireContext(), "$user", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(requireActivity(), ClientActivity::class.java))
-            activity?.finish()
+            startActivity(Intent(requireContext(), ClientActivity::class.java))
         }
     }
 

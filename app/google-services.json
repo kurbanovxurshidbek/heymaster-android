@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "842193765151",
+    "project_id": "hey-master-a52c4",
+    "storage_bucket": "hey-master-a52c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842193765151:android:35d10dbe403e7e4b23e62a",
+        "android_client_info": {
+          "package_name": "com.heymaster.heymaster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "842193765151-lgpbe3s89n48q96puev7rr5ssqf8eea9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.heymaster.heymaster",
+            "certificate_hash": "15f5d59a32cd4f4bd66e5b44e75b7c3e2e194d77"
+          }
+        },
+        {
+          "client_id": "842193765151-2980mp79gtt5nq4jqkib2c3gceimg8km.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEva4JUA4scbTlkxOwGuhbANcAlL8Ggb8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "842193765151-2980mp79gtt5nq4jqkib2c3gceimg8km.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

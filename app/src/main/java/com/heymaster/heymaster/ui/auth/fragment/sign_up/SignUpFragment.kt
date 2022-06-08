@@ -31,7 +31,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
     }
     private fun setupViewPager() {
-        adapter.addFragment(UserSignUpFragment())
+        adapter.addFragment(ClientSignUpFragment())
         adapter.addFragment(MasterSignUpFragment())
 
         binding.viewPagerSignUp.adapter = adapter
