@@ -33,7 +33,7 @@
 
 <!--    sign_up_tab-->
     <style name="tab_text_style">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
