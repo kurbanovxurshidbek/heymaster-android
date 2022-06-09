@@ -5,9 +5,14 @@ import androidx.lifecycle.ViewModel
 
 class AuthSharedViewModel: ViewModel() {
 
-    val click = MutableLiveData<Int>()
+    val clientSignUp = MutableLiveData<Int>()
+    val masterSignUp = MutableLiveData<Int>()
 
-    fun clickListener(position: Int) {
-        click.value = position
+    fun clientSignUp(position: Int) {
+        clientSignUp.value = position
+    }
+
+    fun masterSignUp(position: Int) {
+        masterSignUp.value = position
     }
 }

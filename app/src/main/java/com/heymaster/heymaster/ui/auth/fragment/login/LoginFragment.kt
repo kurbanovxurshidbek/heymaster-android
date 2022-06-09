@@ -135,7 +135,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun isValidPhoneNumber(phoneNumber: String): Boolean {
         val code = phoneNumber.substring(0,2)
-        if (isBeeline(code) || isUms(code) || isUzMobile(code) || isPerfectum(code) || isHumans(code)) {
+        if (isBeeline(code)
+            || isUms(code)
+            || isUzMobile(code)
+            || isPerfectum(code)
+            || isHumans(code)
+            || isUcell(code)
+        ) {
             return true
         }
         return false
@@ -164,6 +170,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun isBeeline(code: String): Boolean {
         if (code == "90" || code == "91") {
+            return true
+        }
+        return false
+    }
+
+    private fun isUcell(code: String): Boolean {
+        if (code == "93" || code == "94") {
             return true
         }
         return false

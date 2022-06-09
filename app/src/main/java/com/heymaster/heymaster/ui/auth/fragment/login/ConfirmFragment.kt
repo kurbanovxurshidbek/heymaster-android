@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -22,6 +23,7 @@ import com.heymaster.heymaster.role.master.MasterActivity
 import com.heymaster.heymaster.ui.auth.AuthRepository
 import com.heymaster.heymaster.ui.auth.AuthViewModel
 import com.heymaster.heymaster.ui.auth.AuthViewModelFactory
+import com.heymaster.heymaster.utils.Constants
 import com.heymaster.heymaster.utils.Constants.CLIENT
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.Constants.KEY_CONFIRM_CODE
@@ -39,6 +41,14 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
     private val binding by viewBinding { FragmentConfirmBinding.bind(it) }
     private lateinit var viewModel: AuthViewModel
 
+    private var phoneNumber: String? = null
+    private var confirmCode: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        phoneNumber = SharedPref(requireContext()).getString(KEY_PHONE_NUMBER)
+        confirmCode = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
+    }
 
 
 
@@ -122,9 +132,12 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
             }
             override fun afterTextChanged(code: Editable?) {
                 if (code.toString().length >= 4) {
-                    SharedPref(requireContext()).saveString(KEY_CONFIRM_CODE, code.toString())
-                    val phoneNumber = SharedPref(requireContext()).getString(KEY_PHONE_NUMBER)
-                    viewModel.confirm(ConfirmRequest(code.toString(), phoneNumber!!))
+                    if (code.toString() == confirmCode) {
+                        viewModel.confirm(ConfirmRequest(code.toString(), phoneNumber!!))
+                    } else {
+                        Toast.makeText(requireContext(), "Invalid code", Toast.LENGTH_SHORT).show()
+                    }
+
                 }
 
             }

@@ -6,6 +6,9 @@ object Constants {
     const val CLIENT = "CLIENT"
     const val MASTER = "MASTER"
 
+    const val MALE = "Male"
+    const val FEMALE = "Female"
+
     const val KEY_PHONE_NUMBER = "phone_number"
     const val KEY_CONFIRM_CODE = "confirm_code"
     const val KEY_INTRO_SAVED = "intro_done"

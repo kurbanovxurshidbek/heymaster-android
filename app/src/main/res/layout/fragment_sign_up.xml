@@ -29,7 +29,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="2.5"
         android:orientation="vertical">
 
         <LinearLayout
@@ -86,7 +86,7 @@
         android:layout_marginHorizontal="24dp"
         android:text="@string/sign_up"
         app:cornerRadius="28dp"
-        android:layout_marginBottom="28dp"/>
+        android:layout_marginBottom="20dp"/>
 
 
 

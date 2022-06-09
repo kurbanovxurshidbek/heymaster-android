@@ -38,7 +38,6 @@ interface ApiService {
 
 
     //Auth
-
     @POST("password")
     suspend fun login(@Body phoneNumber: LoginRequest): Response<LoginResponse>
 
@@ -48,10 +47,13 @@ interface ApiService {
     @POST("auth/client/register")
     suspend fun clientRegister(@Body clientRegisterRequest: ClientRegisterRequest): Response<ClientRegisterResponse>
 
-    @GET("auth/me")
-    suspend fun currentUser(): Response<User>
-    @POST("")
-    suspend fun signUp(): Response<User>
+    @POST("auth/master/register")
+    suspend fun masterRegister(@Body masterRegisterRequest: MasterRegisterRequest): Response<MasterRegisterResponse>
+
+    @GET("district/all")
+    suspend fun getDistricts(): Response<List<District>>
+
+
 
 
 

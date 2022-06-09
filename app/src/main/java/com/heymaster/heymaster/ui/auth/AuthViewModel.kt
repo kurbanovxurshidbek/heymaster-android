@@ -7,9 +7,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
+import com.heymaster.heymaster.model.District
 import com.heymaster.heymaster.model.ErrorResponse
 import com.heymaster.heymaster.model.User
 import com.heymaster.heymaster.model.auth.*
+import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.userMessage
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,7 +31,11 @@ class AuthViewModel(
     private val _clientRegister = MutableStateFlow<UiStateObject<ClientRegisterResponse>>(UiStateObject.EMPTY)
     val clientRegister = _clientRegister
 
+    private val _masterRegister = MutableStateFlow<UiStateObject<MasterRegisterResponse>>(UiStateObject.EMPTY)
+    val masterRegister = _masterRegister
 
+    private val _districts = MutableStateFlow<UiStateList<District>>(UiStateList.EMPTY)
+    val district = _districts
 
 
 
@@ -83,15 +89,52 @@ class AuthViewModel(
 
                 val error =
                     Gson().fromJson(response.errorBody()!!.charStream(), ErrorResponse::class.java)
-                _confirm.value = UiStateObject.ERROR(error.errorMessage)
+                _clientRegister.value = UiStateObject.ERROR(error.errorMessage)
 
             } else {
                 _clientRegister.value = UiStateObject.SUCCESS(response.body()!!)
-
             }
 
         } catch (e: Exception) {
             _clientRegister.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+    fun masterRegister(masterRegisterRequest: MasterRegisterRequest) = viewModelScope.launch {
+        _masterRegister.value = UiStateObject.LOADING
+
+        try {
+
+            val response = repository.masterRegister(masterRegisterRequest)
+            Log.d("@@@response", "masterRegister: ${response.body()}")
+            if (response.code() >= 400) {
+
+                val error =
+                    Gson().fromJson(response.errorBody()!!.charStream(), MasterRegisterResponse::class.java)
+                _masterRegister.value = UiStateObject.SUCCESS(error)
+
+            } else {
+                _masterRegister.value = UiStateObject.SUCCESS(response.body()!!)
+
+            }
+
+        } catch (e: Exception) {
+            _masterRegister.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+
+
+    fun getDistricts() = viewModelScope.launch {
+        _districts.value = UiStateList.LOADING
+
+        try {
+            val response = repository.getDistricts()
+
+            _districts.value = UiStateList.SUCCESS(response.body())
+
+        } catch (e: Exception) {
+            _districts.value = UiStateList.ERROR(e.userMessage())
         }
     }
 

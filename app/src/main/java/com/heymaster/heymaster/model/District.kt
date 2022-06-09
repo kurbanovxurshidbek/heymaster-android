@@ -1,8 +1,6 @@
 package com.heymaster.heymaster.model
 
-class Districts : ArrayList<DistrictItem>()
-
-data class DistrictItem(
+data class District(
     val id: Int,
     val nameRu: String,
     val nameUz: String,
