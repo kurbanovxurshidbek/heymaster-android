@@ -9,25 +9,26 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentConfirmBinding
-import com.heymaster.heymaster.model.User
 import com.heymaster.heymaster.model.auth.ConfirmRequest
 import com.heymaster.heymaster.model.auth.ConfirmResponse
-import com.heymaster.heymaster.model.auth.LoginResponse
 import com.heymaster.heymaster.role.client.ClientActivity
 import com.heymaster.heymaster.role.master.MasterActivity
 import com.heymaster.heymaster.ui.auth.AuthRepository
 import com.heymaster.heymaster.ui.auth.AuthViewModel
 import com.heymaster.heymaster.ui.auth.AuthViewModelFactory
+import com.heymaster.heymaster.utils.Constants.CLIENT
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
+import com.heymaster.heymaster.utils.Constants.KEY_CONFIRM_CODE
 import com.heymaster.heymaster.utils.Constants.KEY_LOGIN_SAVED
+import com.heymaster.heymaster.utils.Constants.KEY_PHONE_NUMBER
+import com.heymaster.heymaster.utils.Constants.KEY_USER_ROLE
+import com.heymaster.heymaster.utils.Constants.MASTER
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
@@ -38,11 +39,12 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
     private val binding by viewBinding { FragmentConfirmBinding.bind(it) }
     private lateinit var viewModel: AuthViewModel
 
-    private lateinit var currentUser: User
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupViewModel()
         viewModel.startTimer()
 
@@ -58,12 +60,10 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
             viewModel.confirm.collect { it ->
                 when (it) {
                     is UiStateObject.LOADING -> {
-
-
+                        binding.progressHome.customProgress.visibility = View.VISIBLE
                     }
                     is UiStateObject.SUCCESS -> {
-                        binding.progressHome.customProgress.visibility = View.VISIBLE
-                        Log.d("@@@", "observe: ${it.data.success}")
+                        binding.progressHome.customProgress.visibility = View.GONE
                         launchSignUpOrHome(it.data)
                     }
 
@@ -74,13 +74,13 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
                 }
             }
         }
-
     }
 
     private fun launchSignUpOrHome(confirmResponse: ConfirmResponse) {
         if (confirmResponse.success) {
             SharedPref(requireContext()).saveString(KEY_ACCESS_TOKEN, confirmResponse.`object`.toString())
             SharedPref(requireContext()).saveBoolean(KEY_LOGIN_SAVED, true)
+            SharedPref(requireContext()).saveString(KEY_USER_ROLE, confirmResponse.message)
             if (confirmResponse.message == CLIENT) {
                 callClientActivity()
             } else if (confirmResponse.message == MASTER){
@@ -88,8 +88,12 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
             }
 
         } else {
-            findNavController().navigate(R.id.action_verificationFragment_to_signUpFragment)
+            launchSignUpFragment()
         }
+    }
+
+    private fun launchSignUpFragment() {
+        findNavController().navigate(R.id.action_verificationFragment_to_signUpFragment)
     }
 
     private fun setupUI() {
@@ -112,18 +116,14 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
     private fun checkConfirmCode() {
         binding.etVerificationCode.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
-
             override fun afterTextChanged(code: Editable?) {
-                val phoneNumber = arguments?.let {
-                    it.getString("phoneNumber")
-                }
                 if (code.toString().length >= 4) {
+                    SharedPref(requireContext()).saveString(KEY_CONFIRM_CODE, code.toString())
+                    val phoneNumber = SharedPref(requireContext()).getString(KEY_PHONE_NUMBER)
                     viewModel.confirm(ConfirmRequest(code.toString(), phoneNumber!!))
                 }
 
@@ -148,10 +148,7 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
         startActivity(Intent(requireContext(), MasterActivity::class.java))
     }
 
-    companion object {
-        const val CLIENT = "CLIENT"
-        const val MASTER = "MASTER"
-    }
+
 }
 
 

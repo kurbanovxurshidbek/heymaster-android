@@ -7,12 +7,14 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.heymaster.heymaster.R
+import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentLoginBinding
@@ -21,6 +23,8 @@ import com.heymaster.heymaster.model.auth.LoginResponse
 import com.heymaster.heymaster.ui.auth.AuthRepository
 import com.heymaster.heymaster.ui.auth.AuthViewModel
 import com.heymaster.heymaster.ui.auth.AuthViewModelFactory
+import com.heymaster.heymaster.utils.Constants.KEY_CONFIRM_CODE
+import com.heymaster.heymaster.utils.Constants.KEY_PHONE_NUMBER
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
@@ -43,8 +47,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         editPhoneNumberListener()
 
         binding.btnContinue.setOnClickListener {
-             viewModel.login(LoginRequest(validPhoneNumber))
-
+            if (validPhoneNumber.length > 12) {
+                SharedPref(requireContext()).saveString(KEY_PHONE_NUMBER, validPhoneNumber)
+                viewModel.login(LoginRequest(validPhoneNumber))
+            } else {
+                Toast.makeText(requireContext(), "Invalid phone number", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
@@ -62,10 +70,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     if (isValidPhoneNumber(phoneNumber)) {
                         validPhoneNumber = "+998$phoneNumber"
                     } else {
-                        // show error message
+                        validPhoneNumber  = ""
                     }
                 } else {
-                    //show error message
+                    validPhoneNumber = ""
                 }
             }
         })
@@ -83,7 +91,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     }
                     is UiStateObject.SUCCESS -> {
                         binding.progressHome.customProgress.visibility = View.GONE
-                        launchConfirmFragment(it.data)
+                        SharedPref(requireContext()).saveString(KEY_CONFIRM_CODE, it.data.`object`.toString())
+                        launchConfirmFragment()
 
                     }
                     is UiStateObject.ERROR -> {
@@ -96,12 +105,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     }
 
-    private fun launchConfirmFragment(data: LoginResponse) {
-
-        findNavController().navigate(
-                R.id.action_loginFragment_to_verificationFragment,
-                bundleOf("phoneNumber" to validPhoneNumber)
-            )
+    private fun launchConfirmFragment() {
+        findNavController().navigate(R.id.action_loginFragment_to_verificationFragment)
 
     }
 
@@ -130,7 +135,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun isValidPhoneNumber(phoneNumber: String): Boolean {
         val code = phoneNumber.substring(0,2)
-        if (isBeeline(code) || isUms(code) || isUzMobile(code) || isPerfectum(code)) {
+        if (isBeeline(code) || isUms(code) || isUzMobile(code) || isPerfectum(code) || isHumans(code)) {
             return true
         }
         return false
@@ -159,6 +164,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun isBeeline(code: String): Boolean {
         if (code == "90" || code == "91") {
+            return true
+        }
+        return false
+    }
+
+    private fun isHumans(code: String): Boolean {
+        if (code == "33") {
             return true
         }
         return false

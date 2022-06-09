@@ -98,7 +98,7 @@
                                     android:layout_height="56dp"
                                     android:layout_marginHorizontal="30dp"
                                     android:layout_marginTop="20dp"
-                                    android:text="Get Started"
+                                    android:text="@string/get_started"
                                     android:textSize="18sp"
                                     android:textColor="@color/white"
                                     android:visibility="gone"

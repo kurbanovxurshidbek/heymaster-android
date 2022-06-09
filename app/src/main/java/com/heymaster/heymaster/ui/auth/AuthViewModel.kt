@@ -9,10 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.heymaster.heymaster.model.ErrorResponse
 import com.heymaster.heymaster.model.User
-import com.heymaster.heymaster.model.auth.ConfirmRequest
-import com.heymaster.heymaster.model.auth.ConfirmResponse
-import com.heymaster.heymaster.model.auth.LoginRequest
-import com.heymaster.heymaster.model.auth.LoginResponse
+import com.heymaster.heymaster.model.auth.*
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.userMessage
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,6 +25,11 @@ class AuthViewModel(
 
     private val _confirm = MutableStateFlow<UiStateObject<ConfirmResponse>>(UiStateObject.EMPTY)
     val confirm = _confirm
+
+    private val _clientRegister = MutableStateFlow<UiStateObject<ClientRegisterResponse>>(UiStateObject.EMPTY)
+    val clientRegister = _clientRegister
+
+
 
 
 
@@ -68,6 +70,28 @@ class AuthViewModel(
 
         } catch (e: Exception) {
             _login.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+    fun clientRegister(clientRegisterRequest: ClientRegisterRequest) = viewModelScope.launch {
+        _clientRegister.value = UiStateObject.LOADING
+
+        try {
+
+            val response = repository.clientRegister(clientRegisterRequest)
+            if (response.code() >= 400) {
+
+                val error =
+                    Gson().fromJson(response.errorBody()!!.charStream(), ErrorResponse::class.java)
+                _confirm.value = UiStateObject.ERROR(error.errorMessage)
+
+            } else {
+                _clientRegister.value = UiStateObject.SUCCESS(response.body()!!)
+
+            }
+
+        } catch (e: Exception) {
+            _clientRegister.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 

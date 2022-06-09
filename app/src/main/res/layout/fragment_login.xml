@@ -70,7 +70,7 @@
             <Button
                 android:id="@+id/btn_continue"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="56dp"
                 android:layout_marginHorizontal="24dp"
                 android:text="@string/login_continue_button"
                 app:cornerRadius="28dp" />
