@@ -10,4 +10,6 @@ class ClientHomeRepository(
     suspend fun getService(id: Int) = apiService.getService(id)
 
     suspend fun getAds() = apiService.getAds()
+
+
 }
