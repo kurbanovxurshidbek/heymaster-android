@@ -59,6 +59,7 @@ object ApiClient {
                     throw SocketTimeoutException()
                 }
             }
+
         }
 
         if (BuildConfig.DEBUG) {
