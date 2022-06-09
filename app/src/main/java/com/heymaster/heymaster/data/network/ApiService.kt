@@ -11,6 +11,7 @@ interface ApiService {
     @GET("notification")
     suspend fun getNotification(): Response<List<Notification>>
 
+    //getting images
     @GET("images")
     suspend fun getImages(): Response<List<Portfolio>>
 
