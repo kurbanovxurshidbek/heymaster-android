@@ -12,7 +12,10 @@ import android.os.CountDownTimer
 import com.heymaster.heymaster.databinding.ActivitySplashBinding
 import com.heymaster.heymaster.global.BaseActivity
 import com.heymaster.heymaster.utils.ConnectivityReceiver
+import com.heymaster.heymaster.utils.Constants.CLIENT
 import com.heymaster.heymaster.utils.Constants.KEY_INTRO_SAVED
+import com.heymaster.heymaster.utils.Constants.KEY_LOGIN_SAVED
+import com.heymaster.heymaster.utils.Constants.KEY_USER_ROLE
 
 
 @SuppressLint("CustomSplashScreen")
@@ -37,9 +40,17 @@ class SplashActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
             override fun onTick(p0: Long) {}
 
             override fun onFinish() {
-                //callIntroActivity()
                 if (SharedPref(this@SplashActivity).getBoolean(KEY_INTRO_SAVED)) {
-                    callLoginActivity()
+                    if (SharedPref(this@SplashActivity).getBoolean(KEY_LOGIN_SAVED)) {
+                        if (SharedPref(this@SplashActivity).getString(KEY_USER_ROLE) == CLIENT) {
+                            callUserActivity()
+                        } else {
+                            callMasterActivity()
+                        }
+                    } else {
+                        callLoginActivity()
+                    }
+
                 } else {
                     callIntroActivity()
                 }

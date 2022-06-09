@@ -1,10 +1,7 @@
 package com.heymaster.heymaster.data.network
 
 import com.heymaster.heymaster.model.*
-import com.heymaster.heymaster.model.auth.ConfirmRequest
-import com.heymaster.heymaster.model.auth.ConfirmResponse
-import com.heymaster.heymaster.model.auth.LoginRequest
-import com.heymaster.heymaster.model.auth.LoginResponse
+import com.heymaster.heymaster.model.auth.*
 import com.heymaster.heymaster.model.masterprofile.Portfolio
 import retrofit2.Response
 import retrofit2.http.*
@@ -47,6 +44,9 @@ interface ApiService {
 
     @POST("auth/login")
     suspend fun confirm(@Body confirmRequest: ConfirmRequest): Response<ConfirmResponse>
+
+    @POST("auth/client/register")
+    suspend fun clientRegister(@Body clientRegisterRequest: ClientRegisterRequest): Response<ClientRegisterResponse>
 
     @GET("auth/me")
     suspend fun currentUser(): Response<User>
