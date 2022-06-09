@@ -5,12 +5,13 @@ import com.heymaster.heymaster.model.auth.*
 import com.heymaster.heymaster.model.masterprofile.Portfolio
 import retrofit2.Response
 import retrofit2.http.*
-
+//ApiService
 interface ApiService {
 
     @GET("notification")
     suspend fun getNotification(): Response<List<Notification>>
 
+    //getting images
     @GET("images")
     suspend fun getImages(): Response<List<Portfolio>>
 
