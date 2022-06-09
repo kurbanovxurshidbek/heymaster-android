@@ -8,23 +8,38 @@ import android.widget.Toast
 import com.chivorn.smartmaterialspinner.SmartMaterialSpinner
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.FragmentMasterSignUpBinding
+import com.heymaster.heymaster.ui.auth.AuthSharedViewModel
+import com.heymaster.heymaster.ui.auth.AuthViewModel
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
-class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
+class   MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
 
     private val binding by viewBinding { FragmentMasterSignUpBinding.bind(it) }
+    private lateinit var viewModel: AuthSharedViewModel
+
 
 
     private var spEmptyItem: SmartMaterialSpinner<String>? = null
     private var provinceList: MutableList<String>? = null
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setupSpinner()
+        viewModel.click.observe(viewLifecycleOwner){
+            if (binding.fullNameMaster.text.isNotEmpty() &&
+                    binding.spLocation.item.isNotEmpty() &&
+                    binding.spProfession.item.isNotEmpty()){
+                Toast.makeText(requireContext(), "Iltimos, ma'lumotlarni to'liq to'ldiring", Toast.LENGTH_SHORT).show()
+            }
+        }
+
 
 
     }
+
 
     private fun setupSpinner() {
         provinceList = ArrayList()
@@ -49,8 +64,8 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>) {}
+
         }
     }
 
-
-    }
+}
