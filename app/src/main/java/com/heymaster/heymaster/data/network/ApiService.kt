@@ -54,6 +54,10 @@ interface ApiService {
     @GET("district/all")
     suspend fun getDistricts(): Response<List<District>>
 
+    // client home page
+
+
+
 
 
 
