@@ -28,7 +28,7 @@ interface ApiService {
     suspend fun getPopularServices(): Response<List<Service>>
 
     @GET("services")
-    suspend fun getPopularMasters(): Response<List<User>>
+    suspend fun getPopularMasters(): Response<List<CurrentUser>>
 
     @GET("ads")
     suspend fun getAds(): Response<List<Ads>>
@@ -53,6 +53,11 @@ interface ApiService {
 
     @GET("district/all")
     suspend fun getDistricts(): Response<List<District>>
+
+
+    //Client
+    @GET("auth/me")
+    suspend fun currentUser(): Response<CurrentUser>
 
 
 

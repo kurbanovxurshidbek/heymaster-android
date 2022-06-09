@@ -9,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.heymaster.heymaster.model.District
 import com.heymaster.heymaster.model.ErrorResponse
-import com.heymaster.heymaster.model.User
 import com.heymaster.heymaster.model.auth.*
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
