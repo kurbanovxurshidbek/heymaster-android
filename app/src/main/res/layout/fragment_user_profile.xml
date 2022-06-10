@@ -63,7 +63,7 @@
                             android:layout_height="100dp"
                             android:scaleType="centerCrop"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/intro_image_2"
+                            android:src="@drawable/img"
                             app:shapeAppearanceOverlay="@style/circular" />
 
                         <ImageView

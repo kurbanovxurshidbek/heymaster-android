@@ -32,6 +32,7 @@ import com.heymaster.heymaster.role.client.viewmodel.ClientHomeViewModel
 import com.heymaster.heymaster.role.client.viewmodel.ClientProfileViewModel
 import com.heymaster.heymaster.role.client.viewmodel.factory.ClientHomeViewModelFactory
 import com.heymaster.heymaster.role.client.viewmodel.factory.ClientProfileViewModelFactory
+import com.heymaster.heymaster.ui.auth.LoginActivity
 import com.heymaster.heymaster.utils.Constants
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.UiStateObject
@@ -117,8 +118,6 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
             }
 
         }
-
-
     }
 
     private fun showLogOutDialog() {
@@ -128,6 +127,16 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
         dialog.setContentView(binding.root)
         dialog.setCancelable(true)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        binding.tvOk.setOnClickListener {
+            SharedPref(requireContext()).clearPref()
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            activity?.finish()
+        }
+
+        binding.tvCancel.setOnClickListener {
+            dialog.show()
+        }
         dialog.show()
     }
 

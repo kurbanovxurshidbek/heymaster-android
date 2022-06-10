@@ -1,22 +1,12 @@
 package com.heymaster.heymaster
 
 import android.content.Context
+import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 
-class SharedPref(context: Context) {
+class SharedPref(val context: Context) {
 
     private val pref = context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
 
-    val token: String? = null
-
-    fun isSaved(isSaved: Boolean) {
-        val editor = pref.edit()
-        editor.putBoolean("isSaved", isSaved)
-        editor.apply()
-    }
-
-    fun getSaved(): Boolean{
-        return pref.getBoolean("isSaved", false)
-    }
 
 
     fun saveString(key: String, value: String) {
@@ -24,6 +14,20 @@ class SharedPref(context: Context) {
         editor.putString(key, value)
         editor.apply()
     }
+
+    fun removeString(key: String) {
+        val editor = pref.edit()
+        editor.remove(key)
+        editor.apply()
+    }
+
+    fun clearPref() {
+        val editor = pref.edit()
+        editor.clear()
+        editor.apply()
+    }
+
+
 
     fun getString(key: String): String? {
         return pref.getString(key, null)
