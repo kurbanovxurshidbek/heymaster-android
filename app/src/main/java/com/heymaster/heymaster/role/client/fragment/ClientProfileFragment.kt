@@ -35,6 +35,9 @@ import com.heymaster.heymaster.role.client.viewmodel.factory.ClientProfileViewMo
 import com.heymaster.heymaster.ui.auth.LoginActivity
 import com.heymaster.heymaster.utils.Constants
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
+import com.heymaster.heymaster.utils.Constants.KEY_CONFIRM_CODE
+import com.heymaster.heymaster.utils.Constants.KEY_LOGIN_SAVED
+import com.heymaster.heymaster.utils.Constants.KEY_PHONE_NUMBER
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
@@ -129,7 +132,10 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding.tvOk.setOnClickListener {
-            SharedPref(requireContext()).clearPref()
+            SharedPref(requireContext()).removeString(KEY_ACCESS_TOKEN)
+            SharedPref(requireContext()).removeString(KEY_PHONE_NUMBER)
+            SharedPref(requireContext()).removeString(KEY_LOGIN_SAVED)
+            SharedPref(requireContext()).removeString(KEY_CONFIRM_CODE)
             startActivity(Intent(requireContext(), LoginActivity::class.java))
             activity?.finish()
         }

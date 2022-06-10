@@ -132,11 +132,8 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
             }
             override fun afterTextChanged(code: Editable?) {
                 if (code.toString().length >= 4) {
-                    if (code.toString() == confirmCode) {
                         viewModel.confirm(ConfirmRequest(code.toString(), phoneNumber!!))
-                    } else {
-                        Toast.makeText(requireContext(), "Invalid code", Toast.LENGTH_SHORT).show()
-                    }
+
 
                 }
 
