@@ -88,7 +88,7 @@ class ClientSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
                     val gender = etUserGender.text.toString() == MALE
                     val birthDay = etUserBirthday.text.toString()
                     val password = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
-                    val clientRegisterRequest = ClientRegisterRequest(birthDay, fullName, gender, phoneNumber, password)
+                    val clientRegisterRequest = ClientRegisterRequest(birthDay, fullName, true, phoneNumber, password)
                     viewModel.clientRegister(clientRegisterRequest)
                     
                 }
