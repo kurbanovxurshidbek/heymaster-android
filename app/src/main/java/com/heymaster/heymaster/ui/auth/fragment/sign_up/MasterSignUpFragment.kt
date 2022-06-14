@@ -9,7 +9,6 @@ import android.text.Editable
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.AdapterView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -18,12 +17,14 @@ import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.DialogChooseGenderBinding
+import com.heymaster.heymaster.databinding.DialogForDistrictsBinding
+import com.heymaster.heymaster.databinding.DialogForRegionsBinding
 import com.heymaster.heymaster.databinding.FragmentMasterSignUpBinding
-import com.heymaster.heymaster.model.District
 import com.heymaster.heymaster.model.auth.ConfirmRequest
 import com.heymaster.heymaster.model.auth.MasterRegisterRequest
-import com.heymaster.heymaster.role.client.ClientActivity
 import com.heymaster.heymaster.role.master.MasterActivity
+import com.heymaster.heymaster.ui.adapter.DistrictsAdapter
+import com.heymaster.heymaster.ui.adapter.RegionsAdapter
 import com.heymaster.heymaster.ui.auth.AuthRepository
 import com.heymaster.heymaster.ui.auth.AuthSharedViewModel
 import com.heymaster.heymaster.ui.auth.AuthViewModel
@@ -49,6 +50,12 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
 
     private lateinit var viewModel: AuthViewModel
 
+    private lateinit var dialogDistrict: Dialog
+    private lateinit var dialogRegion: Dialog
+
+    private val regionsAdapter by lazy { RegionsAdapter() }
+    private val districtsAdapter by lazy { DistrictsAdapter() }
+
     private var phoneNumber: String? = null
     private var confirmCode: String? = null
 
@@ -62,7 +69,7 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
-        viewModel.getDistricts()
+
 
         observeViewModel()
 
@@ -73,6 +80,27 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
         binding.etMasterBirthday.setOnClickListener {
             setBirthday()
 
+        }
+
+        binding.etMasterRegion.setOnClickListener {
+            viewModel.getRegions()
+            showRegionsDialog()
+        }
+
+        regionsAdapter.itemClickListener = {
+            dialogRegion.dismiss()
+            binding.etMasterRegion.text = Editable.Factory.getInstance().newEditable(it.nameUz)
+            viewModel.getDistrictsFromRegion(it.id)
+            binding.etMasterDistrict.visibility = View.VISIBLE
+        }
+
+        binding.etMasterDistrict.setOnClickListener {
+            showDistrictsDialog()
+        }
+
+        districtsAdapter.itemClickListener = {
+            dialogDistrict.dismiss()
+            binding.etMasterDistrict.text = Editable.Factory.getInstance().newEditable(it.nameUz)
         }
 
         sharedViewModel.masterSignUp.observe(viewLifecycleOwner) {
@@ -143,20 +171,33 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
             }
 
         }
+
+
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.district.collect {
+            viewModel.regions.collect {
                 when (it) {
                     is UiStateList.LOADING -> {
 
                     }
                     is UiStateList.SUCCESS -> {
-                        Log.d("@@@", "observeViewModel: ${it.data}")
-                        val list = mutableListOf<District>()
-                        it.data?.forEach {
-                            list.add(it)
-                        }
-                        setupSpinner(list)
+                        regionsAdapter.submitList(it.data)
+                    }
+                    is UiStateList.ERROR -> {
 
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.districts.collect {
+                when (it) {
+                    is UiStateList.LOADING -> {
+
+                    }
+                    is UiStateList.SUCCESS -> {
+                        districtsAdapter.submitList(it.data)
                     }
                     is UiStateList.ERROR -> {
 
@@ -167,20 +208,6 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
         }
     }
 
-    private fun setupSpinner(list: MutableList<District>) {
-        Log.d("@@@", "setupSpinner: $list")
-
-        binding.spLocation.item = list.reversed() as List<Any>?
-
-
-        binding.spLocation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(adapterView: AdapterView<*>, view: View, position: Int, id: Long) {
-
-            }
-
-            override fun onNothingSelected(adapterView: AdapterView<*>) {}
-        }
-    }
 
     private fun setupViewModel() {
         sharedViewModel = ViewModelProvider(requireActivity())[AuthSharedViewModel::class.java]
@@ -197,20 +224,10 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
         dialog.setCancelable(true)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        if (binding.etMasterGender.text.toString() == MALE) {
-            binding1.btnMale.isChecked = true
-        } else if (binding.etMasterGender.text.toString() == FEMALE){
-            binding1.btnFemale.isChecked = true
-        }
+
 
         binding1.tvSave.setOnClickListener {
-            if (binding1.genderGroup.checkedRadioButtonId == binding1.btnMale.id) {
-                binding.etMasterGender.text = Editable.Factory.getInstance().newEditable(MALE)
-                dialog.dismiss()
-            } else {
-                binding.etMasterGender.text = Editable.Factory.getInstance().newEditable(FEMALE)
-                dialog.dismiss()
-            }
+            dialog.dismiss()
         }
         binding1.tvCancel.setOnClickListener {
             dialog.dismiss()
@@ -219,16 +236,44 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
 
     }
 
+    private fun showRegionsDialog() {
+        dialogRegion = Dialog(requireContext())
+        val binding2 = DialogForRegionsBinding.inflate(layoutInflater)
+        dialogRegion.setContentView(binding2.root)
+        dialogRegion.setCancelable(true)
+        dialogRegion.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        binding2.rvRegions.adapter = regionsAdapter
+
+        dialogRegion.show()
+
+    }
+
+    private fun showDistrictsDialog() {
+        dialogDistrict = Dialog(requireContext())
+        val binding2 = DialogForDistrictsBinding.inflate(layoutInflater)
+        dialogDistrict.setContentView(binding2.root)
+        dialogDistrict.setCancelable(true)
+        dialogDistrict.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        binding2.rvDistrict.adapter = districtsAdapter
+
+        dialogDistrict.show()
+
+    }
+
+
+
     private fun setBirthday() {
-        val datePicker = java.util.Calendar.getInstance()
-        val year = datePicker[java.util.Calendar.YEAR]
-        val month = datePicker[java.util.Calendar.MONTH]
-        val day = datePicker[java.util.Calendar.DAY_OF_MONTH]
+        val datePicker = Calendar.getInstance()
+        val year = datePicker[Calendar.YEAR]
+        val month = datePicker[Calendar.MONTH]
+        val day = datePicker[Calendar.DAY_OF_MONTH]
         val date =
             android.app.DatePickerDialog.OnDateSetListener { picker, pickedYear, pickedMonth, pickedDay ->
-                datePicker[java.util.Calendar.YEAR] = pickedYear
-                datePicker[java.util.Calendar.MONTH] = pickedMonth
-                datePicker[java.util.Calendar.DAY_OF_MONTH] = pickedDay
+                datePicker[Calendar.YEAR] = pickedYear
+                datePicker[Calendar.MONTH] = pickedMonth
+                datePicker[Calendar.DAY_OF_MONTH] = pickedDay
                 val dateFormat = "dd.MM.yyyy"
                 val simpleDateFormat = SimpleDateFormat(dateFormat, Locale.getDefault())
                 binding.etMasterBirthday.text = Editable.Factory.getInstance().newEditable(simpleDateFormat.format(datePicker.time))

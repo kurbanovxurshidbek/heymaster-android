@@ -55,6 +55,8 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Toast.makeText(requireContext(), "Code : $confirmCode", Toast.LENGTH_SHORT).show()
+
         setupViewModel()
         viewModel.startTimer()
 
@@ -132,7 +134,12 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
             }
             override fun afterTextChanged(code: Editable?) {
                 if (code.toString().length >= 4) {
+                    if(code.toString() == confirmCode) {
                         viewModel.confirm(ConfirmRequest(code.toString(), phoneNumber!!))
+                    } else {
+                        Toast.makeText(requireContext(), "Invalid code", Toast.LENGTH_SHORT).show()
+                    }
+
 
 
                 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/ll_region_district"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_region_district"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Region"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:padding="12dp"
+        android:layout_margin="4dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey1"
+        android:layout_marginHorizontal="12dp"/>
+
+</LinearLayout>

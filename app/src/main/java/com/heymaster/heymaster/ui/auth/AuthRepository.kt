@@ -2,6 +2,7 @@ package com.heymaster.heymaster.ui.auth
 
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.model.auth.*
+import java.net.SocketTimeoutException
 
 class AuthRepository(
     private val apiService: ApiService
@@ -15,5 +16,7 @@ class AuthRepository(
 
     suspend fun masterRegister(masterRegisterRequest: MasterRegisterRequest) = apiService.masterRegister(masterRegisterRequest)
 
-    suspend fun getDistricts() = apiService.getDistricts()
+    suspend fun getRegions() = apiService.getRegions()
+
+    suspend fun getDistrictsFromRegion(id: Int) = apiService.getDistrictsFromRegion(id)
 }
