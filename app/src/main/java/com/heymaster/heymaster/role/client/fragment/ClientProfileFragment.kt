@@ -32,8 +32,12 @@ import com.heymaster.heymaster.role.client.viewmodel.ClientHomeViewModel
 import com.heymaster.heymaster.role.client.viewmodel.ClientProfileViewModel
 import com.heymaster.heymaster.role.client.viewmodel.factory.ClientHomeViewModelFactory
 import com.heymaster.heymaster.role.client.viewmodel.factory.ClientProfileViewModelFactory
+import com.heymaster.heymaster.ui.auth.LoginActivity
 import com.heymaster.heymaster.utils.Constants
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
+import com.heymaster.heymaster.utils.Constants.KEY_CONFIRM_CODE
+import com.heymaster.heymaster.utils.Constants.KEY_LOGIN_SAVED
+import com.heymaster.heymaster.utils.Constants.KEY_PHONE_NUMBER
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
@@ -117,8 +121,6 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
             }
 
         }
-
-
     }
 
     private fun showLogOutDialog() {
@@ -128,6 +130,19 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
         dialog.setContentView(binding.root)
         dialog.setCancelable(true)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        binding.tvOk.setOnClickListener {
+            SharedPref(requireContext()).removeString(KEY_ACCESS_TOKEN)
+            SharedPref(requireContext()).removeString(KEY_PHONE_NUMBER)
+            SharedPref(requireContext()).removeString(KEY_LOGIN_SAVED)
+            SharedPref(requireContext()).removeString(KEY_CONFIRM_CODE)
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            activity?.finish()
+        }
+
+        binding.tvCancel.setOnClickListener {
+            dialog.show()
+        }
         dialog.show()
     }
 

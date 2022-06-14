@@ -9,10 +9,14 @@ import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.heymaster.heymaster.databinding.ActivitySplashBinding
 import com.heymaster.heymaster.global.BaseActivity
 import com.heymaster.heymaster.utils.ConnectivityReceiver
 import com.heymaster.heymaster.utils.Constants.CLIENT
+import com.heymaster.heymaster.utils.Constants.KEY_DEVICE_TOKEN
 import com.heymaster.heymaster.utils.Constants.KEY_INTRO_SAVED
 import com.heymaster.heymaster.utils.Constants.KEY_LOGIN_SAVED
 import com.heymaster.heymaster.utils.Constants.KEY_USER_ROLE
@@ -76,12 +80,15 @@ class SplashActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
             dialog?.dismiss()
             countTimer()
 
+
         }
     }
 
     override fun onNetworkConnectionChanged(isConnected: Boolean) {
         showDialog(isConnected)
     }
+
+
 
 
 }
