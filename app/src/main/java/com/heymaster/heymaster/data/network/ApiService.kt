@@ -2,6 +2,8 @@ package com.heymaster.heymaster.data.network
 
 import com.heymaster.heymaster.model.*
 import com.heymaster.heymaster.model.auth.*
+import com.heymaster.heymaster.model.home.Advertising
+import com.heymaster.heymaster.model.home.HomeResponse
 import com.heymaster.heymaster.model.masterprofile.Portfolio
 import retrofit2.Response
 import retrofit2.http.*
@@ -30,8 +32,7 @@ interface ApiService {
     @GET("services")
     suspend fun getPopularMasters(): Response<List<CurrentUser>>
 
-    @GET("ads")
-    suspend fun getAds(): Response<List<Ads>>
+
 
     //Booking
     @GET("services")
@@ -54,9 +55,13 @@ interface ApiService {
     @GET("district/all")
     suspend fun getDistricts(): Response<List<District>>
 
+
     // client home page
+    @GET("advertising/all")
+    suspend fun getAds(): Response<Advertising>
 
-
+    @GET("home")
+    suspend fun getHome(): Response<HomeResponse>
 
 
     //Client

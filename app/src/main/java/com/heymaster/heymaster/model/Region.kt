@@ -1,8 +1,7 @@
 package com.heymaster.heymaster.model
 
-data class District(
+data class Region(
     val id: Int,
     val nameRu: String,
-    val nameUz: String,
-    val region: Region
+    val nameUz: String
 )

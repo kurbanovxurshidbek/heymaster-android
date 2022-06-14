@@ -11,5 +11,7 @@ class ClientHomeRepository(
 
     suspend fun getAds() = apiService.getAds()
 
+    suspend fun getHome() = apiService.getHome()
+
 
 }

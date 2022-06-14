@@ -7,16 +7,26 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.model.Ads
+import com.heymaster.heymaster.model.Object
+import com.heymaster.heymaster.model.home.Advertising
+import org.w3c.dom.Text
 
 class ClientHomeAdsPagerAdapter: RecyclerView.Adapter<ClientHomeAdsPagerAdapter.AdsViewHolder>(){
 
-    private val ads: ArrayList<Ads> = ArrayList()
+    private val ads: ArrayList<Advertising> = ArrayList()
 
 inner class AdsViewHolder(val view: View): RecyclerView.ViewHolder(view) {
-    fun bind(ads: Ads) {
+    fun bind(ads: Advertising) {
         val tvTitle = view.findViewById<TextView>(R.id.tvAdsTitle)
+        val tvBody = view.findViewById<TextView>(R.id.tvAdsBody)
+        ads.`object`.forEach {
+            tvTitle.text = it.title
+            tvBody.text = it.body
+        }
 
     }
+
+
 }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdsViewHolder {
@@ -33,9 +43,9 @@ inner class AdsViewHolder(val view: View): RecyclerView.ViewHolder(view) {
         return ads.size
     }
 
-    fun submitAds(list: List<Ads>) {
+    fun submitAds(advertising: ArrayList<Advertising>) {
         ads.clear()
-        ads.addAll(list)
+        ads.addAll(advertising)
         notifyDataSetChanged()
     }
 }

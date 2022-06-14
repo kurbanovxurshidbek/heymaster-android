@@ -20,7 +20,9 @@ import com.heymaster.heymaster.role.master.repository.MasterHomeRepository
 import com.heymaster.heymaster.role.master.viewmodel.MasterHomeViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterHomeViewModelFactory
 import com.heymaster.heymaster.global.BaseFragment
+import com.heymaster.heymaster.model.home.Advertising
 import com.heymaster.heymaster.utils.UiStateList
+import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -84,16 +86,16 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
             viewModel.services.collect { it ->
                 when (it) {
                     is UiStateList.LOADING -> {
-                        binding.nestedHome.visibility = View.GONE
-                        binding.progressHome.customProgress.visibility = View.VISIBLE
+//                        binding.nestedHome.visibility = View.GONE
+//                        binding.progressHome.customProgress.visibility = View.VISIBLE
                     }
                     is UiStateList.SUCCESS -> {
-                        binding.progressHome.customProgress.visibility = View.GONE
-                        binding.nestedHome.visibility = View.VISIBLE
-                        serviceAdapter.submitList(it.data)
-                        popularServicesAdapter.submitList(it.data)
-                        popularMastersAdapter.submitList(it.data)
-                        Log.d("@@@", it.data.toString())
+//                        binding.progressHome.customProgress.visibility = View.GONE
+//                        binding.nestedHome.visibility = View.VISIBLE
+//                        serviceAdapter.submitList(it.data)
+//                        popularServicesAdapter.submitList(it.data)
+//                        popularMastersAdapter.submitList(it.data)
+//                        Log.d("@@@", it.data.toString())
 
                     }
                     is UiStateList.ERROR -> {
@@ -108,15 +110,19 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.ads.collect {
                 when (it) {
-                    is UiStateList.LOADING -> {
-                        binding.progressHome.customProgress.isVisible = true
+                    is UiStateObject.LOADING -> {
+                        binding.nestedHome.visibility = View.GONE
+                        binding.progressHome.customProgress.visibility = View.VISIBLE
                     }
-                    is UiStateList.SUCCESS -> {
-                        binding.progressHome.customProgress.isVisible = false
-                        adsAdapter.submitAds(it.data!!)
+                    is UiStateObject.SUCCESS -> {
+                        binding.progressHome.customProgress.visibility = View.GONE
+                        binding.nestedHome.visibility = View.VISIBLE
+                        val list = ArrayList<Advertising>()
+                        list.addAll(listOf(it.data!!))
+                        adsAdapter.submitAds(list)
 
                     }
-                    is UiStateList.ERROR -> {
+                    is UiStateObject.ERROR -> {
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit

@@ -15,6 +15,7 @@ import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentUserAllPopularMastersBinding
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.UiStateList
+import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
 
@@ -29,7 +30,7 @@ class ClientAllPopularMastersFragment : BaseFragment(R.layout.fragment_user_all_
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
         setupRv()
-        viewModel.getServices()
+        //viewModel.getHome()
         observeViewModel()
 
 
@@ -37,18 +38,18 @@ class ClientAllPopularMastersFragment : BaseFragment(R.layout.fragment_user_all_
 
     private fun observeViewModel() {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.services.collect { it ->
+            viewModel.home.collect { it ->
                 when (it) {
-                    is UiStateList.LOADING -> {
+                    is UiStateObject.LOADING -> {
                         binding.progressUserHomeAllMasters.customProgress.visibility = View.VISIBLE
                     }
-                    is UiStateList.SUCCESS -> {
+                    is UiStateObject.SUCCESS -> {
                         binding.progressUserHomeAllMasters.customProgress.visibility = View.GONE
-                        popularMastersAdapter.submitList(it.data)
+
 
 
                     }
-                    is UiStateList.ERROR -> {
+                    is UiStateObject.ERROR -> {
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit

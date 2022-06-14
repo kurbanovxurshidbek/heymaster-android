@@ -47,12 +47,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         editPhoneNumberListener()
 
         binding.btnContinue.setOnClickListener {
-            if (validPhoneNumber.length > 12) {
+            if (binding.etPhoneNumber.text.toString().isNotEmpty()) {
+                if (validPhoneNumber.length > 12) {
                 SharedPref(requireContext()).saveString(KEY_PHONE_NUMBER, validPhoneNumber)
                 viewModel.login(LoginRequest(validPhoneNumber))
             } else {
                 Toast.makeText(requireContext(), "Invalid phone number", Toast.LENGTH_SHORT).show()
             }
+        }
+
         }
 
     }

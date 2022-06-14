@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.heymaster.heymaster.R
+import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.role.client.adapter.ClientHomePopularMastersAdapter
 import com.heymaster.heymaster.role.client.adapter.ClientHomePopularServicesAdapter
 import com.heymaster.heymaster.role.client.adapter.ClientHomeServicesAdapter
@@ -19,7 +20,10 @@ import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentUserHomeBinding
 import com.heymaster.heymaster.global.BaseFragment
+import com.heymaster.heymaster.model.home.Advertising
+import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.UiStateList
+import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -48,7 +52,7 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
         setupAdsAdapter()
         setupRv()
         setupViewModel()
-        viewModel.getServices()
+        viewModel.getHome()
         viewModel.getAds()
         observeViewModel()
         adapterItemClick()
@@ -103,23 +107,48 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
 
     private fun observeViewModel() {
 
+//        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+//            viewModel.services.collect { it ->
+//                when (it) {
+//                    is UiStateList.LOADING -> {
+////                        binding.nestedHome.visibility = View.GONE
+////                        binding.progressHome.customProgress.visibility = View.VISIBLE
+//                    }
+//                    is UiStateList.SUCCESS -> {
+////                        binding.progressHome.customProgress.visibility = View.GONE
+////                        binding.nestedHome.visibility = View.VISIBLE
+////                        serviceAdapter.submitList(it.data)
+////                        popularServicesAdapter.submitList(it.data)
+////                        popularMastersAdapter.submitList(it.data)
+////                        Log.d("@@@", it.data.toString())
+//
+//                    }
+//                    is UiStateList.ERROR -> {
+//                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+//                    }
+//                    else -> Unit
+//                }
+//            }
+//        }
+
+
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.services.collect { it ->
+            viewModel.ads.collect {
                 when (it) {
-                    is UiStateList.LOADING -> {
+                    is UiStateObject.LOADING -> {
                         binding.nestedHome.visibility = View.GONE
                         binding.progressHome.customProgress.visibility = View.VISIBLE
                     }
-                    is UiStateList.SUCCESS -> {
+                    is UiStateObject.SUCCESS -> {
                         binding.progressHome.customProgress.visibility = View.GONE
                         binding.nestedHome.visibility = View.VISIBLE
-                        serviceAdapter.submitList(it.data)
-                        popularServicesAdapter.submitList(it.data)
-                        popularMastersAdapter.submitList(it.data)
-                        Log.d("@@@", it.data.toString())
+                        val list = ArrayList<Advertising>()
+                        list.addAll(listOf(it.data!!))
+                        adsAdapter.submitAds(list)
 
                     }
-                    is UiStateList.ERROR -> {
+                    is UiStateObject.ERROR -> {
+                        Log.d("@@@", "observeViewModel: ${it.message}")
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit
@@ -127,25 +156,27 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
             }
         }
 
-
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.ads.collect {
+            viewModel.home.collect {
                 when (it) {
-                    is UiStateList.LOADING -> {
+                    is UiStateObject.LOADING -> {
+                        binding.nestedHome.visibility = View.GONE
+                        binding.progressHome.customProgress.visibility = View.VISIBLE
                     }
-                    is UiStateList.SUCCESS -> {
-                        adsAdapter.submitAds(it.data!!)
+                    is UiStateObject.SUCCESS -> {
+                        binding.progressHome.customProgress.visibility = View.GONE
+                        binding.nestedHome.visibility = View.VISIBLE
+                        serviceAdapter.submitList(it.data.categoryList)
+
 
                     }
-                    is UiStateList.ERROR -> {
+                    is UiStateObject.ERROR -> {
+                        Log.d("@@@", "observeViewModel: ${it.message}")
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit
                 }
             }
-
-
-
         }
     }
 
@@ -169,9 +200,10 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
 
 
     private fun setupViewModel() {
+        val token = SharedPref(requireContext()).getString(KEY_ACCESS_TOKEN)
         viewModel = ViewModelProvider(
             this,
-            ClientHomeViewModelFactory(ClientHomeRepository(ApiClient.createService(ApiService::class.java)))
+            ClientHomeViewModelFactory(ClientHomeRepository(ApiClient.createServiceWithAuth(ApiService::class.java, token!!)))
         )[ClientHomeViewModel::class.java]
     }
 

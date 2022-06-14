@@ -15,6 +15,7 @@ import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentUserAllPopularServiceBinding
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.utils.UiStateList
+import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
 
@@ -29,25 +30,24 @@ class ClientAllPopularServiceFragment : BaseFragment(R.layout.fragment_user_all_
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
         setupRv()
-        viewModel.getServices()
+        //viewModel.getHome()
         obServeViewModel()
 
     }
 
     private fun obServeViewModel() {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.services.collect { it ->
+            viewModel.home.collect { it ->
                 when (it) {
-                    is UiStateList.LOADING -> {
+                    is UiStateObject.LOADING -> {
                         binding.progressUserHomeAllService.customProgress.visibility = View.VISIBLE
                     }
-                    is UiStateList.SUCCESS -> {
+                    is UiStateObject.SUCCESS -> {
                         binding.progressUserHomeAllService.customProgress.visibility = View.GONE
-                        serviceAdapter.submitList(it.data)
 
 
                     }
-                    is UiStateList.ERROR -> {
+                    is UiStateObject.ERROR -> {
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit

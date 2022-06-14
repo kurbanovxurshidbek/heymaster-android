@@ -8,31 +8,32 @@ import androidx.recyclerview.widget.RecyclerView
 import com.heymaster.heymaster.role.client.adapter.ClientHomeServicesAdapter.*
 import com.heymaster.heymaster.databinding.ItemServiceBinding
 import com.heymaster.heymaster.model.Service
+import com.heymaster.heymaster.model.home.Category
 import com.squareup.picasso.Picasso
 
-class ClientHomeServicesAdapter: ListAdapter<Service, ServiceViewHolder>(ServiceItemDiffCallback()) {
+class ClientHomeServicesAdapter: ListAdapter<Category, ServiceViewHolder>(ServiceItemDiffCallback()) {
 
-    var itemClickListener: ((Service) -> Unit)? = null
+    var itemClickListener: ((Category) -> Unit)? = null
 
     inner class ServiceViewHolder(private val binding: ItemServiceBinding):
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(service: Service) {
-            binding.tvServiceName.text = service.name
-            Picasso.get().load(service.image).into(binding.icServices)
+        fun bind(category: Category) {
+            binding.tvServiceName.text = category.name
+            //Picasso.get().load(category.image).into(binding.icServices)
 
             binding.llItemService.setOnClickListener {
-                itemClickListener?.invoke(service)
+                itemClickListener?.invoke(category)
             }
 
         }
     }
 
-    private class ServiceItemDiffCallback: DiffUtil.ItemCallback<Service>() {
-        override fun areItemsTheSame(oldItem: Service, newItem: Service): Boolean {
+    private class ServiceItemDiffCallback: DiffUtil.ItemCallback<Category>() {
+        override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Service, newItem: Service): Boolean {
+        override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {
             return oldItem == newItem
         }
     }
@@ -43,7 +44,7 @@ class ClientHomeServicesAdapter: ListAdapter<Service, ServiceViewHolder>(Service
     }
 
     override fun onBindViewHolder(holder: ServiceViewHolder, position: Int) {
-        val service = getItem(position)
-        holder.bind(service)
+        val category = getItem(position)
+        holder.bind(category)
     }
 }
