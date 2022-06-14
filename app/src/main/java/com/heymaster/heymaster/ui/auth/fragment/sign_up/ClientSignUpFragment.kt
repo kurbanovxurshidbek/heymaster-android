@@ -80,15 +80,14 @@ class ClientSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
 
         sharedViewModel.clientSignUp.observe(viewLifecycleOwner){
             if (binding.etUserFullName.text.isNotEmpty()
-                && binding.etUserGender.text.isNotEmpty()
                 && binding.etUserBirthday.text!!.isNotEmpty()) {
 
                 with(binding) {
                     val fullName = etUserFullName.text.toString()
-                    val gender = etUserGender.text.toString() == MALE
+                    val gender = true
                     val birthDay = etUserBirthday.text.toString()
                     val password = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
-                    val clientRegisterRequest = ClientRegisterRequest(birthDay, fullName, true, phoneNumber, password)
+                    val clientRegisterRequest = ClientRegisterRequest(birthDay, fullName, gender, phoneNumber, password)
                     viewModel.clientRegister(clientRegisterRequest)
                 }
             }
