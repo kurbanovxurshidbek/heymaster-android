@@ -2,6 +2,7 @@ package com.heymaster.heymaster.data.network
 
 import com.heymaster.heymaster.model.*
 import com.heymaster.heymaster.model.auth.*
+import com.heymaster.heymaster.model.auth.Object
 import com.heymaster.heymaster.model.home.Advertising
 import com.heymaster.heymaster.model.home.HomeResponse
 import com.heymaster.heymaster.model.masterprofile.Portfolio
@@ -57,6 +58,9 @@ interface ApiService {
 
     @GET("region/all")
     suspend fun getRegions(): Response<List<Region>>
+
+    @GET("profession/getAllActive")
+    suspend fun getProfessions(): Response<Profession>
 
 
     // client home page

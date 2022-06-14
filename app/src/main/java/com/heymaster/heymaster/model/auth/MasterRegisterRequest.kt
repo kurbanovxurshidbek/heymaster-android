@@ -10,5 +10,7 @@ data class MasterRegisterRequest(
     val phoneNumber: String? = null,
     val professionIdList: List<Int>? = null,
     val regionId: Int? = null,
-    val salary: Int? = null
+    val salary: Int? = null,
+    val deviceId: String? = null,
+    val deviceLan: String? = null
 )

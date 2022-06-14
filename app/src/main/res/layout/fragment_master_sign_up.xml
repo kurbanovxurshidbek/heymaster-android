@@ -125,6 +125,26 @@
                     tools:ignore="TextFields"/>
 
                 <EditText
+                    android:id="@+id/et_master_professions"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_edit_text_login"
+                    android:drawablePadding="12dp"
+                    android:hint="Professions"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:paddingHorizontal="24sp"
+                    android:paddingVertical="0dp"
+                    android:textColor="@color/black1"
+                    android:textCursorDrawable="@drawable/edittext_cursor_drawable"
+                    android:textSize="14sp"
+                    tools:ignore="TextFields" />
+
+                <EditText
                     android:id="@+id/et_master_experience"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"

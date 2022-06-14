@@ -155,14 +155,18 @@ class ClientSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
         dialog.setCancelable(true)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-
-
-        binding1.tvSave.setOnClickListener {
+        binding1.tvMale.setOnClickListener {
+            binding.etUserGender.text = Editable.Factory.getInstance().newEditable(binding1.tvMale.text)
             dialog.dismiss()
         }
-        binding1.tvCancel.setOnClickListener {
+
+        binding1.tvFemale.setOnClickListener {
+            binding.etUserGender.text = Editable.Factory.getInstance().newEditable(binding1.tvFemale.text)
             dialog.dismiss()
         }
+
+
+
         dialog.show()
 
     }

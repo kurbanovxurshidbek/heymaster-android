@@ -16,6 +16,7 @@ import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.userMessage
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import java.lang.Object
 
 class AuthViewModel(
     private val repository: AuthRepository,
@@ -39,6 +40,9 @@ class AuthViewModel(
 
     private val _districts = MutableStateFlow<UiStateList<District>>(UiStateList.EMPTY)
     val districts = _districts
+
+    private val _professions = MutableStateFlow<UiStateObject<Profession>>(UiStateObject.EMPTY)
+    val professions = _professions
 
 
 
@@ -149,6 +153,18 @@ class AuthViewModel(
 
         } catch (e: Exception) {
             _districts.value = UiStateList.ERROR(e.userMessage())
+        }
+    }
+
+    fun getProfessions() = viewModelScope.launch {
+        _professions.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.getProfessions()
+            _professions.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _professions.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 
