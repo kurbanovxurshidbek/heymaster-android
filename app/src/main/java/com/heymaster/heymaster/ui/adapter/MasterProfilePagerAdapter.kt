@@ -5,7 +5,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.heymaster.heymaster.role.master.fragment.profile.MasterChildProfileFragment
-import com.heymaster.heymaster.ui.master.profile.MasterPortfolioFragment
+import com.heymaster.heymaster.role.master.fragment.profile.MasterPortfolioFragment
+
 
 class MasterProfilePagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
