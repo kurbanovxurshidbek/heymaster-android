@@ -61,11 +61,16 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun editPhoneNumberListener() {
+
         binding.etPhoneNumber.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
             }
+
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
             }
+
             override fun afterTextChanged(number: Editable?) {
                 if (number.toString().length == 12) {
                     hideKeyboard()

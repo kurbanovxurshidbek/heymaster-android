@@ -36,7 +36,7 @@ class LocaleManager(context: Context?) {
     }
 
     val language: String?
-        get() = sharedPreferences?.getString(LANGUAGE_KEY, LANGUAGE_ENGLISH)
+        get() = sharedPreferences?.getString(LANGUAGE_KEY, LANGUAGE_UZBEK)
 
 
     @SuppressLint("ApplySharedPref")

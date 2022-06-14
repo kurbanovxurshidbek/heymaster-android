@@ -90,7 +90,6 @@ class ClientSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
                     val password = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
                     val clientRegisterRequest = ClientRegisterRequest(birthDay, fullName, true, phoneNumber, password)
                     viewModel.clientRegister(clientRegisterRequest)
-                    
                 }
             }
 
@@ -139,7 +138,7 @@ class ClientSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
                         }
 
                         is UiStateObject.ERROR -> {
-                            Log.d(TAG, "observeViewModel: ${it.message}")
+                            Log.d("@@@@@ERROR", "observeViewModel: ${it.message}")
                         }
                         else -> Unit
                     }

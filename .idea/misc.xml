@@ -91,6 +91,7 @@
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/menu/menu_main_master.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/menu/menu_main_user.xml" value="0.25104166666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/drawable/bg_edit_btn.xml" value="0.1185" />
+        <entry key="..\:/heymaster-android/app/src/main/res/layout/activity_user.xml" value="0.25" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/dialog_choose_language.xml" value="0.19947916666666668" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_master_all_popular.xml" value="0.20416666666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_master_all_popular_services.xml" value="0.19010416666666666" />
@@ -111,6 +112,7 @@
         <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_user_all_popular_masters.xml" value="0.1539855072463768" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_user_all_popular_service.xml" value="0.20416666666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_user_all_services.xml" value="0.20416666666666666" />
+        <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_user_home.xml" value="0.20416666666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/fragment_user_profile.xml" value="0.18617021276595744" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/item_active_booking_master.xml" value="0.20416666666666666" />
         <entry key="..\:/heymaster-android/app/src/main/res/layout/item_all_service.xml" value="0.20416666666666666" />
