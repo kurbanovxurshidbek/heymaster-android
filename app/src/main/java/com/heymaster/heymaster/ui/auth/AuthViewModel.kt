@@ -82,7 +82,6 @@ class AuthViewModel(
         _clientRegister.value = UiStateObject.LOADING
 
         try {
-
             val response = repository.clientRegister(clientRegisterRequest)
             if (response.code() >= 400) {
 

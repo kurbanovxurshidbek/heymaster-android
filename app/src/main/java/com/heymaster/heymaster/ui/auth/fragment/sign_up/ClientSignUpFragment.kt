@@ -89,7 +89,6 @@ class ClientSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
                     val birthDay = etUserBirthday.text.toString()
                     val clientRegisterRequest = ClientRegisterRequest(birthDay, fullName, gender, phoneNumber)
                     viewModel.clientRegister(clientRegisterRequest)
-                    
                 }
             }
 
@@ -138,7 +137,7 @@ class ClientSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
                         }
 
                         is UiStateObject.ERROR -> {
-                            Log.d(TAG, "observeViewModel: ${it.message}")
+                            Log.d("@@@@@ERROR", "observeViewModel: ${it.message}")
                         }
                         else -> Unit
                     }
