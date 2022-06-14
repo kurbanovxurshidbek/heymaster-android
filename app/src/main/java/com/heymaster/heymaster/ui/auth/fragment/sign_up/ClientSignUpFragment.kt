@@ -87,7 +87,8 @@ class ClientSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
                     val fullName = etUserFullName.text.toString()
                     val gender = etUserGender.text.toString() == MALE
                     val birthDay = etUserBirthday.text.toString()
-                    val clientRegisterRequest = ClientRegisterRequest(birthDay, fullName, gender, phoneNumber)
+                    val password = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
+                    val clientRegisterRequest = ClientRegisterRequest(birthDay, fullName, gender, phoneNumber, password)
                     viewModel.clientRegister(clientRegisterRequest)
                     
                 }
@@ -156,20 +157,10 @@ class ClientSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
         dialog.setCancelable(true)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        if (binding.etUserGender.text.toString() == MALE) {
-            binding1.btnMale.isChecked = true
-        } else if (binding.etUserGender.text.toString() == FEMALE){
-            binding1.btnFemale.isChecked = true
-        }
+
 
         binding1.tvSave.setOnClickListener {
-            if (binding1.genderGroup.checkedRadioButtonId == binding1.btnMale.id) {
-                binding.etUserGender.text = Editable.Factory.getInstance().newEditable(MALE)
-                dialog.dismiss()
-            } else {
-                binding.etUserGender.text = Editable.Factory.getInstance().newEditable(FEMALE)
-                dialog.dismiss()
-            }
+            dialog.dismiss()
         }
         binding1.tvCancel.setOnClickListener {
             dialog.dismiss()

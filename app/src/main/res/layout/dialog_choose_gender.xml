@@ -72,32 +72,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="12dp"
-                android:layout_weight="0.5">
-
-                <RadioGroup
-                    android:id="@+id/gender_group"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <RadioButton
-                        android:id="@+id/btn_male"
-                        android:layout_width="68dp"
-                        android:buttonTint="@color/orange1"
-                        android:layout_height="wrap_content" />
-
-                    <RadioButton
-                        android:id="@+id/btn_female"
-                        android:layout_width="68dp"
-                        android:buttonTint="@color/orange1"
-                        android:layout_height="wrap_content" />
-                </RadioGroup>
-            </LinearLayout>
 
 
         </LinearLayout>
@@ -105,13 +79,12 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginHorizontal="24dp"
             android:background="@color/grey1"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="12dp"
+
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -122,8 +95,14 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Cancel"
-                android:textColor="@color/black"
+                android:layout_marginVertical="8dp"
+                android:textColor="#535353"
                 android:textSize="22sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/grey1"/>
 
             <TextView
                 android:id="@+id/tv_save"
@@ -131,10 +110,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Save"
-                android:textColor="@color/orange1"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+                android:text="Ok"
+                android:textColor="#535353"
+                android:layout_marginVertical="8dp"
+                android:textSize="22sp"/>
 
 
         </LinearLayout>

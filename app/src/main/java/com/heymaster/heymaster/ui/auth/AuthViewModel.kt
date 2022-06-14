@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.heymaster.heymaster.model.District
 import com.heymaster.heymaster.model.ErrorResponse
+import com.heymaster.heymaster.model.Region
 import com.heymaster.heymaster.model.auth.*
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
@@ -33,8 +34,11 @@ class AuthViewModel(
     private val _masterRegister = MutableStateFlow<UiStateObject<MasterRegisterResponse>>(UiStateObject.EMPTY)
     val masterRegister = _masterRegister
 
+    private val _regions = MutableStateFlow<UiStateList<Region>>(UiStateList.EMPTY)
+    val regions = _regions
+
     private val _districts = MutableStateFlow<UiStateList<District>>(UiStateList.EMPTY)
-    val district = _districts
+    val districts = _districts
 
 
 
@@ -123,12 +127,24 @@ class AuthViewModel(
     }
 
 
+    fun getRegions() = viewModelScope.launch {
+        _regions.value = UiStateList.LOADING
 
-    fun getDistricts() = viewModelScope.launch {
+        try {
+            val response = repository.getRegions()
+            _regions.value = UiStateList.SUCCESS(response.body())
+
+        } catch (e: Exception) {
+            _regions.value = UiStateList.ERROR(e.userMessage())
+        }
+    }
+
+
+    fun getDistrictsFromRegion(id: Int) = viewModelScope.launch {
         _districts.value = UiStateList.LOADING
 
         try {
-            val response = repository.getDistricts()
+            val response = repository.getDistrictsFromRegion(id)
 
             _districts.value = UiStateList.SUCCESS(response.body())
 
@@ -136,6 +152,8 @@ class AuthViewModel(
             _districts.value = UiStateList.ERROR(e.userMessage())
         }
     }
+
+
 
 
 

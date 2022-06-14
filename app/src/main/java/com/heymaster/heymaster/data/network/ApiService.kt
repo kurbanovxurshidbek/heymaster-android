@@ -52,8 +52,11 @@ interface ApiService {
     @POST("auth/master/register")
     suspend fun masterRegister(@Body masterRegisterRequest: MasterRegisterRequest): Response<MasterRegisterResponse>
 
-    @GET("district/all")
-    suspend fun getDistricts(): Response<List<District>>
+    @GET("district/region/{id}")
+    suspend fun getDistrictsFromRegion(@Path("id") id: Int): Response<List<District>>
+
+    @GET("region/all")
+    suspend fun getRegions(): Response<List<Region>>
 
 
     // client home page

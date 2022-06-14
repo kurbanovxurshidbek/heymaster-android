@@ -4,5 +4,6 @@ data class ClientRegisterRequest(
     val Date: String?,
     val fullName: String?,
     val gender: Boolean?,
-    val phoneNumber: String?
+    val phoneNumber: String?,
+    val password: String?
 )
