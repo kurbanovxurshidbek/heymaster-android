@@ -1,8 +1,6 @@
 package com.heymaster.heymaster.model.home
 
-import com.heymaster.heymaster.model.Authority
-import com.heymaster.heymaster.model.Object
-import com.heymaster.heymaster.model.Roles
+import com.heymaster.heymaster.model.*
 
 data class TopMasters(
     val accountNonExpired: Boolean,
@@ -22,7 +20,7 @@ data class TopMasters(
     val gender: Any,
     val generatePassword: Any,
     val id: Int,
-    val location: Any,
+    val location: Location?,
     val password: Any,
     val peopleReitedCount: Int,
     val phoneNumber: String,
@@ -34,4 +32,9 @@ data class TopMasters(
     val updateAt: String,
     val updatedBy: Any,
     val username: String
+)
+
+data class Location(
+    val region: Region,
+    val district: District
 )

@@ -20,9 +20,11 @@ class ClientHomePopularMastersAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(master: TopMasters) {
             binding.tvMaster.text = master.fullName
-            binding.itemCard.setOnClickListener {
-                itemCLickListener.invoke()
+            if (master.location == null) {
+                binding.tvLocation.text = "${master.location?.district} ${master.location?.region}"
             }
+            binding.ratingMaster.rating = master.peopleReitedCount.toFloat()
+
         }
 
     }
