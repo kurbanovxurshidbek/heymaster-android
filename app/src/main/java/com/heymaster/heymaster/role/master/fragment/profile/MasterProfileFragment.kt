@@ -136,6 +136,7 @@ class MasterProfileFragment : Fragment(R.layout.fragment_master_profile) {
                 MasterPortfolioRepository(
                     ApiClient.createServiceWithAuth(
                         ApiService::class.java, token!!
+
                     )
                 )
             )
