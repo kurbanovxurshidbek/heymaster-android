@@ -1,10 +1,12 @@
 package com.heymaster.heymaster.role.master.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.heymaster.heymaster.role.master.repository.MasterPortfolioRepository
 import com.heymaster.heymaster.model.ErrorResponse
+import com.heymaster.heymaster.model.auth.CurrentUser
 import com.heymaster.heymaster.model.masterprofile.Portfolio
 
 import com.heymaster.heymaster.utils.UiStateList
@@ -14,6 +16,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 class MasterProfileViewModel(private val repository: MasterPortfolioRepository): ViewModel() {
+
+
 
     private val _portfolios = MutableStateFlow<UiStateList<Portfolio>>(UiStateList.EMPTY)
     val portfolios = _portfolios
@@ -33,6 +37,29 @@ class MasterProfileViewModel(private val repository: MasterPortfolioRepository):
             _portfolios.value = UiStateList.ERROR(e.userMessage())
         }
     }
+
+    private val _masterProfile = MutableStateFlow<UiStateObject<CurrentUser>>(UiStateObject.EMPTY)
+    val masterProfile = _masterProfile
+
+    fun getMasterProfile() = viewModelScope.launch {
+        _masterProfile.value = UiStateObject.LOADING
+        try {
+            val response = repository.getMasterProfileInfo()
+
+            if (response.code() >= 400) {
+                val error =
+                    Gson().fromJson(response.errorBody()!!.charStream(), ErrorResponse::class.java)
+                _masterProfile.value = UiStateObject.ERROR(error.errorMessage)
+            } else {
+                _masterProfile.value = UiStateObject.SUCCESS(response.body()!!)
+            }
+        } catch (e: Exception) {
+
+            _masterProfile.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+
 
 
     private val _portfolio = MutableStateFlow<UiStateObject<Portfolio>>(UiStateObject.EMPTY)

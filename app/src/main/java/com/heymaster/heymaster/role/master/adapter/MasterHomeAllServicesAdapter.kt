@@ -15,7 +15,6 @@ class MasterHomeAllServicesAdapter : ListAdapter<Service, MasterHomeAllServicesA
         fun bind(service: Service) {
 
         }
-
     }
 
     private class ServiceItemDiffCallback: DiffUtil.ItemCallback<Service>() {

@@ -1,48 +1,49 @@
 package com.heymaster.heymaster.role.master.adapter
 
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.heymaster.heymaster.databinding.ItemServiceBinding
-import com.heymaster.heymaster.model.Service
-import com.squareup.picasso.Picasso
+import com.heymaster.heymaster.model.home.Category
 
-class MasterHomeServicesAdapter : ListAdapter<Service, MasterHomeServicesAdapter.ServiceViewHolder>(ServiceItemDiffCallback()) {
 
-    var itemClickListener: ((Service) -> Unit)? = null
+class   MasterHomeServicesAdapter : ListAdapter<Category, MasterHomeServicesAdapter.CategoryViewHolder>(CategoryItemDiffCallback()) {
 
-    inner class ServiceViewHolder(private val binding: ItemServiceBinding):
+    var itemClickListener: ((Category) -> Unit)? = null
+
+    inner class CategoryViewHolder(private val binding: ItemServiceBinding):
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(service: Service) {
-            binding.tvServiceName.text = service.name
-            Picasso.get().load(service.image).into(binding.icServices)
+        fun bind(category: Category) {
+            binding.tvServiceName.text = category.name
+            //Picasso.get().load(category.image).into(binding.icServices)
 
             binding.llItemService.setOnClickListener {
-                itemClickListener?.invoke(service)
+                itemClickListener?.invoke(category)
             }
 
         }
     }
 
-    private class ServiceItemDiffCallback: DiffUtil.ItemCallback<Service>() {
-        override fun areItemsTheSame(oldItem: Service, newItem: Service): Boolean {
+    private class CategoryItemDiffCallback: DiffUtil.ItemCallback<Category>() {
+        override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Service, newItem: Service): Boolean {
+        override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {
             return oldItem == newItem
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val view = ItemServiceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ServiceViewHolder(view)
+        return CategoryViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ServiceViewHolder, position: Int) {
-        val service = getItem(position)
-        holder.bind(service)
+    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
+        val category = getItem(position)
+        holder.bind(category)
     }
 }

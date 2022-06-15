@@ -7,5 +7,7 @@ class MasterPortfolioRepository(private val apiService: ApiService) {
     suspend fun getImages() = apiService.getImages()
     suspend fun getImage(id: Int) = apiService.getImage(id)
 
+    suspend fun getMasterProfileInfo() = apiService.currentUser()
+
 
 }

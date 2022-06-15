@@ -8,6 +8,7 @@ import com.heymaster.heymaster.role.master.repository.MasterHomeRepository
 import com.heymaster.heymaster.model.ErrorResponse
 import com.heymaster.heymaster.model.Service
 import com.heymaster.heymaster.model.home.Advertising
+import com.heymaster.heymaster.model.home.HomeResponse
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.userMessage
@@ -18,22 +19,22 @@ class MasterHomeViewModel(
     private val repository: MasterHomeRepository,
 ) : ViewModel() {
 
-    private val _services = MutableStateFlow<UiStateList<Service>>(UiStateList.EMPTY)
-    val services = _services
+    private val _home = MutableStateFlow<UiStateObject<HomeResponse>>(UiStateObject.EMPTY)
+    val home = _home
 
-    fun getServices() = viewModelScope.launch {
-        _services.value = UiStateList.LOADING
+    fun getHome() = viewModelScope.launch {
+        _home.value = UiStateObject.LOADING
         try {
-            val response = repository.getServices()
+            val response = repository.getHome()
             if (response.code() >= 400) {
                 val error =
                     Gson().fromJson(response.errorBody()!!.charStream(), ErrorResponse::class.java)
-                _services.value = UiStateList.ERROR(error.errorMessage)
+                _home.value = UiStateObject.ERROR(error.errorMessage)
             } else {
-                _services.value = UiStateList.SUCCESS(response.body()!!)
+                _home.value = UiStateObject.SUCCESS(response.body()!!)
             }
         } catch (e: Exception) {
-            _services.value = UiStateList.ERROR(e.userMessage())
+            _home.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 
@@ -65,13 +66,8 @@ class MasterHomeViewModel(
 
         try {
             val response = repository.getAds()
-            if (response.code() >= 400) {
-                val error =
-                    Gson().fromJson(response.errorBody()!!.charStream(), ErrorResponse::class.java)
-                _ads.value = UiStateObject.ERROR(error.errorMessage)
-            } else {
-                _ads.value = UiStateObject.SUCCESS(response.body()!!)
-            }
+            _ads.value = UiStateObject.SUCCESS(response.body()!!)
+
         } catch (e: Exception) {
             _ads.value = UiStateObject.ERROR(e.userMessage())
         }
