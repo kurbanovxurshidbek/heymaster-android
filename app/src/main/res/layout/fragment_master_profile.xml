@@ -79,7 +79,6 @@
                 android:id="@+id/tvProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Firdavs Davlatov"
                 android:textSize="18sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
@@ -88,27 +87,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_location"/>
-
-                <TextView
-                    android:id="@+id/tvProfileProvince"
+                    android:src="@drawable/ic_location"
+                    android:layout_gravity="center"/>
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tashkent,"
-                    android:textColor="@color/black"/>
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tvProfileProvince"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"/>
 
-                <TextView
-                    android:id="@+id/tvProfileRegion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tashkent"
-                    android:layout_marginLeft="7dp"
-                    android:textColor="@color/black"
-                    />
+                    <TextView
+                        android:id="@+id/tvProfileRegion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+
 
             </LinearLayout>
 

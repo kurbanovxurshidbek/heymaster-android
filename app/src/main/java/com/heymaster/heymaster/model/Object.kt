@@ -1,6 +1,6 @@
 package com.heymaster.heymaster.model
 
-data class Object(
+data class  Object(
     val attachment: Any,
     val body: String,
     val createAt: String,

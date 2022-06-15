@@ -15,6 +15,7 @@ import com.heymaster.heymaster.role.master.repository.MasterHomeRepository
 import com.heymaster.heymaster.role.master.viewmodel.MasterHomeViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterHomeViewModelFactory
 import com.heymaster.heymaster.utils.UiStateList
+import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
 
@@ -30,25 +31,24 @@ class MasterAllServicesFragment : BaseFragment(R.layout.fragment_master_all_serv
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
         setupRv()
-        viewModel.getServices()
+        viewModel.getHome()
         obServeViewModel()
 
     }
 
     private fun obServeViewModel() {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.services.collect { it ->
+            viewModel.home.collect { it ->
                 when (it) {
-                    is UiStateList.LOADING -> {
+                    is UiStateObject.LOADING -> {
                         binding.progressMasterHomeAllService.customProgress.visibility = View.VISIBLE
                     }
-                    is UiStateList.SUCCESS -> {
+                    is UiStateObject.SUCCESS -> {
                         binding.progressMasterHomeAllService.customProgress.visibility = View.GONE
-                        serviceAdapter.submitList(it.data)
 
 
                     }
-                    is UiStateList.ERROR -> {
+                    is UiStateObject.ERROR -> {
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit

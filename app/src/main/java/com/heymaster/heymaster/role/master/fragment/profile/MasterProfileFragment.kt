@@ -2,17 +2,20 @@ package com.heymaster.heymaster.role.master.fragment.profile
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.tabs.TabLayout
 import com.heymaster.heymaster.R
+import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.ui.adapter.MasterProfilePagerAdapter
@@ -20,7 +23,11 @@ import com.heymaster.heymaster.databinding.FragmentMasterProfileBinding
 import com.heymaster.heymaster.role.master.repository.MasterPortfolioRepository
 import com.heymaster.heymaster.role.master.viewmodel.MasterProfileViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterPortfolioViewModelFactory
+import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
+import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
+import kotlinx.coroutines.flow.collect
+import java.security.Key
 
 class MasterProfileFragment : Fragment(R.layout.fragment_master_profile) {
 
@@ -33,6 +40,8 @@ class MasterProfileFragment : Fragment(R.layout.fragment_master_profile) {
         setupViewModel()
         setupViewPager()
         itemClickManager()
+        viewModel.getMasterProfile()
+        observeViewModel()
     }
 
     private fun itemClickManager() {
@@ -49,6 +58,33 @@ class MasterProfileFragment : Fragment(R.layout.fragment_master_profile) {
                 findNavController().navigate(R.id.masterEditProfileFragment)
             }
 
+        }
+    }
+
+
+    private fun observeViewModel() {
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.masterProfile.collect {
+                when (it) {
+                    is UiStateObject.LOADING -> {
+                        Log.d("@@@loading", "observeViewModel: loading")
+                    }
+                    is UiStateObject.SUCCESS -> {
+                        Log.d("@@@success", "observeViewModel: loading")
+                        val profileMaster = it.data
+                        with(binding) {
+                           tvProfile.text = profileMaster.fullName
+                            tvProfileProvince.text = profileMaster.location.district.nameUz
+                            tvProfileRegion.text = profileMaster.location.region.nameUz
+                        }
+
+                    }
+                    is UiStateObject.ERROR -> {
+                        Log.d("@@@error", "observeViewModel: error")
+                    }
+                    else -> Unit
+                }
+            }
         }
     }
 
@@ -93,19 +129,18 @@ class MasterProfileFragment : Fragment(R.layout.fragment_master_profile) {
             }
         }
 
-
     private fun setupViewModel() {
+        val token = SharedPref(requireContext()).getString(KEY_ACCESS_TOKEN)
         viewModel = ViewModelProvider(
             this, MasterPortfolioViewModelFactory(
                 MasterPortfolioRepository(
-                    ApiClient.createService(
-                        ApiService::class.java
+                    ApiClient.createServiceWithAuth(
+                        ApiService::class.java, token!!
                     )
                 )
             )
         )[MasterProfileViewModel::class.java]
     }
-
 
     private fun setupViewPager() {
         adapter = MasterProfilePagerAdapter(childFragmentManager, lifecycle)

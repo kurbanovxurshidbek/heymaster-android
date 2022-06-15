@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.heymaster.heymaster.R
+import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.role.client.adapter.ClientHomePopularMastersAdapter
 import com.heymaster.heymaster.role.client.adapter.ClientHomePopularServicesAdapter
 import com.heymaster.heymaster.role.client.adapter.ClientHomeServicesAdapter
@@ -21,6 +22,12 @@ import com.heymaster.heymaster.role.master.viewmodel.MasterHomeViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterHomeViewModelFactory
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.model.home.Advertising
+import com.heymaster.heymaster.model.home.TopMasters
+import com.heymaster.heymaster.role.master.adapter.MasterHomeAdsPagerAdapter
+import com.heymaster.heymaster.role.master.adapter.MasterHomePopularMasterAdapter
+import com.heymaster.heymaster.role.master.adapter.MasterHomePopularServicesAdapter
+import com.heymaster.heymaster.role.master.adapter.MasterHomeServicesAdapter
+import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
@@ -36,20 +43,20 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
     private var job:Job? = null
 
     private lateinit var viewModel: MasterHomeViewModel
-    private val serviceAdapter by lazy { ClientHomeServicesAdapter() }
-    private val adsAdapter by lazy { ClientHomeAdsPagerAdapter() }
-    private val popularServicesAdapter by lazy { ClientHomePopularServicesAdapter() }
-    private val popularMastersAdapter by lazy { ClientHomePopularMastersAdapter() }
+    private val serviceAdapter by lazy { MasterHomeServicesAdapter() }
+    private val adsAdapter by lazy { MasterHomeAdsPagerAdapter() }
+    private val popularServicesAdapter by lazy { MasterHomePopularServicesAdapter() }
+    private val popularMastersAdapter by lazy { MasterHomePopularMasterAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         setupAdsAdapter()
         setupRv()
         setupViewModel()
-        viewModel.getServices()
+        viewModel.getHome()
         viewModel.getAds()
+
         observeViewModel()
         adapterItemClick()
 
@@ -83,36 +90,12 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
     private fun observeViewModel() {
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.services.collect { it ->
-                when (it) {
-                    is UiStateList.LOADING -> {
-//                        binding.nestedHome.visibility = View.GONE
-//                        binding.progressHome.customProgress.visibility = View.VISIBLE
-                    }
-                    is UiStateList.SUCCESS -> {
-//                        binding.progressHome.customProgress.visibility = View.GONE
-//                        binding.nestedHome.visibility = View.VISIBLE
-//                        serviceAdapter.submitList(it.data)
-//                        popularServicesAdapter.submitList(it.data)
-//                        popularMastersAdapter.submitList(it.data)
-//                        Log.d("@@@", it.data.toString())
-
-                    }
-                    is UiStateList.ERROR -> {
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                    }
-                    else -> Unit
-                }
-            }
-        }
-
-
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.ads.collect {
                 when (it) {
                     is UiStateObject.LOADING -> {
                         binding.nestedHome.visibility = View.GONE
                         binding.progressHome.customProgress.visibility = View.VISIBLE
+                        Log.d("@@@loading", "observeViewModel: sdsasad")
                     }
                     is UiStateObject.SUCCESS -> {
                         binding.progressHome.customProgress.visibility = View.GONE
@@ -123,44 +106,72 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
 
                     }
                     is UiStateObject.ERROR -> {
+                        Log.d("@@@", "observeViewModel: ${it.message}")
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit
                 }
             }
         }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.home.collect {
+                when (it) {
+                    is UiStateObject.LOADING -> {
+                        binding.nestedHome.visibility = View.GONE
+                        binding.progressHome.customProgress.visibility = View.VISIBLE
+                    }
+                    is UiStateObject.SUCCESS -> {
+                        binding.progressHome.customProgress.visibility = View.GONE
+                        binding.nestedHome.visibility = View.VISIBLE
+                        serviceAdapter.submitList(it.data.categoryList)
+                        popularMastersAdapter.submitList(it.data.topMastersList)
+//                        popularServicesAdapter.submitList(it.data.topProfessionList)
+
+                    }
+                    is UiStateObject.ERROR -> {
+                        Log.d("@@@", "observeViewModel: ${it.message}")
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
     }
 
+
+
     private fun setupRv() {
-        binding.rvUserHomeService.adapter = serviceAdapter
-        binding.rvUserHomePopularServices.adapter = popularServicesAdapter
-        binding.rvUserHomePopularMasters.adapter = popularMastersAdapter
+        binding.rvMasterHomeService.adapter = serviceAdapter
+        binding.rvMasterHomePopularServices.adapter = popularServicesAdapter
+        binding.rvMasterHomePopularMasters.adapter = popularMastersAdapter
     }
 
     private fun setupAdsAdapter() {
-        binding.vpUserHomeAds.adapter = adsAdapter
-        binding.vpUserHomeAds.setCurrentItem(0, true)
-        binding.userHomeAdsDotsIndicator.setViewPager2(binding.vpUserHomeAds)
+        binding.vpMasterHomeAds.adapter = adsAdapter
+        binding.vpMasterHomeAds.setCurrentItem(0, true)
+        binding.userHomeAdsDotsIndicator.setViewPager2(binding.vpMasterHomeAds)
         addAutoScrollToViewPager()
     }
 
     private fun setupViewModel() {
+        val token = SharedPref(requireContext()).getString(KEY_ACCESS_TOKEN)
         viewModel = ViewModelProvider(
             this,
-            MasterHomeViewModelFactory(MasterHomeRepository(ApiClient.createService(ApiService::class.java)))
+            MasterHomeViewModelFactory(MasterHomeRepository(ApiClient.createServiceWithAuth(ApiService::class.java, token!!)))
         )[MasterHomeViewModel::class.java]
     }
-
 
     private fun addAutoScrollToViewPager() {
 
         job = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             while (isActive) {
                 delay(3000)
-                if (binding.vpUserHomeAds.currentItem == adsAdapter.itemCount - 1) {
-                    binding.vpUserHomeAds.currentItem = 0
+                if (binding.vpMasterHomeAds.currentItem == adsAdapter.itemCount - 1) {
+                    binding.vpMasterHomeAds.currentItem = 0
                 } else {
-                    binding.vpUserHomeAds.setCurrentItem(binding.vpUserHomeAds.currentItem + 1,
+                    binding.vpMasterHomeAds.setCurrentItem(binding.vpMasterHomeAds.currentItem + 1,
                         true)
                 }
             }

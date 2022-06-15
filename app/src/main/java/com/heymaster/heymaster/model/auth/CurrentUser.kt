@@ -1,5 +1,8 @@
 package com.heymaster.heymaster.model.auth
 
+import com.heymaster.heymaster.model.District
+import com.heymaster.heymaster.model.Region
+
 data class CurrentUser(
     val accountNonExpired: Boolean,
     val accountNonLocked: Boolean,
@@ -18,7 +21,7 @@ data class CurrentUser(
     val gender: Boolean,
     val generatePassword: Any,
     val id: Int,
-    val location: Any,
+    val location: Location,
     val password: Any,
     val peopleReitedCount: Int,
     val phoneNumber: String,
@@ -30,6 +33,10 @@ data class CurrentUser(
     val updateAt: String,
     val updatedBy: Any,
     val username: String
+)
+data class Location(
+    val region: Region,
+    val district: District
 )
 
 data class Roles(

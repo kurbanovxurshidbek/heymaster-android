@@ -98,11 +98,6 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
                 findNavController().navigate(R.id.action_userHomeFragment_to_userAllPopularMastersFragment)
             }
         }
-
-
-
-
-
     }
 
     private fun observeViewModel() {
@@ -198,7 +193,6 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
         addAutoScrollToViewPager()
     }
 
-
     private fun setupViewModel() {
         val token = SharedPref(requireContext()).getString(KEY_ACCESS_TOKEN)
         viewModel = ViewModelProvider(
@@ -206,7 +200,6 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
             ClientHomeViewModelFactory(ClientHomeRepository(ApiClient.createServiceWithAuth(ApiService::class.java, token!!)))
         )[ClientHomeViewModel::class.java]
     }
-
 
     private fun addAutoScrollToViewPager() {
         job = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
@@ -222,7 +215,6 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
 
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
