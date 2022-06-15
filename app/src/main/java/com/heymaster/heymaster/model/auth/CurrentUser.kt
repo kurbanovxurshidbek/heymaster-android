@@ -32,7 +32,14 @@ data class CurrentUser(
     val totalMark: Int,
     val updateAt: String,
     val updatedBy: Any,
-    val username: String
+    val username: String,
+    val device: Device
+)
+
+data class Device(
+    val id: Int,
+    val deviceId: String,
+    val deviceLan: String
 )
 data class Location(
     val region: Region,

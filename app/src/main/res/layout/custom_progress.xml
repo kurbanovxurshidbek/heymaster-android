@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:indeterminate="true"
-        android:indeterminateTint="@color/orange1"
+        android:indeterminateTint="#85D0FA"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 

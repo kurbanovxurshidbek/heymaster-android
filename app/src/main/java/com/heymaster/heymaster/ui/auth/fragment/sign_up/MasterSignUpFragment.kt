@@ -10,6 +10,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.heymaster.heymaster.R
@@ -30,6 +31,7 @@ import com.heymaster.heymaster.ui.auth.AuthViewModelFactory
 import com.heymaster.heymaster.utils.Constants
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.Constants.KEY_CONFIRM_CODE
+import com.heymaster.heymaster.utils.Constants.KEY_DEVICE_TOKEN
 import com.heymaster.heymaster.utils.Constants.KEY_LOGIN_SAVED
 import com.heymaster.heymaster.utils.Constants.KEY_USER_ROLE
 import com.heymaster.heymaster.utils.Constants.MALE
@@ -131,8 +133,9 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
                     val regionId: Int = 3
                     val districtId:Int = 208
                     val password = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
+                    val deviceId = SharedPref(requireContext()).getString(KEY_DEVICE_TOKEN)
                     Log.d("@@@phone", "onViewCreated: $phoneNumber")
-                    viewModel.masterRegister(MasterRegisterRequest(fullName = fullName, phoneNumber = phoneNumber,districtId = districtId,  regionId = regionId, deviceId = "dfdsfds", deviceLan = "edsfds", password = password, professionIdList = ArrayList(1), gender = gender))
+                    viewModel.masterRegister(MasterRegisterRequest(fullName = fullName, phoneNumber = phoneNumber,districtId = districtId,  regionId = regionId, deviceId = deviceId, deviceLan = "uz", password = password, professionIdList = ArrayList(1), gender = gender))
                     Log.d("@@@@key", "onViewCreated: ${viewModel.masterRegister}")
 
                 } else {
@@ -172,6 +175,7 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
 
                     }
                     is UiStateObject.SUCCESS -> {
+                        val activity = context as AppCompatActivity
                         binding.progressHome.customProgress.visibility = View.GONE
                         if (it.data.success) {
                             SharedPref(requireContext()).saveString(KEY_ACCESS_TOKEN, it.data.`object`.toString())
@@ -179,7 +183,7 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
                             SharedPref(requireContext()).saveBoolean(KEY_LOGIN_SAVED, true)
                             Log.d("@@@Token", "observeToken: ${it.data.`object`.toString()}")
                             startActivity(Intent(requireContext(), MasterActivity::class.java))
-                            activity?.finish()
+                            activity.finish()
                         }
                     }
 

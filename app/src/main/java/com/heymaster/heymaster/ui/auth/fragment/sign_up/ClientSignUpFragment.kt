@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.heymaster.heymaster.R
@@ -123,6 +124,7 @@ class ClientSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
 
                         }
                         is UiStateObject.SUCCESS -> {
+                            val activity = context as AppCompatActivity
                             binding.progressHome.customProgress.visibility = View.GONE
                             if (it.data.success) {
                                 SharedPref(requireContext()).saveString(KEY_ACCESS_TOKEN, it.data.`object`.toString())
@@ -130,7 +132,7 @@ class ClientSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
                                 SharedPref(requireContext()).saveBoolean(KEY_LOGIN_SAVED, true)
                                 Log.d("@@@Token", "observeToken: ${it.data.`object`.toString()}")
                                 startActivity(Intent(requireContext(), ClientActivity::class.java))
-                                activity?.finish()
+                                activity.finish()
                             }
                         }
 
