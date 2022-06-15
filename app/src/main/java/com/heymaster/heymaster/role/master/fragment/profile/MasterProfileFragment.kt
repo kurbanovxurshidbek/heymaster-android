@@ -27,7 +27,6 @@ import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
-import java.security.Key
 
 class MasterProfileFragment : Fragment(R.layout.fragment_master_profile) {
 
@@ -72,12 +71,13 @@ class MasterProfileFragment : Fragment(R.layout.fragment_master_profile) {
                     is UiStateObject.SUCCESS -> {
                         Log.d("@@@success", "observeViewModel: loading")
                         val profileMaster = it.data
+                        Log.d("@@@fullinfo", "observeViewModel: ${it.data}")
                         with(binding) {
-                           tvProfile.text = profileMaster.fullName
+                            tvProfile.text = profileMaster.fullName
                             tvProfileProvince.text = profileMaster.location.district.nameUz
+                            Log.d("@@@fullname", "observeViewModel: ${tvProfileProvince.text}")
                             tvProfileRegion.text = profileMaster.location.region.nameUz
                         }
-
                     }
                     is UiStateObject.ERROR -> {
                         Log.d("@@@error", "observeViewModel: error")

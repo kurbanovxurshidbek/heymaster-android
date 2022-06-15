@@ -1,6 +1,7 @@
 package com.heymaster.heymaster.role.master.fragment.profile
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -10,10 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.heymaster.heymaster.App
 import com.heymaster.heymaster.R
+import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.databinding.DialogChooseLanguageBinding
 import com.heymaster.heymaster.databinding.DialogLogOutBinding
 import com.heymaster.heymaster.databinding.FragmentMasterChildProfileBinding
 import com.heymaster.heymaster.manager.LocaleManager
+import com.heymaster.heymaster.ui.auth.LoginActivity
+import com.heymaster.heymaster.utils.Constants
 import com.heymaster.heymaster.utils.extensions.viewBinding
 
 class MasterChildProfileFragment : Fragment(R.layout.fragment_master_child_profile) {
@@ -53,6 +57,19 @@ class MasterChildProfileFragment : Fragment(R.layout.fragment_master_child_profi
         dialog.setContentView(binding.root)
         dialog.setCancelable(true)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        binding.tvOk.setOnClickListener {
+            SharedPref(requireContext()).removeString(Constants.KEY_ACCESS_TOKEN)
+            SharedPref(requireContext()).removeString(Constants.KEY_PHONE_NUMBER)
+            SharedPref(requireContext()).removeString(Constants.KEY_LOGIN_SAVED)
+            SharedPref(requireContext()).removeString(Constants.KEY_CONFIRM_CODE)
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            activity?.finish()
+        }
+
+        binding.tvCancel.setOnClickListener {
+            dialog.show()
+        }
         dialog.show()
     }
 

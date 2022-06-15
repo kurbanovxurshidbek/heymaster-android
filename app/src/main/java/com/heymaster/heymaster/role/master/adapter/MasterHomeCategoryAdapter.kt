@@ -10,7 +10,7 @@ import com.heymaster.heymaster.databinding.ItemServiceBinding
 import com.heymaster.heymaster.model.home.Category
 
 
-class   MasterHomeServicesAdapter : ListAdapter<Category, MasterHomeServicesAdapter.CategoryViewHolder>(CategoryItemDiffCallback()) {
+class   MasterHomeCategoryAdapter : ListAdapter<Category, MasterHomeCategoryAdapter.CategoryViewHolder>(CategoryItemDiffCallback()) {
 
     var itemClickListener: ((Category) -> Unit)? = null
 

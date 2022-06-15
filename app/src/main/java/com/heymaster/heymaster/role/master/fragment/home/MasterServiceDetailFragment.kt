@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.role.client.fragment
+package com.heymaster.heymaster.role.master.fragment.home
 
 import android.os.Bundle
 import android.util.Log
@@ -10,28 +10,29 @@ import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
-import com.heymaster.heymaster.databinding.FragmentServiceDetailBinding
+import com.heymaster.heymaster.databinding.FragmentMasterServiceDetailBinding
 import com.heymaster.heymaster.global.BaseFragment
-import com.heymaster.heymaster.role.client.adapter.ClientHomeProfessionsAdapter
-import com.heymaster.heymaster.role.client.repository.ClientHomeRepository
-import com.heymaster.heymaster.role.client.viewmodel.ClientHomeViewModel
-import com.heymaster.heymaster.role.client.viewmodel.factory.ClientHomeViewModelFactory
+import com.heymaster.heymaster.role.master.adapter.MasterHomeProfessionsAdapter
+import com.heymaster.heymaster.role.master.repository.MasterHomeRepository
+import com.heymaster.heymaster.role.master.viewmodel.MasterHomeViewModel
+import com.heymaster.heymaster.role.master.viewmodel.factory.MasterHomeViewModelFactory
 import com.heymaster.heymaster.utils.Constants
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
 
 
-class ClientServiceDetailFragment : BaseFragment(R.layout.fragment_service_detail) {
+class MasterServiceDetailFragment : BaseFragment(R.layout.fragment_master_service_detail) {
 
-    private val binding by viewBinding { FragmentServiceDetailBinding.bind(it) }
-    private lateinit var viewModel: ClientHomeViewModel
+    private val binding by viewBinding { FragmentMasterServiceDetailBinding.bind(it) }
+    private lateinit var viewModel: MasterHomeViewModel
 
-    private val professionAdapter by lazy { ClientHomeProfessionsAdapter() }
+    private val professionAdapter by lazy { MasterHomeProfessionsAdapter() }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
     }
 
@@ -53,11 +54,13 @@ class ClientServiceDetailFragment : BaseFragment(R.layout.fragment_service_detai
             viewModel.professionsFromCategory.collect {
                 when (it) {
                     is UiStateList.LOADING -> {
-                        binding.progressSearch.customProgress.visibility = View.VISIBLE
+
                     }
                     is UiStateList.SUCCESS -> {
-                        binding.progressSearch.customProgress.visibility = View.GONE
+
                         professionAdapter.submitList(it.data)
+
+
 
                     }
                     is UiStateList.ERROR -> {
@@ -75,9 +78,12 @@ class ClientServiceDetailFragment : BaseFragment(R.layout.fragment_service_detai
         val token = SharedPref(requireContext()).getString(Constants.KEY_ACCESS_TOKEN)
         viewModel = ViewModelProvider(
             this,
-            ClientHomeViewModelFactory(ClientHomeRepository(ApiClient.createServiceWithAuth(
-                ApiService::class.java, token!!)))
-        )[ClientHomeViewModel::class.java]
+            MasterHomeViewModelFactory(
+                MasterHomeRepository(
+                    ApiClient.createServiceWithAuth(
+                ApiService::class.java, token!!))
+            )
+        )[MasterHomeViewModel::class.java]
     }
 
     private fun setupRv() {

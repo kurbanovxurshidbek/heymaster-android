@@ -24,15 +24,23 @@
         <action
             android:id="@+id/action_masterHomeFragment_to_detailPageFragment"
             app:destination="@id/detailPageFragment" />
+
         <action
             android:id="@+id/action_masterHomeFragment_to_masterPopularMasterFragment"
             app:destination="@id/masterPopularMasterFragment" />
         <action
             android:id="@+id/action_masterHomeFragment_to_masterPopularServicesFragment"
             app:destination="@id/masterPopularServicesFragment" />
+
         <action
             android:id="@+id/action_masterHomeFragment_to_masterAllServicesFragment"
             app:destination="@id/masterAllServicesFragment" />
+        <action
+            android:id="@+id/action_masterHomeFragment_to_masterServiceDetailFragment"
+            app:destination="@id/masterServiceDetailFragment" />
+        <action
+            android:id="@+id/action_masterHomeFragment_to_masterServiceDetailFragment2"
+            app:destination="@id/masterServiceDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/masterProfileFragment"
@@ -93,8 +101,13 @@
         android:label="fragment_master_child_profile"
         tools:layout="@layout/fragment_master_child_profile" />
     <fragment
-        android:id="@+id/masterPortfolioFragment2"
+        android:id="@+id/masterPortfolioFragment"
         android:name="com.heymaster.heymaster.role.master.fragment.profile.MasterPortfolioFragment"
         android:label="fragment_master_portfolio"
         tools:layout="@layout/fragment_master_portfolio" />
+    <fragment
+        android:id="@+id/masterServiceDetailFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.home.MasterServiceDetailFragment"
+        android:label="fragment_master_service_detail"
+        tools:layout="@layout/fragment_master_service_detail" />
 </navigation>

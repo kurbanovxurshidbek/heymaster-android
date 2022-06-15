@@ -4,16 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.core.view.isVisible
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
-import com.heymaster.heymaster.role.client.adapter.ClientHomePopularMastersAdapter
-import com.heymaster.heymaster.role.client.adapter.ClientHomeProfessionsAdapter
-import com.heymaster.heymaster.role.client.adapter.ClientHomeCategoryAdapter
-import com.heymaster.heymaster.role.client.adapter.ClientHomeAdsPagerAdapter
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentMasterHomeBinding
@@ -22,13 +18,8 @@ import com.heymaster.heymaster.role.master.viewmodel.MasterHomeViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterHomeViewModelFactory
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.model.home.Advertising
-import com.heymaster.heymaster.model.home.TopMasters
-import com.heymaster.heymaster.role.master.adapter.MasterHomeAdsPagerAdapter
-import com.heymaster.heymaster.role.master.adapter.MasterHomePopularMasterAdapter
-import com.heymaster.heymaster.role.master.adapter.MasterHomePopularServicesAdapter
-import com.heymaster.heymaster.role.master.adapter.MasterHomeServicesAdapter
+import com.heymaster.heymaster.role.master.adapter.*
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
-import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.Job
@@ -43,9 +34,10 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
     private var job:Job? = null
 
     private lateinit var viewModel: MasterHomeViewModel
-    private val serviceAdapter by lazy { MasterHomeServicesAdapter() }
+//    private val categoryAdapter by lazy { MasterHomeCategoryAdapter() }
     private val adsAdapter by lazy { MasterHomeAdsPagerAdapter() }
-    private val popularServicesAdapter by lazy { MasterHomePopularServicesAdapter() }
+    private val primeCategoryAdapter by lazy { MasterHomePrimeCategoryAdapter() }
+    private val primeServicesAdapter by lazy { MasterHomeProfessionsAdapter() }
     private val popularMastersAdapter by lazy { MasterHomePopularMasterAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,7 +49,6 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
         setupViewModel()
         viewModel.getHome()
         viewModel.getAds()
-
         observeViewModel()
         adapterItemClick()
 
@@ -86,6 +77,12 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
         popularMastersAdapter.itemCLickListener = {
             findNavController().navigate(R.id.detailPageFragment)
         }
+        primeCategoryAdapter.itemClickListener = {
+            launchCategoryDetailFragment(it.id)
+        }
+    }
+    private fun launchCategoryDetailFragment(id: Int) {
+        findNavController().navigate(R.id.action_masterHomeFragment_to_masterServiceDetailFragment , bundleOf("category_id" to id))
     }
 
     private fun observeViewModel() {
@@ -118,22 +115,26 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.home.collect {
                 when (it) {
+
                     is UiStateObject.LOADING -> {
                         binding.nestedHome.visibility = View.GONE
                         binding.progressHome.customProgress.visibility = View.VISIBLE
                     }
+
                     is UiStateObject.SUCCESS -> {
                         binding.progressHome.customProgress.visibility = View.GONE
                         binding.nestedHome.visibility = View.VISIBLE
-                        serviceAdapter.submitList(it.data.categoryList)
+                        primeCategoryAdapter.submitList(it.data.categoryList)
                         popularMastersAdapter.submitList(it.data.topMastersList)
-//                        popularServicesAdapter.submitList(it.data.topProfessionList)
+                        primeServicesAdapter.submitList(it.data.topProfessionList)
 
                     }
+
                     is UiStateObject.ERROR -> {
                         Log.d("@@@", "observeViewModel: ${it.message}")
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
+
                     else -> Unit
                 }
             }
@@ -144,8 +145,8 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
 
 
     private fun setupRv() {
-        binding.rvMasterHomeService.adapter = serviceAdapter
-        binding.rvMasterHomePopularServices.adapter = popularServicesAdapter
+        binding.rvMasterHomeService.adapter = primeCategoryAdapter
+        binding.rvMasterHomePopularServices.adapter = primeServicesAdapter
         binding.rvMasterHomePopularMasters.adapter = popularMastersAdapter
     }
 
@@ -153,6 +154,7 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
         binding.vpMasterHomeAds.adapter = adsAdapter
         binding.vpMasterHomeAds.setCurrentItem(0, true)
         binding.userHomeAdsDotsIndicator.setViewPager2(binding.vpMasterHomeAds)
+        binding.vpMasterHomeAds.clipToPadding = false
         addAutoScrollToViewPager()
     }
 

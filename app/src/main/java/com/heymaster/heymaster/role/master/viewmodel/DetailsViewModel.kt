@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import com.heymaster.heymaster.role.master.repository.DetailsRepository
 import com.heymaster.heymaster.model.ErrorResponse
 import com.heymaster.heymaster.model.auth.CurrentUser
+import com.heymaster.heymaster.model.home.HomeResponse
 import com.heymaster.heymaster.model.masterprofile.Portfolio
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
@@ -34,7 +35,7 @@ class DetailsViewModel (private val repository: DetailsRepository): ViewModel(){
         }
     }
 
-    private val _masterProfile = MutableStateFlow<UiStateObject<CurrentUser>>(UiStateObject.EMPTY)
+    private val _masterProfile = MutableStateFlow<UiStateObject<HomeResponse>>(UiStateObject.EMPTY)
     val masterProfile = _masterProfile
 
     fun getMasterDetail() = viewModelScope.launch {

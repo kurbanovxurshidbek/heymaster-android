@@ -40,6 +40,7 @@ import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
 
@@ -127,9 +128,12 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
                     val fullName = etMasterFullname.text.toString()
                     val gender = etMasterGender.text.toString() == MALE
                     val birthDay = etMasterBirthday.text.toString()
+                    val regionId: Int = 3
+                    val districtId:Int = 208
                     val password = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
                     Log.d("@@@phone", "onViewCreated: $phoneNumber")
-                    viewModel.masterRegister(MasterRegisterRequest(fullName = fullName, phoneNumber = phoneNumber, districtId = 208, regionId = 3, deviceId = "dfdsfds", deviceLan = "edsfds", password = password))
+                    viewModel.masterRegister(MasterRegisterRequest(fullName = fullName, phoneNumber = phoneNumber,districtId = districtId,  regionId = regionId, deviceId = "dfdsfds", deviceLan = "edsfds", password = password, professionIdList = ArrayList(1), gender = gender))
+                    Log.d("@@@@key", "onViewCreated: ${viewModel.masterRegister}")
 
                 } else {
                     Toast.makeText(requireContext(), "Please fill the field first", Toast.LENGTH_SHORT).show()

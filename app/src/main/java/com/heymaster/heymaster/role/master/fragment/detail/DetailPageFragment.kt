@@ -15,11 +15,8 @@ import com.heymaster.heymaster.role.master.adapter.DetailBottomViewPagerAdapter
 import com.heymaster.heymaster.databinding.FragmentDetailPageBinding
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.role.master.repository.DetailsRepository
-import com.heymaster.heymaster.role.master.repository.MasterPortfolioRepository
 import com.heymaster.heymaster.role.master.viewmodel.DetailsViewModel
-import com.heymaster.heymaster.role.master.viewmodel.MasterProfileViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.DetailsViewModelFactory
-import com.heymaster.heymaster.role.master.viewmodel.factory.MasterPortfolioViewModelFactory
 import com.heymaster.heymaster.utils.Constants
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
@@ -52,11 +49,10 @@ class DetailPageFragment : BaseFragment(R.layout.fragment_detail_page) {
                         Log.d("@@@success", "observeViewModel: loading")
                         val detailMaster = it.data
                         with(binding) {
-                            binding.detailFullName.text = detailMaster.fullName
-                            binding.tvDetailDistrict.text = detailMaster.location.district.nameUz
-                            binding.tvDetailRegion.text = detailMaster.location.region.nameUz
-                            binding.ratingBar.y = detailMaster.peopleReitedCount.toFloat()
-                            binding.resultMark.text = detailMaster.totalMark.toString()
+//                            binding.detailFullName.text = detailMaster.topMastersList
+//                            binding.tvDetailDistrict.text = detailMaster.location.district.nameUz
+//                            binding.tvDetailRegion.text = detailMaster.location.region.nameUz
+//                            binding.ratingBar.rating = detailMaster.totalMark.toFloat()
 
                         }
 

@@ -39,13 +39,15 @@
                 android:text="David Beckham"
                 android:textColor="@color/black"
                 android:textSize="14sp"
+                android:gravity="center"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:id="@+id/tv_profession"
@@ -61,19 +63,34 @@
                     android:layout_height="24dp"
                     android:src="@drawable/ic_location" />
 
-                <TextView
-                    android:id="@+id/tvLocation"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Yunusobod, Toshkent"
-                    android:textSize="12sp" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvDistrict"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yunusobod, Toshkent"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvRegion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yunusobod, Toshkent"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
 
                 <RatingBar
 
@@ -89,6 +106,7 @@
                     android:theme="@style/RatingBar" />
 
                 <TextView
+                    android:id="@+id/allMarks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"

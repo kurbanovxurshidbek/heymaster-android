@@ -17,6 +17,13 @@ class MasterHomePopularMasterAdapter : ListAdapter<TopMasters, MasterHomePopular
     inner class PopularMastersViewHolder(private val binding: ItemPopularMastersBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(master: TopMasters) {
+
+            binding.tvMaster.text = master.fullName
+            binding.ratingMaster.rating = master.totalMark.toFloat()
+            binding.tvDistrict.text = master.location!!.district.nameUz
+            binding.tvRegion.text = master.location.region.nameUz
+            binding.allMarks.text ="all reviews: ${master.peopleReitedCount.toString()}"
+
             binding.itemCard.setOnClickListener {
                 itemCLickListener.invoke()
             }

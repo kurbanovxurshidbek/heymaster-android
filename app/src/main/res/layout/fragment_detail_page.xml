@@ -133,6 +133,8 @@
                         app:srb_starPadding="3dp"
                         app:srb_starWidth="20dp"
                         app:srb_stepSize="1"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
                         />
 
                     <TextView
