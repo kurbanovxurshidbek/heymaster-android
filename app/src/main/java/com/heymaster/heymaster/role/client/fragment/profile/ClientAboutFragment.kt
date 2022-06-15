@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.role.client.fragment
+package com.heymaster.heymaster.role.client.fragment.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,6 @@ import com.heymaster.heymaster.R
 import com.heymaster.heymaster.global.BaseFragment
 
 
-class ClientProfileHelpFragment : BaseFragment(R.layout.fragment_client_profile_help) {
+class ClientAboutFragment : BaseFragment(R.layout.fragment_client_about) {
 
 }

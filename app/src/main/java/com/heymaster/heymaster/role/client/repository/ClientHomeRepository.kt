@@ -13,5 +13,9 @@ class ClientHomeRepository(
 
     suspend fun getHome() = apiService.getHome()
 
+    suspend fun getProfessions() = apiService.getProfessions()
+
+    suspend fun getProfessionFromCategory(id: String) = apiService.getProfessionFromCategory(id)
+
 
 }

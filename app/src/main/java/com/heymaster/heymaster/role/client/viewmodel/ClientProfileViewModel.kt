@@ -24,7 +24,6 @@ class ClientProfileViewModel(
         try {
             val response = repository.currentUser()
             if (response.code() >= 400) {
-
                 val error =
                     Gson().fromJson(response.errorBody()!!.charStream(), ErrorResponse::class.java)
                 _currentUser.value = UiStateObject.ERROR(error.errorMessage)

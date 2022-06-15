@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.role.client.adapter.ClientHomePopularMastersAdapter
-import com.heymaster.heymaster.role.client.adapter.ClientHomePopularServicesAdapter
-import com.heymaster.heymaster.role.client.adapter.ClientHomeServicesAdapter
+import com.heymaster.heymaster.role.client.adapter.ClientHomeProfessionsAdapter
+import com.heymaster.heymaster.role.client.adapter.ClientHomeCategoryAdapter
 import com.heymaster.heymaster.role.client.adapter.ClientHomeAdsPagerAdapter
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
@@ -50,6 +50,7 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         setupAdsAdapter()
         setupRv()

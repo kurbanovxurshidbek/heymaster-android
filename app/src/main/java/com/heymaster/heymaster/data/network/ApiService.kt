@@ -70,6 +70,9 @@ interface ApiService {
     @GET("home")
     suspend fun getHome(): Response<HomeResponse>
 
+    @GET("profession/category/{id}")
+    suspend fun getProfessionFromCategory(@Path("id") id: String): Response<List<Object>>
+
 
     //Client
     @GET("auth/me")

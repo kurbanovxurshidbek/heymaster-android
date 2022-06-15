@@ -5,17 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.heymaster.heymaster.databinding.ItemPopularServicesBinding
-import com.heymaster.heymaster.model.Service
+import com.heymaster.heymaster.databinding.ItemProfessionBinding
+import com.heymaster.heymaster.model.auth.Profession
 
 class MasterHomePopularServicesAdapter :
-    ListAdapter<Service, MasterHomePopularServicesAdapter.PopularServiceViewHolder>(ServiceItemDiffCallback()) {
+    ListAdapter<Profession, MasterHomePopularServicesAdapter.ProfessionsViewHolder>(ServiceItemDiffCallback()) {
 
     lateinit var itemClickListener: (() -> Unit)
 
-    inner class PopularServiceViewHolder(private val binding: ItemPopularServicesBinding) :
+    inner class ProfessionsViewHolder(private val binding: ItemProfessionBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(service: Service) {
+        fun bind(profession: Profession) {
             binding.itemPopularService.setOnClickListener {
                 itemClickListener.invoke()
             }
@@ -24,13 +24,13 @@ class MasterHomePopularServicesAdapter :
 
     }
 
-    private class ServiceItemDiffCallback : DiffUtil.ItemCallback<Service>() {
+    private class ServiceItemDiffCallback : DiffUtil.ItemCallback<Profession>() {
 
-        override fun areItemsTheSame(oldItem: Service, newItem: Service): Boolean {
-            return oldItem.id == newItem.id
+        override fun areItemsTheSame(oldItem: Profession, newItem: Profession): Boolean {
+            return oldItem.message == newItem.message
         }
 
-        override fun areContentsTheSame(oldItem: Service, newItem: Service): Boolean {
+        override fun areContentsTheSame(oldItem: Profession, newItem: Profession): Boolean {
             return oldItem == newItem
         }
 
@@ -38,14 +38,14 @@ class MasterHomePopularServicesAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
-            PopularServiceViewHolder {
+            ProfessionsViewHolder {
         val view =
-            ItemPopularServicesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PopularServiceViewHolder(view)
+            ItemProfessionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ProfessionsViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: PopularServiceViewHolder, position: Int) {
-        val service = getItem(position)
-        holder.bind(service)
+    override fun onBindViewHolder(holder: ProfessionsViewHolder, position: Int) {
+        val profession = getItem(position)
+        holder.bind(profession)
     }
 }
