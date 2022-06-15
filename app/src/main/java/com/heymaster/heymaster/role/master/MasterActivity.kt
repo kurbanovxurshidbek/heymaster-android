@@ -32,6 +32,7 @@ class MasterActivity : BaseActivity() {
                 R.id.masterEditProfileFragment -> hideBottomNav()
                 R.id.masterProfileHelpFragment -> hideBottomNav()
                 R.id.masterProfileAboutFragment -> hideBottomNav()
+                R.id.masterServiceDetailFragment -> hideBottomNav()
 
                 else -> showBottomNav()
             }

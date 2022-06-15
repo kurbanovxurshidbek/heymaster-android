@@ -5,32 +5,36 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.ItemProfessionBinding
 import com.heymaster.heymaster.model.auth.Profession
+import com.heymaster.heymaster.model.home.Category
 
-class MasterHomePopularServicesAdapter :
-    ListAdapter<Profession, MasterHomePopularServicesAdapter.ProfessionsViewHolder>(ServiceItemDiffCallback()) {
+class MasterHomePrimeCategoryAdapter :
+    ListAdapter<Category, MasterHomePrimeCategoryAdapter.ProfessionsViewHolder>(ServiceItemDiffCallback()) {
 
-    lateinit var itemClickListener: (() -> Unit)
+    var itemClickListener: ((Category) -> Unit)? = null
 
     inner class ProfessionsViewHolder(private val binding: ItemProfessionBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(profession: Profession) {
+        fun bind(category: Category) {
+            binding.tvCategoryName.text = category.name.toString()
+
             binding.itemCategory.setOnClickListener {
-                itemClickListener.invoke()
+                itemClickListener?.invoke(category)
             }
 
         }
 
     }
 
-    private class ServiceItemDiffCallback : DiffUtil.ItemCallback<Profession>() {
+    private class ServiceItemDiffCallback : DiffUtil.ItemCallback<Category>() {
 
-        override fun areItemsTheSame(oldItem: Profession, newItem: Profession): Boolean {
-            return oldItem.message == newItem.message
+        override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
+            return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Profession, newItem: Profession): Boolean {
+        override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {
             return oldItem == newItem
         }
 

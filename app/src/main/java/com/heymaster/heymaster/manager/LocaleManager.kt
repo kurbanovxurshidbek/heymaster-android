@@ -83,7 +83,8 @@ class LocaleManager(context: Context?) {
 
         fun getLocale(res: Resources): Locale {
             val config = res.configuration
-            return if (isAtLeastVersion(Build.VERSION_CODES.N)) config.locales[0] else config.locale
+            return if (isAtLeastVersion(Build.VERSION_CODES.N)) config.locales[1]
+            else config.locale
         }
 
         fun isAtLeastVersion(version: Int): Boolean {

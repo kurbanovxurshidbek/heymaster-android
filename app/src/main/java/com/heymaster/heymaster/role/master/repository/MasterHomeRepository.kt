@@ -11,4 +11,6 @@ class MasterHomeRepository(
 
     suspend fun getAds() = apiService.getAds()
     suspend fun getHome() = apiService.getHome()
+
+    suspend fun getProfessionFromCategory(id: String) = apiService.getProfessionFromCategory(id)
 }

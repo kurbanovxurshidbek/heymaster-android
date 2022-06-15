@@ -19,10 +19,10 @@ class ClientHomePopularMastersAdapter :
     inner class PopularMastersViewHolder(private val binding: ItemPopularMastersBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(master: TopMasters) {
+
             binding.tvMaster.text = master.fullName
-            if (master.location == null) {
-                binding.tvLocation.text = "${master.location?.district} ${master.location?.region}"
-            }
+            binding.tvDistrict.text = master.location!!.district.nameUz
+            binding.tvRegion.text = master.location.region.nameUz
             binding.ratingMaster.rating = master.peopleReitedCount.toFloat()
 
         }

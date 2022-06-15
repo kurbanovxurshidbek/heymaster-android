@@ -69,7 +69,6 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
 
     private fun launchCategoryDetailFragment(id: Int) {
         findNavController().navigate(R.id.action_userHomeFragment_to_serviceDetailFragment, bundleOf("category_id" to id))
-
     }
 
     private fun clickListeners() {

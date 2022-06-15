@@ -7,6 +7,7 @@ import com.heymaster.heymaster.model.Ads
 import com.heymaster.heymaster.role.master.repository.MasterHomeRepository
 import com.heymaster.heymaster.model.ErrorResponse
 import com.heymaster.heymaster.model.Service
+import com.heymaster.heymaster.model.auth.Object
 import com.heymaster.heymaster.model.home.Advertising
 import com.heymaster.heymaster.model.home.HomeResponse
 import com.heymaster.heymaster.utils.UiStateList
@@ -21,6 +22,16 @@ class MasterHomeViewModel(
 
     private val _home = MutableStateFlow<UiStateObject<HomeResponse>>(UiStateObject.EMPTY)
     val home = _home
+
+    private val _service = MutableStateFlow<UiStateObject<Service>>(UiStateObject.EMPTY)
+    val service = _service
+
+    private val _ads = MutableStateFlow<UiStateObject<Advertising>>(UiStateObject.EMPTY)
+    val ads = _ads
+
+    private val _professionsFromCategory = MutableStateFlow<UiStateList<Object>>(UiStateList.EMPTY)
+    val professionsFromCategory = _professionsFromCategory
+
 
     fun getHome() = viewModelScope.launch {
         _home.value = UiStateObject.LOADING
@@ -38,10 +49,6 @@ class MasterHomeViewModel(
         }
     }
 
-
-    private val _service = MutableStateFlow<UiStateObject<Service>>(UiStateObject.EMPTY)
-    val service = _service
-
     fun getService(id: Int) = viewModelScope.launch {
         _service.value = UiStateObject.LOADING
         try {
@@ -58,9 +65,6 @@ class MasterHomeViewModel(
         }
     }
 
-    private val _ads = MutableStateFlow<UiStateObject<Advertising>>(UiStateObject.EMPTY)
-    val ads = _ads
-
     fun getAds() = viewModelScope.launch {
         _ads.value = UiStateObject.LOADING
 
@@ -70,6 +74,19 @@ class MasterHomeViewModel(
 
         } catch (e: Exception) {
             _ads.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+    fun getProfessionsFromCategory(id: String) = viewModelScope.launch {
+        _professionsFromCategory.value = UiStateList.LOADING
+
+        try {
+            val response = repository.getProfessionFromCategory(id)
+            _professionsFromCategory.value = UiStateList.SUCCESS(response.body())
+
+
+        } catch (e: Exception) {
+            _professionsFromCategory.value = UiStateList.ERROR(e.userMessage())
         }
     }
 }
