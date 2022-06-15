@@ -107,11 +107,9 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
             viewModel.ads.collect {
                 when (it) {
                     is UiStateObject.LOADING -> {
-                        binding.nestedHome.visibility = View.GONE
                         binding.progressHome.customProgress.visibility = View.VISIBLE
                     }
                     is UiStateObject.SUCCESS -> {
-                        binding.progressHome.customProgress.visibility = View.GONE
                         binding.nestedHome.visibility = View.VISIBLE
                         val list = ArrayList<Advertising>()
                         list.addAll(listOf(it.data!!))
@@ -138,6 +136,8 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
                         binding.progressHome.customProgress.visibility = View.GONE
                         binding.nestedHome.visibility = View.VISIBLE
                         categoryAdapter.submitList(it.data.categoryList)
+                        professionsAdapter.submitList(it.data.topProfessionList)
+                        popularMastersAdapter.submitList(it.data.topMastersList)
 
 
 

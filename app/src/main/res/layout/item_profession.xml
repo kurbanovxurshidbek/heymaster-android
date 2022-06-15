@@ -2,9 +2,10 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="105dp"
     android:layout_height="125dp"
-    android:id="@+id/item_popular_service"
+    android:id="@+id/item_category"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginHorizontal="5dp"
+    android:layout_marginStart="12dp"
     android:layout_marginVertical="8dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="2dp">
@@ -14,6 +15,7 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/iv_category"
             android:layout_gravity="bottom|end"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -31,6 +33,7 @@
             android:paddingHorizontal="6dp">
 
             <TextView
+                android:id="@+id/tv_category_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/plumber"

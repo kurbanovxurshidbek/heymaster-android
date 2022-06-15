@@ -8,15 +8,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.heymaster.heymaster.role.client.adapter.ClientHomePopularMastersAdapter.*
 import com.heymaster.heymaster.databinding.ItemPopularMastersBinding
 import com.heymaster.heymaster.model.Service
+import com.heymaster.heymaster.model.auth.CurrentUser
+import com.heymaster.heymaster.model.home.TopMasters
 
 class ClientHomePopularMastersAdapter :
-    ListAdapter<Service, PopularMastersViewHolder>(PopularMasterItemDiffCallback()) {
+    ListAdapter<TopMasters, PopularMastersViewHolder>(PopularMasterItemDiffCallback()) {
 
     lateinit var itemCLickListener: (() -> Unit)
 
     inner class PopularMastersViewHolder(private val binding: ItemPopularMastersBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(master: Service) {
+        fun bind(master: TopMasters) {
+            binding.tvMaster.text = master.fullName
             binding.itemCard.setOnClickListener {
                 itemCLickListener.invoke()
             }
@@ -24,12 +27,12 @@ class ClientHomePopularMastersAdapter :
 
     }
 
-    private class PopularMasterItemDiffCallback : DiffUtil.ItemCallback<Service>() {
-        override fun areItemsTheSame(oldItem: Service, newItem: Service): Boolean {
+    private class PopularMasterItemDiffCallback : DiffUtil.ItemCallback<TopMasters>() {
+        override fun areItemsTheSame(oldItem: TopMasters, newItem: TopMasters): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Service, newItem: Service): Boolean {
+        override fun areContentsTheSame(oldItem: TopMasters, newItem: TopMasters): Boolean {
             return oldItem == newItem
         }
 

@@ -16,7 +16,7 @@ class MasterHomePopularServicesAdapter :
     inner class ProfessionsViewHolder(private val binding: ItemProfessionBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(profession: Profession) {
-            binding.itemPopularService.setOnClickListener {
+            binding.itemCategory.setOnClickListener {
                 itemClickListener.invoke()
             }
 

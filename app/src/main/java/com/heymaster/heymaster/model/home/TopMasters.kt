@@ -1,6 +1,7 @@
 package com.heymaster.heymaster.model.home
 
 import com.heymaster.heymaster.model.Authority
+import com.heymaster.heymaster.model.Object
 import com.heymaster.heymaster.model.Roles
 
 data class TopMasters(
@@ -25,7 +26,7 @@ data class TopMasters(
     val password: Any,
     val peopleReitedCount: Int,
     val phoneNumber: String,
-    val professionList: List<Any>,
+    val professionList: List<Object>,
     val profilePhoto: Any,
     val roles: Roles,
     val salary: Any,
