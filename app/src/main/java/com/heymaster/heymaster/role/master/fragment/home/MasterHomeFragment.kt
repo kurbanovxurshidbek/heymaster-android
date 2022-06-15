@@ -1,17 +1,15 @@
 package com.heymaster.heymaster.role.master.fragment.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.role.client.adapter.ClientHomePopularMastersAdapter
-import com.heymaster.heymaster.role.client.adapter.ClientHomePopularServicesAdapter
-import com.heymaster.heymaster.role.client.adapter.ClientHomeServicesAdapter
+import com.heymaster.heymaster.role.client.adapter.ClientHomeProfessionsAdapter
+import com.heymaster.heymaster.role.client.adapter.ClientHomeCategoryAdapter
 import com.heymaster.heymaster.role.client.adapter.ClientHomeAdsPagerAdapter
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
@@ -36,9 +34,9 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
     private var job:Job? = null
 
     private lateinit var viewModel: MasterHomeViewModel
-    private val serviceAdapter by lazy { ClientHomeServicesAdapter() }
+    private val serviceAdapter by lazy { ClientHomeCategoryAdapter() }
     private val adsAdapter by lazy { ClientHomeAdsPagerAdapter() }
-    private val popularServicesAdapter by lazy { ClientHomePopularServicesAdapter() }
+    private val popularServicesAdapter by lazy { ClientHomeProfessionsAdapter() }
     private val popularMastersAdapter by lazy { ClientHomePopularMastersAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

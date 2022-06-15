@@ -44,7 +44,7 @@
         tools:layout="@layout/fragment_user_booking" />
     <fragment
         android:id="@+id/userProfileFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.ClientProfileFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.profile.ClientProfileFragment"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" >
         <action
@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/userNotificationFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.ClientNotificationFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.profile.ClientNotificationFragment"
         android:label="fragment_user_notification"
         tools:layout="@layout/fragment_user_notification" />
     <fragment
@@ -95,17 +95,17 @@
         tools:layout="@layout/fragment_service_detail" />
     <fragment
         android:id="@+id/clientAboutFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.ClientAboutFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.profile.ClientAboutFragment"
         android:label="fragment_client_about"
         tools:layout="@layout/fragment_client_about" />
     <fragment
         android:id="@+id/clientProfileHelpFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.ClientProfileHelpFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.profile.ClientProfileHelpFragment"
         android:label="fragment_client_profile_help"
         tools:layout="@layout/fragment_client_profile_help" />
     <fragment
         android:id="@+id/clientEditProfileFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.ClientEditProfileFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.profile.ClientEditProfileFragment"
         android:label="fragment_client_edit_profile"
         tools:layout="@layout/fragment_client_edit_profile" />
 </navigation>

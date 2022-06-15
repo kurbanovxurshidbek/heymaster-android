@@ -5,13 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.heymaster.heymaster.role.client.adapter.ClientHomeServicesAdapter.*
+import com.heymaster.heymaster.role.client.adapter.ClientHomeCategoryAdapter.*
 import com.heymaster.heymaster.databinding.ItemServiceBinding
-import com.heymaster.heymaster.model.Service
 import com.heymaster.heymaster.model.home.Category
-import com.squareup.picasso.Picasso
 
-class ClientHomeServicesAdapter: ListAdapter<Category, ServiceViewHolder>(ServiceItemDiffCallback()) {
+class ClientHomeCategoryAdapter: ListAdapter<Category, ServiceViewHolder>(ServiceItemDiffCallback()) {
 
     var itemClickListener: ((Category) -> Unit)? = null
 

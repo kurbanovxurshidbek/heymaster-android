@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.role.client.fragment
+package com.heymaster.heymaster.role.client.fragment.profile
 
 
 import android.annotation.SuppressLint
@@ -28,14 +28,10 @@ import com.heymaster.heymaster.databinding.DialogLogOutBinding
 import com.heymaster.heymaster.databinding.FragmentUserProfileBinding
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.manager.LocaleManager
-import com.heymaster.heymaster.role.client.repository.ClientHomeRepository
 import com.heymaster.heymaster.role.client.repository.ClientProfileRepository
-import com.heymaster.heymaster.role.client.viewmodel.ClientHomeViewModel
 import com.heymaster.heymaster.role.client.viewmodel.ClientProfileViewModel
-import com.heymaster.heymaster.role.client.viewmodel.factory.ClientHomeViewModelFactory
 import com.heymaster.heymaster.role.client.viewmodel.factory.ClientProfileViewModelFactory
 import com.heymaster.heymaster.ui.auth.LoginActivity
-import com.heymaster.heymaster.utils.Constants
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.Constants.KEY_CONFIRM_CODE
 import com.heymaster.heymaster.utils.Constants.KEY_LOGIN_SAVED
