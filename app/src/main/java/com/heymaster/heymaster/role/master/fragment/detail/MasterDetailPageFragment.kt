@@ -34,7 +34,11 @@ class MasterDetailPageFragment : BaseFragment(R.layout.fragment_detail_page_mast
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
         setupViewPager()
-        viewModel.getMasterDetail()
+        var id = 0
+        arguments?.let {
+            id = it.getInt("master_id")
+        }
+        viewModel.getMasterDetail(id)
         observeViewModel()
     }
 
@@ -48,7 +52,7 @@ class MasterDetailPageFragment : BaseFragment(R.layout.fragment_detail_page_mast
                     is UiStateObject.SUCCESS -> {
                         Log.d("@@@success", "observeViewModel: loading")
                         val detailMaster = it.data
-
+                        binding.detailFullName.text = detailMaster.`object`.fullName
 
                     }
                     is UiStateObject.ERROR -> {
