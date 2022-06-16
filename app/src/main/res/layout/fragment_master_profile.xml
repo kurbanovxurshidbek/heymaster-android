@@ -102,7 +102,6 @@
                         android:id="@+id/tvProfileProvince"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
                         android:textColor="@color/black"/>
 
                     <TextView

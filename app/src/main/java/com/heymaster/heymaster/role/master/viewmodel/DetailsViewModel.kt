@@ -7,7 +7,6 @@ import com.heymaster.heymaster.role.master.repository.DetailsRepository
 import com.heymaster.heymaster.model.ErrorResponse
 import com.heymaster.heymaster.model.auth.CurrentUser
 import com.heymaster.heymaster.model.home.HomeResponse
-import com.heymaster.heymaster.model.masterdetailpage.MasterDetail
 import com.heymaster.heymaster.model.masterprofile.Portfolio
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
@@ -36,13 +35,13 @@ class DetailsViewModel (private val repository: DetailsRepository): ViewModel(){
         }
     }
 
-    private val _masterProfile = MutableStateFlow<UiStateObject<MasterDetail>>(UiStateObject.EMPTY)
+    private val _masterProfile = MutableStateFlow<UiStateObject<HomeResponse>>(UiStateObject.EMPTY)
     val masterProfile = _masterProfile
 
-    fun getMasterDetail(id: Int) = viewModelScope.launch {
+    fun getMasterDetail() = viewModelScope.launch {
         _masterProfile.value = UiStateObject.LOADING
         try {
-            val response = repository.getMasterDetailInfo(id)
+            val response = repository.getMasterDetailInfo()
 
             if (response.code() >= 400) {
                 val error =

@@ -108,15 +108,23 @@
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:src="@drawable/ic_outline_phone_24"/>
+                                android:src="@drawable/ic_location"/>
 
                             <TextView
-                                android:id="@+id/tv_phoneNumber"
+                                android:id="@+id/tvProfileProvince"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Tashkent,"
                                 android:textColor="@color/black"/>
 
+                            <TextView
+                                android:id="@+id/tvProfileRegion"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tashkent"
+                                android:layout_marginLeft="7dp"
+                                android:textColor="@color/black"
+                                />
 
                         </LinearLayout>
 

@@ -70,7 +70,6 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                         val currentUser = it.data
                         with(binding) {
                             tvFullname.text = currentUser.fullName
-                            tvPhoneNumber.text = currentUser.phoneNumber
                         }
 
                     }

@@ -6,7 +6,6 @@ import com.heymaster.heymaster.model.auth.Object
 import com.heymaster.heymaster.model.booking.BookingResponse
 import com.heymaster.heymaster.model.home.Advertising
 import com.heymaster.heymaster.model.home.HomeResponse
-import com.heymaster.heymaster.model.masterdetailpage.MasterDetail
 import com.heymaster.heymaster.model.masterprofile.Portfolio
 import retrofit2.Call
 import retrofit2.Response
@@ -85,11 +84,6 @@ interface ApiService {
     //Client
     @GET("auth/me")
     suspend fun currentUser(): Response<CurrentUser>
-
-
-    //Master
-    @GET("master/{id}")
-    suspend fun getMasterInfo(@Path("id") id: Int): Response<MasterDetail>
 
 
 
