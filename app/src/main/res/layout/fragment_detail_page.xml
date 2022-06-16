@@ -97,17 +97,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvDetailRegion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/dark_900" />
+
                     <TextView
                         android:id="@+id/tvDetailDistrict"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="20dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textColor="@color/dark_900" />
-                    <TextView
-                        android:id="@+id/tvDetailRegion"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/dark_900" />
                 </LinearLayout>

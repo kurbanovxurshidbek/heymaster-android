@@ -34,7 +34,11 @@ class DetailPageFragment : BaseFragment(R.layout.fragment_detail_page) {
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
         setupViewPager()
-        viewModel.getMasterDetail()
+        var id = 0
+        arguments?.let {
+            id = it.getInt("master_id")
+        }
+        viewModel.getMasterDetail(id)
         observeViewModel()
     }
 
@@ -49,10 +53,11 @@ class DetailPageFragment : BaseFragment(R.layout.fragment_detail_page) {
                         Log.d("@@@success", "observeViewModel: loading")
                         val detailMaster = it.data
                         with(binding) {
-//                            binding.detailFullName.text = detailMaster.topMastersList
-//                            binding.tvDetailDistrict.text = detailMaster.location.district.nameUz
-//                            binding.tvDetailRegion.text = detailMaster.location.region.nameUz
-//                            binding.ratingBar.rating = detailMaster.totalMark.toFloat()
+                            binding.detailFullName.text = detailMaster.`object`.fullName
+                            binding.tvDetailDistrict.text = detailMaster.`object`.location.district.nameUz
+                            binding.tvDetailRegion.text = detailMaster.`object`.location.region.nameUz
+                            binding.ratingBar.rating = detailMaster.`object`.totalMark.toFloat()
+                            binding.resultMark.text = detailMaster.`object`.peopleReitedCount.toString()
 
                         }
 

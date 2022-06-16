@@ -129,14 +129,30 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
                     val gender = etMasterGender.text.toString() == MALE
                     val birthDay = etMasterBirthday.text.toString()
                     val regionId: Int = 3
-                    val districtId:Int = 208
+                    val districtId: Int = 208
                     val password = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
                     Log.d("@@@phone", "onViewCreated: $phoneNumber")
-                    viewModel.masterRegister(MasterRegisterRequest(fullName = fullName, phoneNumber = phoneNumber,districtId = districtId,  regionId = regionId, deviceId = "dfdsfds", deviceLan = "edsfds", password = password, professionIdList = ArrayList(1), gender = gender))
+                    viewModel.masterRegister(
+                        MasterRegisterRequest(
+                            fullName = fullName,
+                            phoneNumber = phoneNumber,
+                            districtId = districtId,
+                            regionId = regionId,
+                            deviceId = "dfdsfds",
+                            deviceLan = "edsfds",
+                            password = password,
+                            professionIdList = ArrayList(1),
+                            gender = gender
+                        )
+                    )
                     Log.d("@@@@key", "onViewCreated: ${viewModel.masterRegister}")
 
                 } else {
-                    Toast.makeText(requireContext(), "Please fill the field first", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Please fill the field first",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
@@ -174,7 +190,10 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
                     is UiStateObject.SUCCESS -> {
                         binding.progressHome.customProgress.visibility = View.GONE
                         if (it.data.success) {
-                            SharedPref(requireContext()).saveString(KEY_ACCESS_TOKEN, it.data.`object`.toString())
+                            SharedPref(requireContext()).saveString(
+                                KEY_ACCESS_TOKEN,
+                                it.data.`object`.toString()
+                            )
                             SharedPref(requireContext()).saveString(KEY_USER_ROLE, MASTER)
                             SharedPref(requireContext()).saveBoolean(KEY_LOGIN_SAVED, true)
                             Log.d("@@@Token", "observeToken: ${it.data.`object`.toString()}")
@@ -263,12 +282,14 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding1.tvMale.setOnClickListener {
-            binding.etMasterGender.text = Editable.Factory.getInstance().newEditable(binding1.tvMale.text)
+            binding.etMasterGender.text =
+                Editable.Factory.getInstance().newEditable(binding1.tvMale.text)
             dialog.dismiss()
         }
 
         binding1.tvFemale.setOnClickListener {
-            binding.etMasterGender.text = Editable.Factory.getInstance().newEditable(binding1.tvFemale.text)
+            binding.etMasterGender.text =
+                Editable.Factory.getInstance().newEditable(binding1.tvFemale.text)
             dialog.dismiss()
         }
 
@@ -324,17 +345,20 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
         dialogExperience.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding2.tv01.setOnClickListener {
-            binding.etMasterExperience.text = Editable.Factory.getInstance().newEditable(binding2.tv01.text)
+            binding.etMasterExperience.text =
+                Editable.Factory.getInstance().newEditable(binding2.tv01.text)
             dialogExperience.dismiss()
         }
 
         binding2.tv13.setOnClickListener {
-            binding.etMasterExperience.text = Editable.Factory.getInstance().newEditable(binding2.tv13.text)
+            binding.etMasterExperience.text =
+                Editable.Factory.getInstance().newEditable(binding2.tv13.text)
             dialogExperience.dismiss()
         }
 
         binding2.tv35.setOnClickListener {
-            binding.etMasterExperience.text = Editable.Factory.getInstance().newEditable(binding2.tv35.text)
+            binding.etMasterExperience.text =
+                Editable.Factory.getInstance().newEditable(binding2.tv35.text)
             dialogExperience.dismiss()
         }
 
@@ -343,7 +367,6 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
         dialogExperience.show()
 
     }
-
 
 
     private fun setBirthday() {
@@ -358,7 +381,8 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
                 datePicker[Calendar.DAY_OF_MONTH] = pickedDay
                 val dateFormat = "dd.MM.yyyy"
                 val simpleDateFormat = SimpleDateFormat(dateFormat, Locale.getDefault())
-                binding.etMasterBirthday.text = Editable.Factory.getInstance().newEditable(simpleDateFormat.format(datePicker.time))
+                binding.etMasterBirthday.text = Editable.Factory.getInstance()
+                    .newEditable(simpleDateFormat.format(datePicker.time))
             }
 
         val datePickerDialog = android.app.DatePickerDialog(
@@ -372,4 +396,4 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
     }
 
 
-    }
+}
