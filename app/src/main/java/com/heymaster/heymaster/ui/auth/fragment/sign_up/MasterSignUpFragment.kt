@@ -125,7 +125,6 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
         binding.etMasterProfessions.setOnClickListener {
             showProfessionsDialog()
             viewModel.getProfessions()
-
         }
 
         professionsAdapter.itemClickListener = {
