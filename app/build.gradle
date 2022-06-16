@@ -121,7 +121,4 @@ dependencies {
 
     //Date picker
     implementation 'com.takisoft.datetimepicker:datetimepicker:1.0.3'
-
-    //Json implement
-    implementation 'wu.seal.jsontokotlin:library:3.6.1'
 }

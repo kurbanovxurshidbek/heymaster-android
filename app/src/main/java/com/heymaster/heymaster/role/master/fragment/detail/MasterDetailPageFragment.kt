@@ -13,7 +13,6 @@ import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentDetailPageMasterBinding
 import com.heymaster.heymaster.role.master.adapter.DetailBottomViewPagerAdapter
-import com.heymaster.heymaster.databinding.FragmentDetailPageBinding
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.role.master.repository.DetailsRepository
 import com.heymaster.heymaster.role.master.viewmodel.DetailsViewModel
@@ -35,11 +34,7 @@ class MasterDetailPageFragment : BaseFragment(R.layout.fragment_detail_page_mast
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
         setupViewPager()
-        var id = 0
-        arguments?.let {
-            id = it.getInt("master_id")
-        }
-        viewModel.getMasterDetail(id)
+        viewModel.getMasterDetail()
         observeViewModel()
     }
 
@@ -53,14 +48,7 @@ class MasterDetailPageFragment : BaseFragment(R.layout.fragment_detail_page_mast
                     is UiStateObject.SUCCESS -> {
                         Log.d("@@@success", "observeViewModel: loading")
                         val detailMaster = it.data
-                        with(binding) {
-                            binding.detailFullName.text = detailMaster.`object`.fullName
-                            binding.tvDetailDistrict.text = detailMaster.`object`.location.district.nameUz
-                            binding.tvDetailRegion.text = detailMaster.`object`.location.region.nameUz
-                            binding.ratingBar.rating = detailMaster.`object`.totalMark.toFloat()
-                            binding.resultMark.text = detailMaster.`object`.peopleReitedCount.toString()
 
-                        }
 
                     }
                     is UiStateObject.ERROR -> {

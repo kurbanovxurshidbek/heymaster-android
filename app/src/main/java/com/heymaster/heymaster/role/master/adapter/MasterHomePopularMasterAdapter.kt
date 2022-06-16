@@ -12,7 +12,7 @@ import com.heymaster.heymaster.model.home.TopMasters
 
 class MasterHomePopularMasterAdapter : ListAdapter<TopMasters, MasterHomePopularMasterAdapter.PopularMastersViewHolder>(PopularMasterItemDiffCallback()) {
 
-    lateinit var itemCLickListener: ((TopMasters) -> Unit)
+    lateinit var itemCLickListener: (() -> Unit)
 
     inner class PopularMastersViewHolder(private val binding: ItemPopularMastersBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -25,7 +25,7 @@ class MasterHomePopularMasterAdapter : ListAdapter<TopMasters, MasterHomePopular
             binding.allMarks.text ="all reviews: ${master.peopleReitedCount.toString()}"
 
             binding.itemCard.setOnClickListener {
-                itemCLickListener.invoke(master)
+                itemCLickListener.invoke()
             }
         }
 

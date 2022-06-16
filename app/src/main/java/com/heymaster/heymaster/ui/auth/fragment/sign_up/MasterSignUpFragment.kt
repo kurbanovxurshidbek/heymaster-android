@@ -98,7 +98,6 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
         }
 
         binding.etMasterRegion.setOnClickListener {
-            viewModel.getRegions()
             showRegionsDialog()
             binding.etMasterDistrict.text = Editable.Factory.getInstance().newEditable("")
             viewModel.getRegions()
@@ -163,6 +162,7 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
                         experienceYear = experienceYear)
                     viewModel.masterRegister(masterRegister)
 
+                    Log.d("@@@master", "onViewCreated: $masterRegister")
                 } else {
                     Toast.makeText(requireContext(),
                         "Ma'lumotlarni to'liq to'ldiring",
@@ -380,14 +380,9 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
             experienceYear = 5
             dialogExperience.dismiss()
         }
-
-
-
         dialogExperience.show()
 
     }
-
-
 
     private fun setBirthday() {
         val datePicker = Calendar.getInstance()
