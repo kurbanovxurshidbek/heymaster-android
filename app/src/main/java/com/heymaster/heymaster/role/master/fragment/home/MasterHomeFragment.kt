@@ -75,7 +75,7 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
 
     private fun adapterItemClick() {
         popularMastersAdapter.itemCLickListener = {
-            findNavController().navigate(R.id.detailPageFragment)
+            findNavController().navigate(R.id.detailPageFragment, bundleOf("master_id" to it.id))
         }
         primeCategoryAdapter.itemClickListener = {
             launchCategoryDetailFragment(it.id)

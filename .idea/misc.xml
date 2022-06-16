@@ -4,11 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Unicorn/heymaster-android/app/src/main/res/layout/fragment_detail_page.xml" value="0.20416666666666666" />
+        <entry key="..\:/Unicorn/heymaster-android/app/src/main/res/layout/fragment_master_active_booking.xml" value="0.1" />
+        <entry key="..\:/Unicorn/heymaster-android/app/src/main/res/layout/fragment_master_booking.xml" value="0.1" />
         <entry key="..\:/Unicorn/heymaster-android/app/src/main/res/layout/fragment_master_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Unicorn/heymaster-android/app/src/main/res/layout/fragment_master_profile.xml" value="0.19947916666666668" />
         <entry key="..\:/Unicorn/heymaster-android/app/src/main/res/layout/fragment_master_service_detail.xml" value="0.13072916666666667" />
         <entry key="..\:/Unicorn/heymaster-android/app/src/main/res/layout/fragment_master_sign_up.xml" value="0.1203125" />
         <entry key="..\:/Unicorn/heymaster-android/app/src/main/res/layout/fragment_service_detail.xml" value="0.1" />
         <entry key="..\:/Unicorn/heymaster-android/app/src/main/res/layout/fragment_user_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Unicorn/heymaster-android/app/src/main/res/layout/item_active_booking.xml" value="0.22" />
+        <entry key="..\:/Unicorn/heymaster-android/app/src/main/res/layout/item_active_booking_master.xml" value="0.18" />
         <entry key="..\:/Unicorn/heymaster-android/app/src/main/res/layout/item_all_service.xml" value="0.20416666666666666" />
         <entry key="..\:/Unicorn/heymaster-android/app/src/main/res/layout/item_popular_masters.xml" value="0.25" />
         <entry key="..\:/Unicorn/heymaster-android/app/src/main/res/layout/item_profession.xml" value="0.20416666666666666" />

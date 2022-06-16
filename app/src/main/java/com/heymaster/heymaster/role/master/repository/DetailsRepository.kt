@@ -5,7 +5,6 @@ import com.heymaster.heymaster.data.network.ApiService
 class DetailsRepository(private  val apiService: ApiService) {
 
     suspend fun getImages() = apiService.getImages()
-    suspend fun getMasterDetailInfo() = apiService.getHome()
-
-
+//    suspend fun getMasterDetailInfo() = apiService.getHome()
+      suspend fun getMasterDetailInfo(id: Int) = apiService.getMasterInfo(id)
 }
