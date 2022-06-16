@@ -85,9 +85,9 @@
         tools:layout="@layout/fragment_user_all_popular_masters" />
     <fragment
         android:id="@+id/detailPageFragment2"
-        android:name="com.heymaster.heymaster.role.master.fragment.detail.DetailPageFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.detail.MasterDetailPageFragment"
         android:label="fragment_detail_page"
-        tools:layout="@layout/fragment_detail_page" />
+        tools:layout="@layout/fragment_detail_page_client" />
     <fragment
         android:id="@+id/serviceDetailFragment"
         android:name="com.heymaster.heymaster.role.client.fragment.ClientServiceDetailFragment"

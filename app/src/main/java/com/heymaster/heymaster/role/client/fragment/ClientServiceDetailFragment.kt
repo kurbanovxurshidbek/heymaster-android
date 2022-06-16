@@ -33,7 +33,6 @@ class ClientServiceDetailFragment : BaseFragment(R.layout.fragment_service_detai
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -59,8 +58,6 @@ class ClientServiceDetailFragment : BaseFragment(R.layout.fragment_service_detai
                     is UiStateList.SUCCESS -> {
                         binding.progressSearch.customProgress.visibility = View.GONE
                         professionAdapter.submitList(it.data)
-
-
 
                     }
                     is UiStateList.ERROR -> {

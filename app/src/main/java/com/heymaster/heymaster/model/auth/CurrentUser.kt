@@ -1,5 +1,6 @@
 package com.heymaster.heymaster.model.auth
 
+import com.heymaster.heymaster.model.Device
 import com.heymaster.heymaster.model.District
 import com.heymaster.heymaster.model.Region
 
@@ -32,8 +33,11 @@ data class CurrentUser(
     val totalMark: Int,
     val updateAt: String,
     val updatedBy: Any,
-    val username: String
+    val username: String,
+    val device: Device
 )
+
+
 data class Location(
     val region: Region,
     val district: District

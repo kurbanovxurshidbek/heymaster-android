@@ -3,6 +3,7 @@ package com.heymaster.heymaster.data.network
 import com.heymaster.heymaster.model.*
 import com.heymaster.heymaster.model.auth.*
 import com.heymaster.heymaster.model.auth.Object
+import com.heymaster.heymaster.model.booking.BookingResponse
 import com.heymaster.heymaster.model.home.Advertising
 import com.heymaster.heymaster.model.home.HomeResponse
 import com.heymaster.heymaster.model.masterdetailpage.MasterDetail
@@ -41,6 +42,9 @@ interface ApiService {
     @GET("services")
     suspend fun getBookings(): Response<List<Service>>
 
+    @POST("booking/{id}")
+    suspend fun booking(@Path("id") id: Int): Response<BookingResponse>
+
 
     //Auth
     @POST("password")
@@ -74,6 +78,8 @@ interface ApiService {
 
     @GET("profession/category/{id}")
     suspend fun getProfessionFromCategory(@Path("id") id: String): Response<List<Object>>
+
+
 
 
     //Client

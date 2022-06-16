@@ -11,6 +11,7 @@ import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
+import com.heymaster.heymaster.databinding.FragmentDetailPageMasterBinding
 import com.heymaster.heymaster.role.master.adapter.DetailBottomViewPagerAdapter
 import com.heymaster.heymaster.databinding.FragmentDetailPageBinding
 import com.heymaster.heymaster.global.BaseFragment
@@ -23,9 +24,9 @@ import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
 
 
-class DetailPageFragment : BaseFragment(R.layout.fragment_detail_page) {
+class MasterDetailPageFragment : BaseFragment(R.layout.fragment_detail_page_master) {
 
-    private val binding by viewBinding { FragmentDetailPageBinding.bind(it) }
+    private val binding by viewBinding { FragmentDetailPageMasterBinding.bind(it) }
     private val adapter by lazy { DetailBottomViewPagerAdapter(childFragmentManager, lifecycle) }
     private lateinit var viewModel: DetailsViewModel
 

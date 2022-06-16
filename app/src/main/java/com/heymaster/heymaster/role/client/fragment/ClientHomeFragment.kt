@@ -22,6 +22,7 @@ import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentUserHomeBinding
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.model.home.Advertising
+import com.heymaster.heymaster.model.home.TopMasters
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
@@ -64,7 +65,15 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
             launchCategoryDetailFragment(it.id)
         }
 
+        popularMastersAdapter.itemCLickListener = {
+            launchMasterDetailFragment(it)
+        }
 
+
+    }
+
+    private fun launchMasterDetailFragment(it: TopMasters) {
+        findNavController().navigate(R.id.detailPageFragment2, bundleOf("master_data" to it.id))
     }
 
     private fun launchCategoryDetailFragment(id: Int) {
@@ -96,7 +105,6 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
     }
 
     private fun observeViewModel() {
-
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.ads.collect {
                 when (it) {

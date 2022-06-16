@@ -28,28 +28,7 @@ class ClientActiveBookingFragment : BaseFragment(R.layout.fragment_user_active_b
     }
 
     private fun setupRv() {
-        val uActiveBookingM = UActiveBookingM(
-            1,
-            "Electric",
-            R.drawable.intro_image_3,
-            "Donald Trump",
-            "01.01.2021",
-            "+998 99 046 6901"
-        )
-        val list = ArrayList<UActiveBookingM>()
-        list.add(uActiveBookingM)
-        list.add(uActiveBookingM)
-        list.add(uActiveBookingM)
-        list.add(uActiveBookingM)
-        list.add(uActiveBookingM)
 
-
-        activeBookingAdapter = ClientActiveBookingAdapter(list, requireContext())
-        binding.rvUserActiveBookings.layoutManager = GridLayoutManager(context, 1)
-        binding.rvUserActiveBookings.adapter = activeBookingAdapter
-        activeBookingAdapter.setItemClickListener(ClientActiveBookingAdapter.ItemClickListener {
-            showBottomSheet("rate_bottom_sheet_fragment",it)
-        })
 
     }
 
