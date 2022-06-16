@@ -37,7 +37,11 @@ class ClientDetailPageFragment : BaseFragment(R.layout.fragment_detail_page_clie
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
         setupViewPager()
-        viewModel.getMasterDetail()
+        var id = 0
+        arguments?.let {
+            id= it.getInt("master_id")
+        }
+        viewModel.getMasterDetail(id)
         observeViewModel()
     }
 

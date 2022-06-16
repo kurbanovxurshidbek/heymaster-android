@@ -13,7 +13,6 @@ import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentDetailPageMasterBinding
 import com.heymaster.heymaster.role.master.adapter.DetailBottomViewPagerAdapter
-import com.heymaster.heymaster.databinding.FragmentDetailPageBinding
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.role.master.repository.DetailsRepository
 import com.heymaster.heymaster.role.master.viewmodel.DetailsViewModel
