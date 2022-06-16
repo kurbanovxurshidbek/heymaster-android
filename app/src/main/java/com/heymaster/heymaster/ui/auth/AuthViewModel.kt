@@ -182,7 +182,7 @@ class AuthViewModel(
 
     fun startTimer() {
         timer = object : CountDownTimer(
-            10 * MILLIS_IN_SECONDS,
+            60 * MILLIS_IN_SECONDS,
             MILLIS_IN_SECONDS
 
         ) {

@@ -45,8 +45,10 @@
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/selector_verification.xml" value="0.1875" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/drawable/shadow.xml" value="0.1975" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout-v28/activity_master.xml" value="0.264" />
+        <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout-v28/custom_progress_dialog.xml" value="0.2536231884057971" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout-v28/dialog_for_districts.xml" value="0.21014492753623187" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout-v28/dialog_for_professions.xml" value="0.21014492753623187" />
+        <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout-v28/fragment_detail_page_master.xml" value="0.16354166666666667" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/activity_intro.xml" value="0.20153985507246377" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/activity_login.xml" value="0.20153985507246377" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/activity_master.xml" value="0.264" />
@@ -60,6 +62,7 @@
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/dialog_choose_language.xml" value="0.2" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/dialog_experience.xml" value="0.264" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/dialog_for_recyclerview.xml" value="0.21014492753623187" />
+        <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/dialog_for_regions.xml" value="0.2536231884057971" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/dialog_log_out.xml" value="0.2" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/fragment_choose_language.xml" value="0.2296195652173913" />
         <entry key="..\:/Users/Coder/AndroidStudioProjects/heymaster-android/app/src/main/res/layout/fragment_confirm.xml" value="0.2115036231884058" />

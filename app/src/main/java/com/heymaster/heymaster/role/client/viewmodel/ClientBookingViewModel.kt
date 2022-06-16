@@ -5,8 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.heymaster.heymaster.model.ErrorResponse
 import com.heymaster.heymaster.model.Service
+import com.heymaster.heymaster.model.booking.BookingResponse
 import com.heymaster.heymaster.role.client.repository.ClientBookingRepository
 import com.heymaster.heymaster.utils.UiStateList
+import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.userMessage
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -15,8 +17,29 @@ class ClientBookingViewModel(
     private val repository: ClientBookingRepository,
 ) : ViewModel() {
 
+    private val _booking = MutableStateFlow<UiStateObject<BookingResponse>>(UiStateObject.EMPTY)
+    val booking = _booking
+
     private val _bookings = MutableStateFlow<UiStateList<Service>>(UiStateList.EMPTY)
     val bookings = _bookings
+
+
+    fun booking(id: Int) = viewModelScope.launch {
+        _booking.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.booking(id)
+            _booking.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+
+
+
+
 
     fun getBookings() = viewModelScope.launch {
         _bookings.value = UiStateList.LOADING

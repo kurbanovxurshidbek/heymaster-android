@@ -62,9 +62,9 @@
         android:label="MasterSearchFragment" />
     <fragment
         android:id="@+id/detailPageFragment"
-        android:name="com.heymaster.heymaster.role.master.fragment.detail.DetailPageFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.detail.MasterDetailPageFragment"
         android:label="fragment_detail_page"
-        tools:layout="@layout/fragment_detail_page" />
+        tools:layout="@layout/fragment_detail_page_client" />
     <fragment
         android:id="@+id/masterPopularMasterFragment"
         android:name="com.heymaster.heymaster.role.master.fragment.home.MasterPopularMasterFragment"

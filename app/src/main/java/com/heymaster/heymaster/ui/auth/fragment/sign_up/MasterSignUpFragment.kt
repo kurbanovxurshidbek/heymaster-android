@@ -6,9 +6,11 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
+import android.text.Layout
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -20,6 +22,7 @@ import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.*
 import com.heymaster.heymaster.model.auth.ConfirmRequest
 import com.heymaster.heymaster.model.auth.MasterRegisterRequest
+import com.heymaster.heymaster.model.auth.Profession
 import com.heymaster.heymaster.role.master.MasterActivity
 import com.heymaster.heymaster.ui.adapter.DistrictsAdapter
 import com.heymaster.heymaster.ui.adapter.ProfessionAdapter
@@ -40,7 +43,10 @@ import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
+import okhttp3.internal.notify
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.Period
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -55,12 +61,18 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
     private lateinit var dialogRegion: Dialog
     private lateinit var dialogProfession: Dialog
 
+    private var regionId: Int? = null
+    private var districtId: Int? = null
+    private var professionsList = ArrayList<Int>()
+    private var experienceYear: Int? = null
+
     private val regionsAdapter by lazy { RegionsAdapter() }
     private val districtsAdapter by lazy { DistrictsAdapter() }
     private val professionsAdapter by lazy { ProfessionAdapter() }
 
     private var phoneNumber: String? = null
     private var confirmCode: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,35 +98,39 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
         }
 
         binding.etMasterRegion.setOnClickListener {
-            viewModel.getRegions()
             showRegionsDialog()
             binding.etMasterDistrict.text = Editable.Factory.getInstance().newEditable("")
+            viewModel.getRegions()
         }
 
         regionsAdapter.itemClickListener = {
             dialogRegion.dismiss()
             binding.etMasterRegion.text = Editable.Factory.getInstance().newEditable(it.nameUz)
-            viewModel.getDistrictsFromRegion(it.id)
+            regionId = it.id
             binding.etMasterDistrict.visibility = View.VISIBLE
         }
 
         binding.etMasterDistrict.setOnClickListener {
             showDistrictsDialog()
+            viewModel.getDistrictsFromRegion(regionId!!)
         }
 
         districtsAdapter.itemClickListener = {
             dialogDistrict.dismiss()
             binding.etMasterDistrict.text = Editable.Factory.getInstance().newEditable(it.nameUz)
+            districtId = it.id
         }
 
         binding.etMasterProfessions.setOnClickListener {
-            viewModel.getProfessions()
             showProfessionsDialog()
+            viewModel.getProfessions()
+
         }
 
         professionsAdapter.itemClickListener = {
             dialogProfession.dismiss()
             binding.etMasterProfessions.text = Editable.Factory.getInstance().newEditable(it.name)
+            professionsList.add(it.id)
         }
 
         binding.etMasterExperience.setOnClickListener {
@@ -124,22 +140,32 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
         sharedViewModel.masterSignUp.observe(viewLifecycleOwner) {
             with(binding) {
                 if (etMasterFullname.text.isNotEmpty()
-//                    && etMasterBirthday.text!!.isNotEmpty()
-//                    && etMasterGender.text!!.isNotEmpty()
+                    && etMasterBirthday.text!!.isNotEmpty()
+                    && etMasterGender.text!!.isNotEmpty()
                 ) {
                     val fullName = etMasterFullname.text.toString()
                     val gender = etMasterGender.text.toString() == MALE
                     val birthDay = etMasterBirthday.text.toString()
-                    val regionId: Int = 3
-                    val districtId:Int = 208
                     val password = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
                     val deviceId = SharedPref(requireContext()).getString(KEY_DEVICE_TOKEN)
-                    Log.d("@@@phone", "onViewCreated: $phoneNumber")
-                    viewModel.masterRegister(MasterRegisterRequest(fullName = fullName, phoneNumber = phoneNumber,districtId = districtId,  regionId = regionId, deviceId = deviceId, deviceLan = "uz", password = password, professionIdList = ArrayList(1), gender = gender))
-                    Log.d("@@@@key", "onViewCreated: ${viewModel.masterRegister}")
+
+                    val masterRegister = MasterRegisterRequest(
+                        fullName = fullName,
+                        phoneNumber = phoneNumber,
+                        districtId = districtId,
+                        regionId = regionId,
+                        deviceId = deviceId,
+                        deviceLan = "uz",
+                        password = password,
+                        professionIdList = professionsList,
+                        gender = gender,
+                        experienceYear = experienceYear)
+                    viewModel.masterRegister(masterRegister)
 
                 } else {
-                    Toast.makeText(requireContext(), "Please fill the field first", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),
+                        "Ma'lumotlarni to'liq to'ldiring",
+                        Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -158,10 +184,9 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
                         if (it.data.success) {
                             viewModel.confirm(ConfirmRequest(confirmCode!!, phoneNumber!!))
                         }
-
                     }
                     is UiStateObject.ERROR -> {
-                        Log.d("@@@error", "observeViewModel: ${it.message}")
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit
                 }
@@ -176,19 +201,18 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
                     }
                     is UiStateObject.SUCCESS -> {
                         val activity = context as AppCompatActivity
-                        binding.progressHome.customProgress.visibility = View.GONE
                         if (it.data.success) {
-                            SharedPref(requireContext()).saveString(KEY_ACCESS_TOKEN, it.data.`object`.toString())
+                            SharedPref(requireContext()).saveString(KEY_ACCESS_TOKEN,
+                                it.data.`object`.toString())
                             SharedPref(requireContext()).saveString(KEY_USER_ROLE, MASTER)
                             SharedPref(requireContext()).saveBoolean(KEY_LOGIN_SAVED, true)
-                            Log.d("@@@Token", "observeToken: ${it.data.`object`.toString()}")
                             startActivity(Intent(requireContext(), MasterActivity::class.java))
                             activity.finish()
                         }
                     }
 
                     is UiStateObject.ERROR -> {
-                        Log.d("TAG", "observeViewModel: ${it.message}")
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit
                 }
@@ -196,17 +220,18 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
 
         }
 
-
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.regions.collect {
                 when (it) {
                     is UiStateList.LOADING -> {
-
+                        dialogRegion.findViewById<ProgressBar>(R.id.progress_dialog).visibility = View.VISIBLE
                     }
                     is UiStateList.SUCCESS -> {
+                        dialogRegion.findViewById<ProgressBar>(R.id.progress_dialog).visibility = View.GONE
                         regionsAdapter.submitList(it.data)
                     }
                     is UiStateList.ERROR -> {
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
 
                     }
                     else -> Unit
@@ -218,12 +243,15 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
             viewModel.districts.collect {
                 when (it) {
                     is UiStateList.LOADING -> {
-
+                        dialogDistrict.findViewById<ProgressBar>(R.id.progress_dialog).visibility = View.VISIBLE
                     }
                     is UiStateList.SUCCESS -> {
+                        dialogDistrict.findViewById<ProgressBar>(R.id.progress_dialog).visibility = View.GONE
+
                         districtsAdapter.submitList(it.data)
                     }
                     is UiStateList.ERROR -> {
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
 
                     }
                     else -> Unit
@@ -235,13 +263,14 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
             viewModel.professions.collect {
                 when (it) {
                     is UiStateObject.LOADING -> {
-
+                        dialogProfession.findViewById<ProgressBar>(R.id.progress_dialog).visibility = View.VISIBLE
                     }
                     is UiStateObject.SUCCESS -> {
+                        dialogProfession.findViewById<ProgressBar>(R.id.progress_dialog).visibility = View.GONE
                         professionsAdapter.submitList(it.data.`object`!!)
                     }
                     is UiStateObject.ERROR -> {
-
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit
                 }
@@ -267,12 +296,14 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding1.tvMale.setOnClickListener {
-            binding.etMasterGender.text = Editable.Factory.getInstance().newEditable(binding1.tvMale.text)
+            binding.etMasterGender.text =
+                Editable.Factory.getInstance().newEditable(binding1.tvMale.text)
             dialog.dismiss()
         }
 
         binding1.tvFemale.setOnClickListener {
-            binding.etMasterGender.text = Editable.Factory.getInstance().newEditable(binding1.tvFemale.text)
+            binding.etMasterGender.text =
+                Editable.Factory.getInstance().newEditable(binding1.tvFemale.text)
             dialog.dismiss()
         }
 
@@ -289,6 +320,7 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
         dialogRegion.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding2.rvRegions.adapter = regionsAdapter
+
 
         dialogRegion.show()
 
@@ -328,27 +360,28 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
         dialogExperience.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding2.tv01.setOnClickListener {
-            binding.etMasterExperience.text = Editable.Factory.getInstance().newEditable(binding2.tv01.text)
+            binding.etMasterExperience.text =
+                Editable.Factory.getInstance().newEditable(binding2.tv01.text)
+            experienceYear = 1
             dialogExperience.dismiss()
         }
 
         binding2.tv13.setOnClickListener {
-            binding.etMasterExperience.text = Editable.Factory.getInstance().newEditable(binding2.tv13.text)
+            binding.etMasterExperience.text =
+                Editable.Factory.getInstance().newEditable(binding2.tv13.text)
+            experienceYear = 3
             dialogExperience.dismiss()
         }
 
         binding2.tv35.setOnClickListener {
-            binding.etMasterExperience.text = Editable.Factory.getInstance().newEditable(binding2.tv35.text)
+            binding.etMasterExperience.text =
+                Editable.Factory.getInstance().newEditable(binding2.tv35.text)
+            experienceYear = 5
             dialogExperience.dismiss()
         }
-
-
-
         dialogExperience.show()
 
     }
-
-
 
     private fun setBirthday() {
         val datePicker = Calendar.getInstance()
@@ -362,7 +395,18 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
                 datePicker[Calendar.DAY_OF_MONTH] = pickedDay
                 val dateFormat = "dd.MM.yyyy"
                 val simpleDateFormat = SimpleDateFormat(dateFormat, Locale.getDefault())
-                binding.etMasterBirthday.text = Editable.Factory.getInstance().newEditable(simpleDateFormat.format(datePicker.time))
+
+                if (datePicker.time.year < 108 && datePicker.time.year > 50) {
+                    binding.etMasterBirthday.text = Editable.Factory.getInstance()
+                        .newEditable(simpleDateFormat.format(datePicker.time))
+
+                } else {
+                    Toast.makeText(requireContext(),
+                        "Bu yoshda ro'yxatdan o'ta olmaysiz !",
+                        Toast.LENGTH_SHORT).show()
+                    binding.etMasterBirthday.text = Editable.Factory.getInstance().newEditable("")
+                }
+
             }
 
         val datePickerDialog = android.app.DatePickerDialog(
@@ -371,9 +415,10 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
             date,
             year, month, day
         )
+
         datePickerDialog.window?.setBackgroundDrawable(ColorDrawable(0))
         datePickerDialog.show()
     }
 
 
-    }
+}

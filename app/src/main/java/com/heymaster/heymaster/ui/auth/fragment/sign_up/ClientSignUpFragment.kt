@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -19,6 +20,7 @@ import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.DialogChooseGenderBinding
 import com.heymaster.heymaster.databinding.FragmentUserSignUpBinding
 import com.heymaster.heymaster.global.BaseFragment
+import com.heymaster.heymaster.model.Device
 import com.heymaster.heymaster.model.auth.ClientRegisterRequest
 import com.heymaster.heymaster.model.auth.ConfirmRequest
 import com.heymaster.heymaster.role.client.ClientActivity
@@ -29,6 +31,7 @@ import com.heymaster.heymaster.ui.auth.AuthViewModelFactory
 import com.heymaster.heymaster.utils.Constants.CLIENT
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.Constants.KEY_CONFIRM_CODE
+import com.heymaster.heymaster.utils.Constants.KEY_DEVICE_TOKEN
 import com.heymaster.heymaster.utils.Constants.KEY_LOGIN_SAVED
 import com.heymaster.heymaster.utils.Constants.KEY_PHONE_NUMBER
 import com.heymaster.heymaster.utils.Constants.KEY_USER_ROLE
@@ -79,16 +82,21 @@ class ClientSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
 
         sharedViewModel.clientSignUp.observe(viewLifecycleOwner){
             if (binding.etUserFullName.text.isNotEmpty()
-                && binding.etUserBirthday.text!!.isNotEmpty()) {
+                && binding.etUserBirthday.text!!.isNotEmpty()
+                && binding.etUserGender.text!!.isNotEmpty()) {
 
                 with(binding) {
                     val fullName = etUserFullName.text.toString()
                     val gender = true
                     val birthDay = etUserBirthday.text.toString()
                     val password = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
-                    val clientRegisterRequest = ClientRegisterRequest(birthDay, fullName, gender, phoneNumber, password)
+                    val deviceId = SharedPref(requireContext()).getString(KEY_DEVICE_TOKEN)
+                    val clientRegisterRequest = ClientRegisterRequest(birthDay, fullName, gender, phoneNumber, password, deviceId = deviceId, deviceLan = "uz")
                     viewModel.clientRegister(clientRegisterRequest)
                 }
+            } else {
+                Toast.makeText(requireContext(), "Ma'lumotlarni to'liq to'ldiring", Toast.LENGTH_SHORT).show()
+
             }
 
         }
@@ -192,7 +200,13 @@ class ClientSignUpFragment : BaseFragment(R.layout.fragment_user_sign_up) {
                 datePicker[java.util.Calendar.DAY_OF_MONTH] = pickedDay
                 val dateFormat = "dd.MM.yyyy"
                 val simpleDateFormat = SimpleDateFormat(dateFormat, Locale.getDefault())
-                binding.etUserBirthday.text = Editable.Factory.getInstance().newEditable(simpleDateFormat.format(datePicker.time))
+                if (datePicker.time.year < 108 && datePicker.time.year > 50) {
+                    binding.etUserBirthday.text = Editable.Factory.getInstance().newEditable(simpleDateFormat.format(datePicker.time))
+
+                } else {
+                    Toast.makeText(requireContext(), "Bu yoshda ro'yxatdan o'ta olmaysiz !", Toast.LENGTH_SHORT).show()
+                    binding.etUserBirthday.text = Editable.Factory.getInstance().newEditable("")
+                }
             }
 
         val datePickerDialog = android.app.DatePickerDialog(

@@ -18,6 +18,7 @@ import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentConfirmBinding
 import com.heymaster.heymaster.model.auth.ConfirmRequest
 import com.heymaster.heymaster.model.auth.ConfirmResponse
+import com.heymaster.heymaster.model.auth.LoginRequest
 import com.heymaster.heymaster.role.client.ClientActivity
 import com.heymaster.heymaster.role.master.MasterActivity
 import com.heymaster.heymaster.ui.auth.AuthRepository
@@ -41,12 +42,10 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
     private lateinit var viewModel: AuthViewModel
 
     private var phoneNumber: String? = null
-    private var confirmCode: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         phoneNumber = SharedPref(requireContext()).getString(KEY_PHONE_NUMBER)
-        confirmCode = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
     }
 
 
@@ -54,6 +53,7 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val confirmCode = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
         Toast.makeText(requireContext(), "Code : $confirmCode", Toast.LENGTH_SHORT).show()
 
         setupViewModel()
@@ -76,6 +76,25 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
                     is UiStateObject.SUCCESS -> {
                         binding.progressHome.customProgress.visibility = View.GONE
                         launchSignUpOrHome(it.data)
+                    }
+
+                    is UiStateObject.ERROR -> {
+                        Log.d("ERRORTAG", "observeViewModel: ${it.message}")
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.login.collect { it ->
+                when (it) {
+                    is UiStateObject.LOADING -> {
+
+                    }
+                    is UiStateObject.SUCCESS -> {
+                        SharedPref(requireContext()).saveString(KEY_CONFIRM_CODE, it.data.`object`.toString())
+                        Toast.makeText(requireContext(), "${it.data.`object`}", Toast.LENGTH_SHORT).show()
                     }
 
                     is UiStateObject.ERROR -> {
@@ -113,6 +132,7 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
             if(it == "00:00") {
                 binding.tvDidntResend.visibility = View.VISIBLE
                 binding.tvResend.visibility = View.VISIBLE
+                SharedPref(requireContext()).saveString(KEY_CONFIRM_CODE, "")
             } else {
                 binding.tvDidntResend.visibility = View.GONE
                 binding.tvResend.visibility = View.GONE
@@ -120,6 +140,7 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
         }
 
         binding.tvResend.setOnClickListener {
+            viewModel.login(LoginRequest(phoneNumber!!))
             viewModel.startTimer()
         }
     }
@@ -133,6 +154,7 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
             }
             override fun afterTextChanged(code: Editable?) {
                 if (code.toString().length >= 4) {
+                    val confirmCode = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
                     if(code.toString() == confirmCode) {
                         viewModel.confirm(ConfirmRequest(code.toString(), phoneNumber!!))
                     } else {

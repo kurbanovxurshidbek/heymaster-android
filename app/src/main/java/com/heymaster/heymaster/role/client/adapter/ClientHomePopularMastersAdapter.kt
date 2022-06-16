@@ -14,7 +14,7 @@ import com.heymaster.heymaster.model.home.TopMasters
 class ClientHomePopularMastersAdapter :
     ListAdapter<TopMasters, PopularMastersViewHolder>(PopularMasterItemDiffCallback()) {
 
-    lateinit var itemCLickListener: (() -> Unit)
+    lateinit var itemCLickListener: ((TopMasters) -> Unit)
 
     inner class PopularMastersViewHolder(private val binding: ItemPopularMastersBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -24,6 +24,12 @@ class ClientHomePopularMastersAdapter :
             binding.tvDistrict.text = master.location!!.district.nameUz
             binding.tvRegion.text = master.location.region.nameUz
             binding.ratingMaster.rating = master.peopleReitedCount.toFloat()
+
+            binding.itemCard.setOnClickListener {
+                itemCLickListener.invoke(master)
+            }
+
+
 
         }
 
