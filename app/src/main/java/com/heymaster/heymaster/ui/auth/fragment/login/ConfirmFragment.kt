@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -161,8 +162,6 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
                         Toast.makeText(requireContext(), "Invalid code", Toast.LENGTH_SHORT).show()
                     }
 
-
-
                 }
 
             }
@@ -179,11 +178,16 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
     }
 
     private fun callClientActivity() {
+        val activity = context as AppCompatActivity
         startActivity(Intent(requireContext(), ClientActivity::class.java))
+        activity.finish()
+
     }
 
     private fun callMasterActivity() {
+        val activity = context as AppCompatActivity
         startActivity(Intent(requireContext(), MasterActivity::class.java))
+        activity.finish()
     }
 
 

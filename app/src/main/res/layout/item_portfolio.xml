@@ -11,7 +11,7 @@
     <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/item_images"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="180dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/iv_service"

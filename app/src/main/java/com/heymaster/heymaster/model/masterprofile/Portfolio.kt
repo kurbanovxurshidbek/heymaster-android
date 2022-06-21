@@ -1,18 +1,15 @@
 package com.heymaster.heymaster.model.masterprofile
 
 import android.content.Context
+import com.heymaster.heymaster.model.AttachmentInfo
 import java.util.*
 import kotlin.collections.ArrayList
 
-sealed class Portfolio{
+sealed class Portfolio(){
 
-    val id: String = ""
+    val id: Int = 0
 
-    class Add(
+    class Add(val name: String): Portfolio()
 
-    ): Portfolio()
-
-    class Image(
-        val name: String
-    ): Portfolio()
+    class Image(val attachmentInfo: AttachmentInfo): Portfolio()
 }

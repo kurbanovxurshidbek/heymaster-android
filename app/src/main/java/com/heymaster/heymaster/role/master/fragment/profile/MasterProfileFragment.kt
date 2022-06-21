@@ -22,7 +22,7 @@ import com.heymaster.heymaster.ui.adapter.MasterProfilePagerAdapter
 import com.heymaster.heymaster.databinding.FragmentMasterProfileBinding
 import com.heymaster.heymaster.role.master.repository.MasterPortfolioRepository
 import com.heymaster.heymaster.role.master.viewmodel.MasterProfileViewModel
-import com.heymaster.heymaster.role.master.viewmodel.factory.MasterPortfolioViewModelFactory
+import com.heymaster.heymaster.role.master.viewmodel.factory.MasterProfileViewModelFactory
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
@@ -132,7 +132,7 @@ class MasterProfileFragment : Fragment(R.layout.fragment_master_profile) {
     private fun setupViewModel() {
         val token = SharedPref(requireContext()).getString(KEY_ACCESS_TOKEN)
         viewModel = ViewModelProvider(
-            this, MasterPortfolioViewModelFactory(
+            this, MasterProfileViewModelFactory(
                 MasterPortfolioRepository(
                     ApiClient.createServiceWithAuth(
                         ApiService::class.java, token!!

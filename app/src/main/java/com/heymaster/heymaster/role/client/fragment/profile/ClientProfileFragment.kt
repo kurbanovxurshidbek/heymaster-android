@@ -2,14 +2,15 @@ package com.heymaster.heymaster.role.client.fragment.profile
 
 
 import android.annotation.SuppressLint
-
 import android.app.Activity.RESULT_OK
 import android.app.Dialog
 import android.content.Intent
-
 import android.graphics.Color
+import android.graphics.Picture
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
@@ -18,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.heymaster.heymaster.App
 import com.heymaster.heymaster.R
@@ -33,19 +35,30 @@ import com.heymaster.heymaster.role.client.repository.ClientProfileRepository
 import com.heymaster.heymaster.role.client.viewmodel.ClientProfileViewModel
 import com.heymaster.heymaster.role.client.viewmodel.factory.ClientProfileViewModelFactory
 import com.heymaster.heymaster.ui.auth.LoginActivity
+import com.heymaster.heymaster.utils.Constants.ATTACHMENT_URL
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.Constants.KEY_CONFIRM_CODE
 import com.heymaster.heymaster.utils.Constants.KEY_LOGIN_SAVED
 import com.heymaster.heymaster.utils.Constants.KEY_PHONE_NUMBER
+import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.collect
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okio.sink
+import java.io.File
+import java.io.FileOutputStream
 
 
 class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
     private val binding by viewBinding { FragmentUserProfileBinding.bind(it) }
     private lateinit var viewModel: ClientProfileViewModel
+
+    private var attachment = File("")
 
     @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,8 +67,29 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
         setupViewModel()
         viewModel.currentUser()
+        viewModel.attachmentInfo()
 
         observeViewModel()
+
+
+
+    }
+
+    private fun uploadAttachment() {
+        val builder: MultipartBody.Builder = MultipartBody.Builder()
+        builder.setType(MultipartBody.FORM)
+
+        if (attachment.length() > 0) {
+            builder.addFormDataPart(
+                "file",
+                attachment.name,
+                attachment.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            )
+        }
+        val body = builder.build()
+        viewModel.uploadAttachment(body)
+
+
     }
 
     private fun observeViewModel() {
@@ -64,7 +98,6 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                 when (it) {
                     is UiStateObject.LOADING -> {
                         showLoading()
-
                     }
                     is UiStateObject.SUCCESS -> {
                         dismissLoading()
@@ -77,6 +110,52 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                     }
                     is UiStateObject.ERROR -> {
                         dismissLoading()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.attachmentInfo.collect {
+                when (it) {
+                    is UiStateList.LOADING -> {
+
+                    }
+                    is UiStateList.SUCCESS -> {
+                        dismissLoading()
+                        if (!it.data.isNullOrEmpty()) {
+                            Log.d("@@@", "observeViewModel: ${it.data}")
+                            it.data.forEach {
+                                if (it.profilePhoto) {
+                                    Picasso.get().load(ATTACHMENT_URL + it.id)
+                                }
+                            }
+                        }
+                    }
+                    is UiStateList.ERROR -> {
+                        dismissLoading()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.uploadAttachment.collect {
+                when (it) {
+                    is UiStateObject.LOADING -> {
+                        showLoading()
+
+                    }
+                    is UiStateObject.SUCCESS -> {
+                        dismissLoading()
+                        Toast.makeText(requireContext(), "${it.data}", Toast.LENGTH_SHORT).show()
+                    }
+                    is UiStateObject.ERROR -> {
+                        //Toast.makeText(requireContext(), "${it.message}", Toast.LENGTH_SHORT).show()
+                        //dismissLoading()
+//                        Log.d("@@@attachment", "observeViewModel: ${it.message}")
                     }
                     else -> Unit
                 }
@@ -114,6 +193,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
         }
 
         with(binding) {
+
             ivProfile.setOnClickListener {
                 pickImageProfile()
             }
@@ -173,7 +253,22 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                 RESULT_OK -> {
                     //Image Uri will not be null for RESULT_OK
                     val fileUri = data?.data!!
-                    binding.ivProfile.setImageURI(fileUri)
+
+                    val ins = requireActivity().contentResolver.openInputStream(fileUri)
+                    attachment = File.createTempFile(
+                        "file",
+                        ".jpg",
+                        requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+                    )
+
+                    val fileOutputStream = FileOutputStream(attachment)
+
+                    ins?.copyTo(fileOutputStream)
+                    ins?.close()
+                    fileOutputStream.close()
+
+                    uploadAttachment()
+
                 }
                 ImagePicker.RESULT_ERROR -> {
                     Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT).show()

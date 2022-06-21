@@ -11,6 +11,7 @@ import com.heymaster.heymaster.model.booking.ClientActiveBooking
 import com.heymaster.heymaster.model.home.*
 import com.heymaster.heymaster.model.masterdetail.MasterDetail
 import com.heymaster.heymaster.model.masterprofile.Portfolio
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
 //ApiService
@@ -90,6 +91,16 @@ interface ApiService {
 
     @GET("profession/category/{id}")
     suspend fun getProfessionFromCategory(@Path("id") id: String): Response<List<Object>>
+
+
+    @POST("attachment/upload")
+    suspend fun uploadAttachment(@Body body: RequestBody): Response<Any>
+
+    @GET("attachment/info")
+    suspend fun attachmentInfo(): Response<List<AttachmentInfo>>
+
+
+
 
 
 
