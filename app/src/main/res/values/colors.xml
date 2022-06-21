@@ -21,4 +21,10 @@
 
     <color name="main_color">#1D63C9</color>
 
+    <color name="random1">#8E9E9F</color>
+    <color name="random2">#53666E</color>
+    <color name="random3">#92AFD1</color>
+    <color name="random4">#525B63</color>
+
+
 </resources>

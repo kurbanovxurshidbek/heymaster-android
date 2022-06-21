@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.heymaster.heymaster.role.master.repository.MasterPortfolioRepository
 import com.heymaster.heymaster.role.master.viewmodel.MasterProfileViewModel
 
-class MasterPortfolioViewModelFactory(private val repository: MasterPortfolioRepository): ViewModelProvider.Factory {
+class MasterProfileViewModelFactory(private val repository: MasterPortfolioRepository): ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MasterProfileViewModel::class.java)){
             return MasterProfileViewModel(repository) as T

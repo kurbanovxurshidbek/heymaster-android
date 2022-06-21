@@ -2,6 +2,7 @@ package com.heymaster.heymaster.utils
 
 object Constants {
 
+    const val ATTACHMENT_URL = "https://hey-masterrr.herokuapp.com/api/attachment/download/"
 
     const val CLIENT = "CLIENT"
     const val MASTER = "MASTER"

@@ -39,6 +39,7 @@ class ClientActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
                 R.id.userAllPopularMastersFragment -> hideBottomNav()
                 R.id.detailPageFragment2 -> hideBottomNav()
                 R.id.serviceDetailFragment -> hideBottomNav()
+                R.id.professionDetailFragment -> hideBottomNav()
                 else -> showBottomNav()
             }
         }
