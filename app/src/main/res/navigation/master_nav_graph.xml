@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_masterHomeFragment_to_masterServiceDetailFragment2"
             app:destination="@id/masterServiceDetailFragment" />
+        <action
+            android:id="@+id/action_masterHomeFragment_to_masterProfessionsDetailFragment"
+            app:destination="@id/masterProfessionsDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/masterProfileFragment"
@@ -79,7 +82,11 @@
         android:id="@+id/masterAllServicesFragment"
         android:name="com.heymaster.heymaster.role.master.fragment.home.MasterAllServicesFragment"
         android:label="fragment_master_all_services"
-        tools:layout="@layout/fragment_master_all_services" />
+        tools:layout="@layout/fragment_master_all_services" >
+        <action
+            android:id="@+id/action_masterAllServicesFragment_to_masterServiceDetailFragment"
+            app:destination="@id/masterServiceDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/masterEditProfileFragment"
         android:name="com.heymaster.heymaster.role.master.fragment.profile.MasterEditProfileFragment"
@@ -110,4 +117,9 @@
         android:name="com.heymaster.heymaster.role.master.fragment.home.MasterServiceDetailFragment"
         android:label="fragment_master_service_detail"
         tools:layout="@layout/fragment_master_service_detail" />
+    <fragment
+        android:id="@+id/masterProfessionsDetailFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.home.MasterProfessionsDetailFragment"
+        android:label="fragment_master_professions_detail"
+        tools:layout="@layout/fragment_master_professions_detail" />
 </navigation>

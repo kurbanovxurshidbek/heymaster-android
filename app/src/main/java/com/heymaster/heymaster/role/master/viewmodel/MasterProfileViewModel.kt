@@ -80,4 +80,6 @@ class MasterProfileViewModel(private val repository: MasterPortfolioRepository):
             _portfolio.value = UiStateObject.ERROR(e.userMessage())
         }
     }
+
+
 }

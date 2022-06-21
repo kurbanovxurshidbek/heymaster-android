@@ -108,6 +108,10 @@ interface ApiService {
     @GET("profession/findMastersByProfessionId/{id}")
     suspend fun getMasterFromProfession(@Path("id") id: Int): Response<MastersResponse>
 
+    //Master Profile Edit
+    @PUT("master/edit/{id}")
+    suspend fun editMasterProfile(@Path("id") id: Int): Response<MasterDetail>
+
 
 
 
