@@ -1,5 +1,8 @@
 package com.heymaster.heymaster.role.master
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -8,10 +11,13 @@ import androidx.navigation.ui.setupWithNavController
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.ActivityMasterBinding
 import com.heymaster.heymaster.global.BaseActivity
+import com.heymaster.heymaster.utils.ConnectivityReceiver
 
-class MasterActivity : BaseActivity() {
+class MasterActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiverListener {
 
     private val binding by lazy { ActivityMasterBinding.inflate(layoutInflater) }
+    private var dialog: Dialog? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -45,5 +51,27 @@ class MasterActivity : BaseActivity() {
 
     private fun showBottomNav() {
         binding.userBottomNavigation.visibility = View.VISIBLE
+    }
+
+    override fun onNetworkConnectionChanged(isConnected: Boolean) {
+        showDialog(isConnected)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ConnectivityReceiver.connectivityReceiverListener = this
+    }
+
+    private fun showDialog(isConnected: Boolean) {
+        if (!isConnected) {
+            dialog = Dialog(this)
+            dialog?.setContentView(R.layout.dialog_check_connection)
+            dialog?.setCancelable(false)
+            dialog?.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog?.show()
+        } else {
+            dialog?.dismiss()
+
+        }
     }
 }

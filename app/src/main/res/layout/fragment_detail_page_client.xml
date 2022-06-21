@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".role.master.fragment.detail.MasterDetailPageFragment">
 
+
+
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:id="@+id/motionLayout"
         android:layout_width="match_parent"
@@ -149,13 +151,23 @@
                         android:fontFamily="@font/poppins_regular"
                         />
 
+
                     <TextView
                         android:id="@+id/resultMark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="16sp"
                         android:textStyle="bold"
+                        android:text="120"
                         android:fontFamily="@font/poppins_regular"
+                        />
+
+                    <Button
+                        android:id="@+id/btn_book"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Book"
+                        android:layout_marginHorizontal="24dp"
                         />
 
 

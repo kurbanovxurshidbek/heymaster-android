@@ -18,6 +18,7 @@ data class UActiveBookingM(
     ) {
     }
 
+
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(idEmp)
         parcel.writeString(jobType)

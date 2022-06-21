@@ -122,4 +122,6 @@
     <string name="str_gender_female">1</string>
 
     <string name="get_started">Начать</string>
+
+    <string name="masters_total_mark"> %s reviews</string>
 </resources>

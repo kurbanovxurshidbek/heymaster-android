@@ -4,9 +4,7 @@
     android:layout_height="125dp"
     android:id="@+id/item_category"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginHorizontal="5dp"
-    android:layout_marginStart="12dp"
-    android:layout_marginVertical="8dp"
+    android:layout_margin="8dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="2dp">
 
@@ -33,7 +31,7 @@
             android:paddingHorizontal="6dp">
 
             <TextView
-                android:id="@+id/tv_category_name"
+                android:id="@+id/tv_profession_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/plumber"

@@ -22,6 +22,7 @@ import com.heymaster.heymaster.utils.Constants.KEY_LOGIN_SAVED
 import com.heymaster.heymaster.utils.Constants.KEY_USER_ROLE
 
 
+
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiverListener {
 
@@ -54,7 +55,6 @@ class SplashActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
                     } else {
                         callLoginActivity()
                     }
-
                 } else {
                     callIntroActivity()
                 }
@@ -79,8 +79,6 @@ class SplashActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
         } else {
             dialog?.dismiss()
             countTimer()
-
-
         }
     }
 

@@ -17,6 +17,7 @@ import com.heymaster.heymaster.role.master.repository.MasterHomeRepository
 import com.heymaster.heymaster.role.master.viewmodel.MasterHomeViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterHomeViewModelFactory
 import com.heymaster.heymaster.global.BaseFragment
+import com.heymaster.heymaster.global.adapter.home.CategoryAdapter
 import com.heymaster.heymaster.model.home.Advertising
 import com.heymaster.heymaster.role.master.adapter.*
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
@@ -30,13 +31,13 @@ import kotlinx.coroutines.isActive
 class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
 
     private val binding by viewBinding { FragmentMasterHomeBinding.bind(it) }
-
-    private var job:Job? = null
-
     private lateinit var viewModel: MasterHomeViewModel
-//    private val categoryAdapter by lazy { MasterHomeCategoryAdapter() }
+
+    private var job: Job? = null
+
+
     private val adsAdapter by lazy { MasterHomeAdsPagerAdapter() }
-    private val primeCategoryAdapter by lazy { MasterHomePrimeCategoryAdapter() }
+    private val categoryAdapter by lazy { CategoryAdapter() }
     private val primeServicesAdapter by lazy { MasterHomeProfessionsAdapter() }
     private val popularMastersAdapter by lazy { MasterHomePopularMasterAdapter() }
 
@@ -61,8 +62,7 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
             findNavController().navigate(R.id.action_masterHomeFragment_to_masterSearchFragment)
         }
 
-        binding.btnAllServices.setOnClickListener {
-            findNavController().navigate(R.id.action_masterHomeFragment_to_masterPopularServicesFragment) }
+
 
         binding.btnAllPopularMasters.setOnClickListener {
             findNavController().navigate(R.id.action_masterHomeFragment_to_masterPopularMasterFragment)
@@ -77,7 +77,7 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
         popularMastersAdapter.itemCLickListener = {
             findNavController().navigate(R.id.detailPageFragment, bundleOf("master_id" to it.id))
         }
-        primeCategoryAdapter.itemClickListener = {
+        categoryAdapter.itemClickListener = {
             launchCategoryDetailFragment(it.id)
         }
     }
@@ -124,7 +124,7 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
                     is UiStateObject.SUCCESS -> {
                         binding.progressHome.customProgress.visibility = View.GONE
                         binding.nestedHome.visibility = View.VISIBLE
-                        primeCategoryAdapter.submitList(it.data.categoryList)
+                        categoryAdapter.submitList(it.data.categoryList)
                         popularMastersAdapter.submitList(it.data.topMastersList)
                         primeServicesAdapter.submitList(it.data.topProfessionList)
 
@@ -145,7 +145,7 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
 
 
     private fun setupRv() {
-        binding.rvMasterHomeService.adapter = primeCategoryAdapter
+        binding.rvMasterHomeService.adapter = categoryAdapter
         binding.rvMasterHomePopularServices.adapter = primeServicesAdapter
         binding.rvMasterHomePopularMasters.adapter = popularMastersAdapter
     }

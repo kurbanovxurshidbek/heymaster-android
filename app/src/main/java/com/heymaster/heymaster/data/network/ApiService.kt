@@ -1,14 +1,16 @@
 package com.heymaster.heymaster.data.network
 
 import com.heymaster.heymaster.model.*
+import com.heymaster.heymaster.model.District
+import com.heymaster.heymaster.model.Region
 import com.heymaster.heymaster.model.auth.*
 import com.heymaster.heymaster.model.auth.Object
+import com.heymaster.heymaster.model.auth.Profession
 import com.heymaster.heymaster.model.booking.BookingResponse
-import com.heymaster.heymaster.model.home.Advertising
-import com.heymaster.heymaster.model.home.HomeResponse
+import com.heymaster.heymaster.model.booking.ClientActiveBooking
+import com.heymaster.heymaster.model.home.*
 import com.heymaster.heymaster.model.masterdetail.MasterDetail
 import com.heymaster.heymaster.model.masterprofile.Portfolio
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 //ApiService
@@ -45,6 +47,13 @@ interface ApiService {
     @POST("booking/{id}")
     suspend fun booking(@Path("id") id: Int): Response<BookingResponse>
 
+    @GET("booking/client")
+    suspend fun getClientActiveBooking(): Response<ClientActiveBooking>
+
+    @GET("booking/{id}")
+    suspend fun getBookingById(): Response<BookingResponse>
+
+
 
     //Auth
     @POST("password")
@@ -76,6 +85,9 @@ interface ApiService {
     @GET("home")
     suspend fun getHome(): Response<HomeResponse>
 
+    @GET("category/all")
+    suspend fun getAllCategory(): Response<CategoryResponse>
+
     @GET("profession/category/{id}")
     suspend fun getProfessionFromCategory(@Path("id") id: String): Response<List<Object>>
 
@@ -89,6 +101,12 @@ interface ApiService {
     //Master
     @GET("master/{id}")
     suspend fun getMasterDetailInfo(@Path("id") id: Int):Response<MasterDetail>
+
+    @GET("master/allActive")
+    suspend fun getActiveMasters(): Response<ActiveMasters>
+
+    @GET("profession/findMastersByProfessionId/{id}")
+    suspend fun getMasterFromProfession(@Path("id") id: Int): Response<MastersResponse>
 
 
 

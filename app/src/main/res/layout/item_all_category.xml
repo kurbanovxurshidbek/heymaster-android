@@ -33,59 +33,14 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvMaster"
+                android:id="@+id/tv_name_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="David Beckham"
                 android:textColor="@color/black"
-                android:textSize="14sp"
-                android:gravity="center"
+                android:textSize="18sp"
+                android:gravity="start"
                 android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp">
-
-                <TextView
-                    android:id="@+id/tv_profession"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="Plumber"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_location" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvDistrict"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Yunusobod, Toshkent"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:id="@+id/tvRegion"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Yunusobod, Toshkent"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -94,7 +49,7 @@
 
                 <RatingBar
 
-                    android:id="@+id/rating_master"
+                    android:id="@+id/rating_category"
                     style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -105,17 +60,13 @@
                     android:rating="0"
                     android:theme="@style/RatingBar" />
 
-                <TextView
-                    android:id="@+id/allMarks"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:text="5 (76 reviews)"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
             </LinearLayout>
 
+
+
         </LinearLayout>
+
+
     </LinearLayout>
 
 

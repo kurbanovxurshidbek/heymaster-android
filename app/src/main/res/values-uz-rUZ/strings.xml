@@ -135,4 +135,6 @@
     <string name="str_gender_female">1</string>
 
     <string name="get_started">Boshlash</string>
+
+    <string name="masters_total_mark"> %s marta ko\'rilgam</string>
 </resources>

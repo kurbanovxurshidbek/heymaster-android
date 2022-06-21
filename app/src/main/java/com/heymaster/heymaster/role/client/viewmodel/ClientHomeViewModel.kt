@@ -5,11 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.heymaster.heymaster.role.client.repository.ClientHomeRepository
 import com.heymaster.heymaster.model.ErrorResponse
-import com.heymaster.heymaster.model.Service
 import com.heymaster.heymaster.model.auth.Object
 import com.heymaster.heymaster.model.auth.Profession
-import com.heymaster.heymaster.model.home.Advertising
-import com.heymaster.heymaster.model.home.HomeResponse
+import com.heymaster.heymaster.model.home.*
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.userMessage
@@ -30,6 +28,18 @@ class ClientHomeViewModel(
 
     private val _professionsFromCategory = MutableStateFlow<UiStateList<Object>>(UiStateList.EMPTY)
     val professionsFromCategory = _professionsFromCategory
+
+    private val _activeMasters = MutableStateFlow<UiStateObject<ActiveMasters>>(UiStateObject.EMPTY)
+    val activeMasters = _activeMasters
+
+    private val _professions = MutableStateFlow<UiStateObject<Profession>>(UiStateObject.EMPTY)
+    val professions = _professions
+
+    private val _mastersFromProfessionId = MutableStateFlow<UiStateObject<MastersResponse>>(UiStateObject.EMPTY)
+    val mastersFromProfessionId = _mastersFromProfessionId
+
+    private val _categories = MutableStateFlow<UiStateObject<CategoryResponse>>(UiStateObject.EMPTY)
+    val categories = _categories
 
 
 
@@ -64,6 +74,19 @@ class ClientHomeViewModel(
         }
     }
 
+    fun getActiveMasters() = viewModelScope.launch {
+        _activeMasters.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.getActiveMasters()
+            _activeMasters.value = UiStateObject.SUCCESS(response.body()!!)
+
+
+        } catch (e: Exception) {
+            _activeMasters.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
     fun getProfessionsFromCategory(id: String) = viewModelScope.launch {
         _professionsFromCategory.value = UiStateList.LOADING
 
@@ -74,6 +97,44 @@ class ClientHomeViewModel(
 
         } catch (e: Exception) {
             _professionsFromCategory.value = UiStateList.ERROR(e.userMessage())
+        }
+    }
+
+
+    fun getProfessions() = viewModelScope.launch {
+        _professions.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.getProfessions()
+            _professions.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _professions.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+    fun getMastersFromProfessionId(id: Int) = viewModelScope.launch {
+        _mastersFromProfessionId.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.getMasterFromProfessionId(id)
+
+            _mastersFromProfessionId.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _mastersFromProfessionId.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+    fun getAllCategory() = viewModelScope.launch {
+        _categories.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.getAllCategory()
+            _categories.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _categories.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 

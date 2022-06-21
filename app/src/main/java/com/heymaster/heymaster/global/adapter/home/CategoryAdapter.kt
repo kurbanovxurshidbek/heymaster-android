@@ -1,27 +1,24 @@
-package com.heymaster.heymaster.role.client.adapter
+package com.heymaster.heymaster.global.adapter.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.heymaster.heymaster.databinding.ItemProfessionBinding
-import com.heymaster.heymaster.databinding.ItemRegionDistrictBinding
-import com.heymaster.heymaster.role.client.adapter.ClientHomeCategoryAdapter.*
 import com.heymaster.heymaster.databinding.ItemServiceBinding
 import com.heymaster.heymaster.model.home.Category
 
-class ClientHomeCategoryAdapter: ListAdapter<Category, ServiceViewHolder>(ServiceItemDiffCallback()) {
+class CategoryAdapter: ListAdapter<Category, CategoryAdapter.ServiceViewHolder>(ServiceItemDiffCallback()) {
 
     var itemClickListener: ((Category) -> Unit)? = null
 
-    inner class ServiceViewHolder(private val binding: ItemProfessionBinding):
+    inner class ServiceViewHolder(private val binding: ItemServiceBinding):
         RecyclerView.ViewHolder(binding.root) {
         fun bind(category: Category) {
-            binding.tvCategoryName.text = category.name
+            binding.tvServiceName.text = category.name
             //Picasso.get().load(category.image).into(binding.icServices)
 
-            binding.itemCategory.setOnClickListener {
+            binding.root.setOnClickListener {
                 itemClickListener?.invoke(category)
             }
 
@@ -39,7 +36,7 @@ class ClientHomeCategoryAdapter: ListAdapter<Category, ServiceViewHolder>(Servic
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceViewHolder {
-        val view = ItemProfessionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val view = ItemServiceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ServiceViewHolder(view)
     }
 

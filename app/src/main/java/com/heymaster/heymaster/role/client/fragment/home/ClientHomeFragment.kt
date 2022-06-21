@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.role.client.fragment
+package com.heymaster.heymaster.role.client.fragment.home
 
 import android.os.Bundle
 import android.util.Log
@@ -10,10 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
-import com.heymaster.heymaster.role.client.adapter.ClientHomePopularMastersAdapter
-import com.heymaster.heymaster.role.client.adapter.ClientHomeProfessionsAdapter
-import com.heymaster.heymaster.role.client.adapter.ClientHomeCategoryAdapter
-import com.heymaster.heymaster.role.client.adapter.ClientHomeAdsPagerAdapter
 import com.heymaster.heymaster.role.client.repository.ClientHomeRepository
 import com.heymaster.heymaster.role.client.viewmodel.ClientHomeViewModel
 import com.heymaster.heymaster.role.client.viewmodel.factory.ClientHomeViewModelFactory
@@ -21,8 +17,12 @@ import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentUserHomeBinding
 import com.heymaster.heymaster.global.BaseFragment
+import com.heymaster.heymaster.global.adapter.home.AdsPagerAdapter
+import com.heymaster.heymaster.global.adapter.home.CategoryAdapter
+import com.heymaster.heymaster.global.adapter.home.PopularMastersAdapter
+import com.heymaster.heymaster.global.adapter.home.PopularProfessionsAdapter
 import com.heymaster.heymaster.model.home.Advertising
-import com.heymaster.heymaster.model.home.TopMasters
+import com.heymaster.heymaster.model.home.Object
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
@@ -36,21 +36,23 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
 
     private val binding by viewBinding { FragmentUserHomeBinding.bind(it) }
     private var job: Job? = null
-
     private lateinit var viewModel: ClientHomeViewModel
-    private val categoryAdapter by lazy { ClientHomeCategoryAdapter() }
-    private val adsAdapter by lazy { ClientHomeAdsPagerAdapter() }
-    private val professionsAdapter by lazy { ClientHomeProfessionsAdapter() }
-    private val popularMastersAdapter by lazy { ClientHomePopularMastersAdapter() }
+
+    private val adsPagerAdapter by lazy { AdsPagerAdapter() }
+    private val categoryAdapter by lazy { CategoryAdapter() }
+    private val popularProfessionsAdapter by lazy { PopularProfessionsAdapter() }
+    private val popularMastersAdapter by lazy { PopularMastersAdapter() }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupAdsAdapter()
         setupRv()
         setupViewModel()
         viewModel.getHome()
         viewModel.getAds()
+        viewModel.getActiveMasters()
         observeViewModel()
         adapterItemClick()
         clickListeners()
@@ -65,15 +67,21 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
             launchCategoryDetailFragment(it.id)
         }
 
+        popularProfessionsAdapter.itemClickListener = {
+            launchProfessionDetailFragment(it.id)
+        }
+
         popularMastersAdapter.itemCLickListener = {
             launchMasterDetailFragment(it)
         }
-
-
     }
 
-    private fun launchMasterDetailFragment(it: TopMasters) {
-        findNavController().navigate(R.id.detailPageFragment2, bundleOf("master_data" to it.id))
+    private fun launchProfessionDetailFragment(id: Int) {
+        findNavController().navigate(R.id.action_userHomeFragment_to_professionDetailFragment, bundleOf("profession_id" to id))
+    }
+
+    private fun launchMasterDetailFragment(it: Object) {
+        findNavController().navigate(R.id.detailPageFragment2, bundleOf("master_id" to it.id))
     }
 
     private fun launchCategoryDetailFragment(id: Int) {
@@ -90,11 +98,11 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
                 findNavController().navigate(R.id.action_userHomeFragment_to_userSearchFragment)
             }
 
-            btnAllServices.setOnClickListener {
+            btnAllCategory.setOnClickListener {
                 findNavController().navigate(R.id.action_userHomeFragment_to_userAllServicesFragment)
             }
 
-            btnAllPopularServices.setOnClickListener {
+            btnAllProfession.setOnClickListener {
                 findNavController().navigate(R.id.action_userHomeFragment_to_userAllPopularServiceFragment)
             }
 
@@ -102,68 +110,51 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
                 findNavController().navigate(R.id.action_userHomeFragment_to_userAllPopularMastersFragment)
             }
         }
+
+
     }
 
     private fun observeViewModel() {
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.ads.collect {
-                when (it) {
-                    is UiStateObject.LOADING -> {
-                        binding.progressHome.customProgress.visibility = View.VISIBLE
-                    }
-                    is UiStateObject.SUCCESS -> {
-                        binding.nestedHome.visibility = View.VISIBLE
-                        val list = ArrayList<Advertising>()
-                        list.addAll(listOf(it.data!!))
-                        adsAdapter.submitAds(list)
-
-                    }
-                    is UiStateObject.ERROR -> {
-                        Log.d("@@@", "observeViewModel: ${it.message}")
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                    }
-                    else -> Unit
-                }
-            }
-        }
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.home.collect {
                 when (it) {
                     is UiStateObject.LOADING -> {
                         binding.nestedHome.visibility = View.GONE
-                        binding.progressHome.customProgress.visibility = View.VISIBLE
+                        showLoading()
                     }
                     is UiStateObject.SUCCESS -> {
-                        binding.progressHome.customProgress.visibility = View.GONE
                         binding.nestedHome.visibility = View.VISIBLE
+                        dismissLoading()
+                        adsPagerAdapter.submitAds(it.data.advertisingList as ArrayList<Advertising>)
                         categoryAdapter.submitList(it.data.categoryList)
-                        professionsAdapter.submitList(it.data.topProfessionList)
+                        popularProfessionsAdapter.submitList(it.data.topProfessionList)
                         popularMastersAdapter.submitList(it.data.topMastersList)
-
-
 
                     }
                     is UiStateObject.ERROR -> {
-                        Log.d("@@@", "observeViewModel: ${it.message}")
+                        dismissLoading()
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit
                 }
             }
         }
+
+
+
     }
 
     private fun setupRv() {
         binding.rvUserHomeService.adapter = categoryAdapter
-        binding.rvUserHomePopularServices.adapter = professionsAdapter
+        binding.rvUserHomePopularServices.adapter = popularProfessionsAdapter
         binding.rvUserHomePopularMasters.adapter = popularMastersAdapter
 
 
     }
 
     private fun setupAdsAdapter() {
-        binding.vpUserHomeAds.adapter = adsAdapter
+        binding.vpUserHomeAds.adapter = adsPagerAdapter
 
         binding.vpUserHomeAds.setCurrentItem(0, true)
         binding.userHomeAdsDotsIndicator.setViewPager2(binding.vpUserHomeAds)
@@ -182,7 +173,7 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
         job = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             while (isActive) {
                 delay(3000)
-                if (binding.vpUserHomeAds.currentItem == adsAdapter.itemCount - 1) {
+                if (binding.vpUserHomeAds.currentItem == adsPagerAdapter.itemCount - 1) {
                     binding.vpUserHomeAds.currentItem = 0
                 } else {
                     binding.vpUserHomeAds.setCurrentItem(binding.vpUserHomeAds.currentItem + 1,

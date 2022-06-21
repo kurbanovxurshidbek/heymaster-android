@@ -1,10 +1,11 @@
-package com.heymaster.heymaster.role.client.fragment
+package com.heymaster.heymaster.role.client.fragment.home
 
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.heymaster.heymaster.R
@@ -25,7 +26,7 @@ import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
 
 
-class ClientDetailPageFragment : BaseFragment(R.layout.fragment_detail_page_client) {
+class ClientMasterDetailFragment : BaseFragment(R.layout.fragment_detail_page_client) {
 
     private val binding by viewBinding { FragmentDetailPageClientBinding.bind(it) }
     private val adapter by lazy { DetailBottomViewPagerAdapter(childFragmentManager, lifecycle) }
@@ -42,7 +43,15 @@ class ClientDetailPageFragment : BaseFragment(R.layout.fragment_detail_page_clie
             id= it.getInt("master_id")
         }
         viewModel.getMasterDetail(id)
+
+        binding.btnBook.setOnClickListener {
+            viewModel.booking(id)
+        }
         observeViewModel()
+
+
+
+
     }
 
     private fun observeViewModel() {
@@ -50,21 +59,46 @@ class ClientDetailPageFragment : BaseFragment(R.layout.fragment_detail_page_clie
             viewModel.masterProfile.collect {
                 when (it) {
                     is UiStateObject.LOADING -> {
-                        Log.d("@@@loading", "observeViewModel: loading")
-
+                        showLoading()
                     }
                     is UiStateObject.SUCCESS -> {
-                        Log.d("@@@success", "observeViewModel: loading")
+                        dismissLoading()
+                        binding.detailFullName.text = it.data.`object`.fullName
 
 
                     }
                     is UiStateObject.ERROR -> {
-                        Log.d("@@@error", "observeViewModel: error")
+                        dismissLoading()
+
                     }
                     else -> Unit
                 }
             }
         }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.booking.collect {
+                when (it) {
+                    is UiStateObject.LOADING -> {
+                        showLoading()
+
+                    }
+                    is UiStateObject.SUCCESS -> {
+                        dismissLoading()
+                        if (it.data.success) {
+                            findNavController().navigate(R.id.action_detailPageFragment2_to_userBookingFragment2)
+                        }
+                    }
+                    is UiStateObject.ERROR -> {
+                        dismissLoading()
+
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+
     }
     private fun setupViewModel() {
         val token = SharedPref(requireContext()).getString(Constants.KEY_ACCESS_TOKEN)

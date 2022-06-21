@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.role.client.fragment
+package com.heymaster.heymaster.role.client.fragment.home
 
 import android.os.Bundle
 import android.util.Log
@@ -12,28 +12,26 @@ import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentServiceDetailBinding
 import com.heymaster.heymaster.global.BaseFragment
-import com.heymaster.heymaster.role.client.adapter.ClientHomeProfessionsAdapter
+import com.heymaster.heymaster.global.adapter.home.AllProfessionsAdapter
+import com.heymaster.heymaster.global.adapter.home.PopularProfessionsAdapter
+import com.heymaster.heymaster.global.adapter.home.ProfessionsFromCategoryAdapter
 import com.heymaster.heymaster.role.client.repository.ClientHomeRepository
 import com.heymaster.heymaster.role.client.viewmodel.ClientHomeViewModel
 import com.heymaster.heymaster.role.client.viewmodel.factory.ClientHomeViewModelFactory
+import com.heymaster.heymaster.ui.adapter.ProfessionAdapter
 import com.heymaster.heymaster.utils.Constants
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
 
 
-class ClientServiceDetailFragment : BaseFragment(R.layout.fragment_service_detail) {
+class ClientCategoryDetailFragment : BaseFragment(R.layout.fragment_service_detail) {
 
     private val binding by viewBinding { FragmentServiceDetailBinding.bind(it) }
     private lateinit var viewModel: ClientHomeViewModel
 
-    private val professionAdapter by lazy { ClientHomeProfessionsAdapter() }
+    private val professionAdapter by lazy { ProfessionsFromCategoryAdapter() }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,6 +44,10 @@ class ClientServiceDetailFragment : BaseFragment(R.layout.fragment_service_detai
         viewModel.getProfessionsFromCategory(id.toString())
         observeViewModel()
 
+        professionAdapter.itemClickListener = {
+
+        }
+
     }
 
     private fun observeViewModel() {
@@ -53,15 +55,15 @@ class ClientServiceDetailFragment : BaseFragment(R.layout.fragment_service_detai
             viewModel.professionsFromCategory.collect {
                 when (it) {
                     is UiStateList.LOADING -> {
-                        binding.progressSearch.customProgress.visibility = View.VISIBLE
+                        showLoading()
                     }
                     is UiStateList.SUCCESS -> {
-                        binding.progressSearch.customProgress.visibility = View.GONE
+                        dismissLoading()
                         professionAdapter.submitList(it.data)
 
                     }
                     is UiStateList.ERROR -> {
-                        Log.d("@@@", "observeViewModel: ${it.message}")
+                        dismissLoading()
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit

@@ -1,27 +1,31 @@
-package com.heymaster.heymaster.role.client.adapter
+package com.heymaster.heymaster.global.adapter.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.heymaster.heymaster.databinding.ItemAllServiceBinding
-import com.heymaster.heymaster.role.client.adapter.ClientHomeProfessionsAdapter.ProfessionViewHolder
 import com.heymaster.heymaster.databinding.ItemProfessionBinding
-import com.heymaster.heymaster.model.Service
+import com.heymaster.heymaster.databinding.ItemProfessionsFromCategoryBinding
 import com.heymaster.heymaster.model.auth.Object
-import com.heymaster.heymaster.model.auth.Profession
+import kotlin.random.Random
 
-class ClientHomeProfessionsAdapter :
-    ListAdapter<Object, ProfessionViewHolder>(ServiceItemDiffCallback()) {
+class ProfessionsFromCategoryAdapter :
+    ListAdapter<Object, ProfessionsFromCategoryAdapter.ProfessionViewHolder>(ServiceItemDiffCallback()) {
 
-    var itemClickListener: (() -> Unit)? = null
+    var itemClickListener: ((Object) -> Unit)? = null
 
 
-    inner class ProfessionViewHolder(private val binding: ItemAllServiceBinding) :
+    inner class ProfessionViewHolder(private val binding: ItemProfessionsFromCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(profession: Object) {
             binding.tvProfessionName.text = profession.name
+            binding.tvCategoryName.text = profession.category.name
+            binding.ratingProfession.rating = Random.nextInt(1, 5).toFloat()
+
+            binding.root.setOnClickListener {
+                itemClickListener?.invoke(profession)
+            }
 
         }
 
@@ -43,7 +47,7 @@ class ClientHomeProfessionsAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             ProfessionViewHolder {
         val view =
-            ItemAllServiceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemProfessionsFromCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ProfessionViewHolder(view)
     }
 

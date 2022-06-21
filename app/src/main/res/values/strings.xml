@@ -69,5 +69,6 @@
     <string name="str_gender_male">0</string>
     <string name="str_gender_female">1</string>
     <string name="get_started">Get Started</string>
+    <string name="masters_total_mark"> %s reviews</string>
 
 </resources>

@@ -18,7 +18,7 @@ class MasterHomePrimeCategoryAdapter :
     inner class ProfessionsViewHolder(private val binding: ItemProfessionBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(category: Category) {
-            binding.tvCategoryName.text = category.name.toString()
+            binding.tvProfessionName.text = category.name.toString()
 
             binding.itemCategory.setOnClickListener {
                 itemClickListener?.invoke(category)

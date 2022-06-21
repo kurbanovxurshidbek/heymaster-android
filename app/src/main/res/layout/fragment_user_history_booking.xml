@@ -9,7 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".role.client.fragment.ClientActiveBookingFragment">
+    tools:context=".role.client.fragment.booking.ClientActiveBookingFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_user_history_bookings"
@@ -19,7 +19,7 @@
         android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".role.client.fragment.ClientActiveBookingFragment"/>
+        tools:context=".role.client.fragment.booking.ClientActiveBookingFragment"/>
 
     <include
         android:id="@+id/progressUserHistoryBooking"

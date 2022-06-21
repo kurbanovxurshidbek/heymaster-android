@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/userHomeFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.ClientHomeFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.home.ClientHomeFragment"
         android:label="fragment_user_home"
         tools:layout="@layout/fragment_user_home" >
         <action
@@ -36,10 +36,13 @@
         <action
             android:id="@+id/action_userHomeFragment_to_serviceDetailFragment"
             app:destination="@id/serviceDetailFragment" />
+        <action
+            android:id="@+id/action_userHomeFragment_to_professionDetailFragment"
+            app:destination="@id/professionDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/userBookingFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.ClientBookingFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.booking.ClientBookingFragment"
         android:label="fragment_user_booking"
         tools:layout="@layout/fragment_user_booking" />
     <fragment
@@ -67,30 +70,42 @@
         tools:layout="@layout/fragment_user_notification" />
     <fragment
         android:id="@+id/userSearchFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.ClientSearchFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.home.ClientSearchFragment"
         android:label="UserSearchFragment" />
     <fragment
         android:id="@+id/userAllServicesFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.ClientAllServicesFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.home.ClientAllCategoryFragment"
         android:label="fragment_all_services"
-        tools:layout="@layout/fragment_user_all_services" />
+        tools:layout="@layout/fragment_user_all_services" >
+        <action
+            android:id="@+id/action_userAllServicesFragment_to_serviceDetailFragment"
+            app:destination="@id/serviceDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userAllPopularServiceFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.ClientAllPopularServiceFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.home.ClientAllProfessionsFragment"
         android:label="UserAllPopularServiceFragment" />
     <fragment
         android:id="@+id/userAllPopularMastersFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.ClientAllPopularMastersFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.home.ClientAllMastersFragment"
         android:label="fragment_user_all_popular_masters"
-        tools:layout="@layout/fragment_user_all_popular_masters" />
+        tools:layout="@layout/fragment_user_all_popular_masters" >
+        <action
+            android:id="@+id/action_userAllPopularMastersFragment_to_detailPageFragment2"
+            app:destination="@id/detailPageFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/detailPageFragment2"
-        android:name="com.heymaster.heymaster.role.master.fragment.detail.MasterDetailPageFragment"
-        android:label="fragment_detail_page"
-        tools:layout="@layout/fragment_detail_page_client" />
+        android:name="com.heymaster.heymaster.role.client.fragment.home.ClientMasterDetailFragment"
+        android:label="fragment_detail_page" >
+        <action
+            android:id="@+id/action_detailPageFragment2_to_userBookingFragment2"
+            app:destination="@id/userBookingFragment"
+            app:popUpTo="@id/main_nav_graph" />
+    </fragment>
     <fragment
         android:id="@+id/serviceDetailFragment"
-        android:name="com.heymaster.heymaster.role.client.fragment.ClientServiceDetailFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.home.ClientCategoryDetailFragment"
         android:label="fragment_service_detail"
         tools:layout="@layout/fragment_service_detail" />
     <fragment
@@ -108,4 +123,16 @@
         android:name="com.heymaster.heymaster.role.client.fragment.profile.ClientEditProfileFragment"
         android:label="fragment_client_edit_profile"
         tools:layout="@layout/fragment_client_edit_profile" />
+
+    <fragment
+        android:id="@+id/userActiveBookingFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.booking.ClientBookingFragment"
+        android:label="fragment_user_booking"
+        tools:layout="@layout/fragment_user_active_booking" />
+    <fragment
+        android:id="@+id/professionDetailFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.home.ClientProfessionDetailFragment"
+        android:label="ProfessionDetailFragment" />
+
+
 </navigation>

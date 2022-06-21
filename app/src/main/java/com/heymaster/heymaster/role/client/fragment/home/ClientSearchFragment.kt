@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.role.client.fragment
+package com.heymaster.heymaster.role.client.fragment.home
 
 import android.content.Context
 import android.os.Bundle

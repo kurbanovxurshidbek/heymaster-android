@@ -47,7 +47,7 @@ class DetailsPortfolioFragment : BaseFragment(R.layout.fragment_details_portfoli
 
                     }
                     is UiStateList.ERROR -> {
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+
                     }
                     else -> Unit
                 }

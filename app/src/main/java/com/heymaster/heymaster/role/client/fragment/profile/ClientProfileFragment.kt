@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -62,18 +63,20 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
             viewModel.currentUser.collect {
                 when (it) {
                     is UiStateObject.LOADING -> {
-                        binding.progressHome.customProgress.visibility = View.VISIBLE
+                        showLoading()
 
                     }
                     is UiStateObject.SUCCESS -> {
-                        binding.progressHome.customProgress.visibility = View.GONE
+                        dismissLoading()
                         val currentUser = it.data
                         with(binding) {
                             tvFullname.text = currentUser.fullName
+
                         }
 
                     }
                     is UiStateObject.ERROR -> {
+                        dismissLoading()
                     }
                     else -> Unit
                 }
@@ -130,16 +133,17 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding.tvOk.setOnClickListener {
+            val activity = context as AppCompatActivity
             SharedPref(requireContext()).removeString(KEY_ACCESS_TOKEN)
             SharedPref(requireContext()).removeString(KEY_PHONE_NUMBER)
             SharedPref(requireContext()).removeString(KEY_LOGIN_SAVED)
             SharedPref(requireContext()).removeString(KEY_CONFIRM_CODE)
             startActivity(Intent(requireContext(), LoginActivity::class.java))
-            activity?.finish()
+            activity.finish()
         }
 
         binding.tvCancel.setOnClickListener {
-            dialog.show()
+            dialog.cancel()
         }
         dialog.show()
     }

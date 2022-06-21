@@ -17,5 +17,11 @@ class ClientHomeRepository(
 
     suspend fun getProfessionFromCategory(id: String) = apiService.getProfessionFromCategory(id)
 
+    suspend fun getActiveMasters() = apiService.getActiveMasters()
+
+    suspend fun getMasterFromProfessionId(id: Int) = apiService.getMasterFromProfession(id)
+
+    suspend fun getAllCategory() = apiService.getAllCategory()
+
 
 }

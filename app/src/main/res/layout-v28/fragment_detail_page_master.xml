@@ -158,6 +158,14 @@
                         android:fontFamily="@font/poppins_regular"
                         />
 
+                    <Button
+                        android:id="@+id/btn_booking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Booking"
+                        android:layout_marginHorizontal="4dp"
+                        />
+
 
                 </LinearLayout>
 

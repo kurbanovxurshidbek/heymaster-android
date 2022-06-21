@@ -16,6 +16,7 @@ import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentLoginBinding
+import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.model.auth.LoginRequest
 import com.heymaster.heymaster.ui.auth.AuthRepository
 import com.heymaster.heymaster.ui.auth.AuthViewModel
@@ -28,7 +29,7 @@ import kotlinx.coroutines.flow.collect
 import java.lang.StringBuilder
 
 
-class LoginFragment : Fragment(R.layout.fragment_login) {
+class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
     private lateinit var validPhoneNumber: String
     private val binding by viewBinding { FragmentLoginBinding.bind(it) }
@@ -91,16 +92,19 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             viewModel.login.collect { it ->
                 when (it) {
                     is UiStateObject.LOADING -> {
-                        binding.progressHome.customProgress.visibility = View.VISIBLE
+                        //binding.progressHome.customProgress.visibility = View.VISIBLE
+                        showLoading()
 
                     }
                     is UiStateObject.SUCCESS -> {
-                        binding.progressHome.customProgress.visibility = View.GONE
+                        //binding.progressHome.customProgress.visibility = View.GONE
+                        dismissLoading()
                         SharedPref(requireContext()).saveString(KEY_CONFIRM_CODE, it.data.`object`.toString())
                         launchConfirmFragment()
 
                     }
                     is UiStateObject.ERROR -> {
+                        dismissLoading()
                     }
                     else -> Unit
                 }

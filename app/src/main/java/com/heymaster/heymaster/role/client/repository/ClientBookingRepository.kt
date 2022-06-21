@@ -9,5 +9,7 @@ class ClientBookingRepository(
 
     suspend fun booking(id: Int) = apiService.booking(id)
 
+    suspend fun getClientActiveBooking() = apiService.getClientActiveBooking()
+
 
 }
