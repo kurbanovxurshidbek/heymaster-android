@@ -3,6 +3,7 @@ package com.heymaster.heymaster.role.master.fragment.profile
 import android.app.Activity
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
@@ -98,7 +99,8 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
 
                     }
                     is UiStateObject.ERROR -> {
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                        Log.d("errorr", "observeViewModel: $it")
+                        //Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit
                 }
@@ -185,6 +187,12 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
         viewModel.uploadAttachment(body)
 
 
+    }
+
+    override fun onResume() {
+        Thread.sleep(500)
+        viewModel.attachmentInfo()
+        super.onResume()
     }
 
 }

@@ -67,7 +67,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
         setupViewModel()
         viewModel.currentUser()
-        viewModel.attachmentInfo()
+
 
         observeViewModel()
 
@@ -101,6 +101,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                     }
                     is UiStateObject.SUCCESS -> {
                         dismissLoading()
+                        viewModel.attachmentInfo()
                         val currentUser = it.data
                         with(binding) {
                             tvFullname.text = currentUser.fullName
@@ -120,6 +121,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
             viewModel.attachmentInfo.collect {
                 when (it) {
                     is UiStateList.LOADING -> {
+                        showLoading()
 
                     }
                     is UiStateList.SUCCESS -> {
@@ -134,6 +136,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                         }
                     }
                     is UiStateList.ERROR -> {
+                        showLoading()
                         dismissLoading()
                     }
                     else -> Unit
@@ -153,6 +156,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                         Toast.makeText(requireContext(), "${it.data}", Toast.LENGTH_SHORT).show()
                     }
                     is UiStateObject.ERROR -> {
+                        dismissLoading()
                         //Toast.makeText(requireContext(), "${it.message}", Toast.LENGTH_SHORT).show()
                         //dismissLoading()
 //                        Log.d("@@@attachment", "observeViewModel: ${it.message}")

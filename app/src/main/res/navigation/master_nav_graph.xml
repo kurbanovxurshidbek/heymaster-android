@@ -116,4 +116,14 @@
         android:name="com.heymaster.heymaster.role.master.fragment.home.MasterServiceDetailFragment"
         android:label="fragment_master_service_detail"
         tools:layout="@layout/fragment_master_service_detail" />
+    <fragment
+        android:id="@+id/portfolioImageDetailFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.profile.PortfolioImageDetailFragment"
+        android:label="fragment_portfolio_image_detail"
+        tools:layout="@layout/fragment_portfolio_image_detail" />
+    <fragment
+        android:id="@+id/masterProfessionsDetailFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.home.MasterProfessionsDetailFragment"
+        android:label="fragment_master_professions_detail"
+        tools:layout="@layout/fragment_master_professions_detail" />
 </navigation>
