@@ -3,6 +3,7 @@ package com.heymaster.heymaster.role.master.fragment.detail
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
@@ -53,6 +54,11 @@ class MasterDetailPageFragment : BaseFragment(R.layout.fragment_detail_page_mast
                         Log.d("@@@success", "observeViewModel: loading")
                         val detailMaster = it.data
                         binding.detailFullName.text = detailMaster.`object`.fullName
+                        binding.tvDetailDistrict.text = detailMaster.`object`.location.district.nameUz
+                        binding.tvDetailRegion.text = detailMaster.`object`.location.region.nameUz
+                        binding.ratingBar.rating = (detailMaster.`object`.totalMark/detailMaster.`object`.peopleReitedCount).toFloat()
+                        binding.resultMark.text = detailMaster.`object`.totalMark.toString()
+                        binding.btnBooking.isVisible = false
 
                     }
                     is UiStateObject.ERROR -> {

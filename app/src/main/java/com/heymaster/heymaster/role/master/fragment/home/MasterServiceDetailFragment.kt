@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentMasterServiceDetailBinding
 import com.heymaster.heymaster.global.BaseFragment
+import com.heymaster.heymaster.global.adapter.home.ProfessionsFromCategoryAdapter
 import com.heymaster.heymaster.role.master.adapter.MasterHomeProfessionsAdapter
 import com.heymaster.heymaster.role.master.repository.MasterHomeRepository
 import com.heymaster.heymaster.role.master.viewmodel.MasterHomeViewModel
@@ -27,7 +30,7 @@ class MasterServiceDetailFragment : BaseFragment(R.layout.fragment_master_servic
     private val binding by viewBinding { FragmentMasterServiceDetailBinding.bind(it) }
     private lateinit var viewModel: MasterHomeViewModel
 
-    private val professionAdapter by lazy { MasterHomeProfessionsAdapter() }
+    private val professionAdapter by lazy { ProfessionsFromCategoryAdapter() }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +50,10 @@ class MasterServiceDetailFragment : BaseFragment(R.layout.fragment_master_servic
         viewModel.getProfessionsFromCategory(id.toString())
         observeViewModel()
 
+        professionAdapter.itemClickListener = {
+            findNavController().navigate(R.id.masterProfessionsDetailFragment, bundleOf("profession_id" to it.id))
+        }
+
     }
 
     private fun observeViewModel() {
@@ -57,10 +64,7 @@ class MasterServiceDetailFragment : BaseFragment(R.layout.fragment_master_servic
 
                     }
                     is UiStateList.SUCCESS -> {
-
                         professionAdapter.submitList(it.data)
-
-
 
                     }
                     is UiStateList.ERROR -> {

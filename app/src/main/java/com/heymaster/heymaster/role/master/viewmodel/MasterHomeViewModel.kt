@@ -7,8 +7,8 @@ import com.heymaster.heymaster.role.master.repository.MasterHomeRepository
 import com.heymaster.heymaster.model.ErrorResponse
 import com.heymaster.heymaster.model.Service
 import com.heymaster.heymaster.model.auth.Object
-import com.heymaster.heymaster.model.home.Advertising
-import com.heymaster.heymaster.model.home.HomeResponse
+import com.heymaster.heymaster.model.auth.Profession
+import com.heymaster.heymaster.model.home.*
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.userMessage
@@ -31,6 +31,18 @@ class MasterHomeViewModel(
     private val _professionsFromCategory = MutableStateFlow<UiStateList<Object>>(UiStateList.EMPTY)
     val professionsFromCategory = _professionsFromCategory
 
+    private val _mastersFromProfessionId = MutableStateFlow<UiStateObject<MastersResponse>>(UiStateObject.EMPTY)
+    val mastersFromProfessionId = _mastersFromProfessionId
+
+    private val _activeMasters = MutableStateFlow<UiStateObject<ActiveMasters>>(UiStateObject.EMPTY)
+    val activeMasters = _activeMasters
+
+    private val _professions = MutableStateFlow<UiStateObject<Profession>>(UiStateObject.EMPTY)
+    val professions = _professions
+
+    private val _categories = MutableStateFlow<UiStateObject<CategoryResponse>>(UiStateObject.EMPTY)
+    val categories = _categories
+
 
     fun getHome() = viewModelScope.launch {
         _home.value = UiStateObject.LOADING
@@ -45,22 +57,6 @@ class MasterHomeViewModel(
             }
         } catch (e: Exception) {
             _home.value = UiStateObject.ERROR(e.userMessage())
-        }
-    }
-
-    fun getService(id: Int) = viewModelScope.launch {
-        _service.value = UiStateObject.LOADING
-        try {
-            val response = repository.getService(id)
-            if (response.code() >= 400) {
-                val error =
-                    Gson().fromJson(response.errorBody()!!.charStream(), ErrorResponse::class.java)
-                _service.value = UiStateObject.ERROR(error.errorMessage)
-            } else {
-                _service.value = UiStateObject.SUCCESS(response.body()!!)
-            }
-        } catch (e: Exception) {
-            _service.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 
@@ -86,6 +82,56 @@ class MasterHomeViewModel(
 
         } catch (e: Exception) {
             _professionsFromCategory.value = UiStateList.ERROR(e.userMessage())
+        }
+    }
+
+    fun getMastersFromProfessionId(id: Int) = viewModelScope.launch {
+        _mastersFromProfessionId.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.getMasterFromProfessionId(id)
+
+            _mastersFromProfessionId.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _mastersFromProfessionId.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+    fun getProfessions() = viewModelScope.launch {
+        _professions.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.getProfessions()
+            _professions.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _professions.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+    fun getAllCategory() = viewModelScope.launch {
+        _categories.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.getAllCategory()
+            _categories.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _categories.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+    fun getActiveMasters() = viewModelScope.launch {
+        _activeMasters.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.getActiveMasters()
+            _activeMasters.value = UiStateObject.SUCCESS(response.body()!!)
+
+
+        } catch (e: Exception) {
+            _activeMasters.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 }

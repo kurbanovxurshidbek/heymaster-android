@@ -13,4 +13,12 @@ class MasterHomeRepository(
     suspend fun getHome() = apiService.getHome()
 
     suspend fun getProfessionFromCategory(id: String) = apiService.getProfessionFromCategory(id)
+
+    suspend fun getMasterFromProfessionId(id: Int) = apiService.getMasterFromProfession(id)
+
+    suspend fun getActiveMasters() = apiService.getActiveMasters()
+
+    suspend fun getAllCategory() = apiService.getAllCategory()
+
+    suspend fun getProfessions() = apiService.getProfessions()
 }

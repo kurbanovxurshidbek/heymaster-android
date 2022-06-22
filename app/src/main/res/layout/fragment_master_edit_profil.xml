@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".role.master.fragment.profile.MasterEditProfileFragment">
 
 
     <LinearLayout
         android:id="@+id/linear"
         android:layout_width="match_parent"
-        android:gravity="center"
         android:layout_height="?attr/actionBarSize"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
             android:id="@+id/back_editprofil"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="10dp"
-            android:src="@drawable/ic_arrow"/>
+            android:src="@drawable/ic_arrow" />
 
         <TextView
             android:layout_width="0dp"
@@ -73,68 +74,86 @@
             android:padding="14dp"
             android:singleLine="true"
             android:textColorHint="@color/black"
-            tools:ignore="Autofill,TextFields"/>
+            tools:ignore="Autofill,TextFields" />
 
-        <LinearLayout
+
+        <EditText
+            android:id="@+id/et_master_region"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/bg_edit_text_login"
-            android:layout_marginTop="8dp"
-            android:paddingHorizontal="8dp">
+            android:drawablePadding="12dp"
+            android:editable="false"
+            android:focusable="false"
+            android:hint="Region"
+            android:inputType="number"
+            android:maxLines="1"
+            android:paddingHorizontal="24sp"
+            android:paddingVertical="0dp"
+            android:textColor="@color/black1"
+            android:textCursorDrawable="@drawable/edittext_cursor_drawable"
+            android:textSize="14sp"
+            tools:ignore="TextFields" />
 
-            <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
-                android:id="@+id/spLocation"
-                app:smsp_hintSize="14sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:smsp_hint="Location"
-                app:smsp_isSearchable="true"
-                app:smsp_underlineSize="0dp"
-                app:smsp_hintColor="#7C7C7C"
-                app:smsp_searchHeaderBackgroundColor="@color/black1"
-                app:smsp_searchHeaderTextColor="@color/white"
-                app:smsp_searchHeaderText="Location"
-                app:smsp_searchHint="Location"
-                app:smsp_itemColor="@color/black"
-                app:smsp_itemListColor="@color/black"
-                app:smsp_itemListHintBackgroundColor="@color/grey1"
-                app:smsp_itemListHintColor="#FFFFFF"
-                app:smsp_multilineError="false"
-                app:smsp_selectedItemListColor="@color/green1" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
+        <EditText
+            android:visibility="gone"
+            android:id="@+id/et_master_district"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/bg_edit_text_login"
-            android:layout_marginTop="8dp"
-            android:paddingHorizontal="8dp">
+            android:drawablePadding="12dp"
+            android:hint="District"
+            android:editable="false"
+            android:focusable="false"
+            android:inputType="number"
+            android:maxLines="1"
+            android:paddingHorizontal="24sp"
+            android:paddingVertical="0dp"
+            android:textColor="@color/black1"
+            android:textCursorDrawable="@drawable/edittext_cursor_drawable"
+            android:textSize="14sp"
+            tools:ignore="TextFields"/>
 
-            <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
-                android:id="@+id/spProfession"
-                app:smsp_hintSize="16sp"
-                app:smsp_enableFloatingLabel="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:smsp_hint="Profession"
-                app:smsp_isSearchable="true"
-                app:smsp_underlineSize="0dp"
-                app:smsp_hintColor="#7C7C7C"
-                app:smsp_searchHeaderBackgroundColor="@color/black1"
-                app:smsp_searchHeaderTextColor="@color/white"
-                app:smsp_searchHeaderText="Profession"
-                app:smsp_searchHint="Profession"
-                app:smsp_itemColor="@color/black"
-                app:smsp_itemListColor="@color/black"
-                app:smsp_itemListHintBackgroundColor="@color/grey1"
-                app:smsp_itemListHintColor="#FFFFFF"
-                app:smsp_multilineError="false"
-                app:smsp_selectedItemListColor="@color/green1" />
+        <EditText
+            android:id="@+id/et_master_professions"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_edit_text_login"
+            android:drawablePadding="12dp"
+            android:hint="Professions"
+            android:editable="false"
+            android:focusable="false"
+            android:inputType="number"
+            android:maxLines="1"
+            android:paddingHorizontal="24sp"
+            android:paddingVertical="0dp"
+            android:textColor="@color/black1"
+            android:textCursorDrawable="@drawable/edittext_cursor_drawable"
+            android:textSize="14sp"
+            tools:ignore="TextFields" />
 
-
-        </LinearLayout>
+        <EditText
+            android:id="@+id/et_master_experience"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_edit_text_login"
+            android:drawablePadding="12dp"
+            android:hint="Experience"
+            android:editable="false"
+            android:focusable="false"
+            android:inputType="number"
+            android:maxLines="1"
+            android:paddingHorizontal="24sp"
+            android:paddingVertical="0dp"
+            android:textColor="@color/black1"
+            android:textCursorDrawable="@drawable/edittext_cursor_drawable"
+            android:textSize="14sp"
+            tools:ignore="TextFields" />
 
 
         <LinearLayout

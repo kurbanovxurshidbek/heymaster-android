@@ -59,9 +59,6 @@ class ClientHomeViewModel(
         }
     }
 
-
-
-
     fun getAds() = viewModelScope.launch {
         _ads.value = UiStateObject.LOADING
 
@@ -99,7 +96,6 @@ class ClientHomeViewModel(
             _professionsFromCategory.value = UiStateList.ERROR(e.userMessage())
         }
     }
-
 
     fun getProfessions() = viewModelScope.launch {
         _professions.value = UiStateObject.LOADING
