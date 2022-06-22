@@ -4,12 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.heymaster.heymaster.R
-import com.heymaster.heymaster.databinding.ItemAdsBinding
-import com.heymaster.heymaster.model.Service
 import com.heymaster.heymaster.model.home.Advertising
 
 class   MasterHomeAdsPagerAdapter: RecyclerView.Adapter<MasterHomeAdsPagerAdapter.AdsViewHolder>(){
@@ -20,10 +16,10 @@ class   MasterHomeAdsPagerAdapter: RecyclerView.Adapter<MasterHomeAdsPagerAdapte
         fun bind(ads: Advertising) {
             val tvTitle = view.findViewById<TextView>(R.id.tvAdsTitle)
             val tvBody = view.findViewById<TextView>(R.id.tvAdsBody)
-            ads.`object`.forEach {
-                tvTitle.text = it.title
-                tvBody.text = it.body
-            }
+
+                tvTitle.text = ads.title
+                tvBody.text = ads.body
+
 
         }
 

@@ -39,6 +39,7 @@ class MasterActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
                 R.id.masterProfileHelpFragment -> hideBottomNav()
                 R.id.masterProfileAboutFragment -> hideBottomNav()
                 R.id.masterServiceDetailFragment -> hideBottomNav()
+                R.id.portfolioImageDetailFragment -> hideBottomNav()
 
                 else -> showBottomNav()
             }

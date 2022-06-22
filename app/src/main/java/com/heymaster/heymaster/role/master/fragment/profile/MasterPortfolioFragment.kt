@@ -7,9 +7,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
@@ -53,6 +55,10 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
 
         masterPortfolioAdapter.addItemClickListener {
             pickImageProfile()
+        }
+
+        masterPortfolioAdapter.imageItemClickListener {
+            findNavController().navigate(R.id.action_masterProfileFragment_to_portfolioImageDetailFragment, bundleOf("image_id" to it))
         }
 
     }

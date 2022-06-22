@@ -50,6 +50,9 @@
         <action
             android:id="@+id/action_masterProfileFragment_to_masterEditProfileFragment"
             app:destination="@id/masterEditProfileFragment" />
+        <action
+            android:id="@+id/action_masterProfileFragment_to_portfolioImageDetailFragment"
+            app:destination="@id/portfolioImageDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/notificationFragment"
@@ -104,10 +107,19 @@
         android:id="@+id/masterPortfolioFragment"
         android:name="com.heymaster.heymaster.role.master.fragment.profile.MasterPortfolioFragment"
         android:label="fragment_master_portfolio"
-        tools:layout="@layout/fragment_master_portfolio" />
+        tools:layout="@layout/fragment_master_portfolio" >
+        <action
+            android:id="@+id/action_masterPortfolioFragment_to_portfolioImageDetailFragment"
+            app:destination="@id/portfolioImageDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/masterServiceDetailFragment"
         android:name="com.heymaster.heymaster.role.master.fragment.home.MasterServiceDetailFragment"
         android:label="fragment_master_service_detail"
         tools:layout="@layout/fragment_master_service_detail" />
+    <fragment
+        android:id="@+id/portfolioImageDetailFragment"
+        android:name="com.heymaster.heymaster.role.master.fragment.profile.PortfolioImageDetailFragment"
+        android:label="fragment_portfolio_image_detail"
+        tools:layout="@layout/fragment_portfolio_image_detail" />
 </navigation>

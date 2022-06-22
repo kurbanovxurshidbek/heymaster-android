@@ -21,7 +21,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#2A000000">
+            android:orientation="vertical"
+            android:background="#40000000">
             
             <TextView
                 android:id="@+id/tvAdsTitle"
@@ -29,18 +30,20 @@
                 android:layout_height="wrap_content"
                 android:text="Home cleaning"
                 android:layout_gravity="start"
-                android:layout_margin="12dp"
-                android:textSize="18sp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginVertical="6dp"
+                android:textSize="22sp"
+                android:textStyle="bold"
                 android:textColor="#ffffff"/>
 
             <TextView
                 android:id="@+id/tvAdsBody"
-                android:layout_gravity="bottom|end"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Home cleaning"
-                android:layout_margin="12dp"
-                android:textSize="18sp"
+                android:textSize="20sp"
+                android:layout_marginLeft="12dp"
                 android:textColor="#ffffff"/>
 
 

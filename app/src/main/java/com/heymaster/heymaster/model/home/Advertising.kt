@@ -1,9 +1,14 @@
 package com.heymaster.heymaster.model.home
 
-import com.heymaster.heymaster.model.Object
-
 data class Advertising(
-    val message: String,
-    val `object`: List<Object>,
-    val success: Boolean
+    val attachment: Any,
+    val body: String,
+    val createAt: String,
+    val createdBy: Any,
+    val discount: String,
+    val id: Int,
+    val isActive: Boolean,
+    val title: String,
+    val updateAt: String,
+    val updatedBy: Any
 )

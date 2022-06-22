@@ -18,7 +18,6 @@ import com.heymaster.heymaster.role.master.viewmodel.MasterHomeViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterHomeViewModelFactory
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.global.adapter.home.CategoryAdapter
-import com.heymaster.heymaster.model.home.Advertising
 import com.heymaster.heymaster.role.master.adapter.*
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.UiStateObject
@@ -98,9 +97,9 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
                     is UiStateObject.SUCCESS -> {
                         binding.progressHome.customProgress.visibility = View.GONE
                         binding.nestedHome.visibility = View.VISIBLE
-                        val list = ArrayList<Advertising>()
-                        list.addAll(listOf(it.data!!))
-                        adsAdapter.submitAds(list)
+//                        val list = ArrayList<Advertising>()
+//                        list.addAll(listOf(it.data!!))
+//                        adsAdapter.submitAds(list)
 
                     }
                     is UiStateObject.ERROR -> {
