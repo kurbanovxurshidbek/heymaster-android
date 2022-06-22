@@ -62,6 +62,9 @@
         <action
             android:id="@+id/action_userProfileFragment_to_clientEditProfileFragment"
             app:destination="@id/clientEditProfileFragment" />
+        <action
+            android:id="@+id/action_userProfileFragment_to_clientToMasterFragment"
+            app:destination="@id/clientToMasterFragment" />
     </fragment>
     <fragment
         android:id="@+id/userNotificationFragment"
@@ -133,6 +136,10 @@
         android:id="@+id/professionDetailFragment"
         android:name="com.heymaster.heymaster.role.client.fragment.home.ClientProfessionDetailFragment"
         android:label="ProfessionDetailFragment" />
+    <fragment
+        android:id="@+id/clientToMasterFragment"
+        android:name="com.heymaster.heymaster.role.client.fragment.profile.ClientToMasterFragment"
+        android:label="ClientToMasterFragment" />
 
 
 </navigation>

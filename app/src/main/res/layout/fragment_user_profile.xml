@@ -145,7 +145,7 @@
                                 android:elevation="24dp"
                                 >
                                 <TextView
-                                    android:id="@+id/tvLogInAnotherProfile"
+                                    android:id="@+id/tv_client_to_master"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:paddingVertical="8dp"

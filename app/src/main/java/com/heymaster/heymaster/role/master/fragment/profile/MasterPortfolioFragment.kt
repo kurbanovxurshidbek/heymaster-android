@@ -24,7 +24,7 @@ import com.heymaster.heymaster.role.master.viewmodel.MasterProfileViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterProfileViewModelFactory
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.model.masterprofile.Portfolio
-import com.heymaster.heymaster.role.master.repository.MasterPortfolioRepository
+import com.heymaster.heymaster.role.master.repository.MasterProfileRepository
 import com.heymaster.heymaster.utils.Constants
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
@@ -117,7 +117,7 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
         val token = SharedPref(requireContext()).getString(Constants.KEY_ACCESS_TOKEN)
         viewModel = ViewModelProvider(
             this,
-            MasterProfileViewModelFactory(MasterPortfolioRepository(ApiClient.createServiceWithAuth(ApiService::class.java,token!!)))
+            MasterProfileViewModelFactory(MasterProfileRepository(ApiClient.createServiceWithAuth(ApiService::class.java,token!!)))
         )[MasterProfileViewModel::class.java]
     }
 

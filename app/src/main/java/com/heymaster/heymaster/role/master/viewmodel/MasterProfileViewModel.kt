@@ -1,13 +1,13 @@
 package com.heymaster.heymaster.role.master.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.heymaster.heymaster.model.AttachmentInfo
-import com.heymaster.heymaster.role.master.repository.MasterPortfolioRepository
+import com.heymaster.heymaster.role.master.repository.MasterProfileRepository
 import com.heymaster.heymaster.model.ErrorResponse
 import com.heymaster.heymaster.model.auth.CurrentUser
+import com.heymaster.heymaster.model.masterprofile.MasterToClientResponse
 import com.heymaster.heymaster.model.masterprofile.Portfolio
 
 import com.heymaster.heymaster.utils.UiStateList
@@ -17,13 +17,16 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import okhttp3.RequestBody
 
-class MasterProfileViewModel(private val repository: MasterPortfolioRepository): ViewModel() {
+class MasterProfileViewModel(private val repository: MasterProfileRepository): ViewModel() {
 
     private val _uploadAttachment = MutableStateFlow<UiStateObject<Any>>(UiStateObject.EMPTY)
     val uploadAttachment = _uploadAttachment
 
     private val _attachmentInfo = MutableStateFlow<UiStateList<AttachmentInfo>>(UiStateList.EMPTY)
     val attachmentInfo = _attachmentInfo
+
+    private val _masterToClient = MutableStateFlow<UiStateObject<MasterToClientResponse>>(UiStateObject.EMPTY)
+    val masterToClient = _masterToClient
 
 
 
@@ -113,6 +116,19 @@ class MasterProfileViewModel(private val repository: MasterPortfolioRepository):
 
         } catch (e: Exception) {
             _attachmentInfo.value = UiStateList.ERROR(e.userMessage())
+        }
+    }
+
+
+    fun masterToClient() = viewModelScope.launch {
+        _masterToClient.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.masterToClient()
+            _masterToClient.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _masterToClient.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.heymaster.heymaster.role.master.fragment.profile
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -16,19 +18,25 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.tabs.TabLayout
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
+import com.heymaster.heymaster.SplashActivity
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.ui.adapter.MasterProfilePagerAdapter
 import com.heymaster.heymaster.databinding.FragmentMasterProfileBinding
-import com.heymaster.heymaster.role.master.repository.MasterPortfolioRepository
+import com.heymaster.heymaster.global.BaseFragment
+import com.heymaster.heymaster.role.client.ClientActivity
+import com.heymaster.heymaster.role.master.repository.MasterProfileRepository
 import com.heymaster.heymaster.role.master.viewmodel.MasterProfileViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterProfileViewModelFactory
+import com.heymaster.heymaster.utils.Constants.CLIENT
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
+import com.heymaster.heymaster.utils.Constants.KEY_USER_ROLE
+import com.heymaster.heymaster.utils.Constants.MASTER
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
 
-class MasterProfileFragment : Fragment(R.layout.fragment_master_profile) {
+class MasterProfileFragment : BaseFragment(R.layout.fragment_master_profile) {
 
     private val binding by viewBinding { FragmentMasterProfileBinding.bind(it) }
     lateinit var adapter: MasterProfilePagerAdapter
@@ -46,6 +54,10 @@ class MasterProfileFragment : Fragment(R.layout.fragment_master_profile) {
     private fun itemClickManager() {
         binding.ivEditProfile.setOnClickListener {
             findNavController().navigate(R.id.masterEditProfileFragment)
+        }
+
+        binding.tvMasterToClient.setOnClickListener {
+            viewModel.masterToClient()
         }
 
         binding.apply {
@@ -81,6 +93,29 @@ class MasterProfileFragment : Fragment(R.layout.fragment_master_profile) {
                     }
                     is UiStateObject.ERROR -> {
                         Log.d("@@@error", "observeViewModel: error")
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.masterToClient.collect {
+                when(it) {
+                    is UiStateObject.LOADING -> {
+                        showLoading()
+                    }
+                    is UiStateObject.SUCCESS -> {
+                        dismissLoading()
+                        if(it.data.success) {
+                            val activity = context as AppCompatActivity
+                            SharedPref(requireContext()).saveString(KEY_USER_ROLE, CLIENT)
+                            startActivity(Intent(requireContext(), SplashActivity::class.java))
+                            activity.finish()
+                        }
+                    }
+                    is UiStateObject.ERROR -> {
+                        showLoading()
                     }
                     else -> Unit
                 }
@@ -133,7 +168,7 @@ class MasterProfileFragment : Fragment(R.layout.fragment_master_profile) {
         val token = SharedPref(requireContext()).getString(KEY_ACCESS_TOKEN)
         viewModel = ViewModelProvider(
             this, MasterProfileViewModelFactory(
-                MasterPortfolioRepository(
+                MasterProfileRepository(
                     ApiClient.createServiceWithAuth(
                         ApiService::class.java, token!!
 

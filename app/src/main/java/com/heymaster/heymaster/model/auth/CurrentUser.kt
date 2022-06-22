@@ -34,7 +34,8 @@ data class CurrentUser(
     val updateAt: String,
     val updatedBy: Any,
     val username: String,
-    val device: Device
+    val device: Device,
+    val alreadyIsMaster: Boolean
 )
 
 

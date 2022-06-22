@@ -70,5 +70,6 @@
     <string name="str_gender_female">1</string>
     <string name="get_started">Get Started</string>
     <string name="masters_total_mark"> %s reviews</string>
+    <string name="login_as_client">Login as Client</string>
 
 </resources>

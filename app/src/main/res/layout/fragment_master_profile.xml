@@ -134,12 +134,12 @@
                     android:elevation="24dp"
                     >
                     <TextView
-                        android:id="@+id/tvLogInAnotherProfile"
+                        android:id="@+id/tv_master_to_client"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="8dp"
                         android:layout_gravity="center"
-                        android:text="@string/loginAsMaster"
+                        android:text="@string/login_as_client"
                         android:textSize="16sp"
                         android:textColor="@color/white"/>
                 </androidx.cardview.widget.CardView>
