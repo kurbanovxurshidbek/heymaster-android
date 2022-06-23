@@ -3,6 +3,7 @@ package com.heymaster.heymaster.role.master.fragment.profile
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -15,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.tabs.TabLayout
 import com.heymaster.heymaster.R
@@ -29,6 +31,7 @@ import com.heymaster.heymaster.role.client.ClientActivity
 import com.heymaster.heymaster.role.master.repository.MasterProfileRepository
 import com.heymaster.heymaster.role.master.viewmodel.MasterProfileViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterProfileViewModelFactory
+import com.heymaster.heymaster.utils.Constants.ATTACHMENT_URL
 import com.heymaster.heymaster.utils.Constants.CLIENT
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.Constants.KEY_USER_ROLE
@@ -36,12 +39,19 @@ import com.heymaster.heymaster.utils.Constants.MASTER
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
+import java.io.FileOutputStream
 
 class MasterProfileFragment : BaseFragment(R.layout.fragment_master_profile) {
 
     private val binding by viewBinding { FragmentMasterProfileBinding.bind(it) }
     lateinit var adapter: MasterProfilePagerAdapter
     private lateinit var viewModel: MasterProfileViewModel
+
+    private var attachment = File("")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -79,21 +89,22 @@ class MasterProfileFragment : BaseFragment(R.layout.fragment_master_profile) {
             viewModel.masterProfile.collect {
                 when (it) {
                     is UiStateObject.LOADING -> {
-                        Log.d("@@@loading", "observeViewModel: loading")
+                        showLoading()
                     }
                     is UiStateObject.SUCCESS -> {
-                        Log.d("@@@success", "observeViewModel: loading")
+                        dismissLoading()
                         val profileMaster = it.data
-                        Log.d("@@@fullinfo", "observeViewModel: ${it.data}")
                         with(binding) {
                             tvProfile.text = profileMaster.fullName
                             tvProfileProvince.text = profileMaster.location.district.nameUz
-                            Log.d("@@@fullname", "observeViewModel: ${tvProfileProvince.text}")
                             tvProfileRegion.text = profileMaster.location.region.nameUz
+                            if (it.data.profilePhoto != null) {
+                                Glide.with(ivProfile).load(ATTACHMENT_URL + it.data.profilePhoto.id).into(binding.ivProfile)
+                            }
                         }
                     }
                     is UiStateObject.ERROR -> {
-                        Log.d("@@@error", "observeViewModel: error")
+                        dismissLoading()
                     }
                     else -> Unit
                 }
@@ -122,6 +133,42 @@ class MasterProfileFragment : BaseFragment(R.layout.fragment_master_profile) {
                 }
             }
         }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.uploadProfilePhoto.collect {
+                when (it) {
+                    is UiStateObject.LOADING -> {
+                        showLoading()
+
+                    }
+                    is UiStateObject.SUCCESS -> {
+                        dismissLoading()
+                        viewModel.getMasterProfile()
+                    }
+                    is UiStateObject.ERROR -> {
+                        dismissLoading()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+    }
+
+    private fun uploadAttachment() {
+        val builder: MultipartBody.Builder = MultipartBody.Builder()
+        builder.setType(MultipartBody.FORM)
+
+        if (attachment.length() > 0) {
+            builder.addFormDataPart(
+                "file",
+                attachment.name,
+                attachment.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            )
+        }
+        val body = builder.build()
+        viewModel.uploadProfilePhoto(body)
+
+
     }
 
 
@@ -153,7 +200,20 @@ class MasterProfileFragment : BaseFragment(R.layout.fragment_master_profile) {
                 Activity.RESULT_OK -> {
                     //Image Uri will not be null for RESULT_OK
                     val fileUri = data?.data!!
-                    binding.ivProfile.setImageURI(fileUri)
+                    val ins = requireActivity().contentResolver.openInputStream(fileUri)
+                    attachment = File.createTempFile(
+                        "file",
+                        ".jpg",
+                        requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+                    )
+
+                    val fileOutputStream = FileOutputStream(attachment)
+
+                    ins?.copyTo(fileOutputStream)
+                    ins?.close()
+                    fileOutputStream.close()
+
+                    uploadAttachment()
                 }
                 ImagePicker.RESULT_ERROR -> {
                     Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT)

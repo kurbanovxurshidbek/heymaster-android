@@ -13,6 +13,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
@@ -50,8 +51,9 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
         super.onViewCreated(view, savedInstanceState)
         setupRv()
         setupViewModel()
-        viewModel.attachmentInfo()
+        viewModel.getMasterProfile()
         observeViewModel()
+
 
 
         masterPortfolioAdapter.addItemClickListener {
@@ -73,12 +75,7 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
                     }
                     is UiStateList.SUCCESS -> {
                         binding.progressBarPortfolio.isVisible = false
-                        val list = ArrayList<Portfolio>()
-                        list.add(Portfolio.Add("Alisher"))
-                        it.data!!.reversed().forEach {
-                            list.add(Portfolio.Image(it))
-                        }
-                        masterPortfolioAdapter.submitList(list.toList())
+
                     }
                     is UiStateList.ERROR -> {
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
@@ -92,17 +89,45 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
             viewModel.uploadAttachment.collect {
                 when(it) {
                     is UiStateObject.LOADING -> {
-
+                        showLoading()
                     }
                     is UiStateObject.SUCCESS -> {
-                        viewModel.attachmentInfo()
+                        dismissLoading()
+                        viewModel.getMasterProfile()
 
                     }
                     is UiStateObject.ERROR -> {
+                        dismissLoading()
                         Log.d("errorr", "observeViewModel: $it")
                         //Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.masterProfile.collect {
+                when(it) {
+                    is UiStateObject.LOADING -> {
+
+                    }
+                    is UiStateObject.SUCCESS -> {
+
+                        val list = ArrayList<Portfolio>()
+                            list.add(Portfolio.Add("Alisher"))
+                        if (!it.data.attachments.isNullOrEmpty()) {
+                            it.data.attachments.reversed().forEach {
+                                list.add(Portfolio.Image(it))
+                            }
+                        }
+                        masterPortfolioAdapter.submitList(list.toList())
+
+
+                    }
+                    is UiStateObject.ERROR -> {
+
+                    }
                 }
             }
         }
@@ -188,11 +213,4 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
 
 
     }
-
-    override fun onResume() {
-        Thread.sleep(500)
-        viewModel.attachmentInfo()
-        super.onResume()
-    }
-
 }

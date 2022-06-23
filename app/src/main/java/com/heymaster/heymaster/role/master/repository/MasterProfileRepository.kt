@@ -3,7 +3,7 @@ package com.heymaster.heymaster.role.master.repository
 import com.heymaster.heymaster.data.network.ApiService
 import okhttp3.RequestBody
 
-class MasterPortfolioRepository(private val apiService: ApiService) {
+class MasterProfileRepository(private val apiService: ApiService) {
 
     suspend fun getImages() = apiService.getImages()
     suspend fun getImage(id: Int) = apiService.getImage(id)
@@ -15,6 +15,9 @@ class MasterPortfolioRepository(private val apiService: ApiService) {
     suspend fun attachmentInfo() = apiService.attachmentInfo()
 
     suspend fun masterToClient() = apiService.masterToClient()
+
+    suspend fun uploadProfilePhoto(body: RequestBody) = apiService.uploadProfilePhoto(body)
+
 
 
 

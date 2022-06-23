@@ -12,6 +12,8 @@ class ClientProfileRepository(
 
     suspend fun uploadAttachment(body: RequestBody) = apiService.uploadAttachment(body)
 
+    suspend fun uploadProfilePhoto(body: RequestBody) = apiService.uploadProfilePhoto(body)
+
     suspend fun attachmentInfo() = apiService.attachmentInfo()
 
     suspend fun clientToMaster(clientToMasterRequest: ClientToMasterRequest) = apiService.clientToMaster(clientToMasterRequest)

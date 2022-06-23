@@ -7,7 +7,6 @@ import com.google.gson.Gson
 import com.heymaster.heymaster.model.AttachmentInfo
 import com.heymaster.heymaster.role.master.repository.MasterProfileRepository
 import com.heymaster.heymaster.model.District
-import com.heymaster.heymaster.role.master.repository.MasterPortfolioRepository
 import com.heymaster.heymaster.model.ErrorResponse
 import com.heymaster.heymaster.model.Region
 import com.heymaster.heymaster.model.auth.CurrentUser
@@ -36,12 +35,14 @@ class MasterProfileViewModel(private val repository: MasterProfileRepository): V
     val masterToClient = _masterToClient
 
 
+    private val _uploadProfilePhoto = MutableStateFlow<UiStateObject<Any>>(UiStateObject.EMPTY)
+    val uploadProfilePhoto = _uploadProfilePhoto
+
+
 
     private val _portfolios = MutableStateFlow<UiStateList<Portfolio>>(UiStateList.EMPTY)
     val portfolios = _portfolios
 
-    private val _portfolio = MutableStateFlow<UiStateObject<Portfolio>>(UiStateObject.EMPTY)
-    val portfolio = _portfolio
 
 
     private val _regions = MutableStateFlow<UiStateList<Region>>(UiStateList.EMPTY)
@@ -69,8 +70,7 @@ class MasterProfileViewModel(private val repository: MasterProfileRepository): V
         }
     }
 
-    private val _masterProfile = MutableStateFlow<UiStateObject<CurrentUser>>(UiStateObject.EMPTY)
-    val masterProfile = _masterProfile
+
 
     fun getMasterProfile() = viewModelScope.launch {
         _masterProfile.value = UiStateObject.LOADING
@@ -186,6 +186,23 @@ class MasterProfileViewModel(private val repository: MasterProfileRepository): V
 
         } catch (e: Exception) {
             _professions.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+
+
+    fun uploadProfilePhoto(body: RequestBody) = viewModelScope.launch {
+        _uploadProfilePhoto.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.uploadProfilePhoto(body)
+            if(response.isSuccessful) {
+                _uploadProfilePhoto.value = UiStateObject.SUCCESS(response)
+            }
+
+
+        } catch (e: Exception) {
+            _uploadProfilePhoto.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 

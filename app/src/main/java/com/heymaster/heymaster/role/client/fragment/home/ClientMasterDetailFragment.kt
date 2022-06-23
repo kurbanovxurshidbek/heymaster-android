@@ -1,7 +1,7 @@
 package com.heymaster.heymaster.role.client.fragment.home
 
+
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -12,9 +12,9 @@ import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
-import com.heymaster.heymaster.role.master.adapter.DetailBottomViewPagerAdapter
 import com.heymaster.heymaster.databinding.FragmentDetailPageClientBinding
 import com.heymaster.heymaster.global.BaseFragment
+import com.heymaster.heymaster.role.master.adapter.DetailBottomViewPagerAdapter
 import com.heymaster.heymaster.role.master.fragment.detail.DetailsHistoryFragment
 import com.heymaster.heymaster.role.master.fragment.detail.DetailsPortfolioFragment
 import com.heymaster.heymaster.role.master.repository.DetailsRepository
@@ -24,10 +24,12 @@ import com.heymaster.heymaster.utils.Constants
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
+import java.util.*
 
 
 class ClientMasterDetailFragment : BaseFragment(R.layout.fragment_detail_page_client) {
 
+    private var defaultStatusBarColor: Int? = null
     private val binding by viewBinding { FragmentDetailPageClientBinding.bind(it) }
     private lateinit var adapter: DetailBottomViewPagerAdapter
     private lateinit var viewModel: DetailsViewModel
@@ -36,6 +38,7 @@ class ClientMasterDetailFragment : BaseFragment(R.layout.fragment_detail_page_cl
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        transparentStatusBar(requireActivity(), isTransparent = true, fullscreen = true)
         adapter = DetailBottomViewPagerAdapter(childFragmentManager, lifecycle)
         setupViewPager()
         setupViewModel()
@@ -143,4 +146,8 @@ class ClientMasterDetailFragment : BaseFragment(R.layout.fragment_detail_page_cl
             }
         })
     }
+
+
+
+
 }

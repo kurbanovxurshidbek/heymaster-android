@@ -72,8 +72,8 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         clickListeners()
-
         setupViewModel()
+
         viewModel.currentUser()
 
         binding.tvClientToMaster.setOnClickListener {
@@ -102,7 +102,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
             )
         }
         val body = builder.build()
-        viewModel.uploadAttachment(body)
+        viewModel.uploadProfilePhoto(body)
 
 
     }
@@ -118,13 +118,13 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                         dismissLoading()
                         isAlreadyMaster = it.data.alreadyIsMaster
                         fullname = it.data.fullName
-                        viewModel.attachmentInfo()
                         val currentUser = it.data
                         with(binding) {
                             tvFullname.text = currentUser.fullName
-
+                            if (it.data.profilePhoto != null) {
+                                Glide.with(binding.ivProfile).load(ATTACHMENT_URL + it.data.profilePhoto!!.id).into(binding.ivProfile)
+                            }
                         }
-
                     }
                     is UiStateObject.ERROR -> {
                         dismissLoading()
@@ -135,34 +135,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.attachmentInfo.collect {
-                when (it) {
-                    is UiStateList.LOADING -> {
-                        showLoading()
-
-                    }
-                    is UiStateList.SUCCESS -> {
-                        dismissLoading()
-                        if (!it.data.isNullOrEmpty()) {
-                            Log.d("@@@", "observeViewModel: ${it.data}")
-                            it.data.forEach {
-                                if (it.profilePhoto) {
-                                    Picasso.get().load(ATTACHMENT_URL + it.id)
-                                }
-                            }
-                        }
-                    }
-                    is UiStateList.ERROR -> {
-                        showLoading()
-                        dismissLoading()
-                    }
-                    else -> Unit
-                }
-            }
-        }
-
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.uploadAttachment.collect {
+            viewModel.uploadProfilePhoto.collect {
                 when (it) {
                     is UiStateObject.LOADING -> {
                         showLoading()
