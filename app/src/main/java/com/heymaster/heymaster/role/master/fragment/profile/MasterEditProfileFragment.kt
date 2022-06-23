@@ -19,7 +19,7 @@ import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.*
 import com.heymaster.heymaster.global.BaseFragment
-import com.heymaster.heymaster.role.master.repository.MasterPortfolioRepository
+import com.heymaster.heymaster.role.master.repository.MasterProfileRepository
 import com.heymaster.heymaster.role.master.viewmodel.MasterProfileViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterProfileViewModelFactory
 import com.heymaster.heymaster.ui.adapter.DistrictsAdapter
@@ -327,7 +327,7 @@ class MasterEditProfileFragment : BaseFragment(R.layout.fragment_master_edit_pro
         viewModel = ViewModelProvider(
             this,
             MasterProfileViewModelFactory(
-                MasterPortfolioRepository(
+                MasterProfileRepository(
                     ApiClient.createServiceWithAuth(
                         ApiService::class.java,token!!))
             )

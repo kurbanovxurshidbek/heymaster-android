@@ -7,7 +7,6 @@ import com.google.gson.Gson
 import com.heymaster.heymaster.model.AttachmentInfo
 import com.heymaster.heymaster.role.master.repository.MasterProfileRepository
 import com.heymaster.heymaster.model.District
-import com.heymaster.heymaster.role.master.repository.MasterPortfolioRepository
 import com.heymaster.heymaster.model.ErrorResponse
 import com.heymaster.heymaster.model.Region
 import com.heymaster.heymaster.model.auth.CurrentUser
@@ -32,6 +31,7 @@ class MasterProfileViewModel(private val repository: MasterProfileRepository): V
 
     private val _masterProfile = MutableStateFlow<UiStateObject<CurrentUser>>(UiStateObject.EMPTY)
     val masterProfile = _masterProfile
+
     private val _masterToClient = MutableStateFlow<UiStateObject<MasterToClientResponse>>(UiStateObject.EMPTY)
     val masterToClient = _masterToClient
 
@@ -53,25 +53,6 @@ class MasterProfileViewModel(private val repository: MasterProfileRepository): V
     private val _professions = MutableStateFlow<UiStateObject<Profession>>(UiStateObject.EMPTY)
     val professions = _professions
 
-    fun getImages() = viewModelScope.launch {
-        _portfolios.value = UiStateList.LOADING
-        try {
-            val response = repository.getImages()
-            if (response.code() >= 400) {
-                val error =
-                    Gson().fromJson(response.errorBody()!!.charStream(), ErrorResponse::class.java)
-                _portfolios.value = UiStateList.ERROR(error.errorMessage)
-            } else {
-                _portfolios.value = UiStateList.SUCCESS(response.body()!!)
-            }
-        } catch (e: Exception) {
-            _portfolios.value = UiStateList.ERROR(e.userMessage())
-        }
-    }
-
-    private val _masterProfile = MutableStateFlow<UiStateObject<CurrentUser>>(UiStateObject.EMPTY)
-    val masterProfile = _masterProfile
-
     fun getMasterProfile() = viewModelScope.launch {
         _masterProfile.value = UiStateObject.LOADING
         try {
@@ -90,11 +71,6 @@ class MasterProfileViewModel(private val repository: MasterProfileRepository): V
         }
     }
 
-
-
-
-    private val _portfolio = MutableStateFlow<UiStateObject<Portfolio>>(UiStateObject.EMPTY)
-    val portfolio = _portfolio
 
     fun getImage(id: Int) = viewModelScope.launch {
         _portfolio.value = UiStateObject.LOADING
