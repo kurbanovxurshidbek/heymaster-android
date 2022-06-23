@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.heymaster.heymaster.model.AttachmentInfo
 import com.heymaster.heymaster.model.ErrorResponse
+import com.heymaster.heymaster.model.auth.ClientToMasterRequest
+import com.heymaster.heymaster.model.auth.ClientToMasterResponse
 import com.heymaster.heymaster.model.auth.CurrentUser
 import com.heymaster.heymaster.role.client.repository.ClientProfileRepository
 import com.heymaster.heymaster.utils.UiStateList
@@ -26,6 +28,12 @@ class ClientProfileViewModel(
 
     private val _attachmentInfo = MutableStateFlow<UiStateList<AttachmentInfo>>(UiStateList.EMPTY)
     val attachmentInfo = _attachmentInfo
+
+    private val _clientToMaster = MutableStateFlow<UiStateObject<ClientToMasterResponse>>(UiStateObject.EMPTY)
+    val clientToMaster = _clientToMaster
+
+    private val _clientToMasterIsAlreadyMaster = MutableStateFlow<UiStateObject<ClientToMasterResponse>>(UiStateObject.EMPTY)
+    val clientToMasterIsAlreadyMaster = _clientToMasterIsAlreadyMaster
 
 
 
@@ -73,6 +81,30 @@ class ClientProfileViewModel(
 
         } catch (e: Exception) {
             _attachmentInfo.value = UiStateList.ERROR(e.userMessage())
+        }
+    }
+
+    fun clientToMaster(clientToMasterRequest: ClientToMasterRequest) = viewModelScope.launch {
+        _clientToMaster.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.clientToMaster(clientToMasterRequest)
+            _clientToMaster.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _clientToMaster.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+    fun clientToMasterIsAlreadyMaster() = viewModelScope.launch {
+        _clientToMasterIsAlreadyMaster.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.clientToMasterIsAlreadyMaster()
+            _clientToMasterIsAlreadyMaster.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _clientToMasterIsAlreadyMaster.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 }

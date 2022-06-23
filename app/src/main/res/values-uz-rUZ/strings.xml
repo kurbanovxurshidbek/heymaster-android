@@ -137,4 +137,6 @@
     <string name="get_started">Boshlash</string>
 
     <string name="masters_total_mark"> %s marta ko\'rilgam</string>
+
+    <string name="login_as_client">Login as Client</string>
 </resources>

@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -24,6 +25,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.heymaster.heymaster.App
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
+import com.heymaster.heymaster.SplashActivity
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.DialogChooseLanguageBinding
@@ -34,12 +36,15 @@ import com.heymaster.heymaster.manager.LocaleManager
 import com.heymaster.heymaster.role.client.repository.ClientProfileRepository
 import com.heymaster.heymaster.role.client.viewmodel.ClientProfileViewModel
 import com.heymaster.heymaster.role.client.viewmodel.factory.ClientProfileViewModelFactory
+import com.heymaster.heymaster.role.master.MasterActivity
 import com.heymaster.heymaster.ui.auth.LoginActivity
 import com.heymaster.heymaster.utils.Constants.ATTACHMENT_URL
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.Constants.KEY_CONFIRM_CODE
 import com.heymaster.heymaster.utils.Constants.KEY_LOGIN_SAVED
 import com.heymaster.heymaster.utils.Constants.KEY_PHONE_NUMBER
+import com.heymaster.heymaster.utils.Constants.KEY_USER_ROLE
+import com.heymaster.heymaster.utils.Constants.MASTER
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
@@ -60,6 +65,9 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
     private var attachment = File("")
 
+    private var isAlreadyMaster: Boolean? = null
+    private var fullname: String? = null
+
     @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -67,7 +75,14 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
         setupViewModel()
         viewModel.currentUser()
-        viewModel.attachmentInfo()
+
+        binding.tvClientToMaster.setOnClickListener {
+            if (isAlreadyMaster == true) {
+                viewModel.clientToMasterIsAlreadyMaster()
+            } else {
+                findNavController().navigate(R.id.action_userProfileFragment_to_clientToMasterFragment, bundleOf("fullname" to fullname))
+            }
+        }
 
         observeViewModel()
 
@@ -101,6 +116,9 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                     }
                     is UiStateObject.SUCCESS -> {
                         dismissLoading()
+                        isAlreadyMaster = it.data.alreadyIsMaster
+                        fullname = it.data.fullName
+                        viewModel.attachmentInfo()
                         val currentUser = it.data
                         with(binding) {
                             tvFullname.text = currentUser.fullName
@@ -120,6 +138,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
             viewModel.attachmentInfo.collect {
                 when (it) {
                     is UiStateList.LOADING -> {
+                        showLoading()
 
                     }
                     is UiStateList.SUCCESS -> {
@@ -134,6 +153,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                         }
                     }
                     is UiStateList.ERROR -> {
+                        showLoading()
                         dismissLoading()
                     }
                     else -> Unit
@@ -153,9 +173,31 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                         Toast.makeText(requireContext(), "${it.data}", Toast.LENGTH_SHORT).show()
                     }
                     is UiStateObject.ERROR -> {
-                        //Toast.makeText(requireContext(), "${it.message}", Toast.LENGTH_SHORT).show()
-                        //dismissLoading()
-//                        Log.d("@@@attachment", "observeViewModel: ${it.message}")
+                        dismissLoading()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.clientToMasterIsAlreadyMaster.collect {
+                when (it) {
+                    is UiStateObject.LOADING -> {
+                        showLoading()
+                    }
+                    is UiStateObject.SUCCESS -> {
+                        dismissLoading()
+                        if (it.data.success) {
+                            val activity = context as AppCompatActivity
+                            SharedPref(requireContext()).saveString(KEY_USER_ROLE, MASTER)
+                            startActivity(Intent(requireContext(), SplashActivity::class.java))
+                            activity.finish()
+                        }
+
+                    }
+                    is UiStateObject.ERROR -> {
+                        dismissLoading()
                     }
                     else -> Unit
                 }

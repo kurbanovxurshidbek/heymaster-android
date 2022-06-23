@@ -5,11 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.heymaster.heymaster.model.AttachmentInfo
+import com.heymaster.heymaster.role.master.repository.MasterProfileRepository
 import com.heymaster.heymaster.model.District
 import com.heymaster.heymaster.role.master.repository.MasterPortfolioRepository
 import com.heymaster.heymaster.model.ErrorResponse
 import com.heymaster.heymaster.model.Region
 import com.heymaster.heymaster.model.auth.CurrentUser
+import com.heymaster.heymaster.model.masterprofile.MasterToClientResponse
 import com.heymaster.heymaster.model.auth.Profession
 import com.heymaster.heymaster.model.masterprofile.Portfolio
 
@@ -20,7 +22,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import okhttp3.RequestBody
 
-class MasterProfileViewModel(private val repository: MasterPortfolioRepository): ViewModel() {
+class MasterProfileViewModel(private val repository: MasterProfileRepository): ViewModel() {
 
     private val _uploadAttachment = MutableStateFlow<UiStateObject<Any>>(UiStateObject.EMPTY)
     val uploadAttachment = _uploadAttachment
@@ -30,6 +32,10 @@ class MasterProfileViewModel(private val repository: MasterPortfolioRepository):
 
     private val _masterProfile = MutableStateFlow<UiStateObject<CurrentUser>>(UiStateObject.EMPTY)
     val masterProfile = _masterProfile
+    private val _masterToClient = MutableStateFlow<UiStateObject<MasterToClientResponse>>(UiStateObject.EMPTY)
+    val masterToClient = _masterToClient
+
+
 
     private val _portfolios = MutableStateFlow<UiStateList<Portfolio>>(UiStateList.EMPTY)
     val portfolios = _portfolios
@@ -63,6 +69,9 @@ class MasterProfileViewModel(private val repository: MasterPortfolioRepository):
         }
     }
 
+    private val _masterProfile = MutableStateFlow<UiStateObject<CurrentUser>>(UiStateObject.EMPTY)
+    val masterProfile = _masterProfile
+
     fun getMasterProfile() = viewModelScope.launch {
         _masterProfile.value = UiStateObject.LOADING
         try {
@@ -80,6 +89,12 @@ class MasterProfileViewModel(private val repository: MasterPortfolioRepository):
             _masterProfile.value = UiStateObject.ERROR(e.userMessage())
         }
     }
+
+
+
+
+    private val _portfolio = MutableStateFlow<UiStateObject<Portfolio>>(UiStateObject.EMPTY)
+    val portfolio = _portfolio
 
     fun getImage(id: Int) = viewModelScope.launch {
         _portfolio.value = UiStateObject.LOADING
@@ -121,6 +136,19 @@ class MasterProfileViewModel(private val repository: MasterPortfolioRepository):
 
         } catch (e: Exception) {
             _attachmentInfo.value = UiStateList.ERROR(e.userMessage())
+        }
+    }
+
+
+    fun masterToClient() = viewModelScope.launch {
+        _masterToClient.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.masterToClient()
+            _masterToClient.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _masterToClient.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 

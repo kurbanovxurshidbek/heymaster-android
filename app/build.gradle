@@ -116,7 +116,7 @@ dependencies {
     implementation 'com.airbnb.android:lottie:4.2.2'
 
     //Image Picker
-    //implementation 'com.github.WrathChaos:MediaPickerLib:0.2.0'
+//    implementation 'com.veinhorn.scrollgalleryview:library:1.2.6'
     implementation 'com.github.dhaval2404:imagepicker:2.1'
 
     //Date picker

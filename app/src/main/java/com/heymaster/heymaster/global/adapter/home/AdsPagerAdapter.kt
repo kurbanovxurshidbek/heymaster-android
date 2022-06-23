@@ -16,10 +16,9 @@ class AdsPagerAdapter: RecyclerView.Adapter<AdsPagerAdapter.AdsViewHolder>(){
         fun bind(ads: Advertising) {
             val tvTitle = view.findViewById<TextView>(R.id.tvAdsTitle)
             val tvBody = view.findViewById<TextView>(R.id.tvAdsBody)
-            ads.`object`.forEach {
-                tvTitle.text = it.title
-                tvBody.text = it.body
-            }
+
+            tvTitle.text = ads.title
+            tvBody.text = ads.body
 
         }
 

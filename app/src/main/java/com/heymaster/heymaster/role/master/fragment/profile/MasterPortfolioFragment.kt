@@ -3,13 +3,16 @@ package com.heymaster.heymaster.role.master.fragment.profile
 import android.app.Activity
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
@@ -21,7 +24,7 @@ import com.heymaster.heymaster.role.master.viewmodel.MasterProfileViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterProfileViewModelFactory
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.model.masterprofile.Portfolio
-import com.heymaster.heymaster.role.master.repository.MasterPortfolioRepository
+import com.heymaster.heymaster.role.master.repository.MasterProfileRepository
 import com.heymaster.heymaster.utils.Constants
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
@@ -53,6 +56,10 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
 
         masterPortfolioAdapter.addItemClickListener {
             pickImageProfile()
+        }
+
+        masterPortfolioAdapter.imageItemClickListener {
+            findNavController().navigate(R.id.action_masterProfileFragment_to_portfolioImageDetailFragment, bundleOf("image_id" to it))
         }
 
     }
@@ -92,7 +99,8 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
 
                     }
                     is UiStateObject.ERROR -> {
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                        Log.d("errorr", "observeViewModel: $it")
+                        //Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit
                 }
@@ -109,7 +117,7 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
         val token = SharedPref(requireContext()).getString(Constants.KEY_ACCESS_TOKEN)
         viewModel = ViewModelProvider(
             this,
-            MasterProfileViewModelFactory(MasterPortfolioRepository(ApiClient.createServiceWithAuth(ApiService::class.java,token!!)))
+            MasterProfileViewModelFactory(MasterProfileRepository(ApiClient.createServiceWithAuth(ApiService::class.java,token!!)))
         )[MasterProfileViewModel::class.java]
     }
 
@@ -179,6 +187,12 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
         viewModel.uploadAttachment(body)
 
 
+    }
+
+    override fun onResume() {
+        Thread.sleep(500)
+        viewModel.attachmentInfo()
+        super.onResume()
     }
 
 }

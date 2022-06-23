@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.auth.fragment.sign_up.MasterSignUpFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Sign Up"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        >
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/et_master_fullname"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/bg_edit_text_login"
+                        android:drawablePadding="12dp"
+                        android:hint="@string/fullName"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:imeActionLabel=""
+                        android:paddingHorizontal="24sp"
+                        android:paddingVertical="0dp"
+                        android:textColor="@color/black1"
+                        android:textCursorDrawable="@drawable/edittext_cursor_drawable"
+                        android:textSize="14sp"
+                        tools:ignore="TextFields" />
+
+                    <EditText
+                        android:id="@+id/et_master_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_edit_text_login"
+                        android:drawablePadding="12dp"
+                        android:hint="Gender"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingHorizontal="24sp"
+                        android:paddingVertical="0dp"
+                        android:textColor="@color/black1"
+                        android:textCursorDrawable="@drawable/edittext_cursor_drawable"
+                        android:textSize="14sp"
+                        tools:ignore="TextFields" />
+
+                    <com.vicmikhailau.maskededittext.MaskedEditText
+                        android:id="@+id/et_master_birthday"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:focusable="false"
+                        android:layout_marginTop="12dp"
+                        android:hint="Birthday"
+                        android:layout_marginHorizontal="24dp"
+                        android:background="@drawable/bg_edit_text_login"
+                        android:drawablePadding="12dp"
+                        android:maxLength="10"
+                        app:mask="##/##/####"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingHorizontal="24sp"
+                        android:paddingVertical="0dp"
+                        android:textColor="@color/black1"
+                        android:textCursorDrawable="@drawable/edittext_cursor_drawable"
+                        android:textSize="14sp"
+                        tools:ignore="TextFields" />
+
+
+                    <EditText
+                        android:id="@+id/et_master_region"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_edit_text_login"
+                        android:drawablePadding="12dp"
+                        android:hint="Region"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingHorizontal="24sp"
+                        android:paddingVertical="0dp"
+                        android:textColor="@color/black1"
+                        android:textCursorDrawable="@drawable/edittext_cursor_drawable"
+                        android:textSize="14sp"
+                        tools:ignore="TextFields" />
+
+                    <EditText
+                        android:visibility="gone"
+                        android:id="@+id/et_master_district"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_edit_text_login"
+                        android:drawablePadding="12dp"
+                        android:hint="District"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingHorizontal="24sp"
+                        android:paddingVertical="0dp"
+                        android:textColor="@color/black1"
+                        android:textCursorDrawable="@drawable/edittext_cursor_drawable"
+                        android:textSize="14sp"
+                        tools:ignore="TextFields"/>
+
+                    <EditText
+                        android:id="@+id/et_master_professions"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_edit_text_login"
+                        android:drawablePadding="12dp"
+                        android:hint="Professions"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingHorizontal="24sp"
+                        android:paddingVertical="0dp"
+                        android:textColor="@color/black1"
+                        android:textCursorDrawable="@drawable/edittext_cursor_drawable"
+                        android:textSize="14sp"
+                        tools:ignore="TextFields" />
+
+                    <EditText
+                        android:id="@+id/et_master_experience"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_edit_text_login"
+                        android:drawablePadding="12dp"
+                        android:hint="Experience"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingHorizontal="24sp"
+                        android:paddingVertical="0dp"
+                        android:textColor="@color/black1"
+                        android:textCursorDrawable="@drawable/edittext_cursor_drawable"
+                        android:textSize="14sp"
+                        tools:ignore="TextFields" />
+
+
+
+
+
+
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+        <include
+            android:id="@+id/progress_home"
+            layout="@layout/custom_progress"
+            android:visibility="gone"/>
+
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="24dp"
+        android:text="@string/sign_up"
+        app:cornerRadius="28dp"
+        android:layout_marginBottom="20dp"/>
+
+
+</LinearLayout>

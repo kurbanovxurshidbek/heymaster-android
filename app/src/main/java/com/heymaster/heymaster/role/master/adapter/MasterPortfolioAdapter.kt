@@ -22,6 +22,7 @@ class MasterPortfolioAdapter : ListAdapter<Portfolio, RecyclerView.ViewHolder>(P
 
     companion object {
         var addItemClick: (() -> Unit)? = null
+        var imageItemClick: ((id: Int) -> Unit)? = null
     }
 
 
@@ -41,7 +42,7 @@ class MasterPortfolioAdapter : ListAdapter<Portfolio, RecyclerView.ViewHolder>(P
                 Glide.with(binding.itemImages).load(ATTACHMENT_URL + image.attachmentInfo.id).placeholder(RandomColor.randomColor()).into(binding.itemImages)
 
                 binding.root.setOnClickListener {
-                    Log.d("@@@333", "bind: ${image.id}")
+                    imageItemClick?.invoke(image.attachmentInfo.id)
                 }
             }
         }
@@ -59,6 +60,10 @@ class MasterPortfolioAdapter : ListAdapter<Portfolio, RecyclerView.ViewHolder>(P
 
     fun addItemClickListener(listener: () -> Unit) {
          addItemClick = listener
+    }
+
+    fun imageItemClickListener(listener: (id: Int) -> Unit) {
+        imageItemClick = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PortfolioViewHolder {

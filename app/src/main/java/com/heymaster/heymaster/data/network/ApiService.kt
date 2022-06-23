@@ -10,6 +10,7 @@ import com.heymaster.heymaster.model.booking.BookingResponse
 import com.heymaster.heymaster.model.booking.ClientActiveBooking
 import com.heymaster.heymaster.model.home.*
 import com.heymaster.heymaster.model.masterdetail.MasterDetail
+import com.heymaster.heymaster.model.masterprofile.MasterToClientResponse
 import com.heymaster.heymaster.model.masterprofile.Portfolio
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -77,6 +78,15 @@ interface ApiService {
 
     @GET("profession/getAllActive")
     suspend fun getProfessions(): Response<Profession>
+
+    @POST("master/to/client")
+    suspend fun masterToClient(): Response<MasterToClientResponse>
+
+    @POST("user/to/master")
+    suspend fun clientToMaster(@Body clientToMasterRequest: ClientToMasterRequest): Response<ClientToMasterResponse>
+
+    @GET("master/roleToMaster")
+    suspend fun clientToMasterIsAlreadyMaster() :Response<ClientToMasterResponse>
 
 
     // client home page

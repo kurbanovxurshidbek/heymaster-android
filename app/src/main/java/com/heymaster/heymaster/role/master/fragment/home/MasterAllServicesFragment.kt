@@ -44,7 +44,7 @@ class MasterAllServicesFragment : BaseFragment(R.layout.fragment_master_all_serv
     }
 
     private fun launchCategoryDetailFragment(id: Int) {
-        findNavController().navigate(R.id.action_masterAllServicesFragment_to_masterServiceDetailFragment , bundleOf("category_id" to id))
+        findNavController().navigate(R.id.action_userAllServicesFragment_to_serviceDetailFragment , bundleOf("category_id" to id))
     }
 
     private fun obServeViewModel() {
