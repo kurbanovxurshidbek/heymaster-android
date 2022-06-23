@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.heymaster.heymaster.databinding.ActivitySplashBinding
 import com.heymaster.heymaster.global.BaseActivity
+import com.heymaster.heymaster.manager.LocaleManager
 import com.heymaster.heymaster.utils.ConnectivityReceiver
 import com.heymaster.heymaster.utils.Constants.CLIENT
 import com.heymaster.heymaster.utils.Constants.KEY_DEVICE_TOKEN
@@ -33,6 +34,7 @@ class SplashActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        LocaleManager(this).setLocale(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             setupStatusBar()
         }

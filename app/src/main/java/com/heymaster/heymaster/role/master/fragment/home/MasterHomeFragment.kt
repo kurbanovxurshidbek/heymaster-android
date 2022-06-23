@@ -45,6 +45,7 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
         super.onViewCreated(view, savedInstanceState)
 
 
+
         setupAdsAdapter()
         setupRv()
         setupViewModel()

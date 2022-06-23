@@ -23,6 +23,11 @@ import com.heymaster.heymaster.utils.extensions.viewBinding
 class MasterChildProfileFragment : Fragment(R.layout.fragment_master_child_profile) {
     private val binding by viewBinding { FragmentMasterChildProfileBinding.bind(it) }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         clickListeners()
@@ -83,11 +88,11 @@ class MasterChildProfileFragment : Fragment(R.layout.fragment_master_child_profi
 
         binding.btnUzbek.setOnClickListener {
             App.localeManager!!.setNewLocale(requireContext(), LocaleManager.LANGUAGE_UZBEK)
+            LocaleManager(context).setLocale(requireContext())
 
         }
         binding.btnRussian.setOnClickListener {
             App.localeManager!!.setNewLocale(requireContext(), LocaleManager.LANGUAGE_RUSSIAN)
-
         }
         binding.btnEnglish.setOnClickListener {
             App.localeManager!!.setNewLocale(requireContext(), LocaleManager.LANGUAGE_ENGLISH)
@@ -95,12 +100,12 @@ class MasterChildProfileFragment : Fragment(R.layout.fragment_master_child_profi
 
         binding.tvSave.setOnClickListener {
             Toast.makeText(requireContext(), "Saved", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.masterProfileFragment)
             dialog.dismiss()
 
         }
         binding.tvCancel.setOnClickListener {
             dialog.dismiss()
-
         }
 
         dialog.show()

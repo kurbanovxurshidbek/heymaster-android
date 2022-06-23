@@ -24,7 +24,7 @@
 
     <string name="verificationOTP">OTP tekshirish</string>
 
-    <string name="verificationSendOTP">Sizning telefon raqamingizga OTP yubordik</string>
+    <string name="verificationSendOTP">Sizning telefon raqamingizga OTP yuborildi</string>
 
     <string name="verificationReceiveOTP">Kodni olmadingizmi?</string>
 
@@ -52,7 +52,7 @@
 
     <string name="search_for_services">Xizmatni qidiring</string>
 
-    <string name="categories">Категории</string>
+    <string name="categories">Kategoriyalar</string>
 
     <string name="all">Hammasi</string>
 
@@ -70,7 +70,7 @@
 
     <string name="profile">Profil</string>
 
-    <string name="loginAsMaster">Usta sifatida davom etish</string>
+    <string name="loginAsMaster">Usta sifatida ro`yhatdan o`tish</string>
 
     <string name="loginAsUser">Mijoz sifatida davom etish</string>
 

@@ -14,5 +14,11 @@ class MasterPortfolioRepository(private val apiService: ApiService) {
 
     suspend fun attachmentInfo() = apiService.attachmentInfo()
 
+    suspend fun getRegions() = apiService.getRegions()
+
+    suspend fun getDistrictsFromRegion(id: Int) = apiService.getDistrictsFromRegion(id)
+
+    suspend fun getProfessions() = apiService.getProfessions()
+
 
 }
