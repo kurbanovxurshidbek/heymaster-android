@@ -1,15 +1,13 @@
 package com.heymaster.heymaster.model.auth
 
-import com.heymaster.heymaster.model.Device
-import com.heymaster.heymaster.model.District
-import com.heymaster.heymaster.model.Region
+import com.heymaster.heymaster.model.*
 
 data class CurrentUser(
     val accountNonExpired: Boolean,
     val accountNonLocked: Boolean,
     val active: Boolean,
     val approximateEndTime: Any,
-    val attachments: List<Any>,
+    val attachments: List<AttachmentInfo>,
     val authorities: List<Authority>,
     val birthDate: Any,
     val busy: Boolean,
@@ -27,7 +25,7 @@ data class CurrentUser(
     val peopleReitedCount: Int,
     val phoneNumber: String,
     val professionList: List<Any>,
-    val profilePhoto: Any,
+    val profilePhoto: AttachmentInfo? = null,
     val roles: Roles,
     val salary: Any,
     val totalMark: Int,

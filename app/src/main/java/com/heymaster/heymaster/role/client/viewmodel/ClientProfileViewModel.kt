@@ -26,6 +26,9 @@ class ClientProfileViewModel(
     private val _uploadAttachment = MutableStateFlow<UiStateObject<Any>>(UiStateObject.EMPTY)
     val uploadAttachment = _uploadAttachment
 
+    private val _uploadProfilePhoto = MutableStateFlow<UiStateObject<Any>>(UiStateObject.EMPTY)
+    val uploadProfilePhoto = _uploadProfilePhoto
+
     private val _attachmentInfo = MutableStateFlow<UiStateList<AttachmentInfo>>(UiStateList.EMPTY)
     val attachmentInfo = _attachmentInfo
 
@@ -69,6 +72,22 @@ class ClientProfileViewModel(
 
         } catch (e: Exception) {
             _uploadAttachment.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+
+    fun uploadProfilePhoto(body: RequestBody) = viewModelScope.launch {
+        _uploadProfilePhoto.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.uploadProfilePhoto(body)
+            if(response.isSuccessful) {
+                _uploadProfilePhoto.value = UiStateObject.SUCCESS(response)
+            }
+
+
+        } catch (e: Exception) {
+            _uploadProfilePhoto.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 

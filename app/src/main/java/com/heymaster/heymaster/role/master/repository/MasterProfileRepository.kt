@@ -16,6 +16,9 @@ class MasterProfileRepository(private val apiService: ApiService) {
 
     suspend fun masterToClient() = apiService.masterToClient()
 
+    suspend fun uploadProfilePhoto(body: RequestBody) = apiService.uploadProfilePhoto(body)
+
+
 
 
     suspend fun getRegions() = apiService.getRegions()

@@ -55,6 +55,12 @@ interface ApiService {
     @GET("booking/{id}")
     suspend fun getBookingById(): Response<BookingResponse>
 
+    @GET("booking/master")
+    suspend fun getMasterActiveBooking(): Response<BookingResponse>
+
+    @GET("booking/finish/{id}")
+    suspend fun bookingFinish(@Path("id") id: Int)
+
 
 
     //Auth
@@ -105,6 +111,9 @@ interface ApiService {
 
     @POST("attachment/upload")
     suspend fun uploadAttachment(@Body body: RequestBody): Response<Any>
+
+    @POST("attachment/upload/profilphoto")
+    suspend fun uploadProfilePhoto(@Body body: RequestBody): Response<Any>
 
     @GET("attachment/info")
     suspend fun attachmentInfo(): Response<List<AttachmentInfo>>
