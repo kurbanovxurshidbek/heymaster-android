@@ -36,14 +36,14 @@ class LocaleManager(context: Context?) {
     }
 
     val language: String?
-        get() = sharedPreferences?.getString(LANGUAGE_KEY, LANGUAGE_UZBEK)
+        get() = sharedPreferences.getString(LANGUAGE_KEY, LANGUAGE_UZBEK)
 
 
     @SuppressLint("ApplySharedPref")
     private fun persistLanguage(language: String) {
         // use commit() instead of apply(), because sometimes we kill the application process
         // immediately that prevents apply() from finishing
-        sharedPreferences!!.edit().putString(LANGUAGE_KEY, language).commit()
+        sharedPreferences.edit().putString(LANGUAGE_KEY, language).commit()
     }
 
     private fun updateResources(context: Context, language: String?) {
@@ -80,12 +80,6 @@ class LocaleManager(context: Context?) {
         const val LANGUAGE_RUSSIAN = "ru"
         const val LANGUAGE_UZBEK = "uz"
         private const val LANGUAGE_KEY = "language_key"
-
-        fun getLocale(res: Resources): Locale {
-            val config = res.configuration
-            return if (isAtLeastVersion(Build.VERSION_CODES.N)) config.locales[1]
-            else config.locale
-        }
 
         fun isAtLeastVersion(version: Int): Boolean {
             return Build.VERSION.SDK_INT >= version

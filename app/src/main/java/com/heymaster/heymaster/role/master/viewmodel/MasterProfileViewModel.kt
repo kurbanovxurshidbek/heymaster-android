@@ -1,13 +1,18 @@
 package com.heymaster.heymaster.role.master.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.heymaster.heymaster.model.AttachmentInfo
 import com.heymaster.heymaster.role.master.repository.MasterProfileRepository
+import com.heymaster.heymaster.model.District
+import com.heymaster.heymaster.role.master.repository.MasterPortfolioRepository
 import com.heymaster.heymaster.model.ErrorResponse
+import com.heymaster.heymaster.model.Region
 import com.heymaster.heymaster.model.auth.CurrentUser
 import com.heymaster.heymaster.model.masterprofile.MasterToClientResponse
+import com.heymaster.heymaster.model.auth.Profession
 import com.heymaster.heymaster.model.masterprofile.Portfolio
 
 import com.heymaster.heymaster.utils.UiStateList
@@ -25,6 +30,8 @@ class MasterProfileViewModel(private val repository: MasterProfileRepository): V
     private val _attachmentInfo = MutableStateFlow<UiStateList<AttachmentInfo>>(UiStateList.EMPTY)
     val attachmentInfo = _attachmentInfo
 
+    private val _masterProfile = MutableStateFlow<UiStateObject<CurrentUser>>(UiStateObject.EMPTY)
+    val masterProfile = _masterProfile
     private val _masterToClient = MutableStateFlow<UiStateObject<MasterToClientResponse>>(UiStateObject.EMPTY)
     val masterToClient = _masterToClient
 
@@ -32,6 +39,19 @@ class MasterProfileViewModel(private val repository: MasterProfileRepository): V
 
     private val _portfolios = MutableStateFlow<UiStateList<Portfolio>>(UiStateList.EMPTY)
     val portfolios = _portfolios
+
+    private val _portfolio = MutableStateFlow<UiStateObject<Portfolio>>(UiStateObject.EMPTY)
+    val portfolio = _portfolio
+
+
+    private val _regions = MutableStateFlow<UiStateList<Region>>(UiStateList.EMPTY)
+    val regions = _regions
+
+    private val _districts = MutableStateFlow<UiStateList<District>>(UiStateList.EMPTY)
+    val districts = _districts
+
+    private val _professions = MutableStateFlow<UiStateObject<Profession>>(UiStateObject.EMPTY)
+    val professions = _professions
 
     fun getImages() = viewModelScope.launch {
         _portfolios.value = UiStateList.LOADING
@@ -131,4 +151,43 @@ class MasterProfileViewModel(private val repository: MasterProfileRepository): V
             _masterToClient.value = UiStateObject.ERROR(e.userMessage())
         }
     }
+
+    fun getRegions() = viewModelScope.launch {
+        _regions.value = UiStateList.LOADING
+
+        try {
+            val response = repository.getRegions()
+            _regions.value = UiStateList.SUCCESS(response.body())
+
+        } catch (e: Exception) {
+            _regions.value = UiStateList.ERROR(e.userMessage())
+        }
+    }
+
+    fun getDistrictsFromRegion(id: Int) = viewModelScope.launch {
+        _districts.value = UiStateList.LOADING
+
+        try {
+            val response = repository.getDistrictsFromRegion(id)
+
+            _districts.value = UiStateList.SUCCESS(response.body())
+
+        } catch (e: Exception) {
+            _districts.value = UiStateList.ERROR(e.userMessage())
+        }
+    }
+
+    fun getProfessions() = viewModelScope.launch {
+        _professions.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.getProfessions()
+            _professions.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _professions.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+
 }

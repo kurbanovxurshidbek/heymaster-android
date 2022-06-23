@@ -174,6 +174,7 @@ class MasterSignUpFragment : Fragment(R.layout.fragment_master_sign_up) {
     }
 
     private fun observeViewModel() {
+
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.masterRegister.collect {
                 when (it) {

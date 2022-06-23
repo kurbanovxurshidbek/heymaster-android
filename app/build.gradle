@@ -121,4 +121,7 @@ dependencies {
 
     //Date picker
     implementation 'com.takisoft.datetimepicker:datetimepicker:1.0.3'
+
+    //text-write
+    implementation 'com.github.NitishGadangi:TypeWriter-TextView:v1.3'
 }

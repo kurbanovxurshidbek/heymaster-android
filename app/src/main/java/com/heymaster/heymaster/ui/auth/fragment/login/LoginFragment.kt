@@ -43,6 +43,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         observeViewModel()
 
         editPhoneNumberListener()
+        welcomeTextManager()
 
         binding.btnContinue.setOnClickListener {
             if (binding.etPhoneNumber.text.toString().isNotEmpty()) {
@@ -56,6 +57,21 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
         }
 
+    }
+
+    private fun welcomeTextManager() {
+        binding.apply {
+            loginWritableTextView.apply {
+                setCharacterDelay(100)
+                animateText(getString(R.string.login_welcome))
+                setOnClickListener {
+                    if (isAnimationRunning) {
+                        stopAnimation()
+                        animateText(getString(R.string.login_welcome))
+                    } else animateText(getString(R.string.login_welcome))
+                }
+            }
+        }
     }
 
     private fun editPhoneNumberListener() {

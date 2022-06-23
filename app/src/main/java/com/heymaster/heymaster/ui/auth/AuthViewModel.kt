@@ -45,8 +45,6 @@ class AuthViewModel(
     val professions = _professions
 
 
-
-
     fun login(phoneNumber: LoginRequest) = viewModelScope.launch {
         _login.value = UiStateObject.LOADING
         try {
@@ -129,7 +127,6 @@ class AuthViewModel(
         }
     }
 
-
     fun getRegions() = viewModelScope.launch {
         _regions.value = UiStateList.LOADING
 
@@ -141,7 +138,6 @@ class AuthViewModel(
             _regions.value = UiStateList.ERROR(e.userMessage())
         }
     }
-
 
     fun getDistrictsFromRegion(id: Int) = viewModelScope.launch {
         _districts.value = UiStateList.LOADING
@@ -167,9 +163,6 @@ class AuthViewModel(
             _professions.value = UiStateObject.ERROR(e.userMessage())
         }
     }
-
-
-
 
 
     private var timer: CountDownTimer? = null
