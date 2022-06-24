@@ -39,12 +39,12 @@ import java.io.FileOutputStream
 
 
 class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio) {
+
     private val binding by viewBinding { FragmentMasterPortfolioBinding.bind(it) }
     private lateinit var viewModel: MasterProfileViewModel
     private val masterPortfolioAdapter by lazy { MasterPortfolioAdapter() }
 
     private var attachment = File("")
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,7 +53,6 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
         setupViewModel()
         viewModel.getMasterProfile()
         observeViewModel()
-
 
 
         masterPortfolioAdapter.addItemClickListener {

@@ -28,6 +28,7 @@ import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.SplashActivity
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
+import com.heymaster.heymaster.databinding.DialogChangeUserRoleBinding
 import com.heymaster.heymaster.databinding.DialogChooseLanguageBinding
 import com.heymaster.heymaster.databinding.DialogLogOutBinding
 import com.heymaster.heymaster.databinding.FragmentUserProfileBinding
@@ -77,11 +78,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
         viewModel.currentUser()
 
         binding.tvClientToMaster.setOnClickListener {
-            if (isAlreadyMaster == true) {
-                viewModel.clientToMasterIsAlreadyMaster()
-            } else {
-                findNavController().navigate(R.id.action_userProfileFragment_to_clientToMasterFragment, bundleOf("fullname" to fullname))
-            }
+            showChangeRoleDialog()
         }
 
         observeViewModel()
@@ -121,6 +118,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                         val currentUser = it.data
                         with(binding) {
                             tvFullname.text = currentUser.fullName
+
                             if (it.data.profilePhoto != null) {
                                 Glide.with(binding.ivProfile).load(ATTACHMENT_URL + it.data.profilePhoto!!.id).into(binding.ivProfile)
                             }
@@ -143,7 +141,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                     }
                     is UiStateObject.SUCCESS -> {
                         dismissLoading()
-                        Toast.makeText(requireContext(), "${it.data}", Toast.LENGTH_SHORT).show()
+                        viewModel.currentUser()
                     }
                     is UiStateObject.ERROR -> {
                         dismissLoading()
@@ -239,6 +237,30 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
         binding.tvCancel.setOnClickListener {
             dialog.cancel()
+        }
+        dialog.show()
+    }
+
+    private fun showChangeRoleDialog() {
+        val dialog = Dialog(requireContext())
+        val binding: DialogChangeUserRoleBinding =
+            DialogChangeUserRoleBinding.inflate(layoutInflater)
+        dialog.setContentView(binding.root)
+        dialog.setCancelable(true)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        binding.tvOk.setOnClickListener {
+            if (isAlreadyMaster == true) {
+                viewModel.clientToMasterIsAlreadyMaster()
+                dialog.dismiss()
+            } else {
+                findNavController().navigate(R.id.action_userProfileFragment_to_clientToMasterFragment, bundleOf("fullname" to fullname))
+                dialog.dismiss()
+            }
+        }
+
+        binding.tvCancel.setOnClickListener {
+            dialog.dismiss()
         }
         dialog.show()
     }
