@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.ItemMastersBinding
 
 import com.heymaster.heymaster.model.home.Object
+import com.heymaster.heymaster.utils.Constants
 
 class AllMastersAdapter :
     ListAdapter<Object, AllMastersAdapter.PopularMastersViewHolder>(PopularMasterItemDiffCallback()) {
@@ -30,6 +32,12 @@ class AllMastersAdapter :
 
                 master.professionList.forEach {
                     tvProfession.text = it.name
+                }
+
+                if(master.profilePhoto != null) {
+                    Glide.with(ivMaster).load(Constants.ATTACHMENT_URL + master.profilePhoto.id).placeholder(R.drawable.img_1).into(ivMaster)
+                } else {
+                    ivMaster.setImageResource(R.drawable.img_1)
                 }
 
                 root.setOnClickListener {

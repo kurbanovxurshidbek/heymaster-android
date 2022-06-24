@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.heymaster.heymaster.databinding.ItemServiceBinding
 import com.heymaster.heymaster.model.home.Category
 
@@ -15,8 +16,11 @@ class CategoryAdapter: ListAdapter<Category, CategoryAdapter.ServiceViewHolder>(
     inner class ServiceViewHolder(private val binding: ItemServiceBinding):
         RecyclerView.ViewHolder(binding.root) {
         fun bind(category: Category) {
-            binding.tvServiceName.text = category.name
-            //Picasso.get().load(category.image).into(binding.icServices)
+            binding.apply {
+                tvServiceName.text = category.name
+                Glide.with(icServices).load(category.photoUrl).into(icServices)
+
+            }
 
             binding.root.setOnClickListener {
                 itemClickListener?.invoke(category)

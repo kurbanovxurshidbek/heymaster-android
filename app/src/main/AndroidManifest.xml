@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Heymaster"
         tools:replace="android:theme"
         tools:targetApi="n">
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/notification_channel_id" />
         <activity
             android:name="com.heymaster.heymaster.role.master.MasterActivity"
             android:exported="false" />
@@ -50,6 +53,13 @@
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".service.FirebaseService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
     </application>

@@ -2,11 +2,13 @@ package com.heymaster.heymaster.role.client
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.heymaster.heymaster.R
@@ -27,6 +29,8 @@ class ClientActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             setupStatusBar()
         }
+
+        navigate(intent)
         binding.userBottomNavigation.setupWithNavController(findNavController(R.id.user_container))
 
 
@@ -75,6 +79,27 @@ class ClientActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
         } else {
             dialog?.dismiss()
 
+        }
+    }
+
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        navigate(intent)
+    }
+
+    private fun navigate(intent: Intent) {
+        if (intent != null) {
+            val text = intent.getStringExtra("type")
+            when(text) {
+                "parcel" -> {
+                    //navigate to fragment
+                    Toast.makeText(this, "Navigate to parcel Fragment", Toast.LENGTH_SHORT).show()
+                }
+                "simple" -> {
+                    Toast.makeText(this, "Navigate to Simple Fragment", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }

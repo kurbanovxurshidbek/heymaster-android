@@ -6,5 +6,6 @@ data class Object(
     val category: Category,
     val id: Int,
     val isActive: Boolean,
-    val name: String
+    val name: String,
+    val photoUrl: String
 )

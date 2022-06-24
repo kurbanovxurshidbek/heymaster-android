@@ -1,15 +1,14 @@
-package com.heymaster.heymaster.model.home
+package com.heymaster.heymaster.model.booking
 
-import com.heymaster.heymaster.model.AttachmentInfo
-
-data class Object(
+data class From(
     val accountNonExpired: Boolean,
     val accountNonLocked: Boolean,
     val active: Boolean,
+    val alreadyIsMaster: Boolean,
     val approximateEndTime: Any,
-    val attachments: List<AttachmentInfo>,
+    val attachments: List<Any>,
     val authorities: List<Authority>,
-    val birthDate: String,
+    val birthDate: Any,
     val busy: Boolean,
     val createAt: String,
     val createdBy: Any,
@@ -17,16 +16,16 @@ data class Object(
     val device: Device,
     val enabled: Boolean,
     val experienceYear: Int,
-    val fullName: String,
+    val fullName: String?,
     val gender: Boolean,
     val generatePassword: String,
     val id: Int,
-    val location: Location,
+    val location: Any,
     val password: String,
     val peopleReitedCount: Int,
-    val phoneNumber: String,
-    val professionList: List<Profession>,
-    val profilePhoto: AttachmentInfo?,
+    val phoneNumber: String?,
+    val professionList: List<Any>,
+    val profilePhoto: Any,
     val roles: Roles,
     val salary: Any,
     val totalMark: Int,

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.heymaster.heymaster.databinding.ItemProfessionBinding
 import com.heymaster.heymaster.databinding.ItemProfessionsFromCategoryBinding
 import com.heymaster.heymaster.model.auth.Object
@@ -22,6 +23,8 @@ class ProfessionsFromCategoryAdapter :
             binding.tvProfessionName.text = profession.name
             binding.tvCategoryName.text = profession.category.name
             binding.ratingProfession.rating = Random.nextInt(1, 5).toFloat()
+
+            Glide.with(binding.ivProfileSearchItem).load(profession)
 
             binding.root.setOnClickListener {
                 itemClickListener?.invoke(profession)

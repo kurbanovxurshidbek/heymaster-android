@@ -72,4 +72,6 @@
     <string name="masters_total_mark"> %s reviews</string>
     <string name="login_as_client">Login as Client</string>
 
+    <string name="notification_channel_id" translatable="false">com.heymaster.heymaster</string>
+
 </resources>

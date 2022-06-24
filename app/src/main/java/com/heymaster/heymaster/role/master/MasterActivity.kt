@@ -1,13 +1,18 @@
 package com.heymaster.heymaster.role.master
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.ActivityMasterBinding
 import com.heymaster.heymaster.global.BaseActivity
@@ -22,6 +27,7 @@ class MasterActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        FirebaseAnalytics.getInstance(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             setupStatusBar()
         }
@@ -75,6 +81,28 @@ class MasterActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
         } else {
             dialog?.dismiss()
 
+        }
+    }
+
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        navigate(intent!!)
+
+    }
+
+    private fun navigate(intent: Intent) {
+        if (intent != null) {
+            val text = intent.getStringExtra("type")
+            when(text) {
+                "parcel" -> {
+                    //navigate to fragment
+                    Toast.makeText(this, "Navigate to parcel Fragment", Toast.LENGTH_SHORT).show()
+                }
+                "simple" -> {
+                    Toast.makeText(this, "Navigate to Simple Fragment", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }
