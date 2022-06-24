@@ -211,7 +211,7 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/poppins_regular"
                             android:maxLines="1"
-                            android:text="Call"
+                            android:text="@string/call"
                             android:textSize="16sp" />
 
 
@@ -246,7 +246,7 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/poppins_regular"
                             android:maxLines="1"
-                            android:text="Direction"
+                            android:text="@string/direction"
                             android:textSize="16sp" />
 
 
@@ -282,7 +282,7 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/poppins_regular"
                             android:maxLines="1"
-                            android:text="Share"
+                            android:text="@string/share"
                             android:textSize="16sp" />
 
 

@@ -18,7 +18,7 @@
 
     <string name="login_welcome">Xush kelibsiz!</string>
 
-    <string name="login_account">Marhamat hisobingizga kiring?</string>
+    <string name="login_account">Marhamat raqamingizni kiriting?</string>
 
     <string name="enter_mobile_number">Telefon raqamingizni kiriting</string>
 
@@ -134,9 +134,18 @@
 
     <string name="str_gender_female">1</string>
 
-    <string name="get_started">Boshlash</string>
+    <string name="get_started">Davom etish</string>
 
-    <string name="masters_total_mark"> %s marta ko\'rilgam</string>
+    <string name="masters_total_mark"> %s marta ko\'rilgan</string>
 
-    <string name="login_as_client">Login as Client</string>
+    <string name="login_as_client"> master sifatida ro`yhatdan o`tish</string>
+
+    <string name="open">Ochiq</string>
+
+    <string name="direction">Manzil</string>
+
+    <string name="male">Erkak</string>
+
+    <string name="female">Ayol</string>
+
 </resources>

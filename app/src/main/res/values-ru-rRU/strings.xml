@@ -126,4 +126,12 @@
     <string name="masters_total_mark"> %s reviews</string>
 
     <string name="login_as_client">Login as Client</string>
+
+    <string name="open">открытым</string>
+
+    <string name="direction">Направление</string>
+
+    <string name="male">Мужской</string>
+
+    <string name="female">женский</string>
 </resources>

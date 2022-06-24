@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
             android:gravity="center"
-            android:text="Choose gender"
+            android:text="Choose_gender"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="18sp" />
@@ -40,7 +40,7 @@
                 android:id="@+id/tv_male"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Male"
+                android:text="@string/male"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:layout_margin="16dp"/>
@@ -55,7 +55,7 @@
                 android:id="@+id/tv_female"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Female"
+                android:text="@string/female"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:layout_margin="16dp"/>

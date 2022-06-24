@@ -28,8 +28,9 @@ class MasterBookingFragment : BaseFragment(R.layout.fragment_master_booking) {
         binding.vpMasterBookings.adapter = adapter
         binding.vpMasterBookings.setCurrentItem(0,true)
 
-        binding.tabMasterBookings.addTab(binding.tabMasterBookings.newTab().setText("Active"))
-        binding.tabMasterBookings.addTab(binding.tabMasterBookings.newTab().setText("History"))
+
+        binding.tabMasterBookings.addTab(binding.tabMasterBookings.newTab().setText(getString(R.string.active)))
+        binding.tabMasterBookings.addTab(binding.tabMasterBookings.newTab().setText(getString(R.string.history)))
 
         binding.tabMasterBookings.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab) {
