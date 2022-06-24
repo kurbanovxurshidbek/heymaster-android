@@ -6,6 +6,8 @@ import com.heymaster.heymaster.model.Region
 import com.heymaster.heymaster.model.auth.*
 import com.heymaster.heymaster.model.auth.Object
 import com.heymaster.heymaster.model.auth.Profession
+import com.heymaster.heymaster.model.booking.BookingAcceptRequest
+import com.heymaster.heymaster.model.booking.BookingAcceptResponse
 import com.heymaster.heymaster.model.booking.BookingResponse
 import com.heymaster.heymaster.model.booking.ClientActiveBooking
 import com.heymaster.heymaster.model.home.*
@@ -61,6 +63,12 @@ interface ApiService {
     @GET("booking/finish/{id}")
     suspend fun bookingFinish(@Path("id") id: Int)
 
+    @GET("booking/master/history")
+    suspend fun getBookingMasterHistory()
+
+    @POST("booking/accept")
+    suspend fun bookingAcceptOrCancel(@Body bookingAcceptRequest: BookingAcceptRequest): Response<BookingAcceptResponse>
+
 
 
     //Auth
@@ -112,7 +120,7 @@ interface ApiService {
     @POST("attachment/upload")
     suspend fun uploadAttachment(@Body body: RequestBody): Response<Any>
 
-    @POST("attachment/upload/profilphoto")
+    @POST("attachment/upload/profilePhoto")
     suspend fun uploadProfilePhoto(@Body body: RequestBody): Response<Any>
 
     @GET("attachment/info")

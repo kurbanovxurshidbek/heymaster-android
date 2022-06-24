@@ -1,7 +1,10 @@
 package com.heymaster.heymaster.role.master.fragment.profile
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
@@ -12,6 +15,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -24,6 +28,7 @@ import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.SplashActivity
 import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
+import com.heymaster.heymaster.databinding.DialogChangeUserRoleBinding
 import com.heymaster.heymaster.ui.adapter.MasterProfilePagerAdapter
 import com.heymaster.heymaster.databinding.FragmentMasterProfileBinding
 import com.heymaster.heymaster.global.BaseFragment
@@ -68,7 +73,7 @@ class MasterProfileFragment : BaseFragment(R.layout.fragment_master_profile) {
         }
 
         binding.tvMasterToClient.setOnClickListener {
-            viewModel.masterToClient()
+            showChangeRoleDialog()
         }
 
         binding.apply {
@@ -265,6 +270,28 @@ class MasterProfileFragment : BaseFragment(R.layout.fragment_master_profile) {
 
             }
         })
+    }
+
+
+    private fun showChangeRoleDialog() {
+        val dialog = Dialog(requireContext())
+        val binding: DialogChangeUserRoleBinding =
+            DialogChangeUserRoleBinding.inflate(layoutInflater)
+        dialog.setContentView(binding.root)
+        dialog.setCancelable(true)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        binding.tvTitle.text = "Oddiy foydalanuvchi sifatida davom etasizmi ?"
+
+        binding.tvOk.setOnClickListener {
+            viewModel.masterToClient()
+            dialog.dismiss()
+        }
+
+        binding.tvCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 }
 
