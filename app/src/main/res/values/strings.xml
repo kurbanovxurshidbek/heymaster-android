@@ -71,6 +71,11 @@
     <string name="get_started">Get Started</string>
     <string name="masters_total_mark"> %s reviews</string>
     <string name="login_as_client">Login as Client</string>
+    <string name="open">Open</string>
+    <string name="direction">Direction</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+
 
     <string name="notification_channel_id" translatable="false">com.heymaster.heymaster</string>
 

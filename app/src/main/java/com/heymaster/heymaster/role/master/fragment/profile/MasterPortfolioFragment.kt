@@ -60,7 +60,7 @@ class MasterPortfolioFragment : BaseFragment(R.layout.fragment_master_portfolio)
         }
 
         masterPortfolioAdapter.imageItemClickListener {
-            findNavController().navigate(R.id.action_masterProfileFragment_to_portfolioImageDetailFragment, bundleOf("image_id" to it))
+            findNavController().navigate(R.id.portfolioImageDetailFragment, bundleOf("image_id" to it))
         }
 
     }

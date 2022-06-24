@@ -31,6 +31,7 @@ class MasterProfileViewModel(private val repository: MasterProfileRepository): V
 
     private val _masterProfile = MutableStateFlow<UiStateObject<CurrentUser>>(UiStateObject.EMPTY)
     val masterProfile = _masterProfile
+
     private val _masterToClient = MutableStateFlow<UiStateObject<MasterToClientResponse>>(UiStateObject.EMPTY)
     val masterToClient = _masterToClient
 
@@ -43,6 +44,8 @@ class MasterProfileViewModel(private val repository: MasterProfileRepository): V
     private val _portfolios = MutableStateFlow<UiStateList<Portfolio>>(UiStateList.EMPTY)
     val portfolios = _portfolios
 
+    private val _portfolio = MutableStateFlow<UiStateObject<Portfolio>>(UiStateObject.EMPTY)
+    val portfolio = _portfolio
 
 
     private val _regions = MutableStateFlow<UiStateList<Region>>(UiStateList.EMPTY)
@@ -90,11 +93,6 @@ class MasterProfileViewModel(private val repository: MasterProfileRepository): V
         }
     }
 
-
-
-
-    private val _portfolio = MutableStateFlow<UiStateObject<Portfolio>>(UiStateObject.EMPTY)
-    val portfolio = _portfolio
 
     fun getImage(id: Int) = viewModelScope.launch {
         _portfolio.value = UiStateObject.LOADING

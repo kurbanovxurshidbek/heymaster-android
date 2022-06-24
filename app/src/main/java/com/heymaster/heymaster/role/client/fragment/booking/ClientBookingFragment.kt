@@ -38,8 +38,8 @@ class ClientBookingFragment : BaseFragment(R.layout.fragment_user_booking) {
         binding.vpUserBookings.adapter = adapter
         binding.vpUserBookings.setCurrentItem(0, true)
 
-        binding.tabUserBookings.addTab(binding.tabUserBookings.newTab().setText("Active"))
-        binding.tabUserBookings.addTab(binding.tabUserBookings.newTab().setText("History"))
+        binding.tabUserBookings.addTab(binding.tabUserBookings.newTab().setText(getString(R.string.active)))
+        binding.tabUserBookings.addTab(binding.tabUserBookings.newTab().setText(getString(R.string.history)))
 
         binding.tabUserBookings.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {

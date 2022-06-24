@@ -339,6 +339,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
         binding.tvSave.setOnClickListener {
             Toast.makeText(requireContext(), "Saved", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.userProfileFragment)
             dialog.dismiss()
 
         }

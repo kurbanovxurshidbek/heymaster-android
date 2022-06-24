@@ -17,7 +17,7 @@ import com.heymaster.heymaster.role.master.repository.MasterHomeRepository
 import com.heymaster.heymaster.role.master.viewmodel.MasterHomeViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterHomeViewModelFactory
 import com.heymaster.heymaster.global.BaseFragment
-import com.heymaster.heymaster.global.adapter.home.CategoryAdapter
+import com.heymaster.heymaster.global.adapter.home.*
 import com.heymaster.heymaster.model.home.Advertising
 import com.heymaster.heymaster.role.master.adapter.*
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
@@ -36,10 +36,10 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
     private var job: Job? = null
 
 
-    private val adsAdapter by lazy { MasterHomeAdsPagerAdapter() }
+    private val adsAdapter by lazy { AdsPagerAdapter() }
     private val categoryAdapter by lazy { CategoryAdapter() }
-    private val primeServicesAdapter by lazy { MasterHomeProfessionsAdapter() }
-    private val popularMastersAdapter by lazy { MasterHomePopularMasterAdapter() }
+    private val primeServicesAdapter by lazy { PopularProfessionsAdapter() }
+    private val popularMastersAdapter by lazy { PopularMastersAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,8 +53,12 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
         viewModel.getAds()
         observeViewModel()
         adapterItemClick()
+        clickListener()
 
 
+    }
+
+    private fun clickListener() {
         binding.ivBtnNotification.setOnClickListener {
             findNavController().navigate(R.id.action_masterHomeFragment_to_notificationFragment)
         }
@@ -63,7 +67,9 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
             findNavController().navigate(R.id.action_masterHomeFragment_to_masterSearchFragment)
         }
 
-
+        binding.btnAllServices.setOnClickListener {
+            findNavController().navigate(R.id.action_masterHomeFragment_to_masterAllServicesFragment)
+        }
 
         binding.btnAllPopularMasters.setOnClickListener {
             findNavController().navigate(R.id.action_masterHomeFragment_to_masterPopularMasterFragment)
@@ -81,9 +87,16 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
         categoryAdapter.itemClickListener = {
             launchCategoryDetailFragment(it.id)
         }
+        primeServicesAdapter.itemClickListener = {
+            launchProfessionDetailFragment(it.id)
+        }
+
     }
     private fun launchCategoryDetailFragment(id: Int) {
         findNavController().navigate(R.id.action_masterHomeFragment_to_masterServiceDetailFragment , bundleOf("category_id" to id))
+    }
+    private fun launchProfessionDetailFragment(id: Int){
+        findNavController().navigate(R.id.action_masterHomeFragment_to_masterProfessionsDetailFragment, bundleOf("profession_id" to id))
     }
 
     private fun observeViewModel() {
@@ -142,8 +155,6 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
         }
 
     }
-
-
 
     private fun setupRv() {
         binding.rvMasterHomeService.adapter = categoryAdapter
