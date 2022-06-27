@@ -134,4 +134,7 @@
     <string name="male">Мужской</string>
 
     <string name="female">женский</string>
+
+
+    <string name="check_connection">Check Connection</string>
 </resources>

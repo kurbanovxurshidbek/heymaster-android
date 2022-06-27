@@ -11,4 +11,8 @@ import com.heymaster.heymaster.global.BaseFragment
 
 class ClientProfileHelpFragment : BaseFragment(R.layout.fragment_client_profile_help) {
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
 }

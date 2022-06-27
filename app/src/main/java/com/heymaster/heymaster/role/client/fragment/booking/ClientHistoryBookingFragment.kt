@@ -27,6 +27,7 @@ class ClientHistoryBookingFragment : BaseFragment(R.layout.fragment_user_history
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setUpRv()
         setupViewModel()
         viewModel.getBookings()

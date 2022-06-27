@@ -1,5 +1,6 @@
 package com.heymaster.heymaster.global
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.graphics.Color
@@ -20,7 +21,7 @@ open class BaseFragment(private val layoutId: Int): Fragment(layoutId) {
 
     fun showLoading() {
         dialog = Dialog(requireContext())
-        dialog!!.setContentView(R.layout.dialog_progress)
+        dialog!!.setContentView(R.layout.custom_progress)
         dialog!!.setCancelable(false)
         dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog!!.show()
@@ -31,6 +32,7 @@ open class BaseFragment(private val layoutId: Int): Fragment(layoutId) {
     }
 
 
+    @SuppressLint("UseRequireInsteadOfGet")
     fun transparentStatusBar(activity: Activity, isTransparent: Boolean, fullscreen: Boolean) {
 
         if (isTransparent) {
@@ -59,7 +61,7 @@ open class BaseFragment(private val layoutId: Int): Fragment(layoutId) {
                         or View.SYSTEM_UI_FLAG_FULLSCREEN)
                 decorView.systemUiVisibility = uiOptions
             } else {
-                (Objects.requireNonNull(activity) as AppCompatActivity).supportActionBar!!.show()
+                (Objects.requireNonNull(activity) as AppCompatActivity).supportActionBar?.show()
                 activity.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     activity.window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)

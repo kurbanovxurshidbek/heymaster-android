@@ -11,6 +11,7 @@ class ClientNotificationMessagesFragment : BaseFragment(R.layout.fragment_user_n
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
     }
 
 }

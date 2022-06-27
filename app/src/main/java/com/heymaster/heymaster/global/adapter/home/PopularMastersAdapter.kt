@@ -10,6 +10,7 @@ import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.ItemMastersBinding
 import com.heymaster.heymaster.model.home.Object
 import com.heymaster.heymaster.utils.Constants.ATTACHMENT_URL
+import com.heymaster.heymaster.utils.RandomColor
 
 class PopularMastersAdapter :
     ListAdapter<Object, PopularMastersAdapter.PopularMastersViewHolder>(PopularMasterItemDiffCallback()) {
@@ -37,7 +38,7 @@ class PopularMastersAdapter :
                 }
 
                 if(master.profilePhoto != null) {
-                    Glide.with(ivMaster).load(ATTACHMENT_URL + master.profilePhoto.id).placeholder(R.drawable.img_1).into(ivMaster)
+                    Glide.with(ivMaster).load(ATTACHMENT_URL + master.profilePhoto.id).placeholder(RandomColor.randomColor()).into(ivMaster)
                 } else {
                     ivMaster.setImageResource(R.drawable.img_1)
                 }

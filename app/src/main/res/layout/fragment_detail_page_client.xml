@@ -65,57 +65,70 @@
                         android:maxLines="1"
                         android:text="John Alex"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="24sp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/busy_card"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="20dp"
                         android:clickable="false"
-                        app:cardBackgroundColor="#4DC41F"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="0dp"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/isFreeOrBusy"
+                            android:id="@+id/isBusy"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="10dp"
                             android:layout_marginVertical="5dp"
-                            android:fontFamily="@font/poppins_bold"
                             android:includeFontPadding="false"
                             android:text="@string/open"
                             android:textColor="@color/white"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                     </androidx.cardview.widget.CardView>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
+                    android:layout_marginVertical="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginLeft="20dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
-                    <TextView
-                        android:id="@+id/tvDetailDistrict"
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textColor="@color/dark_900" />
+                        android:src="@drawable/ic_location"/>
 
-                    <TextView
-                        android:id="@+id/tvDetailRegion"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textColor="@color/dark_900" />
+                        android:orientation="vertical"
+                        android:gravity="center_vertical"
+                        android:layout_marginHorizontal="4dp">
+                        <TextView
+                            android:id="@+id/tvDetailRegion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/dark_900" />
+
+                        <TextView
+                            android:id="@+id/tvDetailDistrict"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/dark_900" />
+                    </LinearLayout>
                 </LinearLayout>
 
 
@@ -136,9 +149,10 @@
                         app:srb_drawableEmpty="@drawable/ic_star_unselected"
                         app:srb_drawableFilled="@drawable/ic_star_selected"
                         app:srb_numStars="5"
-                        app:srb_starHeight="20dp"
+                        app:srb_isIndicator="true"
+                        app:srb_starHeight="24dp"
                         app:srb_starPadding="3dp"
-                        app:srb_starWidth="20dp"
+                        app:srb_starWidth="24dp"
                         app:srb_stepSize="1" />
 
                     <TextView
@@ -146,19 +160,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="All Reviews: "
+                        android:text="Buyurtmalar soni :"
                         android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
 
 
                     <TextView
-                        android:id="@+id/resultMark"
+                        android:id="@+id/total_mark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="120"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 

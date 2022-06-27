@@ -21,7 +21,23 @@ class ClientHomeRepository(
 
     suspend fun getMasterFromProfessionId(id: Int) = apiService.getMasterFromProfession(id)
 
+    suspend fun getMasterById(id: Int) = apiService.getMasterById(id)
+
     suspend fun getAllCategory() = apiService.getAllCategory()
+
+    suspend fun searchMasterWithName(name: String) = apiService.searchMasterWithName(name)
+
+    suspend fun searchMasterWithRegion(id: Int) = apiService.searchMasterWithRegion(id)
+
+    suspend fun searchMasterWithDistrict(id: Int) = apiService.searchMasterWithDistrict(id)
+
+    suspend fun searchCategoryWithName(name: String) = apiService.searchCategoryWithName(name)
+
+    suspend fun searchProfessionWithName(name: String) = apiService.searchProfessionWithName(name)
+
+
+
+
 
 
 }

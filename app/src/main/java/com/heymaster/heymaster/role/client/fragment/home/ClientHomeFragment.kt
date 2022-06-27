@@ -1,5 +1,7 @@
 package com.heymaster.heymaster.role.client.fragment.home
 
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -23,6 +25,7 @@ import com.heymaster.heymaster.global.adapter.home.PopularMastersAdapter
 import com.heymaster.heymaster.global.adapter.home.PopularProfessionsAdapter
 import com.heymaster.heymaster.model.home.Advertising
 import com.heymaster.heymaster.model.home.Object
+import com.heymaster.heymaster.role.client.ClientActivity
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
@@ -51,7 +54,6 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
         setupRv()
         setupViewModel()
         viewModel.getHome()
-        viewModel.getAds()
         viewModel.getActiveMasters()
         observeViewModel()
         adapterItemClick()
@@ -189,4 +191,8 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
         job?.cancel()
 
     }
+
+
+
+
 }

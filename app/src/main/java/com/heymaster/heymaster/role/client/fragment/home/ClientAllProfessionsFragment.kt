@@ -30,6 +30,7 @@ class ClientAllProfessionsFragment : BaseFragment(R.layout.fragment_user_all_pop
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupViewModel()
         setupRv()
         viewModel.getProfessions()

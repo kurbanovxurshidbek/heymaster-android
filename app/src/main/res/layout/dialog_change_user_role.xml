@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginHorizontal="12dp"
-    app:cardElevation="0dp">
+    android:layout_marginHorizontal="24dp"
+    app:cardElevation="6dp"
+    app:cardCornerRadius="12dp">
 
 
     <LinearLayout
@@ -21,6 +22,7 @@
             android:layout_height="match_parent"
             android:text="Usta sifatida davom etasizmi ?"
             android:gravity="center"
+            android:textColor="@color/black"
             android:layout_marginHorizontal="40dp"
             android:textSize="24sp"
             android:layout_marginVertical="16dp"/>

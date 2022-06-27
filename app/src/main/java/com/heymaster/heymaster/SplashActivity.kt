@@ -11,7 +11,6 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.messaging.FirebaseMessaging
 import com.heymaster.heymaster.databinding.ActivitySplashBinding
 import com.heymaster.heymaster.global.BaseActivity
 import com.heymaster.heymaster.manager.LocaleManager

@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.data.network.ApiClient
@@ -34,6 +36,7 @@ class ClientProfessionDetailFragment : BaseFragment(R.layout.fragment_profession
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupRecyclerView()
         setupViewModel()
         var id = 0
@@ -43,6 +46,7 @@ class ClientProfessionDetailFragment : BaseFragment(R.layout.fragment_profession
         viewModel.getMastersFromProfessionId(id)
 
         observeViewModel()
+
 
 
     }

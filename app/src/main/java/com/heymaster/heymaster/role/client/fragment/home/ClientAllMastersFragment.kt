@@ -1,6 +1,7 @@
 package com.heymaster.heymaster.role.client.fragment.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
@@ -31,6 +32,7 @@ class ClientAllMastersFragment : BaseFragment(R.layout.fragment_user_all_popular
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupViewModel()
         setupRv()
         viewModel.getActiveMasters()

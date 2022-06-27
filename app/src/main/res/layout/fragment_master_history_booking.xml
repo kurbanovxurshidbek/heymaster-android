@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+    android:orientation="vertical"
+    android:background="#f9f9f9"
+    android:layout_marginTop="12dp"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".role.master.fragment.booking.MasterHistoryBookingFragment">
+    tools:context=".role.client.fragment.booking.ClientActiveBookingFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_master_history_booking"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        android:background="#f9f9f9"
+        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        tools:context=".role.client.fragment.booking.ClientActiveBookingFragment"/>
 
-</LinearLayout>
+    <include
+        android:id="@+id/progressUserActiveBooking"
+        layout="@layout/custom_progress"
+        android:visibility="gone"/>
+
+</FrameLayout>

@@ -24,7 +24,7 @@ data class Object(
     val peopleReitedCount: Int,
     val phoneNumber: String,
     val professionList: List<Profession>,
-    val profilePhoto: Any,
+    val profilePhoto: String?,
     val roles: Roles,
     val salary: Any,
     val totalMark: Int,

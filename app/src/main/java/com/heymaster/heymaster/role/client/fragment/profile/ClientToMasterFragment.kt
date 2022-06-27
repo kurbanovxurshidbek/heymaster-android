@@ -38,6 +38,7 @@ import com.heymaster.heymaster.ui.auth.AuthSharedViewModel
 import com.heymaster.heymaster.ui.auth.AuthViewModel
 import com.heymaster.heymaster.ui.auth.AuthViewModelFactory
 import com.heymaster.heymaster.utils.Constants
+import com.heymaster.heymaster.utils.Constants.FEMALE
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.Constants.KEY_CONFIRM_CODE
 import com.heymaster.heymaster.utils.Constants.KEY_DEVICE_TOKEN
@@ -81,6 +82,8 @@ class ClientToMasterFragment : BaseFragment(R.layout.fragment_client_to_master) 
     private var phoneNumber: String? = null
     private var confirmCode: String? = null
     private var fullname: String? = null
+    private var gender: Boolean? = null
+    private var birthDate: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,6 +92,8 @@ class ClientToMasterFragment : BaseFragment(R.layout.fragment_client_to_master) 
         confirmCode = SharedPref(requireContext()).getString(Constants.KEY_CONFIRM_CODE)
         arguments?.let {
             fullname = it.getString("fullname")
+            gender = it.getBoolean("gender")
+            birthDate = it.getString("birthDate")
         }
 
     }
@@ -96,7 +101,14 @@ class ClientToMasterFragment : BaseFragment(R.layout.fragment_client_to_master) 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.etMasterFullname.text = Editable.Factory.getInstance().newEditable(fullname)
+        binding.etMasterGender.text = if (gender == true) {
+            Editable.Factory.getInstance().newEditable(MALE)
+        } else {
+            Editable.Factory.getInstance().newEditable(FEMALE)
+        }
+        //binding.etMasterBirthday.text = Editable.Factory.getInstance().newEditable(birthDate)
         setupViewModel()
         setupClientProfileViewModel()
 

@@ -148,4 +148,19 @@
 
     <string name="female">Ayol</string>
 
+
+    <string name="check_connection">Internetni tekshiring !</string>
+    <string name="rate_this_service">Xizmatni baholang</string>
+
+    <string name="rate_description">Izoh qoldiring</string>
+
+    <string name="submit">Saqlash</string>
+    <string name="cancel">Bekor qilish</string>
+
+    <string name="enter_description">Izoh qoldiring</string>
+
+    <string name="close">Band</string>
+
+
+
 </resources>

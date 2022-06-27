@@ -23,6 +23,7 @@ class ClientSearchFragment: BaseFragment(R.layout.fragment_user_search) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         showKeyboard()
         binding.etSearch.addTextChangedListener(object : TextWatcher {

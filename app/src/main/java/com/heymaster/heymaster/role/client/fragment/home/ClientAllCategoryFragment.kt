@@ -31,6 +31,7 @@ class ClientAllCategoryFragment : BaseFragment(R.layout.fragment_user_all_servic
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupViewModel()
         setupRv()
         viewModel.getAllCategory()

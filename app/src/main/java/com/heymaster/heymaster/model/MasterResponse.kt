@@ -1,13 +1,17 @@
-package com.heymaster.heymaster.model.home
+package com.heymaster.heymaster.model
 
-import com.heymaster.heymaster.model.AttachmentInfo
+import com.heymaster.heymaster.model.masterdetail.Authority
+import com.heymaster.heymaster.model.masterdetail.Device
+import com.heymaster.heymaster.model.masterdetail.Location
+import com.heymaster.heymaster.model.masterdetail.Profession
+import com.heymaster.heymaster.model.masterdetail.Roles
 
-data class Object(
+data class MasterResponse(
     val accountNonExpired: Boolean,
     val accountNonLocked: Boolean,
     val active: Boolean,
     val approximateEndTime: Any,
-    val attachments: List<AttachmentInfo>,
+    val attachments: List<Any>,
     val authorities: List<Authority>,
     val birthDate: String,
     val busy: Boolean,
@@ -24,9 +28,9 @@ data class Object(
     val location: Location,
     val password: String,
     val peopleReitedCount: Int,
-    val phoneNumber: String?,
+    val phoneNumber: String,
     val professionList: List<Profession>,
-    val profilePhoto: AttachmentInfo?,
+    val profilePhoto: Any,
     val roles: Roles,
     val salary: Any,
     val totalMark: Int,

@@ -13,8 +13,9 @@
         <action
             android:id="@+id/action_userHomeFragment_to_userNotificationFragment"
             app:destination="@id/userNotificationFragment"
-            app:popUpTo="@id/userNotificationFragment"
-            app:popUpToInclusive="false" />
+            app:launchSingleTop="true"
+            app:popUpTo="@id/userHomeFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_userHomeFragment_to_userSearchFragment"
             app:destination="@id/userSearchFragment"
@@ -39,6 +40,7 @@
         <action
             android:id="@+id/action_userHomeFragment_to_professionDetailFragment"
             app:destination="@id/professionDetailFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/userBookingFragment"

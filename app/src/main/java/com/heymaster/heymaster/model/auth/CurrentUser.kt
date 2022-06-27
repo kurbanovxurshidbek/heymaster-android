@@ -9,7 +9,7 @@ data class CurrentUser(
     val approximateEndTime: Any,
     val attachments: List<AttachmentInfo>,
     val authorities: List<Authority>,
-    val birthDate: Any,
+    val birthDate: String?,
     val busy: Boolean,
     val createAt: String,
     val createdBy: Any,

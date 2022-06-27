@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.navigation.findNavController
@@ -14,7 +15,10 @@ import androidx.navigation.ui.setupWithNavController
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.ActivityUserBinding
 import com.heymaster.heymaster.global.BaseActivity
+import com.heymaster.heymaster.role.client.fragment.profile.ClientNotificationFragment
 import com.heymaster.heymaster.utils.ConnectivityReceiver
+import com.heymaster.heymaster.utils.Constants.CLIENT
+import kotlin.math.log
 
 class ClientActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiverListener {
 
@@ -25,6 +29,12 @@ class ClientActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val text = intent.getStringExtra("key")
+        if (text != null) {
+            navigate(intent)
+        }
+
         setContentView(binding.root)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             setupStatusBar()
@@ -84,22 +94,18 @@ class ClientActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
 
 
     override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
         navigate(intent)
+        super.onNewIntent(intent)
     }
 
     private fun navigate(intent: Intent) {
-        if (intent != null) {
-            val text = intent.getStringExtra("type")
-            when(text) {
-                "parcel" -> {
-                    //navigate to fragment
-                    Toast.makeText(this, "Navigate to parcel Fragment", Toast.LENGTH_SHORT).show()
-                }
-                "simple" -> {
-                    Toast.makeText(this, "Navigate to Simple Fragment", Toast.LENGTH_SHORT).show()
-                }
+        val text = intent.getStringExtra("key")
+            if (text == CLIENT) {
+                Log.d("@@@", "navigate: $text")
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.user_container, ClientNotificationFragment())
+                    .commit()
             }
         }
-    }
+
 }

@@ -6,8 +6,11 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -23,10 +26,12 @@ class MasterActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
 
     private val binding by lazy { ActivityMasterBinding.inflate(layoutInflater) }
     private var dialog: Dialog? = null
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        navController = Navigation.findNavController(this,R.id.master_container)
         FirebaseAnalytics.getInstance(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             setupStatusBar()
@@ -34,7 +39,7 @@ class MasterActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
 
         binding.userBottomNavigation.setupWithNavController(findNavController(R.id.master_container))
 
-        findNavController(R.id.master_container).addOnDestinationChangedListener { _, destination, _ ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.notificationFragment -> hideBottomNav()
                 R.id.masterSearchFragment -> hideBottomNav()
@@ -85,9 +90,8 @@ class MasterActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
     }
 
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        navigate(intent!!)
 
     }
 
@@ -96,6 +100,7 @@ class MasterActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
             val text = intent.getStringExtra("type")
             when(text) {
                 "parcel" -> {
+                    navController.navigate(R.id.detailPageFragment)
                     //navigate to fragment
                     Toast.makeText(this, "Navigate to parcel Fragment", Toast.LENGTH_SHORT).show()
                 }

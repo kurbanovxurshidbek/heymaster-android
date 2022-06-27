@@ -68,10 +68,13 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
     private var isAlreadyMaster: Boolean? = null
     private var fullname: String? = null
+    private var gender: Boolean? = null
+    private var birthDate: String? = null
 
     @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         clickListeners()
         setupViewModel()
 
@@ -115,6 +118,8 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                         dismissLoading()
                         isAlreadyMaster = it.data.alreadyIsMaster
                         fullname = it.data.fullName
+                        gender = it.data.gender
+                        //birthDate = it.data.birthDate
                         val currentUser = it.data
                         with(binding) {
                             tvFullname.text = currentUser.fullName
@@ -254,7 +259,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                 viewModel.clientToMasterIsAlreadyMaster()
                 dialog.dismiss()
             } else {
-                findNavController().navigate(R.id.action_userProfileFragment_to_clientToMasterFragment, bundleOf("fullname" to fullname))
+                findNavController().navigate(R.id.action_userProfileFragment_to_clientToMasterFragment, bundleOf("fullname" to fullname, "gender" to gender, "birthDate" to  birthDate))
                 dialog.dismiss()
             }
         }

@@ -35,6 +35,7 @@ class ClientCategoryDetailFragment : BaseFragment(R.layout.fragment_service_deta
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupViewModel()
         setupRv()
         var id = 0

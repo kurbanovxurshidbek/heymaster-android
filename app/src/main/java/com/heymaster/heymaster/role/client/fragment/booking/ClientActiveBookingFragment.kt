@@ -3,8 +3,11 @@ package com.heymaster.heymaster.role.client.fragment.booking
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.data.network.ApiClient
@@ -26,23 +29,32 @@ class ClientActiveBookingFragment : BaseFragment(R.layout.fragment_user_active_b
 
     private val binding by viewBinding {FragmentUserActiveBookingBinding.bind(it) }
     private lateinit var viewModel: ClientBookingViewModel
-    private lateinit var rateBottomSheetFragment: RateBottomSheetFragment
+
     private val activeBookingAdapter by lazy { ClientActiveBookingAdapter() }
 
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         setupRv()
         setupViewModel()
         viewModel.getClientActiveBooking()
 
         observeViewModel()
 
+
+
+
         activeBookingAdapter.clickFinished = {
 
-        }
+            val bottomSheet = BottomSheetDialog(requireContext())
+            val view = layoutInflater.inflate(R.layout.custom_bottom_sheet, null)
+            bottomSheet.setContentView(view)
 
+            bottomSheet.show()
+        }
 
 
     }
@@ -83,7 +95,6 @@ class ClientActiveBookingFragment : BaseFragment(R.layout.fragment_user_active_b
 
     private fun showBottomSheet() {
         //rateBottomSheetFragment = RateBottomSheetFragment.newInstance(item = )
-        rateBottomSheetFragment.show(childFragmentManager, tag)
     }
 
     private fun setupViewModel() {

@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.heymaster.heymaster.role.client.repository.ClientHomeRepository
 import com.heymaster.heymaster.model.ErrorResponse
+import com.heymaster.heymaster.model.MasterResponse
 import com.heymaster.heymaster.model.auth.Object
 import com.heymaster.heymaster.model.auth.Profession
 import com.heymaster.heymaster.model.home.*
@@ -23,9 +24,6 @@ class ClientHomeViewModel(
     private val _home = MutableStateFlow<UiStateObject<HomeResponse>>(UiStateObject.EMPTY)
     val home = _home
 
-    private val _ads = MutableStateFlow<UiStateObject<Advertising>>(UiStateObject.EMPTY)
-    val ads = _ads
-
     private val _professionsFromCategory = MutableStateFlow<UiStateList<Object>>(UiStateList.EMPTY)
     val professionsFromCategory = _professionsFromCategory
 
@@ -40,6 +38,9 @@ class ClientHomeViewModel(
 
     private val _categories = MutableStateFlow<UiStateObject<CategoryResponse>>(UiStateObject.EMPTY)
     val categories = _categories
+
+    private val _master = MutableStateFlow<UiStateObject<MasterResponse>>(UiStateObject.EMPTY)
+    val master = _master
 
 
 
@@ -56,18 +57,6 @@ class ClientHomeViewModel(
             }
         } catch (e: Exception) {
             _home.value = UiStateObject.ERROR(e.userMessage())
-        }
-    }
-
-    fun getAds() = viewModelScope.launch {
-        _ads.value = UiStateObject.LOADING
-
-        try {
-            val response = repository.getAds()
-            _ads.value = UiStateObject.SUCCESS(response.body()!!)
-
-        } catch (e: Exception) {
-            _ads.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 
@@ -131,6 +120,18 @@ class ClientHomeViewModel(
 
         } catch (e: Exception) {
             _categories.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+    fun getMasterById(id: Int) = viewModelScope.launch {
+        _master.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.getMasterById(id)
+            _master.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _master.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 

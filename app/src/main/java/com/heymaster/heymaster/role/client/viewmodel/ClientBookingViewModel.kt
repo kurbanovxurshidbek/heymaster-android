@@ -14,7 +14,7 @@ import com.heymaster.heymaster.utils.extensions.userMessage
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-class ClientBookingViewModel(
+class  ClientBookingViewModel(
     private val repository: ClientBookingRepository,
 ) : ViewModel() {
 

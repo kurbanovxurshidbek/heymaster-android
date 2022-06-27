@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.ItemServiceBinding
 import com.heymaster.heymaster.model.home.Category
+import com.heymaster.heymaster.utils.RandomColor
 
 class CategoryAdapter: ListAdapter<Category, CategoryAdapter.ServiceViewHolder>(ServiceItemDiffCallback()) {
 
@@ -18,7 +20,7 @@ class CategoryAdapter: ListAdapter<Category, CategoryAdapter.ServiceViewHolder>(
         fun bind(category: Category) {
             binding.apply {
                 tvServiceName.text = category.name
-                Glide.with(icServices).load(category.photoUrl).into(icServices)
+                Glide.with(icServices).load(category.photoUrl).placeholder(RandomColor.randomColor()).into(icServices)
 
             }
 

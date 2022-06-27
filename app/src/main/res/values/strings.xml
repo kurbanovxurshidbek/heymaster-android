@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">heymaster</string>
+    <string name="app_name">Hey master</string>
 
     <string name="first_intro_title">Give your home a makeover</string>
     <string name="first_intro_body">The best services that you could find for your home as we have everything that you are in need</string>
@@ -72,11 +72,19 @@
     <string name="masters_total_mark"> %s reviews</string>
     <string name="login_as_client">Login as Client</string>
     <string name="open">Open</string>
+    <string name="close">Close</string>
     <string name="direction">Direction</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
 
 
     <string name="notification_channel_id" translatable="false">com.heymaster.heymaster</string>
+    <string name="check_connection">Check Connection</string>
+    <string name="choose_gender">Choose_gender</string>
+    <string name="rate_this_service">Rate this service</string>
+    <string name="rate_description">Description</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_description">Enter description</string>
 
 </resources>

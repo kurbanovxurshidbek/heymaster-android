@@ -19,6 +19,7 @@ class ClientBookingFragment : BaseFragment(R.layout.fragment_user_booking) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         adapter = ClientBookingsPagerAdapter(childFragmentManager, lifecycle)
         setupViewPager()
 

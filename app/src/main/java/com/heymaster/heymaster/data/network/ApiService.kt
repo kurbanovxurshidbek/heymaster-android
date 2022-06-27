@@ -63,6 +63,9 @@ interface ApiService {
     @GET("booking/master/history")
     suspend fun getBookingMasterHistory(): Response<MasterHistoryBooking>
 
+    @GET("booking/client/history")
+    suspend fun getBookingClientHistory(): Response<MasterHistoryBooking>
+
     @POST("booking/accept")
     suspend fun bookingAcceptOrCancel(@Body bookingAcceptRequest: BookingAcceptRequest): Response<BookingAcceptResponse>
 
@@ -124,8 +127,8 @@ interface ApiService {
     suspend fun attachmentInfo(): Response<List<AttachmentInfo>>
 
 
-
-
+    @GET("master/{id}")
+    suspend fun getMasterById(@Path("id") id: Int): Response<MasterResponse>
 
 
 
@@ -143,9 +146,48 @@ interface ApiService {
     @GET("profession/findMastersByProfessionId/{id}")
     suspend fun getMasterFromProfession(@Path("id") id: Int): Response<MastersResponse>
 
+    @GET("master/deleteAttPhoto/{id}")
+    suspend fun deleteMasterAttachment(@Path("id") id: Int)
+
+
     //Master Profile Edit
     @PUT("master/edit/{id}")
     suspend fun editMasterProfile(@Path("id") id: Int): Response<MasterDetail>
+
+
+
+
+    //Search
+    @GET("master/search/{name}")
+    suspend fun searchMasterWithName(@Path("name") name: String)
+
+    @GET("master/search/region/{id}")
+    suspend fun searchMasterWithRegion(@Path("id") id: Int)
+
+    @GET("master/search/district/{id}")
+    suspend fun searchMasterWithDistrict(@Path("id") id: Int)
+
+    @GET("profession/search/{name}")
+    suspend fun searchProfessionWithName(@Path("name") name: String)
+
+    @GET("category/search/{name}")
+    suspend fun searchCategoryWithName(@Path("name") name: String)
+
+
+
+
+
+    //Rating
+    @POST("rate")
+    suspend fun rate()
+
+    @GET("rate/master")
+    suspend fun getMasterRate()
+
+    @GET("rate/getOne")
+    suspend fun getMasterRateOne()
+
+
 
 
 

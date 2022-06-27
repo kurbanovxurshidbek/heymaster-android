@@ -93,18 +93,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
 
-                <RatingBar
-
+                <com.willy.ratingbar.ScaleRatingBar
                     android:id="@+id/rating_master"
-                    style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:isIndicator="true"
-                    android:max="5"
-                    android:numStars="5"
-                    android:rating="0"
-                    android:theme="@style/RatingBar" />
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    app:srb_drawableEmpty="@drawable/ic_star_unselected"
+                    app:srb_drawableFilled="@drawable/ic_star_selected"
+                    app:srb_numStars="5"
+                    app:srb_isIndicator="true"
+                    app:srb_starHeight="16dp"
+                    app:srb_starPadding="3dp"
+                    app:srb_starWidth="16dp"
+                    app:srb_stepSize="1" />
 
                 <TextView
                     android:id="@+id/allMarks"

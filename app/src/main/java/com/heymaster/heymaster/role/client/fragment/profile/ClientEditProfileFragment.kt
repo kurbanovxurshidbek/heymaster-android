@@ -12,7 +12,9 @@ import com.heymaster.heymaster.global.BaseFragment
 class ClientEditProfileFragment : BaseFragment(R.layout.fragment_client_edit_profile) {
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-
+    }
 
 }

@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.heymaster.heymaster.databinding.ItemProfessionBinding
 import com.heymaster.heymaster.model.auth.Object
 import com.heymaster.heymaster.utils.Constants.ATTACHMENT_URL
+import com.heymaster.heymaster.utils.RandomColor
 import com.squareup.picasso.Picasso
 
 class PopularProfessionsAdapter :
@@ -22,7 +23,7 @@ class PopularProfessionsAdapter :
         fun bind(profession: Object) {
             binding.apply {
                 tvProfessionName.text = profession.name
-                Picasso.get().load(profession.photoUrl).into(ivProfession)
+                Picasso.get().load(profession.photoUrl).placeholder(RandomColor.randomColor()).into(ivProfession)
 
             }
 
