@@ -26,6 +26,7 @@
     <string name="search">Search</string>
     <string name="plumber">Plumber</string>
     <string name="search_for_services">Search for a profession</string>
+    <string name="search_for_profession">Search for a profession</string>
     <string name="categories">Categories</string>
     <string name="all">All</string>
     <string name="servicePopular">Popular Professions</string>
@@ -86,5 +87,6 @@
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
     <string name="enter_description">Enter description</string>
+    <string name="search_for_master">Search for a master</string>
 
 </resources>

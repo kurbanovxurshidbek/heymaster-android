@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.ItemProfessionBinding
 import com.heymaster.heymaster.databinding.ItemProfessionsFromCategoryBinding
 import com.heymaster.heymaster.model.auth.Object
+import com.squareup.picasso.Picasso
 import kotlin.random.Random
 
 class ProfessionsFromCategoryAdapter :
@@ -23,8 +25,7 @@ class ProfessionsFromCategoryAdapter :
             binding.tvProfessionName.text = profession.name
             binding.tvCategoryName.text = profession.category.name
             binding.ratingProfession.rating = Random.nextInt(1, 5).toFloat()
-
-            Glide.with(binding.ivProfileSearchItem).load(profession)
+            Picasso.get().load(profession.photoUrl).placeholder(R.drawable.progress_rotate_icon).into(binding.ivProfileSearchItem)
 
             binding.root.setOnClickListener {
                 itemClickListener?.invoke(profession)

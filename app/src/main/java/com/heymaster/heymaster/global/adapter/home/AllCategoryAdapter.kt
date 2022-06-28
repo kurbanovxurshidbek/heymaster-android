@@ -5,8 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.ItemAllCategoryBinding
 import com.heymaster.heymaster.model.home.Category
+import com.squareup.picasso.Picasso
+import java.net.BindException
 import kotlin.random.Random
 
 class AllCategoryAdapter: ListAdapter<Category, AllCategoryAdapter.ServiceViewHolder>(ServiceItemDiffCallback()) {
@@ -18,6 +21,7 @@ class AllCategoryAdapter: ListAdapter<Category, AllCategoryAdapter.ServiceViewHo
         fun bind(category: Category) {
             binding.tvNameCategory.text = category.name
             binding.ratingCategory.rating = Random.nextInt(1,5).toFloat()
+            Picasso.get().load(category.photoUrl).placeholder(R.drawable.progress_rotate_icon).into(binding.ivProfileSearchItem)
             binding.root.setOnClickListener {
                 itemClickListener?.invoke(category)
             }

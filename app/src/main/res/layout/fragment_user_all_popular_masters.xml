@@ -33,7 +33,7 @@
                     android:drawableStart="@drawable/ic_search"
                     android:drawableEnd="@drawable/ic_search_filter"
                     android:drawablePadding="12dp"
-                    android:hint="@string/search_for_services"
+                    android:hint="@string/search_for_master"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:maxLines="1"

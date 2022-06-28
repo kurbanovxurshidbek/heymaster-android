@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.data.network.ApiClient
@@ -46,7 +48,7 @@ class ClientCategoryDetailFragment : BaseFragment(R.layout.fragment_service_deta
         observeViewModel()
 
         professionAdapter.itemClickListener = {
-
+            findNavController().navigate(R.id.action_serviceDetailFragment_to_professionDetailFragment, bundleOf("profession_id" to it.id))
         }
 
     }

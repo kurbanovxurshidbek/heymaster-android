@@ -47,6 +47,12 @@ class ClientProfessionDetailFragment : BaseFragment(R.layout.fragment_profession
 
         observeViewModel()
 
+        mastersAdapter.itemCLickListener = {
+            findNavController().navigate(R.id.action_professionDetailFragment_to_detailPageFragment2, bundleOf("master_id" to it.id))
+        }
+
+
+
 
 
     }

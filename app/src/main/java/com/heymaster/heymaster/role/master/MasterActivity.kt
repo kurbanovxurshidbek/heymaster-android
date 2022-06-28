@@ -30,6 +30,7 @@ class MasterActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(binding.root)
         navController = Navigation.findNavController(this,R.id.master_container)
         FirebaseAnalytics.getInstance(this)
@@ -92,7 +93,7 @@ class MasterActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-
+        navController.navigate(R.id.notificationFragment)
     }
 
     private fun navigate(intent: Intent) {

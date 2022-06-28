@@ -5,9 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.ItemAllProfessionBinding
 import com.heymaster.heymaster.databinding.ItemAllServiceBinding
 import com.heymaster.heymaster.model.auth.Object
+import com.squareup.picasso.Picasso
 import kotlin.random.Random
 
 class AllProfessionsAdapter: ListAdapter<Object, AllProfessionsAdapter.AllServiceViewHolder>(ServiceItemDiffCallback()) {
@@ -19,7 +21,9 @@ class AllProfessionsAdapter: ListAdapter<Object, AllProfessionsAdapter.AllServic
             with(binding) {
                 tvProfessionName.text = profession.name
                 tvCategoryName.text = profession.category.name
+                Picasso.get().load(profession.photoUrl).placeholder(R.drawable.progress_rotate_icon).into(binding.ivProfileSearchItem)
                 ratingProfession.rating = Random.nextInt(1, 5).toFloat()
+
 
                 root.setOnClickListener {
                     itemClickListener?.invoke(profession)

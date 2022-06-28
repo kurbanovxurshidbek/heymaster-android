@@ -20,23 +20,9 @@ import kotlinx.coroutines.launch
 class DetailsViewModel (private val repository: DetailsRepository): ViewModel(){
 
     private val _portfolio = MutableStateFlow<UiStateList<Portfolio>>(UiStateList.EMPTY)
-
     val portfolio = _portfolio
 
-    fun getImages() = viewModelScope.launch {
-        _portfolio.value = UiStateList.LOADING
-        try {
-            val response = repository.getImages()
-            if (response.code() >= 400) {
-                val error = Gson().fromJson(response.errorBody()!!.charStream(), ErrorResponse::class.java)
-                _portfolio.value = UiStateList.ERROR(error.errorMessage)
-            }else {
-                _portfolio.value = UiStateList.SUCCESS(response.body())
-            }
-        }catch (e:Exception){
-            _portfolio.value = UiStateList.ERROR(e.userMessage())
-        }
-    }
+
 
     private val _masterProfile = MutableStateFlow<UiStateObject<MasterDetail>>(UiStateObject.EMPTY)
     val masterProfile = _masterProfile

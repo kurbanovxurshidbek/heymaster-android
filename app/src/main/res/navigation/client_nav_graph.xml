@@ -13,9 +13,8 @@
         <action
             android:id="@+id/action_userHomeFragment_to_userNotificationFragment"
             app:destination="@id/userNotificationFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/userHomeFragment"
-            app:popUpToInclusive="true" />
+            app:launchSingleTop="false"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_userHomeFragment_to_userSearchFragment"
             app:destination="@id/userSearchFragment"
@@ -85,11 +84,18 @@
         <action
             android:id="@+id/action_userAllServicesFragment_to_serviceDetailFragment"
             app:destination="@id/serviceDetailFragment" />
+        <action
+            android:id="@+id/action_userAllServicesFragment_to_professionDetailFragment"
+            app:destination="@id/professionDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/userAllPopularServiceFragment"
         android:name="com.heymaster.heymaster.role.client.fragment.home.ClientAllProfessionsFragment"
-        android:label="UserAllPopularServiceFragment" />
+        android:label="UserAllPopularServiceFragment" >
+        <action
+            android:id="@+id/action_userAllPopularServiceFragment_to_professionDetailFragment"
+            app:destination="@id/professionDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userAllPopularMastersFragment"
         android:name="com.heymaster.heymaster.role.client.fragment.home.ClientAllMastersFragment"
@@ -112,7 +118,11 @@
         android:id="@+id/serviceDetailFragment"
         android:name="com.heymaster.heymaster.role.client.fragment.home.ClientCategoryDetailFragment"
         android:label="fragment_service_detail"
-        tools:layout="@layout/fragment_service_detail" />
+        tools:layout="@layout/fragment_service_detail" >
+        <action
+            android:id="@+id/action_serviceDetailFragment_to_professionDetailFragment"
+            app:destination="@id/professionDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/clientAboutFragment"
         android:name="com.heymaster.heymaster.role.client.fragment.profile.ClientAboutFragment"
@@ -137,7 +147,11 @@
     <fragment
         android:id="@+id/professionDetailFragment"
         android:name="com.heymaster.heymaster.role.client.fragment.home.ClientProfessionDetailFragment"
-        android:label="ProfessionDetailFragment" />
+        android:label="ProfessionDetailFragment" >
+        <action
+            android:id="@+id/action_professionDetailFragment_to_detailPageFragment2"
+            app:destination="@id/detailPageFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/clientToMasterFragment"
         android:name="com.heymaster.heymaster.role.client.fragment.profile.ClientToMasterFragment"

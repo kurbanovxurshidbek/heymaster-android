@@ -137,4 +137,8 @@
 
 
     <string name="check_connection">Check Connection</string>
+
+    <string name="search_for_profession">Search for a profession</string>
+    <string name="search_for_master">Search for a master</string>
+
 </resources>

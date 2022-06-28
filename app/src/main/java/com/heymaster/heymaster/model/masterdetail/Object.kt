@@ -1,11 +1,13 @@
 package com.heymaster.heymaster.model.masterdetail
 
+import com.heymaster.heymaster.model.AttachmentInfo
+
 data class Object(
     val accountNonExpired: Boolean,
     val accountNonLocked: Boolean,
     val active: Boolean,
     val approximateEndTime: Any,
-    val attachments: List<Any>,
+    val attachments: List<AttachmentInfo>,
     val authorities: List<Authority>,
     val birthDate: String,
     val busy: Boolean,

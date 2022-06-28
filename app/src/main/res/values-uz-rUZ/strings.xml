@@ -161,6 +161,11 @@
 
     <string name="close">Band</string>
 
+    <string name="search_for_profession">Xizmatni qidiring</string>
+    <string name="search_for_master">Ustani qidiring</string>
+
+
+
 
 
 </resources>

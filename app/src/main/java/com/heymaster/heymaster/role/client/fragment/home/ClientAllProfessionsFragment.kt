@@ -36,6 +36,10 @@ class ClientAllProfessionsFragment : BaseFragment(R.layout.fragment_user_all_pop
         viewModel.getProfessions()
         obServeViewModel()
 
+        professionsAdapter.itemClickListener = {
+            findNavController().navigate(R.id.action_userAllPopularServiceFragment_to_professionDetailFragment, bundleOf("profession_id" to it.id))
+        }
+
 
 
     }

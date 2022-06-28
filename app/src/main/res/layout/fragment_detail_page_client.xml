@@ -18,12 +18,14 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
+
         <ImageView
             android:id="@+id/detailProfileImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
-            android:src="@drawable/intro_image_2"
+            android:src="@drawable/intro_image_1"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -63,7 +65,6 @@
                         android:layout_marginTop="20dp"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text="John Alex"
                         android:textColor="@color/black"
                         android:textSize="24sp"
                         app:layout_constraintLeft_toLeftOf="parent"

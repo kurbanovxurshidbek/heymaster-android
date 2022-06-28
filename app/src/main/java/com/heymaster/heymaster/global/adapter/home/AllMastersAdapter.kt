@@ -27,8 +27,13 @@ class AllMastersAdapter :
                 tvMaster.text = master.fullName
                 tvDistrict.text = master.location!!.district.nameUz
                 tvRegion.text = master.location.region.nameUz
-//                ratingMaster.rating = (master.totalMark/master.peopleReitedCount).toFloat()
-//                allMarks.text = String.format(allMarks.context.getString(R.string.masters_total_mark), master.totalMark)
+                if (master.peopleReitedCount != 0) {
+                    ratingMaster.rating = (master.totalMark/master.peopleReitedCount).toFloat()
+                } else {
+                    ratingMaster.rating = 0.toFloat()
+
+                }
+                allMarks.text = String.format(allMarks.context.getString(R.string.masters_total_mark), master.totalMark)
 
                 master.professionList.forEach {
                     tvProfession.text = it.name
