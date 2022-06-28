@@ -10,6 +10,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.heymaster.heymaster.R
@@ -23,19 +25,17 @@ import kotlin.math.log
 class ClientActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiverListener {
 
     private val binding by lazy { ActivityUserBinding.inflate(layoutInflater) }
+    private lateinit var navController: NavController
+
 
     private var dialog: Dialog? = null
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val text = intent.getStringExtra("key")
-        if (text != null) {
-            navigate(intent)
-        }
-
         setContentView(binding.root)
+
+        navController = Navigation.findNavController(this,R.id.user_container)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             setupStatusBar()
         }
@@ -44,7 +44,7 @@ class ClientActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
         binding.userBottomNavigation.setupWithNavController(findNavController(R.id.user_container))
 
 
-        findNavController(R.id.user_container).addOnDestinationChangedListener { _, destination, _ ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.userNotificationFragment -> hideBottomNav()
                 R.id.userSearchFragment -> hideBottomNav()
@@ -94,8 +94,8 @@ class ClientActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
 
 
     override fun onNewIntent(intent: Intent) {
-        navigate(intent)
         super.onNewIntent(intent)
+        navController.navigate(R.id.userNotificationFragment)
     }
 
     private fun navigate(intent: Intent) {

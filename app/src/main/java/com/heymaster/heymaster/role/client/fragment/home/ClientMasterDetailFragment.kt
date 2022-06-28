@@ -136,8 +136,8 @@ class ClientMasterDetailFragment : BaseFragment(R.layout.fragment_detail_page_cl
                             binding.ratingBar.rating = (it.data.`object`.totalMark/it.data.`object`.peopleReitedCount).toFloat()
                         } else {
                             binding.ratingBar.rating = 0.toFloat()
-
                         }
+
 
                         if (it.data.`object`.profilePhoto != null) {
                             Picasso.get().load(it.data.`object`.profilePhoto).into(binding.detailProfileImage)
