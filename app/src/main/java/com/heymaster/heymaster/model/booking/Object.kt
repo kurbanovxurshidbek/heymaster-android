@@ -1,6 +1,5 @@
 package com.heymaster.heymaster.model.booking
 
-import com.heymaster.heymaster.model.auth.CurrentUser
 
 data class Object(
     val accepted: Boolean,
