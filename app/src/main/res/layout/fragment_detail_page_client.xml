@@ -19,7 +19,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-
         <ImageView
             android:id="@+id/detailProfileImage"
             android:layout_width="match_parent"
@@ -327,8 +326,6 @@
                     android:layout_marginVertical="12dp"
                     app:cornerRadius="30dp"
                     />
-
-
 
             </LinearLayout>
 

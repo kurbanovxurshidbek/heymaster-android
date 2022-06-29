@@ -84,7 +84,6 @@ class MasterPortfolioAdapter : ListAdapter<Portfolio, RecyclerView.ViewHolder>(P
                 holder.bind()
             }
 
-
             is PortfolioViewHolder.ImageViewHolder -> {
                 Log.d("TAG", "onBindViewHolder: fd")
                 holder.bind(currentList[position] as Portfolio.Image)

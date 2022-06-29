@@ -1,6 +1,7 @@
 package com.heymaster.heymaster.role.master.repository
 
 import com.heymaster.heymaster.data.network.ApiService
+import com.heymaster.heymaster.model.editmasterprofile.EditMasterRequest
 import okhttp3.RequestBody
 
 class MasterProfileRepository(private val apiService: ApiService) {
@@ -17,6 +18,7 @@ class MasterProfileRepository(private val apiService: ApiService) {
     suspend fun masterToClient() = apiService.masterToClient()
 
     suspend fun uploadProfilePhoto(body: RequestBody) = apiService.uploadProfilePhoto(body)
+    suspend fun editProfileMaster(editMasterRequest: EditMasterRequest) = apiService.editMasterProfile(editMasterRequest)
 
 
 

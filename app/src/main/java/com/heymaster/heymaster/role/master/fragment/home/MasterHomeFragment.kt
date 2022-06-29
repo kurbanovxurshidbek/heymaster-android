@@ -19,6 +19,7 @@ import com.heymaster.heymaster.role.master.viewmodel.factory.MasterHomeViewModel
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.global.adapter.home.*
 import com.heymaster.heymaster.model.home.Advertising
+import com.heymaster.heymaster.model.home.Object
 import com.heymaster.heymaster.role.master.adapter.*
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.UiStateObject
@@ -32,7 +33,6 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
 
     private val binding by viewBinding { FragmentMasterHomeBinding.bind(it) }
     private lateinit var viewModel: MasterHomeViewModel
-
     private var job: Job? = null
 
 
@@ -44,8 +44,6 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         setupAdsAdapter()
         setupRv()
         setupViewModel()
@@ -54,7 +52,6 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
         observeViewModel()
         adapterItemClick()
         clickListener()
-
 
     }
 
@@ -82,7 +79,7 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
 
     private fun adapterItemClick() {
         popularMastersAdapter.itemCLickListener = {
-            findNavController().navigate(R.id.detailPageFragment, bundleOf("master_id" to it.id))
+            launchMasterDetailFragment(it)
         }
         categoryAdapter.itemClickListener = {
             launchCategoryDetailFragment(it.id)
@@ -92,6 +89,7 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
         }
 
     }
+
     private fun launchCategoryDetailFragment(id: Int) {
         findNavController().navigate(R.id.action_masterHomeFragment_to_masterServiceDetailFragment , bundleOf("category_id" to id))
     }
@@ -99,32 +97,11 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
         findNavController().navigate(R.id.action_masterHomeFragment_to_masterProfessionsDetailFragment, bundleOf("profession_id" to id))
     }
 
+    private fun launchMasterDetailFragment(it: Object){
+        findNavController().navigate(R.id.action_masterHomeFragment_to_detailPageFragment, bundleOf("master_id" to id))
+    }
+
     private fun observeViewModel() {
-
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.ads.collect {
-                when (it) {
-                    is UiStateObject.LOADING -> {
-                        binding.nestedHome.visibility = View.GONE
-                        binding.progressHome.customProgress.visibility = View.VISIBLE
-                        Log.d("@@@loading", "observeViewModel: sdsasad")
-                    }
-                    is UiStateObject.SUCCESS -> {
-                        binding.progressHome.customProgress.visibility = View.GONE
-                        binding.nestedHome.visibility = View.VISIBLE
-                        val list = ArrayList<Advertising>()
-                        list.addAll(listOf(it.data!!))
-                        adsAdapter.submitAds(list)
-
-                    }
-                    is UiStateObject.ERROR -> {
-                        Log.d("@@@", "observeViewModel: ${it.message}")
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                    }
-                    else -> Unit
-                }
-            }
-        }
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.home.collect {
@@ -132,12 +109,13 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
 
                     is UiStateObject.LOADING -> {
                         binding.nestedHome.visibility = View.GONE
-                        binding.progressHome.customProgress.visibility = View.VISIBLE
+                        showLoading()
                     }
 
                     is UiStateObject.SUCCESS -> {
-                        binding.progressHome.customProgress.visibility = View.GONE
                         binding.nestedHome.visibility = View.VISIBLE
+                        dismissLoading()
+                        adsAdapter.submitAds(it.data.advertisingList as ArrayList<Advertising>)
                         categoryAdapter.submitList(it.data.categoryList)
                         popularMastersAdapter.submitList(it.data.topMastersList)
                         primeServicesAdapter.submitList(it.data.topProfessionList)
@@ -166,7 +144,6 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
         binding.vpMasterHomeAds.adapter = adsAdapter
         binding.vpMasterHomeAds.setCurrentItem(0, true)
         binding.userHomeAdsDotsIndicator.setViewPager2(binding.vpMasterHomeAds)
-        binding.vpMasterHomeAds.clipToPadding = false
         addAutoScrollToViewPager()
     }
 
@@ -179,7 +156,6 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
     }
 
     private fun addAutoScrollToViewPager() {
-
         job = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             while (isActive) {
                 delay(3000)
