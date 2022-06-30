@@ -5,9 +5,8 @@ plugins {
     id 'kotlin-kapt'
 }
 
-
-
 android {
+
     compileSdk 32
 
     defaultConfig {

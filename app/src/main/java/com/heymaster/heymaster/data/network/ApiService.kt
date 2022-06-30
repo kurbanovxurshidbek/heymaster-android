@@ -188,6 +188,13 @@ interface ApiService {
     suspend fun getMasterRateOne()
 
 
+    //notification
+    @GET("notification/user/all")
+    suspend fun getClientNotifications()
+
+
+
+
 
 
 
