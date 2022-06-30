@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_marginTop="0dp"
-            android:backgroundTint="@color/main_color"
+            android:backgroundTint="@color/black"
             android:drawableEnd="@drawable/ic_person"
             android:hint="Full name"
             android:maxLines="1"
@@ -60,21 +60,6 @@
             android:textColorHint="@color/black"
             tools:ignore="Autofill,TextFields" />
 
-        <EditText
-            android:id="@+id/etPhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginTop="0dp"
-            android:backgroundTint="@color/main_color"
-            android:drawableEnd="@drawable/ic_outline_phone_24"
-            android:hint="Phone number"
-            android:inputType="phone"
-            android:maxLength="13"
-            android:maxLines="1"
-            android:padding="14dp"
-            android:singleLine="true"
-            android:textColorHint="@color/black"
-            tools:ignore="Autofill,TextFields" />
 
 
         <EditText
@@ -97,7 +82,7 @@
             tools:ignore="TextFields" />
 
         <EditText
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/et_master_district"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -191,7 +176,7 @@
                         android:id="@+id/checkboxMale"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/main_color" />
+                        android:buttonTint="@color/black" />
 
                 </LinearLayout>
 
@@ -214,7 +199,7 @@
                         android:id="@+id/checkboxFemale"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:buttonTint="@color/main_color" />
+                        android:buttonTint="@color/black" />
 
                 </LinearLayout>
             </LinearLayout>

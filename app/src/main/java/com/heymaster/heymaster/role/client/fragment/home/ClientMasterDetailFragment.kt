@@ -53,7 +53,6 @@ class ClientMasterDetailFragment : BaseFragment(R.layout.fragment_detail_page_cl
         }
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = DetailBottomViewPagerAdapter(childFragmentManager, lifecycle)
@@ -95,11 +94,6 @@ class ClientMasterDetailFragment : BaseFragment(R.layout.fragment_detail_page_cl
             val shareIntent = Intent.createChooser(sendIntent, null)
             startActivity(shareIntent)
         }
-
-
-
-
-
 
     }
 
@@ -145,10 +139,6 @@ class ClientMasterDetailFragment : BaseFragment(R.layout.fragment_detail_page_cl
                             binding.detailProfileImage.setImageResource(R.drawable.img_2)
                         }
 
-
-
-
-
                     }
                     is UiStateObject.ERROR -> {
                         Log.d("@@@tag", "observeViewModel: ${it.message}")
@@ -185,6 +175,7 @@ class ClientMasterDetailFragment : BaseFragment(R.layout.fragment_detail_page_cl
 
 
     }
+
     private fun setupViewModel() {
         val token = SharedPref(requireContext()).getString(Constants.KEY_ACCESS_TOKEN)
         viewModel = ViewModelProvider(
@@ -197,14 +188,17 @@ class ClientMasterDetailFragment : BaseFragment(R.layout.fragment_detail_page_cl
             )
         )[DetailsViewModel::class.java]
     }
+
     private fun setupViewPager() {
         adapter.addFragment(ClientDetailsPortfolioFragment())
         adapter.addFragment(DetailsHistoryFragment())
 
         binding.detailBottomViewPager.adapter = adapter
+
         binding.detailBottomViewPager.setCurrentItem(0, true)
 
         binding.detailBottomTabLayout.addTab(binding.detailBottomTabLayout.newTab().setText("Portfolio"))
+
         binding.detailBottomTabLayout.addTab(binding.detailBottomTabLayout.newTab().setText("History"))
 
         binding.detailBottomTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {

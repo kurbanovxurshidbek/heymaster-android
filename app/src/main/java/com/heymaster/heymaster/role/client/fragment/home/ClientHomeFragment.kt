@@ -59,8 +59,6 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
         adapterItemClick()
         clickListeners()
 
-
-
     }
 
     private fun adapterItemClick() {
@@ -143,21 +141,16 @@ class ClientHomeFragment : BaseFragment(R.layout.fragment_user_home) {
             }
         }
 
-
-
     }
 
     private fun setupRv() {
         binding.rvUserHomeService.adapter = categoryAdapter
         binding.rvUserHomePopularServices.adapter = popularProfessionsAdapter
         binding.rvUserHomePopularMasters.adapter = popularMastersAdapter
-
-
     }
 
     private fun setupAdsAdapter() {
         binding.vpUserHomeAds.adapter = adsPagerAdapter
-
         binding.vpUserHomeAds.setCurrentItem(0, true)
         binding.userHomeAdsDotsIndicator.setViewPager2(binding.vpUserHomeAds)
         addAutoScrollToViewPager()

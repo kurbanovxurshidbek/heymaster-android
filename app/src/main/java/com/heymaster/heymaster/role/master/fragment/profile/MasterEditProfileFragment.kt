@@ -19,6 +19,7 @@ import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.*
 import com.heymaster.heymaster.global.BaseFragment
+import com.heymaster.heymaster.model.editmasterprofile.EditMasterRequest
 import com.heymaster.heymaster.role.master.repository.MasterProfileRepository
 import com.heymaster.heymaster.role.master.viewmodel.MasterProfileViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterProfileViewModelFactory
@@ -68,7 +69,7 @@ class MasterEditProfileFragment : BaseFragment(R.layout.fragment_master_edit_pro
     }
 
     private fun initViews() {
-        manageGender()
+//        manageGender()
 
         binding.backEditprofil.setOnClickListener {
             findNavController().popBackStack()
@@ -117,11 +118,50 @@ class MasterEditProfileFragment : BaseFragment(R.layout.fragment_master_edit_pro
             showExperienceDialog()
         }
 
+        binding.btnSave.setOnClickListener {
+            with(binding) {
+                val fullName = etSurname.text.toString()
+
+//                val districtId = etMasterDistrict.text.toString()
+//                val regionId = etMasterRegion.text.toString()
+//                val professionsList = etMasterProfessions.text.toString()
+//                val experienceYear = etMasterExperience.text.toString()
+
+                val editMasterRequest = EditMasterRequest(
+                    fullName = fullName,
+                    districtId = districtId!!,
+                    regionId = regionId!!,
+                    professionList = professionsList,
+                    experienceYear = experienceYear!!
+                )
+                viewModel.editProfileMaster(editMasterRequest)
+            }
+        }
+
 
 
     }
 
     private fun observeViewModel(){
+
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.masterEditProfile.collect {
+                when (it) {
+                    is UiStateObject.LOADING -> {
+                        showLoading()
+                    }
+                    is UiStateObject.SUCCESS -> {
+                        dismissLoading()
+                        requireActivity().onBackPressed()
+                    }
+                    is UiStateObject.ERROR -> {
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+
+                    }
+                    else -> Unit
+                }
+            }
+        }
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.regions.collect {
@@ -154,12 +194,15 @@ class MasterEditProfileFragment : BaseFragment(R.layout.fragment_master_edit_pro
                         binding.etMasterRegion.text = Editable.Factory.getInstance().newEditable(editProfile.location.region.nameUz)
                         binding.etMasterDistrict.text = Editable.Factory.getInstance().newEditable(editProfile.location.district.nameUz)
 
-                        editProfile.professionList.forEach {
-                            binding.etMasterProfessions.text = Editable.Factory.getInstance().newEditable(it.toString())
-                        }
+                        districtId = it.data.location.district.id
+                        regionId = it.data.location.region.id
+                        experienceYear = it.data.experienceYear
+
+//                        editProfile.professionList.forEach {
+//                            binding.etMasterProfessions.text = Editable.Factory.getInstance().newEditable(it.toString())
+//                        }
 
                         binding.etMasterExperience.text = Editable.Factory.getInstance().newEditable(editProfile.experienceYear.toString())
-                        binding.etPhoneNumber.text = Editable.Factory.getInstance().newEditable(editProfile.phoneNumber)
                     }
                     is UiStateObject.ERROR -> {
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()

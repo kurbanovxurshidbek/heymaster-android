@@ -12,6 +12,8 @@ import com.heymaster.heymaster.model.Region
 import com.heymaster.heymaster.model.auth.CurrentUser
 import com.heymaster.heymaster.model.masterprofile.MasterToClientResponse
 import com.heymaster.heymaster.model.auth.Profession
+import com.heymaster.heymaster.model.editmasterprofile.EditMasterRequest
+import com.heymaster.heymaster.model.editmasterprofile.EditMasterResponse
 import com.heymaster.heymaster.model.masterprofile.Portfolio
 
 import com.heymaster.heymaster.utils.UiStateList
@@ -56,6 +58,27 @@ class MasterProfileViewModel(private val repository: MasterProfileRepository): V
 
     private val _professions = MutableStateFlow<UiStateObject<Profession>>(UiStateObject.EMPTY)
     val professions = _professions
+
+    private val _masterEditProfile = MutableStateFlow<UiStateObject<EditMasterResponse>>(UiStateObject.EMPTY)
+    val masterEditProfile = _masterEditProfile
+
+    fun editProfileMaster(editMasterRequest: EditMasterRequest) = viewModelScope.launch {
+        _masterEditProfile.value = UiStateObject.LOADING
+        try {
+            val response = repository.editProfileMaster(editMasterRequest)
+
+            if (response.code() >= 400) {
+                val error =
+                    Gson().fromJson(response.errorBody()!!.charStream(), ErrorResponse::class.java)
+                _masterEditProfile.value = UiStateObject.ERROR(error.errorMessage)
+            } else {
+                _masterEditProfile.value = UiStateObject.SUCCESS(response.body()!!)
+            }
+        } catch (e: Exception) {
+
+            _masterEditProfile.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
 
     fun getImages() = viewModelScope.launch {
         _portfolios.value = UiStateList.LOADING
