@@ -61,47 +61,6 @@
 
 
 
-        <EditText
-            android:id="@+id/et_master_region"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_edit_text_login"
-            android:drawablePadding="12dp"
-            android:editable="false"
-            android:focusable="false"
-            android:hint="Region"
-            android:inputType="number"
-            android:maxLines="1"
-            android:paddingHorizontal="24sp"
-            android:paddingVertical="0dp"
-            android:textColor="@color/black1"
-            android:textCursorDrawable="@drawable/edittext_cursor_drawable"
-            android:textSize="14sp"
-            tools:ignore="TextFields" />
-
-        <EditText
-            android:visibility="visible"
-            android:id="@+id/et_master_district"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_edit_text_login"
-            android:drawablePadding="12dp"
-            android:hint="District"
-            android:editable="false"
-            android:focusable="false"
-            android:inputType="number"
-            android:maxLines="1"
-            android:paddingHorizontal="24sp"
-            android:paddingVertical="0dp"
-            android:textColor="@color/black1"
-            android:textCursorDrawable="@drawable/edittext_cursor_drawable"
-            android:textSize="14sp"
-            tools:ignore="TextFields"/>
-
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -110,7 +69,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -179,6 +138,7 @@
             android:layout_width="match_parent"
             android:layout_height="46dp"
             android:gravity="center"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView

@@ -135,10 +135,25 @@
 
     <string name="female">женский</string>
 
-
     <string name="check_connection">Check Connection</string>
 
     <string name="search_for_profession">Search for a profession</string>
+
     <string name="search_for_master">Search for a master</string>
 
+    <string name="login_as_master">Войти как мастер</string>
+
+    <string name="close">Занятый</string>
+
+    <string name="choose_gender">Jinsni tanlang</string>
+
+    <string name="rate_this_service">Оцените эту услугу</string>
+
+    <string name="rate_description">Описание</string>
+
+    <string name="submit">Представлять на рассмотрение</string>
+
+    <string name="cancel">Отмена</string>
+
+    <string name="enter_description">Введите описание</string>
 </resources>

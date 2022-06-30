@@ -75,7 +75,6 @@ class MasterProfileViewModel(private val repository: MasterProfileRepository): V
                 _masterEditProfile.value = UiStateObject.SUCCESS(response.body()!!)
             }
         } catch (e: Exception) {
-
             _masterEditProfile.value = UiStateObject.ERROR(e.userMessage())
         }
     }

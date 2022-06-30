@@ -138,7 +138,9 @@
 
     <string name="masters_total_mark"> %s marta ko\'rilgan</string>
 
-    <string name="login_as_client"> master sifatida ro`yhatdan o`tish</string>
+    <string name="login_as_client"> mijoz sifatida ro`yhatdan o`tish</string>
+
+    <string name="login_as_master">usta sifatida ro`yhatdan o`tish</string>
 
     <string name="open">Ochiq</string>
 
@@ -155,6 +157,7 @@
     <string name="rate_description">Izoh qoldiring</string>
 
     <string name="submit">Saqlash</string>
+
     <string name="cancel">Bekor qilish</string>
 
     <string name="enter_description">Izoh qoldiring</string>
@@ -162,9 +165,10 @@
     <string name="close">Band</string>
 
     <string name="search_for_profession">Xizmatni qidiring</string>
+
     <string name="search_for_master">Ustani qidiring</string>
 
-
+    <string name="choose_gender"></string>
 
 
 

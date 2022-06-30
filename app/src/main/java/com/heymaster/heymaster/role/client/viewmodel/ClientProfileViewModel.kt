@@ -8,6 +8,9 @@ import com.heymaster.heymaster.model.ErrorResponse
 import com.heymaster.heymaster.model.auth.ClientToMasterRequest
 import com.heymaster.heymaster.model.auth.ClientToMasterResponse
 import com.heymaster.heymaster.model.auth.CurrentUser
+import com.heymaster.heymaster.model.editmasterprofile.EditClientRequest
+import com.heymaster.heymaster.model.editmasterprofile.EditMasterRequest
+import com.heymaster.heymaster.model.editmasterprofile.EditMasterResponse
 import com.heymaster.heymaster.role.client.repository.ClientProfileRepository
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
@@ -38,7 +41,27 @@ class ClientProfileViewModel(
     private val _clientToMasterIsAlreadyMaster = MutableStateFlow<UiStateObject<ClientToMasterResponse>>(UiStateObject.EMPTY)
     val clientToMasterIsAlreadyMaster = _clientToMasterIsAlreadyMaster
 
+    private val _clientEditProfile = MutableStateFlow<UiStateObject<EditMasterResponse>>(UiStateObject.EMPTY)
+    val clientEditProfile = _clientEditProfile
 
+
+    fun editProfileClient(editClientRequest: EditClientRequest) = viewModelScope.launch {
+        _clientEditProfile.value = UiStateObject.LOADING
+        try {
+            val response = repository.editProfileClient(editClientRequest)
+
+            if (response.code() >= 400) {
+                val error =
+                    Gson().fromJson(response.errorBody()!!.charStream(), ErrorResponse::class.java)
+                _clientEditProfile.value = UiStateObject.ERROR(error.errorMessage)
+            } else {
+                _clientEditProfile.value = UiStateObject.SUCCESS(response.body()!!)
+            }
+        } catch (e: Exception) {
+
+            _clientEditProfile.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
 
 
     fun currentUser() = viewModelScope.launch {

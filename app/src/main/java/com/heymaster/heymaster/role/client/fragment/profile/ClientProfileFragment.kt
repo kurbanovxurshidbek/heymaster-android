@@ -10,6 +10,7 @@ import android.graphics.Picture
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Environment
+import android.text.Editable
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -123,6 +124,7 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                         val currentUser = it.data
                         with(binding) {
                             tvFullname.text = currentUser.fullName
+                            etPhoneNumber.text = Editable.Factory.getInstance().newEditable(currentUser.phoneNumber)
 
                             if (it.data.profilePhoto != null) {
                                 Glide.with(binding.ivProfile).load(ATTACHMENT_URL + it.data.profilePhoto!!.id).into(binding.ivProfile)

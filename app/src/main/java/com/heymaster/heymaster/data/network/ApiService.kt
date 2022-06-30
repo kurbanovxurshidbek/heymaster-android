@@ -9,6 +9,7 @@ import com.heymaster.heymaster.model.auth.Profession
 import com.heymaster.heymaster.model.booking.*
 import com.heymaster.heymaster.model.editmasterprofile.EditMasterRequest
 import com.heymaster.heymaster.model.editmasterprofile.EditMasterResponse
+import com.heymaster.heymaster.model.editmasterprofile.EditClientRequest
 import com.heymaster.heymaster.model.home.*
 import com.heymaster.heymaster.model.masterdetail.MasterDetail
 import com.heymaster.heymaster.model.masterprofile.MasterToClientResponse
@@ -156,10 +157,8 @@ interface ApiService {
     @PUT("master/edit")
     suspend fun editMasterProfile(@Body editMasterRequest: EditMasterRequest): Response<EditMasterResponse>
 
-
-
-
-
+    @PUT("user/editProfile")
+    suspend fun editClientProfile(@Body editClientRequest: EditClientRequest): Response<EditMasterResponse>
 
     //Search
     @GET("master/search/{name}")
