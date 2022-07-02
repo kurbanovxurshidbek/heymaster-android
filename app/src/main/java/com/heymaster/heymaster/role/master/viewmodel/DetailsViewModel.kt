@@ -31,12 +31,7 @@ class DetailsViewModel (private val repository: DetailsRepository): ViewModel(){
         _masterProfile.value = UiStateObject.LOADING
         try {
             val response = repository.getMasterDetailInfo(id)
-
-            if (response.code() >= 400) {
-                val error =
-                    Gson().fromJson(response.errorBody()!!.charStream(), ErrorResponse::class.java)
-                _masterProfile.value = UiStateObject.ERROR(error.errorMessage)
-            } else {
+            if (response.isSuccessful) {
                 _masterProfile.value = UiStateObject.SUCCESS(response.body()!!)
             }
         } catch (e: Exception) {

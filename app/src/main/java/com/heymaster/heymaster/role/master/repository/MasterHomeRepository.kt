@@ -21,4 +21,6 @@ class MasterHomeRepository(
     suspend fun getAllCategory() = apiService.getAllCategory()
 
     suspend fun getProfessions() = apiService.getProfessions()
+
+    suspend fun getNotifications() = apiService.getNotifications()
 }

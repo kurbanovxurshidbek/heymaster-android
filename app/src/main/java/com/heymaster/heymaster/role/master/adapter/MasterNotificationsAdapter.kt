@@ -1,4 +1,4 @@
-package com.heymaster.heymaster.role.client.adapter
+package com.heymaster.heymaster.role.master.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,31 +7,34 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.heymaster.heymaster.databinding.ItemNotificationMessagesBinding
 import com.heymaster.heymaster.model.Notification
+import com.heymaster.heymaster.model.home.ObjectX
 import com.squareup.picasso.Picasso
 
-class ClientNotificationMessagesAdapter: ListAdapter<Notification, ClientNotificationMessagesAdapter.NotificationMessagesViewHolder>(
+class MasterNotificationsAdapter: ListAdapter<ObjectX, MasterNotificationsAdapter.NotificationMessagesViewHolder>(
     NotificationItemDiffCallback()
 ) {
 
     inner class NotificationMessagesViewHolder(private val binding: ItemNotificationMessagesBinding):
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(notification: Notification) {
+        fun bind(notification: ObjectX) {
+            binding.apply {
+                tvNotifFullname.text = notification.toWhom.fullName
+                tvNotifDate.text = notification.createAt
+                tvNotifDescrip.text = notification.body
+            }
 
-            binding.tvNotifFullname.text = notification.body
-            binding.tvNotifDescrip.text = notification.title
-            binding.tvNotifDate.text = notification.data
-            Picasso.get().load(notification.image).into(binding.ivProfile)
+
 
         }
 
     }
 
-    private class NotificationItemDiffCallback : DiffUtil.ItemCallback<Notification>() {
-        override fun areItemsTheSame(oldItem: Notification, newItem: Notification): Boolean {
+    private class NotificationItemDiffCallback : DiffUtil.ItemCallback<ObjectX>() {
+        override fun areItemsTheSame(oldItem: ObjectX, newItem: ObjectX): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Notification, newItem: Notification): Boolean {
+        override fun areContentsTheSame(oldItem: ObjectX, newItem: ObjectX): Boolean {
             return oldItem == newItem
         }
 

@@ -39,19 +39,13 @@ class ClientMasterDetailFragment : BaseFragment(R.layout.fragment_detail_page_cl
     private lateinit var adapter: DetailBottomViewPagerAdapter
     private lateinit var viewModel: DetailsViewModel
 
-    private var id: Int? = null
 
     private var phoneNumber: String? = null
     private var fullname: String? = null
     private var masterRegion: String? = null
     private var photoUrl: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            id = it.getInt("master_id")
-        }
-    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -59,15 +53,17 @@ class ClientMasterDetailFragment : BaseFragment(R.layout.fragment_detail_page_cl
         setupViewPager()
         setupViewModel()
 
-
-        id?.let {
-            viewModel.getMasterDetail(id!!)
+        var id = 0
+        arguments?.let {
+            id = it.getInt("master_id")
         }
 
+        viewModel.getMasterDetail(id)
+
+
         binding.btnBooking.setOnClickListener {
-            id?.let {
-                viewModel.booking(id!!)
-            }
+            viewModel.booking(id)
+
 
         }
         observeViewModel()
@@ -111,7 +107,7 @@ class ClientMasterDetailFragment : BaseFragment(R.layout.fragment_detail_page_cl
                         binding.tvDetailDistrict.text = it.data.`object`.location.district.nameUz
                         binding.tvDetailRegion.text = it.data.`object`.location.region.nameUz
                         binding.totalMark.text = it.data.`object`.totalMark.toString()
-//
+
                         if (it.data.`object`.busy) {
                             binding.isBusy.text = resources.getString(R.string.open)
                             binding.busyCard.setCardBackgroundColor(R.color.green1)

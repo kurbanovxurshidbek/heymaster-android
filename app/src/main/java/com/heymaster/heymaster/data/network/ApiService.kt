@@ -10,6 +10,7 @@ import com.heymaster.heymaster.model.booking.*
 import com.heymaster.heymaster.model.editmasterprofile.EditMasterRequest
 import com.heymaster.heymaster.model.editmasterprofile.EditMasterResponse
 import com.heymaster.heymaster.model.home.*
+import com.heymaster.heymaster.model.home.MasterResponse
 import com.heymaster.heymaster.model.masterdetail.MasterDetail
 import com.heymaster.heymaster.model.masterprofile.MasterToClientResponse
 import com.heymaster.heymaster.model.masterprofile.Portfolio
@@ -130,7 +131,7 @@ interface ApiService {
 
 
     @GET("master/{id}")
-    suspend fun getMasterById(@Path("id") id: Int): Response<MasterResponse>
+    suspend fun getMasterById(@Path("id") id: Int): Response<com.heymaster.heymaster.model.MasterResponse>
 
 
 
@@ -193,8 +194,9 @@ interface ApiService {
 
 
     //notification
-    @GET("notification/user/all")
-    suspend fun getClientNotifications()
+    @GET("notification/all")
+    suspend fun getNotifications(): Response<NotificationResponse>
+
 
 
 
