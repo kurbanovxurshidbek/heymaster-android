@@ -22,8 +22,7 @@ class DetailsViewModel (private val repository: DetailsRepository): ViewModel(){
     private val _portfolio = MutableStateFlow<UiStateList<Portfolio>>(UiStateList.EMPTY)
     val portfolio = _portfolio
 
-
-
+    
     private val _masterProfile = MutableStateFlow<UiStateObject<MasterDetail>>(UiStateObject.EMPTY)
     val masterProfile = _masterProfile
 
