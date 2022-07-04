@@ -7,4 +7,5 @@ sealed class UiStateList<out T> {
     data class ERROR(val message:String):UiStateList<Nothing>()
     object LOADING : UiStateList<Nothing>()
     object EMPTY : UiStateList<Nothing>()
+
 }

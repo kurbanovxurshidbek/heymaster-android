@@ -156,4 +156,7 @@
     <string name="cancel">Отмена</string>
 
     <string name="enter_description">Введите описание</string>
+
+    <string name="save">Сохранять</string>
+
 </resources>

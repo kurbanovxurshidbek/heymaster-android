@@ -12,7 +12,6 @@ import com.squareup.picasso.Picasso
 class ClientNotificationSuggestionAdapter: ListAdapter<Notification, ClientNotificationSuggestionAdapter.NotificationSuggestionViewHolder>(
     NotificationItemDiffCallback())  {
 
-
     inner class NotificationSuggestionViewHolder(private val binding: ItemNotificationSuggestionsBinding):
         RecyclerView.ViewHolder(binding.root) {
         fun bind(notification: Notification) {
@@ -48,6 +47,5 @@ class ClientNotificationSuggestionAdapter: ListAdapter<Notification, ClientNotif
         val notificationSuggestion = getItem(position)
         holder.bind(notificationSuggestion)
     }
-
 
 }
