@@ -104,27 +104,27 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:gravity="center_vertical"
                             android:orientation="horizontal">
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:src="@drawable/ic_location"/>
+                                android:src="@drawable/ic_outline_phone_24"/>
 
-                            <TextView
-                                android:id="@+id/tvProfileProvince"
+                            <com.vicmikhailau.maskededittext.MaskedEditText
+                                android:id="@+id/et_phone_number"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Tashkent,"
-                                android:textColor="@color/black"/>
+                                app:mask="+##### ### ## ##"
+                                android:backgroundTint="@color/white"
+                                android:textSize="16sp"/>
 
-                            <TextView
-                                android:id="@+id/tvProfileRegion"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Tashkent"
-                                android:layout_marginLeft="7dp"
-                                android:textColor="@color/black"
-                                />
+<!--                            <TextView-->
+<!--                                android:id="@+id/tvProfilePhone"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="+99899 000 00 00"-->
+<!--                                android:textColor="@color/black"/>-->
 
                         </LinearLayout>
 
@@ -150,7 +150,7 @@
                                     android:paddingVertical="8dp"
                                     android:layout_gravity="center"
                                     android:layout_marginHorizontal="5dp"
-                                    android:text="@string/login_as_client"
+                                    android:text="@string/login_as_master"
                                     android:textSize="14sp"
                                     android:maxLines="1"
                                     android:singleLine="true"

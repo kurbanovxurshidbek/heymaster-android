@@ -72,6 +72,7 @@
     <string name="get_started">Get Started</string>
     <string name="masters_total_mark"> %s reviews</string>
     <string name="login_as_client">Login as Client</string>
+    <string name="login_as_master">Login as Master</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="direction">Direction</string>

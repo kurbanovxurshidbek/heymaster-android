@@ -113,8 +113,9 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
                     }
 
                     is UiStateObject.SUCCESS -> {
-                        binding.nestedHome.visibility = View.VISIBLE
                         dismissLoading()
+                        binding.nestedHome.visibility = View.VISIBLE
+
                         adsAdapter.submitAds(it.data.advertisingList as ArrayList<Advertising>)
                         categoryAdapter.submitList(it.data.categoryList)
                         popularMastersAdapter.submitList(it.data.topMastersList)

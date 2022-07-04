@@ -7,5 +7,4 @@ data class EditMasterRequest (
     val districtId: Int,
     val experienceYear: Int,
     val professionList: List<Int>,
-
     )
