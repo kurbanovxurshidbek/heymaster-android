@@ -42,6 +42,9 @@ class ClientHomeViewModel(
     private val _master = MutableStateFlow<UiStateObject<MasterResponse>>(UiStateObject.EMPTY)
     val master = _master
 
+    private val _clientNotifications = MutableStateFlow<UiStateObject<NotificationResponse>>(UiStateObject.EMPTY)
+    val clientNotifications = _clientNotifications
+
 
 
     fun getHome() = viewModelScope.launch {
@@ -132,6 +135,19 @@ class ClientHomeViewModel(
 
         } catch (e: Exception) {
             _master.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+
+    fun getNotifications() = viewModelScope.launch {
+        _clientNotifications.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.getNotifications()
+            _clientNotifications.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _clientNotifications.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 

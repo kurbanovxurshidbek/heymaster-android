@@ -11,6 +11,7 @@ import com.heymaster.heymaster.model.editmasterprofile.EditMasterRequest
 import com.heymaster.heymaster.model.editmasterprofile.EditMasterResponse
 import com.heymaster.heymaster.model.editmasterprofile.EditClientRequest
 import com.heymaster.heymaster.model.home.*
+import com.heymaster.heymaster.model.home.MasterResponse
 import com.heymaster.heymaster.model.masterdetail.MasterDetail
 import com.heymaster.heymaster.model.masterprofile.MasterToClientResponse
 import com.heymaster.heymaster.model.masterprofile.Portfolio
@@ -67,7 +68,7 @@ interface ApiService {
     suspend fun getBookingMasterHistory(): Response<MasterHistoryBooking>
 
     @GET("booking/client/history")
-    suspend fun getBookingClientHistory(): Response<MasterHistoryBooking>
+    suspend fun getBookingClientHistory(): Response<ClientHistoryBooking>
 
     @POST("booking/accept")
     suspend fun bookingAcceptOrCancel(@Body bookingAcceptRequest: BookingAcceptRequest): Response<BookingAcceptResponse>
@@ -131,7 +132,7 @@ interface ApiService {
 
 
     @GET("master/{id}")
-    suspend fun getMasterById(@Path("id") id: Int): Response<MasterResponse>
+    suspend fun getMasterById(@Path("id") id: Int): Response<com.heymaster.heymaster.model.MasterResponse>
 
 
 
@@ -189,6 +190,14 @@ interface ApiService {
 
     @GET("rate/getOne")
     suspend fun getMasterRateOne()
+
+
+    //notification
+    @GET("notification/all")
+    suspend fun getNotifications(): Response<NotificationResponse>
+
+
+
 
 
 

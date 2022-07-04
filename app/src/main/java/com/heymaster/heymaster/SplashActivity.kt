@@ -9,18 +9,15 @@ import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
-import com.google.android.gms.tasks.OnCompleteListener
+import android.view.View
 import com.heymaster.heymaster.databinding.ActivitySplashBinding
 import com.heymaster.heymaster.global.BaseActivity
 import com.heymaster.heymaster.manager.LocaleManager
 import com.heymaster.heymaster.utils.ConnectivityReceiver
 import com.heymaster.heymaster.utils.Constants.CLIENT
-import com.heymaster.heymaster.utils.Constants.KEY_DEVICE_TOKEN
 import com.heymaster.heymaster.utils.Constants.KEY_INTRO_SAVED
 import com.heymaster.heymaster.utils.Constants.KEY_LOGIN_SAVED
 import com.heymaster.heymaster.utils.Constants.KEY_USER_ROLE
-
 
 
 @SuppressLint("CustomSplashScreen")
@@ -35,14 +32,17 @@ class SplashActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
         setContentView(binding.root)
         LocaleManager(this).setLocale(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            setupStatusBar()
+            setupSplashStatusBar()
         }
+
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
         registerReceiver(ConnectivityReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
 
     }
 
     private fun countTimer() {
-        object : CountDownTimer(1000, 1000) {
+        object : CountDownTimer(1000, 2000) {
             override fun onTick(p0: Long) {}
 
             override fun onFinish() {

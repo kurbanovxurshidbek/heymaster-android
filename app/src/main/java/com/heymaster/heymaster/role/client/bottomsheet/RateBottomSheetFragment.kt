@@ -8,7 +8,6 @@ import androidx.fragment.app.DialogFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.databinding.UserBookingBottomSheetBinding
-import com.heymaster.heymaster.model.user_booking.UActiveBookingM
 
 class RateBottomSheetFragment : BottomSheetDialogFragment() {
 
@@ -32,27 +31,11 @@ class RateBottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val item = getItemFromBundle()
 
 
 
     }
 
-    private fun getItemFromBundle(): UActiveBookingM? {
-       return arguments?.getParcelable<UActiveBookingM>("item")
-    }
-
-    companion object {
-        fun newInstance(item: UActiveBookingM): RateBottomSheetFragment {
-            val fragment = RateBottomSheetFragment()
-            fragment.apply {
-                arguments = Bundle().apply {
-                    putParcelable("item", item)
-                }
-            }
-            return fragment
-        }
-    }
 
 
 }

@@ -35,6 +35,8 @@ class ClientHomeRepository(
 
     suspend fun searchProfessionWithName(name: String) = apiService.searchProfessionWithName(name)
 
+    suspend fun getNotifications() = apiService.getNotifications()
+
 
 
 

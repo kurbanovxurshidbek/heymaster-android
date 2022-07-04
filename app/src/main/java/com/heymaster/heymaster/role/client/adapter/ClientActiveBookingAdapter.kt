@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.heymaster.heymaster.databinding.ItemActiveBookingBinding
 import com.heymaster.heymaster.model.booking.ClientActiveBooking
 import com.heymaster.heymaster.model.booking.Object
-import com.heymaster.heymaster.model.user_booking.UActiveBookingM
 import com.heymaster.heymaster.role.client.adapter.ClientActiveBookingAdapter.*
 
 class ClientActiveBookingAdapter() : ListAdapter<Object, ClientActiveBookingViewHolder>(ItemActiveBookingDiffCallBack()) {

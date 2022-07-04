@@ -20,6 +20,12 @@ open class BaseActivity: AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
     }
 
+    fun setupSplashStatusBar() {
+        window.statusBarColor = ContextCompat.getColor(this, R.color.splash_color)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+    }
+
+
     fun callLoginActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)

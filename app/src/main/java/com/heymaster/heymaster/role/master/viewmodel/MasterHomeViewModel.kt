@@ -43,6 +43,9 @@ class MasterHomeViewModel(
     private val _categories = MutableStateFlow<UiStateObject<CategoryResponse>>(UiStateObject.EMPTY)
     val categories = _categories
 
+    private val _masterNotifications = MutableStateFlow<UiStateObject<NotificationResponse>>(UiStateObject.EMPTY)
+    val masterNotifications = _masterNotifications
+
 
     fun getHome() = viewModelScope.launch {
         _home.value = UiStateObject.LOADING
@@ -132,6 +135,18 @@ class MasterHomeViewModel(
 
         } catch (e: Exception) {
             _activeMasters.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+    fun getNotifications() = viewModelScope.launch {
+        _masterNotifications.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.getNotifications()
+            _masterNotifications.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _masterNotifications.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 }

@@ -13,7 +13,6 @@ import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.role.master.adapter.MasterActiveBookingAdapter
 import com.heymaster.heymaster.databinding.FragmentMasterActiveBookingBinding
 import com.heymaster.heymaster.role.master.viewmodel.MasterBookingViewModel
-import com.heymaster.heymaster.model.user_booking.UActiveBookingM
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.model.booking.BookingAcceptRequest
 import com.heymaster.heymaster.role.master.repository.MasterBookingRepository
@@ -61,45 +60,31 @@ class MasterActiveBookingFragment : BaseFragment(R.layout.fragment_master_active
     private fun observeViewModel() {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.masterActiveBooking.collect {
-                when(it) {
+                when (it) {
                     is UiStateObject.LOADING -> {
                         showLoading()
                     }
                     is UiStateObject.SUCCESS -> {
                         dismissLoading()
-                        masterActiveBookingAdapter.submitList(it.data.`object`)
+                        if (it.data.`object`.isNotEmpty()) {
+                            binding.lottieEmpty.visibility = View.GONE
+                            masterActiveBookingAdapter.submitList(it.data.`object`.reversed())
+                        } else {
+                            binding.lottieEmpty.visibility = View.VISIBLE
+                        }
 
                     }
                     is UiStateObject.ERROR -> {
                         dismissLoading()
+
                     }
                 }
             }
         }
-
-
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.masterActiveBooking.collect {
-                when(it) {
-                    is UiStateObject.LOADING -> {
-
-                    }
-                    is UiStateObject.SUCCESS -> {
-                        dismissLoading()
-                        masterActiveBookingAdapter.submitList(it.data.`object`)
-
-                    }
-                    is UiStateObject.ERROR -> {
-                        dismissLoading()
-                    }
-                }
-            }
-        }
-
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.bookingAcceptOrCancel.collect {
-                when(it) {
+                when (it) {
                     is UiStateObject.LOADING -> {
                         showLoading()
                     }
