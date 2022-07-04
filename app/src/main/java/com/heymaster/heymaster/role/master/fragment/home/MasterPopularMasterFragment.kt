@@ -14,7 +14,6 @@ import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentMasterAllPopularBinding
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.global.adapter.home.AllMastersAdapter
-import com.heymaster.heymaster.role.master.adapter.MasterHomePopularMasterAdapter
 import com.heymaster.heymaster.role.master.repository.MasterHomeRepository
 import com.heymaster.heymaster.role.master.viewmodel.MasterHomeViewModel
 import com.heymaster.heymaster.role.master.viewmodel.factory.MasterHomeViewModelFactory
