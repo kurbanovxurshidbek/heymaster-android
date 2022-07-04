@@ -72,12 +72,18 @@ class ClientActiveBookingFragment : BaseFragment(R.layout.fragment_user_active_b
                     is UiStateObject.SUCCESS -> {
                         dismissLoading()
                         Log.d("@@@success", "observeViewModel: ${it.data}")
-                        activeBookingAdapter.submitList(it.data.`object`.reversed())
+                        if (it.data.`object`.isNotEmpty()) {
+                            binding.lottieEmpty.visibility = View.GONE
+                            activeBookingAdapter.submitList(it.data.`object`.reversed())
+                        } else {
+                            binding.lottieEmpty.visibility = View.VISIBLE
+                        }
+
 
                     }
                     is UiStateObject.ERROR -> {
                         dismissLoading()
-                        Log.d("@@@error", "observeViewModel: error")
+
                     }
                     else -> Unit
                 }
@@ -88,14 +94,9 @@ class ClientActiveBookingFragment : BaseFragment(R.layout.fragment_user_active_b
 
     private fun setupRv() {
         binding.rvUserActiveBookings.adapter = activeBookingAdapter
-
-
-
     }
 
-    private fun showBottomSheet() {
-        //rateBottomSheetFragment = RateBottomSheetFragment.newInstance(item = )
-    }
+
 
     private fun setupViewModel() {
         val token = SharedPref(requireContext()).getString(Constants.KEY_ACCESS_TOKEN)

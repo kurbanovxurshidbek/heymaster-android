@@ -67,7 +67,7 @@ interface ApiService {
     suspend fun getBookingMasterHistory(): Response<MasterHistoryBooking>
 
     @GET("booking/client/history")
-    suspend fun getBookingClientHistory(): Response<MasterHistoryBooking>
+    suspend fun getBookingClientHistory(): Response<ClientHistoryBooking>
 
     @POST("booking/accept")
     suspend fun bookingAcceptOrCancel(@Body bookingAcceptRequest: BookingAcceptRequest): Response<BookingAcceptResponse>

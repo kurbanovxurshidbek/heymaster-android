@@ -5,36 +5,60 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.heymaster.heymaster.role.master.adapter.MasterHistoryBookingAdapter.*
+import com.heymaster.heymaster.role.master.adapter.MasterActiveBookingAdapter.*
+import com.heymaster.heymaster.databinding.ItemActiveBookingMasterBinding
 import com.heymaster.heymaster.databinding.ItemHistoryBookingMasterBinding
-import com.heymaster.heymaster.model.user_booking.UActiveBookingM
+import com.heymaster.heymaster.model.booking.Object
 
-class MasterHistoryBookingAdapter(private val list: ArrayList<UActiveBookingM>): ListAdapter<UActiveBookingM, MasterHistoryBookingVH>(ItemMasterHistoryBookingDiffCallBack()) {
+class MasterHistoryBookingAdapter: ListAdapter<Object, MasterHistoryBookingAdapter.MasterHistoryBookingVH>(ItemMasterHistoryBookingDiffCallBack()) {
+
+    var acceptListener: ((Object) -> Unit)? = null
+    var cancelListener: ((Object) -> Unit)? = null
 
     inner class MasterHistoryBookingVH(private val binding: ItemHistoryBookingMasterBinding):
             RecyclerView.ViewHolder(binding.root) {
-    }
+        fun bind(item: Object) {
 
-    class ItemMasterHistoryBookingDiffCallBack: DiffUtil.ItemCallback<UActiveBookingM>() {
-        override fun areItemsTheSame(oldItem: UActiveBookingM, newItem: UActiveBookingM): Boolean {
-            return oldItem == newItem
+            binding.apply {
+
+
+                if (item.from.fullName != null) {
+                    tvNameWorker.text = item.from.fullName
+                }
+                if (item.from.phoneNumber != null) {
+                    tvPhoneNumber.text = item.from.phoneNumber
+                }
+
+
+
+            }
+
+
         }
 
-        override fun areContentsTheSame(
-            oldItem: UActiveBookingM,
-            newItem: UActiveBookingM,
-        ): Boolean {
-            return oldItem.idEmp == newItem.idEmp
+
+    }
+
+    private class ItemMasterHistoryBookingDiffCallBack: DiffUtil.ItemCallback<Object>() {
+        override fun areItemsTheSame(oldItem: Object, newItem: Object): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Object,newItem: Object,): Boolean {
+            return oldItem == newItem
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MasterHistoryBookingVH {
-        return MasterHistoryBookingVH(ItemHistoryBookingMasterBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        val view = ItemHistoryBookingMasterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MasterHistoryBookingVH(view)
     }
 
     override fun onBindViewHolder(holder: MasterHistoryBookingVH, position: Int) {
-
+        val item = getItem(position)
+        holder.bind(item)
     }
-    override fun getItemCount(): Int = list.size
+
+
 }

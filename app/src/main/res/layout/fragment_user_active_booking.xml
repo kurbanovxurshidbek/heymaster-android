@@ -25,14 +25,22 @@
             android:layout_height="match_parent"
             tools:context=".role.client.fragment.booking.ClientActiveBookingFragment"/>
 
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_empty"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="lottie_empty.json"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+
     </FrameLayout>
 
 
 
-    <include
-        android:id="@+id/bottom_sheet_rate"
-        layout="@layout/custom_bottom_sheet"
-        android:visibility="gone"
-        />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

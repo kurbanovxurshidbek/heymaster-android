@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.heymaster.heymaster.R
+import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.role.client.adapter.ClientHistoryBookingAdapter
 import com.heymaster.heymaster.role.client.repository.ClientBookingRepository
 import com.heymaster.heymaster.role.client.viewmodel.ClientBookingViewModel
@@ -14,7 +15,9 @@ import com.heymaster.heymaster.data.network.ApiClient
 import com.heymaster.heymaster.data.network.ApiService
 import com.heymaster.heymaster.databinding.FragmentUserHistoryBookingBinding
 import com.heymaster.heymaster.global.BaseFragment
+import com.heymaster.heymaster.utils.Constants
 import com.heymaster.heymaster.utils.UiStateList
+import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
 
@@ -30,25 +33,33 @@ class ClientHistoryBookingFragment : BaseFragment(R.layout.fragment_user_history
 
         setUpRv()
         setupViewModel()
-        viewModel.getBookings()
+        viewModel.getClientHistoryBooking()
         observeViewModel()
 
     }
 
     private fun observeViewModel() {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.bookings.collect { it ->
+            viewModel.historyBooking.collect { it ->
                 when (it) {
-                    is UiStateList.LOADING -> {
-                        binding.progressUserHistoryBooking.customProgress.visibility = View.VISIBLE
+                    is UiStateObject.LOADING -> {
+                        showLoading()
+                    }
+                    is UiStateObject.SUCCESS -> {
+                        dismissLoading()
+                        if (it.data.`object`.isNotEmpty()) {
+                            binding.lottieEmpty.visibility = View.GONE
+                            adapter.submitList(it.data.`object`.reversed())
+                        } else {
+                            binding.lottieEmpty.visibility = View.VISIBLE
+                        }
+
+
 
                     }
-                    is UiStateList.SUCCESS -> {
-                        binding.progressUserHistoryBooking.customProgress.visibility = View.GONE
-                        adapter.submitList(it.data)
-
-                    }
-                    is UiStateList.ERROR -> {
+                    is UiStateObject.ERROR -> {
+                        dismissLoading()
+                        binding.lottieEmpty.visibility = View.VISIBLE
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit
@@ -62,9 +73,11 @@ class ClientHistoryBookingFragment : BaseFragment(R.layout.fragment_user_history
     }
 
     private fun setupViewModel() {
+        val token = SharedPref(requireContext()).getString(Constants.KEY_ACCESS_TOKEN)
         viewModel = ViewModelProvider(
             this,
-            ClientBookingViewModelFactory(ClientBookingRepository(ApiClient.createService(ApiService::class.java)))
+            ClientBookingViewModelFactory(ClientBookingRepository(ApiClient.createServiceWithAuth(
+                ApiService::class.java, token!!)))
         )[ClientBookingViewModel::class.java]
     }
 

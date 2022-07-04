@@ -18,6 +18,7 @@
             android:id="@+id/recyclerViewPortfolio"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="4dp"
             android:layoutMode="clipBounds"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

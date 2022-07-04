@@ -11,22 +11,18 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@drawable/ic_person"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:usesCleartextTraffic="true"
-        android:roundIcon="@drawable/ic_person"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Heymaster"
         tools:replace="android:theme"
-        tools:targetApi="n">
+        >
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/app_logo" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
-<!--        <meta-data-->
-<!--            android:name="com.google.firebase.messaging.default_notification_color"-->
-<!--            android:resource="@color/white" />-->
+
         <activity
             android:name="com.heymaster.heymaster.role.master.MasterActivity"
             android:exported="false" />

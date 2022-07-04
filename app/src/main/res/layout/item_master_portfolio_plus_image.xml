@@ -16,10 +16,12 @@
         android:background="@drawable/bg_add_image_portfolio">
 
         <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@drawable/ic_add_image"
-            android:layout_gravity="center"/>
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:src="@drawable/ic_add"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_home_service_item"/>
 
     </LinearLayout>
 

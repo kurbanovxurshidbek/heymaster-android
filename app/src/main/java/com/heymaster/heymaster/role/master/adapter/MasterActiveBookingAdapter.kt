@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.heymaster.heymaster.role.master.adapter.MasterActiveBookingAdapter.*
 import com.heymaster.heymaster.databinding.ItemActiveBookingMasterBinding
-import com.heymaster.heymaster.model.booking.MasterActiveBooking
 import com.heymaster.heymaster.model.booking.Object
-import com.heymaster.heymaster.model.user_booking.UActiveBookingM
 
 class MasterActiveBookingAdapter: ListAdapter<Object, MasterActiveBookingVH>(ItemMasterActiveBookingDiffCallBack()) {
 
