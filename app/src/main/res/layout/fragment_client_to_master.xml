@@ -185,14 +185,6 @@
                         android:textSize="14sp"
                         tools:ignore="TextFields" />
 
-
-
-
-
-
-
-
-
                 </LinearLayout>
 
             </LinearLayout>
@@ -216,6 +208,7 @@
         android:layout_marginHorizontal="24dp"
         android:text="@string/sign_up"
         app:cornerRadius="28dp"
+
         android:layout_marginBottom="20dp"/>
 
 
