@@ -11,7 +11,6 @@ import com.heymaster.heymaster.model.editmasterprofile.EditMasterRequest
 import com.heymaster.heymaster.model.editmasterprofile.EditMasterResponse
 import com.heymaster.heymaster.model.editmasterprofile.EditClientRequest
 import com.heymaster.heymaster.model.home.*
-import com.heymaster.heymaster.model.home.MasterResponse
 import com.heymaster.heymaster.model.masterdetail.MasterDetail
 import com.heymaster.heymaster.model.masterprofile.MasterToClientResponse
 import com.heymaster.heymaster.model.masterprofile.Portfolio
@@ -62,16 +61,19 @@ interface ApiService {
     suspend fun getMasterActiveBooking(): Response<MasterActiveBooking>
 
     @GET("booking/finish/{id}")
-    suspend fun bookingFinish(@Path("id") id: Int)
+    suspend fun bookingFinish(@Path("id") id: Int): Response<BookingFinishResponse>
 
     @GET("booking/master/history")
     suspend fun getBookingMasterHistory(): Response<MasterHistoryBooking>
 
     @GET("booking/client/history")
-    suspend fun getBookingClientHistory(): Response<ClientHistoryBooking>
+    suspend fun getClientBookingHistory(): Response<ClientHistoryBooking>
 
     @POST("booking/accept")
     suspend fun bookingAcceptOrCancel(@Body bookingAcceptRequest: BookingAcceptRequest): Response<BookingAcceptResponse>
+
+    @POST("rate")
+    suspend fun bookingRate(@Body bookingRate: RateRequest): Response<RateResponse>
 
 
 

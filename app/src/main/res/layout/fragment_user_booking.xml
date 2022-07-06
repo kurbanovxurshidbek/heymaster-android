@@ -50,7 +50,7 @@
             app:tabIndicatorColor="@color/black"
             app:tabIndicatorGravity="stretch"
             app:tabMode="fixed"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             app:tabRippleColor="@null"
             app:tabSelectedTextColor="@color/white"
             app:tabTextColor="@color/black" />

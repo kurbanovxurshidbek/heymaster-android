@@ -1,6 +1,7 @@
 package com.heymaster.heymaster.role.master.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -13,30 +14,39 @@ class MasterActiveBookingAdapter: ListAdapter<Object, MasterActiveBookingVH>(Ite
 
     var acceptListener: ((Object) -> Unit)? = null
     var cancelListener: ((Object) -> Unit)? = null
+    var finishedListener: ((Object) -> Unit)? = null
 
     inner class MasterActiveBookingVH(private val binding: ItemActiveBookingMasterBinding):
             RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Object) {
 
             binding.apply {
-
-
-                if (item.from.fullName != null) {
                     tvNameWorker.text = item.from.fullName
-                }
-                if (item.from.phoneNumber != null) {
                     tvPhoneNumber.text = item.from.phoneNumber
+
+                    if (item.accepted) {
+                        tvBookingStatus.visibility = View.VISIBLE
+                        tvFinish.visibility = View.VISIBLE
+                        tvAccept.visibility = View.GONE
+                    }
+
+                    tvFinish.setOnClickListener {
+                        finishedListener?.invoke(item)
+                    }
+
+
+                    tvAccept.setOnClickListener {
+                        acceptListener?.invoke(item)
+                    }
+
+                    tvCancel.setOnClickListener {
+                        cancelListener?.invoke(item)
+                    }
+
                 }
 
-                tvAccept.setOnClickListener {
-                    acceptListener?.invoke(item)
-                }
 
-                tvIgnore.setOnClickListener {
-                    cancelListener?.invoke(item)
-                }
 
-            }
 
 
         }

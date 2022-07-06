@@ -24,7 +24,7 @@ data class From(
     val password: String,
     val peopleReitedCount: Int,
     val phoneNumber: String?,
-    val professionList: List<Any>,
+    val professionList: List<Profession>,
     val profilePhoto: Any,
     val roles: Roles,
     val salary: Any,
