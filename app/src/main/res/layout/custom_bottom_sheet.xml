@@ -93,6 +93,7 @@
 
 
             <EditText
+                android:id="@+id/et_feedback"
                 android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:layout_weight="1"
@@ -113,7 +114,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btn_submit_user_booking"
+                android:id="@+id/btn_cancel"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_weight="1"
@@ -127,7 +128,7 @@
                 android:backgroundTint="#E63838"/>
 
             <Button
-                android:id="@+id/btn_cancel"
+                android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="48dp"

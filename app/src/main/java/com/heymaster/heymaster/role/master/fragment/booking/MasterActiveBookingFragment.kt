@@ -15,6 +15,7 @@ import com.heymaster.heymaster.databinding.FragmentMasterActiveBookingBinding
 import com.heymaster.heymaster.role.master.viewmodel.MasterBookingViewModel
 import com.heymaster.heymaster.global.BaseFragment
 import com.heymaster.heymaster.model.booking.BookingAcceptRequest
+import com.heymaster.heymaster.model.booking.Object
 import com.heymaster.heymaster.role.master.repository.MasterBookingRepository
 import com.heymaster.heymaster.role.master.repository.MasterHomeRepository
 import com.heymaster.heymaster.role.master.viewmodel.MasterHomeViewModel
@@ -55,6 +56,11 @@ class MasterActiveBookingFragment : BaseFragment(R.layout.fragment_master_active
             viewModel.bookingAcceptOrCancel(BookingAcceptRequest(it.id, false))
             Toast.makeText(requireContext(), "Cancel", Toast.LENGTH_SHORT).show()
         }
+
+        masterActiveBookingAdapter.finishedListener = {
+            viewModel.bookingFinish(it.id)
+            Toast.makeText(requireContext(), "Finish", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun observeViewModel() {
@@ -68,7 +74,17 @@ class MasterActiveBookingFragment : BaseFragment(R.layout.fragment_master_active
                         dismissLoading()
                         if (it.data.`object`.isNotEmpty()) {
                             binding.lottieEmpty.visibility = View.GONE
-                            masterActiveBookingAdapter.submitList(it.data.`object`.reversed())
+                            val list = ArrayList<Object>()
+                            it.data.`object`.forEach {
+                                if (!it.isFinished) {
+                                    list.add(it)
+                                }
+                            }
+                            if (list.isEmpty()) {
+                                binding.lottieEmpty.visibility = View.VISIBLE
+                            }
+
+                            masterActiveBookingAdapter.submitList(list.reversed())
                         } else {
                             binding.lottieEmpty.visibility = View.VISIBLE
                         }
@@ -84,6 +100,24 @@ class MasterActiveBookingFragment : BaseFragment(R.layout.fragment_master_active
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.bookingAcceptOrCancel.collect {
+                when (it) {
+                    is UiStateObject.LOADING -> {
+                        showLoading()
+                    }
+                    is UiStateObject.SUCCESS -> {
+                        dismissLoading()
+                        viewModel.getMasterActiveBooking()
+
+                    }
+                    is UiStateObject.ERROR -> {
+                        dismissLoading()
+                    }
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.finish.collect {
                 when (it) {
                     is UiStateObject.LOADING -> {
                         showLoading()

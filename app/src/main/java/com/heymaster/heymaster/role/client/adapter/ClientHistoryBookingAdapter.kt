@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.heymaster.heymaster.databinding.ItemActiveBookingBinding
 import com.heymaster.heymaster.databinding.ItemUserHistoryBookingBinding
 import com.heymaster.heymaster.role.client.adapter.ClientHistoryBookingAdapter.*
 import com.heymaster.heymaster.model.booking.Object
@@ -13,13 +12,23 @@ import com.heymaster.heymaster.model.booking.Object
 class ClientHistoryBookingAdapter : ListAdapter<Object, ClientHistoryBookingViewHolder>(ItemActiveBookingDiffCallBack()) {
 
 
-    var clickAgain : ((Object) -> Unit)? = null
+    var clickRate : ((Object) -> Unit)? = null
 
     inner class ClientHistoryBookingViewHolder(private val binding: ItemUserHistoryBookingBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(activeBooking: Object) {
+        fun bind(history: Object) {
             binding.apply {
-                tvNameWorker.text = activeBooking.toWhom.fullName
+                tvNameWorker.text = history.toWhom.fullName
+                tvPhoneNumber.text = history.toWhom.phoneNumber
+                tvBookingStatus.text = "Tugagan"
+
+
+
+
+                tvAccept.setOnClickListener {
+                    clickRate?.invoke(history)
+                }
+
 
 
             }

@@ -1,0 +1,7 @@
+package com.heymaster.heymaster.model.booking
+
+data class BookingFinishResponse(
+    val message: String,
+    val `object`: Any,
+    val success: Boolean
+)

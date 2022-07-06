@@ -62,6 +62,24 @@ class MasterBookingViewModel(
     }
 
 
+    private val _finish = MutableStateFlow<UiStateObject<BookingFinishResponse>>(UiStateObject.EMPTY)
+    val finish = _finish
+
+
+    fun bookingFinish(id: Int) = viewModelScope.launch {
+        _finish.value = UiStateObject.LOADING
+
+        try {
+            val response = repository.bookingFinish(id)
+
+            _finish.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _finish.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+
 
 
 }

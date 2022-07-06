@@ -5,9 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.heymaster.heymaster.model.ErrorResponse
 import com.heymaster.heymaster.model.Service
-import com.heymaster.heymaster.model.booking.BookingResponse
-import com.heymaster.heymaster.model.booking.ClientActiveBooking
-import com.heymaster.heymaster.model.booking.ClientHistoryBooking
+import com.heymaster.heymaster.model.booking.*
 import com.heymaster.heymaster.role.client.repository.ClientBookingRepository
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
@@ -28,6 +26,10 @@ class  ClientBookingViewModel(
 
     private val _historyBooking = MutableStateFlow<UiStateObject<ClientHistoryBooking>>(UiStateObject.EMPTY)
     val historyBooking = _historyBooking
+
+
+    private val _rate = MutableStateFlow<UiStateObject<RateResponse>>(UiStateObject.EMPTY)
+    val rate = _rate
 
 
     fun booking(id: Int) = viewModelScope.launch {
@@ -65,6 +67,20 @@ class  ClientBookingViewModel(
 
         } catch (e: Exception) {
             _historyBooking.value = UiStateObject.ERROR(e.userMessage())
+        }
+    }
+
+
+    fun rateBooking(rateRequest: RateRequest) = viewModelScope.launch {
+        _rate.value = UiStateObject.LOADING
+
+        try {
+
+            val response = repository.rateBooking(rateRequest)
+            _rate.value = UiStateObject.SUCCESS(response.body()!!)
+
+        } catch (e: Exception) {
+            _rate.value = UiStateObject.ERROR(e.userMessage())
         }
     }
 

@@ -12,4 +12,6 @@ class MasterBookingRepository(
     suspend fun getMasterHistoryBooking() = apiService.getBookingMasterHistory()
 
     suspend fun bookingAcceptOrCancel(bookingAcceptRequest: BookingAcceptRequest) = apiService.bookingAcceptOrCancel(bookingAcceptRequest)
+
+    suspend fun bookingFinish(id: Int) = apiService.bookingFinish(id)
 }
