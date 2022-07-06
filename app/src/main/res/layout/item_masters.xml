@@ -51,18 +51,19 @@
 
                 <TextView
                     android:id="@+id/tv_profession"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="24dp"
                     android:layout_marginHorizontal="8dp"
                     android:text=""
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_location"
-                    android:layout_marginLeft="8dp"/>
+                    android:src="@drawable/ic_location" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -74,6 +75,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
+                        android:maxLines="1"
+                        android:singleLine="true"
                         android:textSize="12sp" />
 
                     <TextView
@@ -81,6 +84,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
+                        android:maxLines="1"
+                        android:singleLine="true"
                         android:textSize="12sp" />
 
                 </LinearLayout>
