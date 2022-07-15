@@ -1,6 +1,5 @@
 package com.heymaster.heymaster.role.client.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.heymaster.heymaster.databinding.ItemActiveBookingBinding
-import com.heymaster.heymaster.model.booking.ClientActiveBooking
 import com.heymaster.heymaster.model.booking.Object
 import com.heymaster.heymaster.role.client.adapter.ClientActiveBookingAdapter.*
 import com.heymaster.heymaster.utils.Constants.ATTACHMENT_URL
@@ -30,7 +28,7 @@ class ClientActiveBookingAdapter() : ListAdapter<Object, ClientActiveBookingView
                     Picasso.get().load(ATTACHMENT_URL + activeBooking.toWhom.profilePhoto).placeholder(RandomColor.randomColor()).into(ivProfilePhoto)
                 }
 
-                tvJob.text = activeBooking.toWhom.professionList[0].name
+               //   tvJob.text = activeBooking.toWhom.professionList[0].name
 
                 if (activeBooking.isFinished) {
                     tvBookingStatus.text = "Tugadi"

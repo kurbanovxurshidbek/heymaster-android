@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -11,6 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.data.network.ApiClient
@@ -23,10 +29,12 @@ import com.heymaster.heymaster.ui.auth.AuthViewModel
 import com.heymaster.heymaster.ui.auth.AuthViewModelFactory
 import com.heymaster.heymaster.utils.Constants.KEY_CONFIRM_CODE
 import com.heymaster.heymaster.utils.Constants.KEY_PHONE_NUMBER
+import com.heymaster.heymaster.utils.Constants.KEY_VERIFICATION_ID
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
 import java.lang.StringBuilder
+import java.util.concurrent.TimeUnit
 
 
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
@@ -34,6 +42,11 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     private lateinit var validPhoneNumber: String
     private val binding by viewBinding { FragmentLoginBinding.bind(it) }
     private lateinit var viewModel: AuthViewModel
+
+    private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private  var verificationId: String = ""
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,11 +58,30 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         editPhoneNumberListener()
         welcomeTextManager()
 
+        val callback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
+            override fun onVerificationCompleted(p0: PhoneAuthCredential) {
+                signInWithCredential(p0)
+            }
+            override fun onVerificationFailed(p0: FirebaseException) {
+
+            }
+
+            override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
+                super.onCodeSent(p0, p1)
+                Log.d("codee", "ssss")
+                verificationId = p0
+                SharedPref(requireContext()).saveString(KEY_VERIFICATION_ID, verificationId)
+
+            }
+
+        }
+
         binding.btnContinue.setOnClickListener {
             if (binding.etPhoneNumber.text.toString().isNotEmpty()) {
                 if (validPhoneNumber.length > 12) {
                 SharedPref(requireContext()).saveString(KEY_PHONE_NUMBER, validPhoneNumber)
                 viewModel.login(LoginRequest(validPhoneNumber))
+                    sendVerificationCode(validPhoneNumber, callback)
             } else {
                 Toast.makeText(requireContext(), "Invalid phone number", Toast.LENGTH_SHORT).show()
             }
@@ -156,6 +188,34 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             }
         }
         return phoneNumber.toString()
+    }
+
+
+    private fun sendVerificationCode(number: String, callback: PhoneAuthProvider.OnVerificationStateChangedCallbacks) {
+        val options = PhoneAuthOptions.newBuilder(firebaseAuth)
+            .setPhoneNumber(number)
+            .setTimeout(60L, TimeUnit.SECONDS)
+            .setActivity(requireActivity())
+            .setCallbacks(callback)
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
+
+    }
+
+    private fun verifyCode(code: String){
+        val credential = PhoneAuthProvider.getCredential(verificationId, code)
+        signInWithCredential(credential)
+    }
+
+    private fun signInWithCredential(credential: PhoneAuthCredential) {
+        firebaseAuth.signInWithCredential(credential)
+            .addOnCompleteListener{task->
+                if (task.isSuccessful){
+                    Log.d("succsses", "mess")
+                }else {
+
+                }
+            }
     }
 
     private fun isValidPhoneNumber(phoneNumber: String): Boolean {

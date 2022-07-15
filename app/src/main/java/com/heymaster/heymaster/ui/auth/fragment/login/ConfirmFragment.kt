@@ -1,5 +1,6 @@
 package com.heymaster.heymaster.ui.auth.fragment.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -7,11 +8,15 @@ import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthProvider
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
 import com.heymaster.heymaster.data.network.ApiClient
@@ -31,6 +36,7 @@ import com.heymaster.heymaster.utils.Constants.KEY_CONFIRM_CODE
 import com.heymaster.heymaster.utils.Constants.KEY_LOGIN_SAVED
 import com.heymaster.heymaster.utils.Constants.KEY_PHONE_NUMBER
 import com.heymaster.heymaster.utils.Constants.KEY_USER_ROLE
+import com.heymaster.heymaster.utils.Constants.KEY_VERIFICATION_ID
 import com.heymaster.heymaster.utils.Constants.MASTER
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
@@ -39,8 +45,13 @@ import kotlinx.coroutines.flow.collect
 
 class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
 
+
+
     private val binding by viewBinding { FragmentConfirmBinding.bind(it) }
     private lateinit var viewModel: AuthViewModel
+
+    private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+
 
     private var phoneNumber: String? = null
 
@@ -54,8 +65,7 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val confirmCode = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
-        Toast.makeText(requireContext(), "Code : $confirmCode", Toast.LENGTH_SHORT).show()
+
 
         setupViewModel()
         viewModel.startTimer()
@@ -154,19 +164,32 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
             override fun afterTextChanged(code: Editable?) {
-                if (code.toString().length >= 4) {
-                    val confirmCode = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
-                    if(code.toString() == confirmCode) {
-                        viewModel.confirm(ConfirmRequest(code.toString(), phoneNumber!!))
-                    } else {
-                        Toast.makeText(requireContext(), "Invalid code", Toast.LENGTH_SHORT).show()
-                    }
-
+                if (code.toString().length >= 6) {
+                    verifyCode(code.toString())
+                    hideKeyboard()
                 }
 
             }
 
         })
+    }
+
+
+    private fun verifyCode(code: String){
+        val verificationId = SharedPref(requireContext()).getString(KEY_VERIFICATION_ID)
+        val credential = PhoneAuthProvider.getCredential(verificationId!!, code)
+        signInWithCredential(credential)
+    }
+
+    private fun signInWithCredential(credential: PhoneAuthCredential) {
+        firebaseAuth.signInWithCredential(credential)
+            .addOnCompleteListener{task->
+                if (task.isSuccessful){
+                    Log.d("ConfirmFragment", "signInWithCredential: ")
+                    val code = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
+                    viewModel.confirm(ConfirmRequest(code!!, phoneNumber!!))
+                }
+            }
     }
 
 
@@ -190,6 +213,10 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
         activity.finish()
     }
 
+    private fun hideKeyboard() {
+        val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
+    }
 
 }
 

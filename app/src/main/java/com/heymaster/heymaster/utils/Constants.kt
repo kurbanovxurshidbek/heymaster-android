@@ -17,6 +17,7 @@ object Constants {
     const val KEY_ACCESS_TOKEN = "access_token"
     const val KEY_DEVICE_TOKEN = "device_token"
     const val KEY_USER_ROLE = "ROLE"
+    const val KEY_VERIFICATION_ID = "KEY_VERIFICATION_ID"
 
     val TEST = "https://628a284ce5e5a9ad322183ca.mockapi.io"
 

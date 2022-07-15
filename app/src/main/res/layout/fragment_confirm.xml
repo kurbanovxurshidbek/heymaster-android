@@ -60,19 +60,19 @@
                     android:cursorVisible="true"
                     android:inputType="number"
                     android:itemBackground="@drawable/bg_edit_text_verification"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     app:cursorWidth="2dp"
-                    app:itemCount="4"
-                    app:itemHeight="56dp"
+                    app:itemCount="6"
+                    app:itemHeight="48dp"
                     app:itemRadius="8dp"
-                    app:itemSpacing="8dp"
-                    app:itemWidth="56dp"
+                    app:itemSpacing="3dp"
+                    app:itemWidth="48dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:lineColor="@drawable/selector_verification"
-                    app:lineWidth="1.5dp"
+                    app:lineWidth="1dp"
                     app:viewType="rectangle" />
 
                 <TextView
@@ -84,7 +84,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/et_verification_code"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
