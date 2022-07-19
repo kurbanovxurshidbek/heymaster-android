@@ -27,6 +27,7 @@ import com.heymaster.heymaster.model.auth.LoginRequest
 import com.heymaster.heymaster.ui.auth.AuthRepository
 import com.heymaster.heymaster.ui.auth.AuthViewModel
 import com.heymaster.heymaster.ui.auth.AuthViewModelFactory
+import com.heymaster.heymaster.utils.Constants.DEMO_PHONE_NUMBER
 import com.heymaster.heymaster.utils.Constants.KEY_CONFIRM_CODE
 import com.heymaster.heymaster.utils.Constants.KEY_PHONE_NUMBER
 import com.heymaster.heymaster.utils.Constants.KEY_VERIFICATION_ID
@@ -44,8 +45,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     private lateinit var viewModel: AuthViewModel
 
     private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    private  var verificationId: String = ""
-
+    private var verificationId: String = ""
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,10 +58,11 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         editPhoneNumberListener()
         welcomeTextManager()
 
-        val callback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
+        val callback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(p0: PhoneAuthCredential) {
                 signInWithCredential(p0)
             }
+
             override fun onVerificationFailed(p0: FirebaseException) {
 
             }
@@ -78,14 +79,18 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
         binding.btnContinue.setOnClickListener {
             if (binding.etPhoneNumber.text.toString().isNotEmpty()) {
-                if (validPhoneNumber.length > 12) {
-                SharedPref(requireContext()).saveString(KEY_PHONE_NUMBER, validPhoneNumber)
-                viewModel.login(LoginRequest(validPhoneNumber))
+                if (validPhoneNumber == DEMO_PHONE_NUMBER) {
+                    SharedPref(requireContext()).saveString(KEY_PHONE_NUMBER, validPhoneNumber)
+                    viewModel.login(LoginRequest(validPhoneNumber))
+                } else if (validPhoneNumber.length > 12 && validPhoneNumber != DEMO_PHONE_NUMBER) {
+                    SharedPref(requireContext()).saveString(KEY_PHONE_NUMBER, validPhoneNumber)
+                    viewModel.login(LoginRequest(validPhoneNumber))
                     sendVerificationCode(validPhoneNumber, callback)
-            } else {
-                Toast.makeText(requireContext(), "Invalid phone number", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "Invalid phone number", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
-        }
 
         }
 
@@ -109,13 +114,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     private fun editPhoneNumberListener() {
 
         binding.etPhoneNumber.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun afterTextChanged(number: Editable?) {
                 if (number.toString().length == 12) {
@@ -124,7 +125,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                     if (isValidPhoneNumber(phoneNumber)) {
                         validPhoneNumber = "+998$phoneNumber"
                     } else {
-                        validPhoneNumber  = ""
+                        validPhoneNumber = ""
                     }
                 } else {
                     validPhoneNumber = ""
@@ -132,7 +133,6 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             }
         })
     }
-
 
 
     private fun observeViewModel() {
@@ -147,7 +147,8 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                     is UiStateObject.SUCCESS -> {
                         //binding.progressHome.customProgress.visibility = View.GONE
                         dismissLoading()
-                        SharedPref(requireContext()).saveString(KEY_CONFIRM_CODE, it.data.`object`.toString())
+                        SharedPref(requireContext()).saveString(KEY_CONFIRM_CODE,
+                            it.data.`object`.toString())
                         launchConfirmFragment()
 
                     }
@@ -176,7 +177,8 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     }
 
     private fun hideKeyboard() {
-        val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm =
+            requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
@@ -191,7 +193,10 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     }
 
 
-    private fun sendVerificationCode(number: String, callback: PhoneAuthProvider.OnVerificationStateChangedCallbacks) {
+    private fun sendVerificationCode(
+        number: String,
+        callback: PhoneAuthProvider.OnVerificationStateChangedCallbacks,
+    ) {
         val options = PhoneAuthOptions.newBuilder(firebaseAuth)
             .setPhoneNumber(number)
             .setTimeout(60L, TimeUnit.SECONDS)
@@ -202,24 +207,24 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
     }
 
-    private fun verifyCode(code: String){
+    private fun verifyCode(code: String) {
         val credential = PhoneAuthProvider.getCredential(verificationId, code)
         signInWithCredential(credential)
     }
 
     private fun signInWithCredential(credential: PhoneAuthCredential) {
         firebaseAuth.signInWithCredential(credential)
-            .addOnCompleteListener{task->
-                if (task.isSuccessful){
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
                     Log.d("succsses", "mess")
-                }else {
+                } else {
 
                 }
             }
     }
 
     private fun isValidPhoneNumber(phoneNumber: String): Boolean {
-        val code = phoneNumber.substring(0,2)
+        val code = phoneNumber.substring(0, 2)
         if (isBeeline(code)
             || isUms(code)
             || isUzMobile(code)

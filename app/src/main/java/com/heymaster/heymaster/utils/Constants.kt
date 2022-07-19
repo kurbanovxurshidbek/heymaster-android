@@ -19,6 +19,9 @@ object Constants {
     const val KEY_USER_ROLE = "ROLE"
     const val KEY_VERIFICATION_ID = "KEY_VERIFICATION_ID"
 
+    const val DEMO_PHONE_NUMBER = "994216148"
+    const val DEMO_CONFIRM_CODE = "111111"
+
     val TEST = "https://628a284ce5e5a9ad322183ca.mockapi.io"
 
 

@@ -175,7 +175,7 @@ class AuthViewModel(
 
     fun startTimer() {
         timer = object : CountDownTimer(
-            60 * MILLIS_IN_SECONDS,
+            120 * MILLIS_IN_SECONDS,
             MILLIS_IN_SECONDS
 
         ) {
@@ -204,7 +204,7 @@ class AuthViewModel(
     companion object {
 
         private const val MILLIS_IN_SECONDS = 1000L
-        private const val SECONDS_IN_MINUTES = 120
+        private const val SECONDS_IN_MINUTES = 60
     }
 
     override fun onCleared() {

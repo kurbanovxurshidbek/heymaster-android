@@ -31,6 +31,7 @@ import com.heymaster.heymaster.ui.auth.AuthRepository
 import com.heymaster.heymaster.ui.auth.AuthViewModel
 import com.heymaster.heymaster.ui.auth.AuthViewModelFactory
 import com.heymaster.heymaster.utils.Constants.CLIENT
+import com.heymaster.heymaster.utils.Constants.DEMO_CONFIRM_CODE
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.Constants.KEY_CONFIRM_CODE
 import com.heymaster.heymaster.utils.Constants.KEY_LOGIN_SAVED
@@ -64,8 +65,6 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         setupViewModel()
         viewModel.startTimer()
@@ -165,8 +164,15 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
             }
             override fun afterTextChanged(code: Editable?) {
                 if (code.toString().length >= 6) {
-                    verifyCode(code.toString())
-                    hideKeyboard()
+                    if (code.toString() == DEMO_CONFIRM_CODE) {
+                        val code = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
+                        viewModel.confirm(ConfirmRequest(code!!, phoneNumber!!))
+                        hideKeyboard()
+                    } else {
+                        verifyCode(code.toString())
+                        hideKeyboard()
+                    }
+
                 }
 
             }
