@@ -159,4 +159,10 @@
 
     <string name="save">Сохранять</string>
 
+    <string name="thanks">Спасибо, не надо</string>
+
+    <string name="sure">Да, конечно</string>
+
+    <string name="finish">Финиш</string>
+
 </resources>

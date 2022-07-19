@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="No, Thanks"
+                android:text="@string/thanks"
                 android:textColor="@color/black"
                 android:textSize="22sp" />
 
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Yes, Sure"
+                android:text="@string/sure"
                 android:textColor="@color/orange1"
                 android:textSize="22sp"
                 android:textStyle="bold" />

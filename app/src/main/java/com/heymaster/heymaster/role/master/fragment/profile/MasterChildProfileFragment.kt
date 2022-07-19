@@ -73,7 +73,7 @@ class MasterChildProfileFragment : Fragment(R.layout.fragment_master_child_profi
         }
 
         binding.tvCancel.setOnClickListener {
-            dialog.show()
+            dialog.dismiss()
         }
         dialog.show()
     }

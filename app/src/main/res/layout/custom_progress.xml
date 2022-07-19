@@ -9,17 +9,6 @@
     app:cardElevation="4dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-<!--    <ProgressBar-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        android:indeterminate="true"-->
-<!--        android:indeterminateTint="#FA9B68"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
-
     <ProgressBar
         android:id="@+id/progress_home"
         style="?android:attr/progressBarStyle"
