@@ -46,6 +46,7 @@ class DetailsViewModel (private val repository: DetailsRepository): ViewModel(){
     fun booking(id: Int) = viewModelScope.launch {
         _booking.value = UiStateObject.LOADING
 
+
         try {
             val response = repository.booking(id)
             _booking.value = UiStateObject.SUCCESS(response.body()!!)

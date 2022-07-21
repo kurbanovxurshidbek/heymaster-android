@@ -47,7 +47,6 @@ class ClientActiveBookingFragment : BaseFragment(R.layout.fragment_user_active_b
         setupRv()
         setupViewModel()
         viewModel.getClientActiveBooking()
-
         observeViewModel()
 
 
@@ -148,8 +147,6 @@ class ClientActiveBookingFragment : BaseFragment(R.layout.fragment_user_active_b
     private fun setupRv() {
         binding.rvUserActiveBookings.adapter = activeBookingAdapter
     }
-
-
 
     private fun setupViewModel() {
         val token = SharedPref(requireContext()).getString(Constants.KEY_ACCESS_TOKEN)

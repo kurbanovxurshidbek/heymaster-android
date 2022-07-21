@@ -21,7 +21,7 @@ class PopularMastersAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(master: Object) {
 
-            with(binding) {
+            binding.apply {
                 tvMaster.text = master.fullName
                 tvDistrict.text = master.location!!.district.nameUz
                 tvRegion.text = master.location.region.nameUz

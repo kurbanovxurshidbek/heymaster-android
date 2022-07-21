@@ -174,7 +174,6 @@ class MasterHomeFragment : BaseFragment(R.layout.fragment_master_home) {
     override fun onDestroyView() {
         super.onDestroyView()
         job?.cancel()
-
     }
 
 
