@@ -10,7 +10,6 @@ class DetailsViewModelFactory(private val repository: DetailsRepository): ViewMo
         if (modelClass.isAssignableFrom(DetailsViewModel::class.java)){
             return DetailsViewModel(repository) as T
         }
-
         throw IllegalArgumentException("Unknown ViewModel Class $modelClass")
     }
 }

@@ -72,10 +72,7 @@ class ClientDetailsPortfolioFragment : BaseFragment(R.layout.fragment_details_po
     private fun setupViewModel() {
         val token = SharedPref(requireContext()).getString(Constants.KEY_ACCESS_TOKEN)
         viewModel = ViewModelProvider(
-            this, DetailsViewModelFactory(
-                DetailsRepository(
-                    ApiClient.createServiceWithAuth(
-                        ApiService::class.java, token!!
+            this, DetailsViewModelFactory(DetailsRepository(ApiClient.createServiceWithAuth(ApiService::class.java, token!!
                     )
                 )
             )
