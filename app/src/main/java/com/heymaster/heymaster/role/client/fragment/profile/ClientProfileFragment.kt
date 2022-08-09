@@ -23,6 +23,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.google.firebase.auth.FirebaseAuth
 import com.heymaster.heymaster.App
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
@@ -41,11 +42,16 @@ import com.heymaster.heymaster.role.client.viewmodel.factory.ClientProfileViewMo
 import com.heymaster.heymaster.role.master.MasterActivity
 import com.heymaster.heymaster.ui.auth.LoginActivity
 import com.heymaster.heymaster.utils.Constants.ATTACHMENT_URL
+import com.heymaster.heymaster.utils.Constants.DEMO_CONFIRM_CODE
+import com.heymaster.heymaster.utils.Constants.DEMO_PHONE_NUMBER
 import com.heymaster.heymaster.utils.Constants.KEY_ACCESS_TOKEN
 import com.heymaster.heymaster.utils.Constants.KEY_CONFIRM_CODE
+import com.heymaster.heymaster.utils.Constants.KEY_DEVICE_TOKEN
+import com.heymaster.heymaster.utils.Constants.KEY_INTRO_SAVED
 import com.heymaster.heymaster.utils.Constants.KEY_LOGIN_SAVED
 import com.heymaster.heymaster.utils.Constants.KEY_PHONE_NUMBER
 import com.heymaster.heymaster.utils.Constants.KEY_USER_ROLE
+import com.heymaster.heymaster.utils.Constants.KEY_VERIFICATION_ID
 import com.heymaster.heymaster.utils.Constants.MASTER
 import com.heymaster.heymaster.utils.UiStateList
 import com.heymaster.heymaster.utils.UiStateObject
@@ -64,6 +70,8 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
     private val binding by viewBinding { FragmentUserProfileBinding.bind(it) }
     private lateinit var viewModel: ClientProfileViewModel
+
+    private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private var attachment = File("")
 
@@ -238,6 +246,12 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
             SharedPref(requireContext()).removeString(KEY_PHONE_NUMBER)
             SharedPref(requireContext()).removeString(KEY_LOGIN_SAVED)
             SharedPref(requireContext()).removeString(KEY_CONFIRM_CODE)
+            SharedPref(requireContext()).removeString(KEY_VERIFICATION_ID)
+            SharedPref(requireContext()).removeString(KEY_DEVICE_TOKEN)
+            SharedPref(requireContext()).removeString(KEY_INTRO_SAVED)
+            SharedPref(requireContext()).removeString(DEMO_PHONE_NUMBER)
+            SharedPref(requireContext()).removeString(DEMO_CONFIRM_CODE)
+            firebaseAuth.signOut()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
             activity.finish()
         }

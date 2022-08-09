@@ -6,15 +6,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.heymaster.heymaster.databinding.ItemNotificationMessagesBinding
-import com.heymaster.heymaster.model.Notification
 import com.heymaster.heymaster.model.home.ObjectX
-import com.squareup.picasso.Picasso
 
-class ClientNotificationsAdapter: ListAdapter<ObjectX, ClientNotificationsAdapter.NotificationMessagesViewHolder>(
-    NotificationItemDiffCallback()
-) {
+class ClientNotificationsAdapter :
+    ListAdapter<ObjectX, ClientNotificationsAdapter.NotificationMessagesViewHolder>(
+        NotificationItemDiffCallback()
+    ) {
 
-    inner class NotificationMessagesViewHolder(private val binding: ItemNotificationMessagesBinding):
+    inner class NotificationMessagesViewHolder(private val binding: ItemNotificationMessagesBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(notification: ObjectX) {
             binding.apply {
@@ -22,7 +21,6 @@ class ClientNotificationsAdapter: ListAdapter<ObjectX, ClientNotificationsAdapte
                 tvNotifDescrip.text = notification.body
                 tvNotifDate.text = notification.createAt
             }
-
 
 
         }
@@ -42,9 +40,11 @@ class ClientNotificationsAdapter: ListAdapter<ObjectX, ClientNotificationsAdapte
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
-        viewType: Int
+        viewType: Int,
     ): NotificationMessagesViewHolder {
-        val view = ItemNotificationMessagesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val view = ItemNotificationMessagesBinding.inflate(LayoutInflater.from(parent.context),
+            parent,
+            false)
         return NotificationMessagesViewHolder(view)
     }
 

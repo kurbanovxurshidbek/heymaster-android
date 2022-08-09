@@ -14,8 +14,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
@@ -42,16 +44,21 @@ import com.heymaster.heymaster.utils.Constants.MASTER
 import com.heymaster.heymaster.utils.UiStateObject
 import com.heymaster.heymaster.utils.extensions.viewBinding
 import kotlinx.coroutines.flow.collect
+import java.util.concurrent.TimeUnit
 
 
 class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
 
 
-
+    private lateinit var callback: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     private val binding by viewBinding { FragmentConfirmBinding.bind(it) }
     private lateinit var viewModel: AuthViewModel
 
     private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private lateinit var imm: InputMethodManager
+
+
+    private var verificationId: String = ""
 
 
     private var phoneNumber: String? = null
@@ -65,12 +72,33 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
 
         setupViewModel()
         viewModel.startTimer()
 
         checkConfirmCode()
         setupUI()
+
+        callback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            override fun onVerificationCompleted(p0: PhoneAuthCredential) {
+                signInWithCredential(p0)
+            }
+
+            override fun onVerificationFailed(p0: FirebaseException) {
+
+            }
+
+            override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
+                super.onCodeSent(p0, p1)
+                Log.d("codee", "ssss")
+                verificationId = p0
+                SharedPref(requireContext()).saveString(KEY_VERIFICATION_ID, verificationId)
+
+            }
+        }
+
 
         observeViewModel()
 
@@ -151,8 +179,23 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
 
         binding.tvResend.setOnClickListener {
             viewModel.login(LoginRequest(phoneNumber!!))
+            sendVerificationCode(phoneNumber!!, callback)
             viewModel.startTimer()
         }
+    }
+
+    private fun sendVerificationCode(
+        number: String,
+        callback: PhoneAuthProvider.OnVerificationStateChangedCallbacks,
+    ) {
+        val options = PhoneAuthOptions.newBuilder(firebaseAuth)
+            .setPhoneNumber(number)
+            .setTimeout(60L, TimeUnit.SECONDS)
+            .setActivity(requireActivity())
+            .setCallbacks(callback)
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
+
     }
 
     private fun checkConfirmCode() {
@@ -169,6 +212,8 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
                         viewModel.confirm(ConfirmRequest(code!!, phoneNumber!!))
                         hideKeyboard()
                     } else {
+                        val code = SharedPref(requireContext()).getString(KEY_CONFIRM_CODE)
+                        viewModel.confirm(ConfirmRequest(code!!, phoneNumber!!))
                         verifyCode(code.toString())
                         hideKeyboard()
                     }
@@ -222,6 +267,10 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
     private fun hideKeyboard() {
         val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view?.windowToken, 0)
+    }
+    private fun showKeyboard() {
+
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
     }
 
 }

@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.heymaster.heymaster.App
 import com.heymaster.heymaster.R
 import com.heymaster.heymaster.SharedPref
@@ -22,6 +23,7 @@ import com.heymaster.heymaster.utils.extensions.viewBinding
 
 class MasterChildProfileFragment : Fragment(R.layout.fragment_master_child_profile) {
     private val binding by viewBinding { FragmentMasterChildProfileBinding.bind(it) }
+    private var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +70,12 @@ class MasterChildProfileFragment : Fragment(R.layout.fragment_master_child_profi
             SharedPref(requireContext()).removeString(Constants.KEY_PHONE_NUMBER)
             SharedPref(requireContext()).removeString(Constants.KEY_LOGIN_SAVED)
             SharedPref(requireContext()).removeString(Constants.KEY_CONFIRM_CODE)
+            SharedPref(requireContext()).removeString(Constants.KEY_VERIFICATION_ID)
+            SharedPref(requireContext()).removeString(Constants.KEY_DEVICE_TOKEN)
+            SharedPref(requireContext()).removeString(Constants.KEY_INTRO_SAVED)
+            SharedPref(requireContext()).removeString(Constants.DEMO_PHONE_NUMBER)
+            SharedPref(requireContext()).removeString(Constants.DEMO_CONFIRM_CODE)
+            firebaseAuth.signOut()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
             activity?.finish()
         }

@@ -27,7 +27,6 @@ class ClientActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
     private val binding by lazy { ActivityUserBinding.inflate(layoutInflater) }
     private lateinit var navController: NavController
 
-
     private var dialog: Dialog? = null
 
     @SuppressLint("ResourceType")
@@ -42,7 +41,6 @@ class ClientActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
 
         navigate(intent)
         binding.userBottomNavigation.setupWithNavController(findNavController(R.id.user_container))
-
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
@@ -59,8 +57,6 @@ class ClientActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
                 else -> showBottomNav()
             }
         }
-
-
     }
 
     private fun hideBottomNav() {
@@ -89,10 +85,8 @@ class ClientActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
             dialog?.show()
         } else {
             dialog?.dismiss()
-
         }
     }
-
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
@@ -108,5 +102,4 @@ class ClientActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
                     .commit()
             }
         }
-
 }

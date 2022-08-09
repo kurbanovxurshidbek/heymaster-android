@@ -74,27 +74,27 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 SharedPref(requireContext()).saveString(KEY_VERIFICATION_ID, verificationId)
 
             }
-
         }
 
         binding.btnContinue.setOnClickListener {
             if (binding.etPhoneNumber.text.toString().isNotEmpty()) {
-                if (validPhoneNumber == DEMO_PHONE_NUMBER) {
-                    SharedPref(requireContext()).saveString(KEY_PHONE_NUMBER, validPhoneNumber)
-                    viewModel.login(LoginRequest(validPhoneNumber))
-                } else if (validPhoneNumber.length > 12 && validPhoneNumber != DEMO_PHONE_NUMBER) {
+                if (validPhoneNumber.isNotEmpty()) {
                     SharedPref(requireContext()).saveString(KEY_PHONE_NUMBER, validPhoneNumber)
                     viewModel.login(LoginRequest(validPhoneNumber))
                     sendVerificationCode(validPhoneNumber, callback)
-                } else {
-                    Toast.makeText(requireContext(), "Invalid phone number", Toast.LENGTH_SHORT)
-                        .show()
                 }
+//                } else if (validPhoneNumber.length > 12 && validPhoneNumber != DEMO_PHONE_NUMBER) {
+//                    SharedPref(requireContext()).saveString(KEY_PHONE_NUMBER, validPhoneNumber)
+//                    viewModel.login(LoginRequest(validPhoneNumber))
+//                    sendVerificationCode(validPhoneNumber, callback)
+            } else {
+                Toast.makeText(requireContext(), "Invalid phone number", Toast.LENGTH_SHORT)
+                    .show()
             }
-
         }
 
     }
+
 
     private fun welcomeTextManager() {
         binding.apply {
@@ -142,7 +142,6 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                     is UiStateObject.LOADING -> {
                         //binding.progressHome.customProgress.visibility = View.VISIBLE
                         showLoading()
-
                     }
                     is UiStateObject.SUCCESS -> {
                         //binding.progressHome.customProgress.visibility = View.GONE
@@ -150,7 +149,6 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                         SharedPref(requireContext()).saveString(KEY_CONFIRM_CODE,
                             it.data.`object`.toString())
                         launchConfirmFragment()
-
                     }
                     is UiStateObject.ERROR -> {
                         dismissLoading()
@@ -159,15 +157,11 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 }
             }
         }
-
-
     }
 
     private fun launchConfirmFragment() {
         findNavController().navigate(R.id.action_loginFragment_to_verificationFragment)
-
     }
-
 
     private fun setupViewModel() {
         viewModel = ViewModelProvider(
@@ -279,7 +273,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         return false
     }
 
-
 }
+
 
 
