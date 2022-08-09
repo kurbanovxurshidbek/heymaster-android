@@ -248,7 +248,6 @@ class ClientProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
             SharedPref(requireContext()).removeString(KEY_CONFIRM_CODE)
             SharedPref(requireContext()).removeString(KEY_VERIFICATION_ID)
             SharedPref(requireContext()).removeString(KEY_DEVICE_TOKEN)
-            SharedPref(requireContext()).removeString(KEY_INTRO_SAVED)
             SharedPref(requireContext()).removeString(DEMO_PHONE_NUMBER)
             SharedPref(requireContext()).removeString(DEMO_CONFIRM_CODE)
             firebaseAuth.signOut()

@@ -72,7 +72,6 @@ class MasterChildProfileFragment : Fragment(R.layout.fragment_master_child_profi
             SharedPref(requireContext()).removeString(Constants.KEY_CONFIRM_CODE)
             SharedPref(requireContext()).removeString(Constants.KEY_VERIFICATION_ID)
             SharedPref(requireContext()).removeString(Constants.KEY_DEVICE_TOKEN)
-            SharedPref(requireContext()).removeString(Constants.KEY_INTRO_SAVED)
             SharedPref(requireContext()).removeString(Constants.DEMO_PHONE_NUMBER)
             SharedPref(requireContext()).removeString(Constants.DEMO_CONFIRM_CODE)
             firebaseAuth.signOut()
