@@ -35,11 +35,13 @@ class ClientActivity : BaseActivity(), ConnectivityReceiver.ConnectivityReceiver
         setContentView(binding.root)
 
         navController = Navigation.findNavController(this,R.id.user_container)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             setupStatusBar()
         }
 
         navigate(intent)
+
         binding.userBottomNavigation.setupWithNavController(findNavController(R.id.user_container))
 
         navController.addOnDestinationChangedListener { _, destination, _ ->

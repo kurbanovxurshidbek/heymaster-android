@@ -132,7 +132,7 @@ class ConfirmFragment : Fragment(R.layout.fragment_confirm) {
                     }
                     is UiStateObject.SUCCESS -> {
                         SharedPref(requireContext()).saveString(KEY_CONFIRM_CODE, it.data.`object`.toString())
-                        Toast.makeText(requireContext(), "${it.data.`object`}", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(requireContext(), "${it.data.`object`}", Toast.LENGTH_SHORT).show()
                     }
 
                     is UiStateObject.ERROR -> {

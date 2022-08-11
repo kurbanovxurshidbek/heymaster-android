@@ -8,7 +8,6 @@ class SharedPref(val context: Context) {
     private val pref = context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
 
 
-
     fun saveString(key: String, value: String) {
         val editor = pref.edit()
         editor.putString(key, value)
